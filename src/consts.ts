@@ -2,7 +2,9 @@ import type { Site, Metadata, Socials } from "@types";
 
 export const SITE: Site = {
   NAME: "original archive",
+  DESCRIPTION: "A showcase for the portfolio and articles of Ken Marlow on Original Archive",
   EMAIL: "ken@originalarchive.net",
+  URL:"https://oa-site.pages.dev",
   NUM_POSTS_ON_HOMEPAGE: 3,
   NUM_WORKS_ON_HOMEPAGE: 2,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
