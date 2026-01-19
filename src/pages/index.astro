@@ -11,6 +11,11 @@ const blog = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
+  
+  
+const photos = (await getCollection("photos"))
+  .filter(p => p.data.featured)
+  .slice(0, 9); // top 9 featured
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
@@ -58,6 +63,26 @@ const work = await Promise.all(
           </p>
         </article>
       </section>
+      
+<section class="animate space-y-4">
+  <h5 class="font-semibold">Featured photography</h5>
+
+  <div class="grid grid-cols-3 gap-4">
+    {photos.map(p => (
+      <a
+        href={p.data.type === "external" ? p.data.url : `/photos/${p.slug}`}
+        class="block border rounded-lg p-4 hover:bg-neutral-50"
+      >
+        <h6 class="font-medium">{p.data.title}</h6>
+        <p class="text-sm text-neutral-500">{p.data.description}</p>
+        {p.data.type === 'album' && <p class="text-xs mt-1 text-neutral-400">Album</p>}
+        {p.data.type === 'external' && <p class="text-xs mt-1 text-neutral-400">External portfolio</p>}
+      </a>
+
+    ))}
+  </div>
+</section>      
+      
 
 <section class="animate space-y-6">
   <div class="flex flex-wrap gap-y-2 items-center justify-between">

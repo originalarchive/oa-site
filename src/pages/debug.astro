@@ -1,0 +1,8 @@
+---
+import { getCollection } from 'astro:content';
+
+const photos = await getCollection('photos');
+console.log(photos);
+---
+
+<h1>Check console for photos collection</h1>

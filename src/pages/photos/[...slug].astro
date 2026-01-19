@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import { notFound } from "astro:assets";
+
+export async function getStaticPaths() {
+  const photos = await getCollection("photos");
+
+  return photos.map((p) => ({
+    params: { slug: p.slug },
+    props: { photoEntry: p },
+  }));
+}
+
+// Props will now include photoEntry directly
+const { photoEntry } = Astro.props;
+const isExternal = photoEntry.data.type === "external";
+---
+<html>
+  <head>
+    <title>{photoEntry.data.title}</title>
+  </head>
+  <body>
+    <h1>{photoEntry.data.title}</h1>
+    <p>{photoEntry.data.description}</p>
+
+    {isExternal ? (
+      <a href={photoEntry.data.url} target="_blank">View External Album</a>
+    ) : (
+      <div class="grid grid-cols-3 gap-4">
+        {photoEntry.body && <astro-markdown content={photoEntry.body} />}
+      </div>
+    )}
+  </body>
+</html>
