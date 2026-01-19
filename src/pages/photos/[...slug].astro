@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { notFound } from "astro:assets";
+
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
