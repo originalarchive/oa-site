@@ -1,8 +1,128 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
+import SocialLinks from "@components/SocialLinks.astro";
+import { ABOUT } from "@consts";
 ---
 
-<PageLayout title="About" description="About me">
-  <h1 class="font-semibold text-xl">About</h1>
-  <p>Work, background and contact.</p>
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <div class="animate space-y-16">
+    
+    <!-- Bio Section -->
+    <section>
+      <h1 class="text-4xl font-bold mb-4">About Me</h1>
+      <div class="prose prose-neutral dark:prose-invert max-w-none">
+        <p>
+         original archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas.
+I hope you enjoy the content and I hope you come back regularly.
+Thanks for visiting.
+Ken
+        </p>
+        <p>
+         All words and images posted on kenmarlow.co.uk are the property of Ken Marlow and are subject to copyright.
+If you would like to share content from kenmarlow.co.uk we just ask that you clearly state where the content came from, limit the copy to a few lines (don’t share the whole post on your site), and link back to the original article.
+If you would like to use any of Ken’s images, you must have written permission or pay a licensing fee before doing so.
+Any form of copyright infringement or theft of content from kenmarlow.co.uk is subject to DMCA takedown notice and/or legal action.
+If you have questions about any of this, or need more info on using Ken’s images, please use the contact form above to get in touch. 
+        </p>
+      </div>
+    </section>
+
+    <!-- Work History -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Work History</h2>
+      <div class="space-y-6">
+        
+        <!-- Example Work Entry 1 - Replace with your actual work history -->
+        <div class="border-l-2 border-black/10 dark:border-white/20 pl-6">
+          <h3 class="text-xl font-medium">Competence, Systems & Data Manager</h3>
+          <p class="text-sm opacity-60 mb-2">Transport for London</p>
+          <p class="text-sm opacity-60 mb-3">August 2025 - Present</p>
+          <p class="text-sm opacity-70">
+            Responsible for the strategic design of TfL's Route To Competence, training & competence systems across London Underground, Elizabeth line, Trams and Security, Policing & Enforcement directorates, and the data that underpins these systems that we report on.  
+          </p>
+        </div>
+
+        <!-- Example Work Entry 2 -->
+        <div class="border-l-2 border-black/10 dark:border-white/20 pl-6">
+          <h3 class="text-xl font-medium">Training & Competence Systems Manager</h3>
+          <p class="text-sm opacity-60 mb-2">Rail for London Infrastructure</p>
+          <p class="text-sm opacity-60 mb-3">April 2014 - Aug 2025</p>
+          <p class="text-sm opacity-70">
+            Lead the Crossrail / Elizabeth line competence team to establish a route to competence and design and build the competence systems required to open and manage the railway.
+          </p>
+        </div>
+
+        <!-- Add more work entries as needed by copying the div structure above -->
+
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">Get in Touch</h2>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="space-y-4 max-w-lg"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>
+            Don't fill this out: <input name="bot-field" />
+          </label>
+        </p>
+        
+        <div>
+          <label for="name" class="block text-sm font-medium mb-2">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all"
+          />
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium mb-2">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all"
+          />
+        </div>
+        
+        <div>
+          <label for="message" class="block text-sm font-medium mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all resize-none"
+          ></textarea>
+        </div>
+        
+        <button
+          type="submit"
+          class="px-6 py-2 bg-black text-white dark:bg-white dark:text-black rounded-md hover:opacity-80 transition-opacity"
+        >
+          Send Message
+        </button>
+      </form>
+    </section>
+
+    <!-- Social Links -->
+    <section class="pt-8 border-t border-black/10 dark:border-white/20">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm opacity-60">Connect with me</p>
+        <SocialLinks />
+      </div>
+    </section>
+
+  </div>
 </PageLayout>

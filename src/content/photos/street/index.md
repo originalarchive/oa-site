@@ -1,8 +1,8 @@
 ---
 title: Street Photography
-slug: street
 type: album
 featured: true
+thumbnail: "./streetlife01.jpg"
 tags:
   - street
   - events

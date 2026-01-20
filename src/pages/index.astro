@@ -1,196 +1,54 @@
 ---
 import { getCollection } from "astro:content";
-import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import Link from "@components/Link.astro";
-import { dateRange } from "@lib/utils";
-import { SITE, HOME, SOCIALS } from "@consts";
+import PhotoGalleryGrid from "@components/PhotoGalleryGrid.astro";
+import SocialLinks from "@components/SocialLinks.astro";
+import { SITE } from "@consts";
 
-const blog = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
-  
-  
-const photos = (await getCollection("photos"))
-  .filter(p => p.data.featured)
-  .slice(0, 9); // top 9 featured
-
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
-
-const allwork = (await getCollection("work"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
-
-const work = await Promise.all(
-  allwork.map(async (item) => {
-    const { Content } = await item.render();
-    return { ...item, Content };
-  })
-);
-
+const articles = (await getCollection("articles"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
-<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+<PageLayout title={SITE.TITLE} description={SITE.DESCRIPTION}>
   
-  
-  <section class="flex justify-center mt-0 mb-4">
-    <img
-      src="/oa_logo.png"
-      alt="Logo"
-      class="h-[100px] sm:h-[300px] w-auto"
+  <!-- Hero Section -->
+  <section class="animate mb-12">
+    <img 
+      src="/hero.png" 
+      alt="Hero image" 
+      class="w-[40vh] h-[40vh] object-cover rounded-lg"
     />
   </section>
-  
-  <Container>  
-        <div class="space-y-4">
-      
 
-    
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Ken <span class="text-xl">👋🏻</span> 
-    </h4>
-
-      
-      <section>
-        <article class="space-y-4">
-          <p class="animate">
-            original archive is my place online. A page I can can post photo galleries, articles and my portfolio. Take a look around.
-          </p>
-        </article>
-      </section>
-      
-<section class="animate space-y-4">
-  <h5 class="font-semibold">Featured photography</h5>
-
-  <div class="grid grid-cols-3 gap-4">
-    {photos.map(p => (
-      <a
-        href={p.data.type === "external" ? p.data.url : `/photos/${p.slug}`}
-        class="block border rounded-lg p-4 hover:bg-neutral-50"
-      >
-        <h6 class="font-medium">{p.data.title}</h6>
-        <p class="text-sm text-neutral-500">{p.data.description}</p>
-        {p.data.type === 'album' && <p class="text-xs mt-1 text-neutral-400">Album</p>}
-        {p.data.type === 'external' && <p class="text-xs mt-1 text-neutral-400">External portfolio</p>}
+  <!-- Latest Articles -->
+  <section class="animate mb-16">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-semibold">Latest Articles</h2>
+      <a href="/articles" class="text-sm opacity-60 hover:opacity-100 transition-opacity">
+        View all →
       </a>
-
-    ))}
-  </div>
-</section>      
-      
-
-<section class="animate space-y-6">
-  <div class="flex flex-wrap gap-y-2 items-center justify-between">
-    <h5 class="font-semibold text-black dark:text-white">
-      Photography
-    </h5>
-
-    <a
-      href="/photography"
-      class="text-sm underline underline-offset-4"
-    >
-      View all
-    </a>
-  </div>
-
-  <ul class="flex flex-col gap-4">
-    <li>
-      <a
-        href="/photography/street"
-        class="group block rounded-lg border border-neutral-200 dark:border-neutral-800 p-4 transition hover:bg-neutral-50 dark:hover:bg-neutral-900"
-      >
-        <div class="flex items-center justify-between">
-          <div>
-            <h6 class="font-medium">
-              Street photography
-            </h6>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              Personal work from across the world
-            </p>
-          </div>
-
-          <span class="transition group-hover:translate-x-1">
-            →
-          </span>
-        </div>
-      </a>
-    </li>
-
-    <li>
-      <a
-        href="/photography/goodwood"
-        class="group block rounded-lg border border-neutral-200 dark:border-neutral-800 p-4 transition hover:bg-neutral-50 dark:hover:bg-neutral-900"
-      >
-        <div class="flex items-center justify-between">
-          <div>
-            <h6 class="font-medium">
-              Goodwood
-            </h6>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              Racing and events from Goodwood
-            </p>
-          </div>
-
-          <span class="transition group-hover:translate-x-1">
-            →
-          </span>
-        </div>
-      </a>
-    </li>
-  </ul>
-</section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Latest posts
-          </h5>
-          <Link href="/blog">
-            See all posts
-          </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {blog.map(post => (
-            <li>
-              <ArrowCard entry={post} />
-            </li>
-          ))}
-        </ul>
-      </section>
-      
-  
-
-      <section class="animate space-y-4">
-        <h5 class="font-semibold text-black dark:text-white">
-          Let's Connect
-        </h5>
-        <article>
-          <p>
-            If you want to get in touch with me about something or just to say hi,
-            reach out on social media or send me an email.
-          </p>
-        </article>
-        <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
-            <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
-              </Link>
-              {"/"}
-            </li>
-          ))}
-          <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
-              {SITE.EMAIL}
-            </Link>
-          </li>
-        </ul>
-      </section>
     </div>
-  </Container>
+    <ul class="space-y-4">
+      {articles.map((article) => (
+        <li>
+          <ArrowCard entry={article} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Featured Photo Galleries -->
+  <PhotoGalleryGrid />
+
+  <!-- Social Links Footer -->
+  <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm opacity-60">Connect with me</p>
+      <SocialLinks />
+    </div>
+  </section>
+
 </PageLayout>

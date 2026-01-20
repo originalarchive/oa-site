@@ -1,29 +1,81 @@
 ---
-import Container from "@components/Container.astro";
-import Link from "@components/Link.astro";
-import { SITE } from "@consts";
+import { LINKS } from "@consts";
+import ThemeToggle from "@components/ThemeToggle.astro";
+
+const pathname = new URL(Astro.request.url).pathname;
 ---
 
-<header>
-  <Container>
-    <div class="flex flex-wrap gap-y-2 justify-between">
-      <Link href="/" underline={false}>
-        <div class="font-semibold">
-          {SITE.NAME}
-        </div>
-      </Link>
-      <nav class="flex gap-1">
-  <Link href="/articles">articles</Link>
-  <span>|</span>
-
-  <Link href="/photos">photos</Link>
-  <span>|</span>
-
-  <Link href="/coffee-log">coffee log</Link>
-  <span>|</span>
-
-  <Link href="/about">about</Link>
-</nav>
+<header class="animate">
+  <nav class="flex items-center justify-between py-6">
+    <a href="/" class="text-2xl font-semibold">
+      original archive
+    </a>
+    
+    <div class="flex items-center gap-6">
+      <ul class="hidden sm:flex gap-6">
+        {LINKS.map((link, i) => (
+          <li>
+            <a
+              href={link.HREF}
+              class={`text-sm transition-opacity ${
+                pathname === link.HREF || pathname.startsWith(link.HREF + "/")
+                  ? "opacity-100"
+                  : "opacity-60 hover:opacity-100"
+              }`}
+            >
+              {link.TEXT}
+            </a>
+         
+          {/* Pipe separator */}
+            {i < LINKS.length - 1 && (
+              <span class="mx-4 opacity-40 select-none">|</span>
+            )}
+         
+         
+          </li> 
+        ))}
+      </ul>
+      
+      <ThemeToggle />
+      
+      <button
+        id="mobile-menu-toggle"
+        class="sm:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </div>
-  </Container>
+  </nav>
+  
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden sm:hidden pb-4">
+    <ul class="flex flex-col gap-4">
+      {LINKS.map((link) => (
+        <li>
+          <a
+            href={link.HREF}
+            class={`text-sm block transition-opacity ${
+              pathname === link.HREF || pathname.startsWith(link.HREF + "/")
+                ? "opacity-100"
+                : "opacity-60 hover:opacity-100"
+            }`}
+          >
+            {link.TEXT}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,8 +1,8 @@
 ---
 title: London
-slug: london
 type: album
 featured: true
+thumbnail: "./march01.jpg"
 tags: 
   - street
   - events

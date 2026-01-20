@@ -1,8 +1,34 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
+import CoffeeTable from "@components/CoffeeTable.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import { COFFEE } from "@consts";
+
+// Get coffee-tagged articles
+const coffeeArticles = (await getCollection("articles"))
+  .filter((post) => !post.data.draft && post.data.tags?.includes("coffee"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<PageLayout title="Coffee log" description="Beans, brews and ratings">
-  <h1 class="font-semibold text-xl">Coffee log</h1>
-  <p>Every coffee I’ve tried.</p>
+<PageLayout title={COFFEE.TITLE} description={COFFEE.DESCRIPTION}>
+  <div class="animate">
+    <h1 class="text-4xl font-bold mb-2">{COFFEE.TITLE}</h1>
+    <p class="opacity-60 mb-8">{COFFEE.DESCRIPTION}</p>
+    
+    <CoffeeTable />
+  </div>
+
+  {coffeeArticles.length > 0 && (
+    <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
+      <h2 class="text-2xl font-semibold mb-6">Coffee Articles</h2>
+      <ul class="space-y-4">
+        {coffeeArticles.map((article) => (
+          <li>
+            <ArrowCard entry={article} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 </PageLayout>

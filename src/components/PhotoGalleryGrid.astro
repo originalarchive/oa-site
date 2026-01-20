@@ -1,21 +1,26 @@
 ---
 import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import { PHOTOS } from "@consts";
+import { Image } from "astro:assets";
 
 const photos = await getCollection("photos");
+const featured = photos.filter((p) => p.data.featured);
 ---
 
-<PageLayout title={PHOTOS.TITLE} description={PHOTOS.DESCRIPTION}>
-  <div class="animate">
-    <h1 class="text-4xl font-bold mb-2">{PHOTOS.TITLE}</h1>
-    <p class="opacity-60 mb-8">{PHOTOS.DESCRIPTION}</p>
-    
+{featured.length > 0 && (
+  <section class="animate">
+    <h2 class="text-2xl font-semibold mb-6">Featured Galleries</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {photos.map((gallery) => {
+      {featured.map(async (gallery) => {
         const isExternal = gallery.data.type === "external";
-        const thumbnailSrc = gallery.data.thumbnail || `/photos/${gallery.slug}/thumbnail.jpg`;
+        let thumbnailSrc = gallery.data.thumbnail;
         
+        // For internal albums, get first image from content
+        if (!isExternal && !thumbnailSrc) {
+          const { Content } = await gallery.render();
+          // This is a simplified approach - you may need to adjust based on your image structure
+          thumbnailSrc = `/photos/${gallery.slug}/thumbnail.jpg`;
+        }
+
         return (
           <a
             href={isExternal ? gallery.data.url : `/photos/${gallery.slug}`}
@@ -36,11 +41,11 @@ const photos = await getCollection("photos");
                 </svg>
               </div>
             )}
-            <div class="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] flex items-end p-6 group-hover:bg-black/40 dark:group-hover:bg-black/60 transition-colors">
-              <div class="text-white">
-                <h3 class="text-xl font-semibold mb-1">{gallery.data.title}</h3>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-semibold mb-2">{gallery.data.title}</h3>
                 {gallery.data.description && (
-                  <p class="text-sm opacity-90 line-clamp-2">{gallery.data.description}</p>
+                  <p class="text-sm opacity-90">{gallery.data.description}</p>
                 )}
                 {isExternal && (
                   <span class="inline-flex items-center gap-1 text-xs mt-2 opacity-75">
@@ -52,9 +57,17 @@ const photos = await getCollection("photos");
                 )}
               </div>
             </div>
+            <div class="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] flex items-end p-6">
+              <div class="text-white">
+                <h3 class="text-xl font-semibold mb-1">{gallery.data.title}</h3>
+                {gallery.data.description && (
+                  <p class="text-sm opacity-90 line-clamp-2">{gallery.data.description}</p>
+                )}
+              </div>
+            </div>
           </a>
         );
       })}
     </div>
-  </div>
-</PageLayout>
+  </section>
+)}

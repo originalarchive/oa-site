@@ -1,8 +1,19 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
+import Search from "@components/Search.astro";
+import { ARTICLES } from "@consts";
+
+const articles = (await getCollection("articles"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<PageLayout title="Articles" description="All articles">
-  <h1 class="font-semibold text-xl">Articles</h1>
-  <p>Filter by topic and tags.</p>
+<PageLayout title={ARTICLES.TITLE} description={ARTICLES.DESCRIPTION}>
+  <div class="animate">
+    <h1 class="text-4xl font-bold mb-2">{ARTICLES.TITLE}</h1>
+    <p class="opacity-60 mb-8">{ARTICLES.DESCRIPTION}</p>
+    
+    <Search articles={articles} />
+  </div>
 </PageLayout>

@@ -1,0 +1,123 @@
+---
+interface Props {
+  articles: any[];
+}
+
+const { articles } = Astro.props;
+---
+
+<div class="space-y-4">
+  <div class="relative">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search articles..."
+      class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all"
+    />
+    <svg class="absolute right-3 top-2.5 w-5 h-5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+  </div>
+
+  <div class="flex gap-2 flex-wrap">
+    <button class="filter-tag active" data-tag="all">All</button>
+    <button class="filter-tag" data-tag="coffee">Coffee</button>
+    <button class="filter-tag" data-tag="tech">Tech</button>
+    <button class="filter-tag" data-tag="life">Life</button>
+  </div>
+
+  <div id="articles-container" class="space-y-4">
+    {articles.map((article) => (
+      <article
+        class="article-item"
+        data-title={article.data.title.toLowerCase()}
+        data-description={article.data.description.toLowerCase()}
+        data-tags={article.data.tags?.join(",") || ""}
+      >
+        <a href={`/articles/${article.slug}`} class="block group">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-lg font-medium group-hover:underline underline-offset-2">
+                {article.data.title}
+              </h2>
+              <time class="text-sm opacity-60 whitespace-nowrap">
+                {new Date(article.data.date).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </time>
+            </div>
+            <p class="text-sm opacity-70">{article.data.description}</p>
+            {article.data.tags && (
+              <div class="flex gap-2 flex-wrap">
+                {article.data.tags.map((tag: string) => (
+                  <span class="text-xs px-2 py-1 rounded-md bg-black/5 dark:bg-white/10">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+
+  <div id="no-results" class="hidden text-center py-8 opacity-60">
+    No articles found matching your search.
+  </div>
+</div>
+
+<style>
+  .filter-tag {
+    @apply px-3 py-1 text-sm rounded-md border border-black/10 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition-colors;
+  }
+  .filter-tag.active {
+    @apply bg-black text-white dark:bg-white dark:text-black;
+  }
+</style>
+
+<script>
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const articles = document.querySelectorAll('.article-item');
+  const noResults = document.getElementById('no-results');
+  const filterTags = document.querySelectorAll('.filter-tag');
+  let activeTag = 'all';
+
+  function filterArticles() {
+    const searchTerm = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    articles.forEach((article) => {
+      const title = article.getAttribute('data-title') || '';
+      const description = article.getAttribute('data-description') || '';
+      const tags = article.getAttribute('data-tags') || '';
+      
+      const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+      const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+      
+      if (matchesSearch && matchesTag) {
+        (article as HTMLElement).style.display = 'block';
+        visibleCount++;
+      } else {
+        (article as HTMLElement).style.display = 'none';
+      }
+    });
+
+    if (noResults) {
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
+  searchInput?.addEventListener('input', filterArticles);
+
+  filterTags.forEach((tag) => {
+    tag.addEventListener('click', () => {
+      filterTags.forEach((t) => t.classList.remove('active'));
+      tag.classList.add('active');
+      activeTag = tag.getAttribute('data-tag') || 'all';
+      filterArticles();
+    });
+  });
+</script>

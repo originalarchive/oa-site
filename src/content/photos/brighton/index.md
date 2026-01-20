@@ -1,8 +1,8 @@
 ---
 title: Brighton
-slug: brighton
 type: album
 featured: true
+thumbnail: "./brighton_pier_01.jpg"
 tags: 
   - street
   - events

@@ -1,8 +1,8 @@
 ---
 title: Goodwood
-slug: goodwood
 type: album
 featured: true
+thumbnail: "./track01.jpg"
 tags: 
   - motorsport
   - events]

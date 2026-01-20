@@ -1,42 +1,80 @@
-import type { Site, Metadata, Socials } from "@types";
+import type { Site, Page, Links, Socials } from "@types";
 
+// Global
 export const SITE: Site = {
-  NAME: "original archive",
-  DESCRIPTION: "A showcase for the portfolio and articles of Ken Marlow on Original Archive",
-  EMAIL: "ken@originalarchive.net",
-  URL:"https://oa-site.pages.dev",
-  NUM_POSTS_ON_HOMEPAGE: 3,
-  NUM_WORKS_ON_HOMEPAGE: 2,
-  NUM_PROJECTS_ON_HOMEPAGE: 3,
+  TITLE: "original archive",
+  DESCRIPTION: "Photography, coffee, and digital musings.",
+  AUTHOR: "Ken",
 };
 
-export const HOME: Metadata = {
-  TITLE: "home",
-  DESCRIPTION: "original archive by Ken Marlow is a showcase for my portfolio and articles.",
-};
-
-export const BLOG: Metadata = {
+// Articles Page  
+export const ARTICLES: Page = {
   TITLE: "articles",
-  DESCRIPTION: "A collection of articles on topics I am passionate about.",
+  DESCRIPTION: "Writing on coffee, tech, and life.",
 };
 
-export const WORK: Metadata = {
-  TITLE: "work",
-  DESCRIPTION: "Where I have worked and what I have done.",
+// Photos Page
+export const PHOTOS: Page = {
+  TITLE: "photos", 
+  DESCRIPTION: "Photography portfolio and albums.",
 };
 
-export const PROJECTS: Metadata = {
-  TITLE: "photography",
-  DESCRIPTION: "A collection of my image galleries and my main portfolio.",
+// Coffee Log Page
+export const COFFEE: Page = {
+  TITLE: "coffee log",
+  DESCRIPTION: "Tracking my coffee journey, one brew at a time.",
 };
 
-export const SOCIALS: Socials = [
+// About
+export const ABOUT: Page = {
+  TITLE: "about",
+  DESCRIPTION: "A bit about me.",
+};
+
+// Links
+export const LINKS: Links = [
   { 
-    NAME: "reddit",
-    HREF: "https://www.reddit.com/user/Originalarchive/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button",
+    TEXT: "articles", 
+    HREF: "/articles",
+  },
+  {
+    TEXT: "about", 
+    HREF: "/about",
   },
   { 
-    NAME: "threads",
-    HREF: "https://www.threads.com/@originalarchive?igshid=NTc4MTIwNjQ2YQ==",
-  }
+    TEXT: "photos", 
+    HREF: "/photos",
+  },
+  { 
+    TEXT: "coffee log", 
+    HREF: "/coffee-log",
+  },
+];
+
+// Socials
+export const SOCIALS: Socials = [
+  { 
+    NAME: "Instagram",
+    ICON: "instagram",
+    TEXT: "@originalarchive",
+    HREF: "https://www.instagram.com/originalarchive",
+  },
+  { 
+    NAME: "Threads",
+    ICON: "threads", 
+    TEXT: "@originalarchive",
+    HREF: "https://www.threads.com/@originalarchive",
+  },
+  { 
+    NAME: "Bluesky",
+    ICON: "cloud",
+    TEXT: "@originalarchive",
+    HREF: "https://bsky.app/profile/originalarchive.bsky.social",
+  },
+  { 
+    NAME: "Reddit",
+    ICON: "reddit",
+    TEXT: "u/Originalarchive",
+    HREF: "https://www.reddit.com/user/Originalarchive/",
+  },
 ];

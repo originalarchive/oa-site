@@ -1,0 +1,78 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+
+export async function getStaticPaths() {
+  const articles = (await getCollection("articles"))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: article,
+  }));
+}
+
+type Props = CollectionEntry<"articles">;
+
+const article = Astro.props;
+const { Content } = await article.render();
+
+// Get related articles (same tags)
+const allArticles = await getCollection("articles");
+const relatedArticles = allArticles
+  .filter((p) => 
+    !p.data.draft && 
+    p.slug !== article.slug &&
+    p.data.tags?.some((tag) => article.data.tags?.includes(tag))
+  )
+  .slice(0, 3);
+---
+
+<PageLayout title={article.data.title} description={article.data.description}>
+  <article class="animate">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-2 text-sm opacity-60">
+        <time datetime={article.data.date.toISOString()}>
+          {article.data.date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}
+        </time>
+        {article.data.tags && (
+          <>
+            <span>•</span>
+            <div class="flex gap-2">
+              {article.data.tags.map((tag) => (
+                <span class="px-2 py-1 rounded-md bg-black/5 dark:bg-white/10 text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <h1 class="text-4xl font-bold mb-4">{article.data.title}</h1>
+      <p class="text-lg opacity-70">{article.data.description}</p>
+    </div>
+    
+    <div class="prose prose-neutral dark:prose-invert max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  {relatedArticles.length > 0 && (
+    <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
+      <h2 class="text-2xl font-semibold mb-6">Related Articles</h2>
+      <ul class="space-y-4">
+        {relatedArticles.map((related) => (
+          <li>
+            <ArrowCard entry={related} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</PageLayout>
