@@ -1,10 +1,12 @@
 import type { Site, Page, Links, Socials } from "@types";
 
 // Global
-export const SITE: Site = {
-  NAME: "original archive",
-  DESCRIPTION: "Photography, coffee, and articles.",
-  AUTHOR: "Ken",
+export const SITE = {
+  NAME: "original archive", // Make sure NAME is uppercase here
+  EMAIL: "your@email.com",
+  NUM_POSTS_ON_HOMEPAGE: 5,
+  NUM_PROJECTS_ON_HOMEPAGE: 3,
+  NUM_WORKS_ON_HOMEPAGE: 2,
 };
 
 // Articles Page  

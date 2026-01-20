@@ -1,9 +1,15 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  coffeeEntries: CollectionEntry<"coffee">[];
+}
+
 const { coffeeEntries = [] } = Astro.props;
 ---
 
 <div class="flex flex-col gap-4">
-  {coffeeEntries.map((entry) => (
+  {coffeeEntries.map((entry: CollectionEntry<"coffee">) => (
     <details 
       class="coffee-card group border border-black/10 dark:border-white/10 rounded-xl overflow-hidden bg-black/[0.02] dark:bg-white/[0.02]"
       data-date={entry.data.dateBrewed.toISOString()}
@@ -62,7 +68,7 @@ const { coffeeEntries = [] } = Astro.props;
               <p class="text-sm">{entry.data.process}</p>
             </div>
           )}
-           {entry.data.variety && (
+          {entry.data.variety && (
             <div>
               <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Variety</p>
               <p class="text-sm">{entry.data.variety}</p>
