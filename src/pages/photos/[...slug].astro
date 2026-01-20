@@ -19,7 +19,10 @@ const { photoEntry } = Astro.props;
 const { Content } = await photoEntry.render();
 ---
 
-<Layout title={photoEntry.data.title}>
+<Layout 
+  title={photoEntry.data.title} 
+  description={photoEntry.data.description || `Photo gallery for ${photoEntry.data.title}`}
+>
   <main class="max-w-4xl mx-auto px-6 py-12">
     <div class="mb-8">
       <a href="/photos" class="text-sm font-medium opacity-50 hover:opacity-100 transition-opacity flex items-center gap-2">

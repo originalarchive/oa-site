@@ -2,7 +2,8 @@ import type { Site, Page, Links, Socials } from "@types";
 
 // Global
 export const SITE = {
-  NAME: "original archive", // Make sure NAME is uppercase here
+  NAME: "original archive",
+  DESCRIPTION: "A collection of photos and coffee logs.",
   EMAIL: "your@email.com",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,

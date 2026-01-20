@@ -15,7 +15,7 @@ const articles = (await getCollection("articles"))
 // Fetch Featured Photos (for the 3x3 grid)
 const photos = (await getCollection("photos"));
 const featuredPhotos = photos
-  .filter(p => p.data.featured)
+  .filter(p => p.data)
   .slice(0, 9);
 ---
 
