@@ -17,17 +17,13 @@ const { title, description } = Astro.props;
   <head>
     <Head title={`${title} | ${SITE.NAME}`} description={description} />
   </head>
-  <body>
-    <div class="relative z-50">
-      <Header />
-    </div>
-    
-    <main class="pt-24 min-h-[calc(100vh-160px)]"> 
+  <body class="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+    <Header />
+
+    <main class="pt-32 pb-24 px-4 mx-auto max-w-screen-xl min-h-screen">
       <slot />
     </main>
 
-    <div class="relative z-50">
-      <Footer />
-    </div>
+    <Footer />
   </body>
 </html>

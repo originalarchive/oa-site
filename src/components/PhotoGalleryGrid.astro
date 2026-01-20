@@ -9,7 +9,7 @@ interface Props {
 const { photos } = Astro.props;
 ---
 
-<div class="grid grid-cols-3 gap-4">
+<div class="grid grid-cols-3 gap-4 relative z-0">
   {photos.map((photo: CollectionEntry<"photos">) => (
     <a 
       href={photo.data.type === "external" ? photo.data.url : `/photos/${photo.slug}`} 
