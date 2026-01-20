@@ -13,18 +13,18 @@ const articles = defineCollection({
 });
 
 // Photos collection
+
 const photos = defineCollection({
-  type: "content",
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
-    type: z.enum(["album", "external"]),
-    featured: z.boolean().optional(),
-    tags: z.array(z.string()).optional(),
-    url: z.string().optional(), // for external galleries
-    thumbnail: z.string().optional(), // path to thumbnail image
+    // Use the image() helper here!
+    thumbnail: image(), 
+    type: z.enum(["internal", "external"]).default("internal"),
+    url: z.string().optional(),
   }),
 });
+
 
 // Coffee log collection
 const coffee = defineCollection({

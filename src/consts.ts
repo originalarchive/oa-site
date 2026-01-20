@@ -2,8 +2,8 @@ import type { Site, Page, Links, Socials } from "@types";
 
 // Global
 export const SITE: Site = {
-  TITLE: "original archive",
-  DESCRIPTION: "Photography, coffee, and digital musings.",
+  NAME: "original archive",
+  DESCRIPTION: "Photography, coffee, and articles.",
   AUTHOR: "Ken",
 };
 

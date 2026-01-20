@@ -1,7 +1,7 @@
 ---
-title: Street Photography
-type: album
-featured: true
+title: S"treet Photography"
+type: "internal"
+featured: "true"
 thumbnail: "./streetlife01.jpg"
 tags:
   - street
@@ -14,7 +14,7 @@ tags:
   - people
   - buildings
   - architecture
-description: Street photos from around the world.
+description: "Street photos from around the world."
 ---
 
 I have wandered around with a camera for much of my life and here are some shots I have taken that might fit the street category. 

@@ -6,28 +6,33 @@ import PhotoGalleryGrid from "@components/PhotoGalleryGrid.astro";
 import SocialLinks from "@components/SocialLinks.astro";
 import { SITE } from "@consts";
 
+// Fetch Latest Articles
 const articles = (await getCollection("articles"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+// Fetch Featured Photos (for the 3x3 grid)
+const photos = (await getCollection("photos"));
+const featuredPhotos = photos
+  .filter(p => p.data.featured)
+  .slice(0, 9);
 ---
 
-<PageLayout title={SITE.TITLE} description={SITE.DESCRIPTION}>
+<PageLayout title="home" description={SITE.DESCRIPTION}>
   
-  <!-- Hero Section -->
-  <section class="animate mb-12">
+  <section class="animate mt-4 mb-10">
     <img 
       src="/hero.png" 
       alt="Hero image" 
-      class="w-[40vh] h-[40vh] object-cover rounded-lg"
+      class="w-full max-w-[400px] aspect-square object-cover rounded-lg"
     />
   </section>
 
-  <!-- Latest Articles -->
   <section class="animate mb-16">
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-semibold">Latest Articles</h2>
-      <a href="/articles" class="text-sm opacity-60 hover:opacity-100 transition-opacity">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">Latest Articles</h2>
+      <a href="/articles" class="text-sm border-b border-transparent hover:border-current transition-colors duration-300">
         View all →
       </a>
     </div>
@@ -40,10 +45,16 @@ const articles = (await getCollection("articles"))
     </ul>
   </section>
 
-  <!-- Featured Photo Galleries -->
-  <PhotoGalleryGrid />
+  <section class="animate mb-16">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">Featured Photos</h2>
+      <a href="/photos" class="text-sm border-b border-transparent hover:border-current transition-colors duration-300">
+        View all →
+      </a>
+    </div>
+    <PhotoGalleryGrid photos={featuredPhotos} />
+  </section>
 
-  <!-- Social Links Footer -->
   <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-sm opacity-60">Connect with me</p>

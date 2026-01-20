@@ -71,3 +71,8 @@ html #back-to-top {
 html.scrolled #back-to-top {
   @apply opacity-100 pointer-events-auto;
 }
+
+/* Unique class for our coffee filter so we don't break the Nav bar */
+.filter-hidden {
+  display: none !important;
+}

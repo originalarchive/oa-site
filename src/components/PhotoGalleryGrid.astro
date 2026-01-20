@@ -1,73 +1,30 @@
 ---
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-
-const photos = await getCollection("photos");
-const featured = photos.filter((p) => p.data.featured);
+import { Image } from 'astro:assets';
+const { photos } = Astro.props;
 ---
 
-{featured.length > 0 && (
-  <section class="animate">
-    <h2 class="text-2xl font-semibold mb-6">Featured Galleries</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {featured.map(async (gallery) => {
-        const isExternal = gallery.data.type === "external";
-        let thumbnailSrc = gallery.data.thumbnail;
-        
-        // For internal albums, get first image from content
-        if (!isExternal && !thumbnailSrc) {
-          const { Content } = await gallery.render();
-          // This is a simplified approach - you may need to adjust based on your image structure
-          thumbnailSrc = `/photos/${gallery.slug}/thumbnail.jpg`;
-        }
+<div class="grid grid-cols-3 gap-4">
+  {photos.map((photo) => {
+    // Logic: Use external URL if it exists, otherwise use local route
+    const isExternal = photo.data.type === "external";
+    const targetUrl = isExternal ? photo.data.url : `/photos/${photo.slug}`;
+    const targetAttr = isExternal ? "_blank" : "_self";
 
-        return (
-          <a
-            href={isExternal ? gallery.data.url : `/photos/${gallery.slug}`}
-            target={isExternal ? "_blank" : undefined}
-            rel={isExternal ? "noopener noreferrer" : undefined}
-            class="group block relative aspect-square overflow-hidden rounded-lg hover:scale-[1.02] transition-transform duration-300"
-          >
-            {thumbnailSrc ? (
-              <img
-                src={thumbnailSrc}
-                alt={gallery.data.title}
-                class="w-full h-full object-cover"
-              />
-            ) : (
-              <div class="w-full h-full bg-black/5 dark:bg-white/5 flex items-center justify-center">
-                <svg class="w-16 h-16 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-            )}
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-semibold mb-2">{gallery.data.title}</h3>
-                {gallery.data.description && (
-                  <p class="text-sm opacity-90">{gallery.data.description}</p>
-                )}
-                {isExternal && (
-                  <span class="inline-flex items-center gap-1 text-xs mt-2 opacity-75">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    External gallery
-                  </span>
-                )}
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] flex items-end p-6">
-              <div class="text-white">
-                <h3 class="text-xl font-semibold mb-1">{gallery.data.title}</h3>
-                {gallery.data.description && (
-                  <p class="text-sm opacity-90 line-clamp-2">{gallery.data.description}</p>
-                )}
-              </div>
-            </div>
-          </a>
-        );
-      })}
-    </div>
-  </section>
-)}
+    return (
+      <a href={targetUrl} target={targetAttr} class="group relative block aspect-square overflow-hidden rounded-lg">
+        <Image 
+          src={photo.data.thumbnail} 
+          alt={photo.data.title}
+          width={600}
+          height={600}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span class="text-white text-xs font-bold uppercase tracking-widest">
+            {isExternal ? "View Portfolio" : "View Gallery"}
+          </span>
+        </div>
+      </a>
+    )
+  })}
+</div>

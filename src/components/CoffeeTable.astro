@@ -1,166 +1,104 @@
 ---
-import { getCollection } from "astro:content";
-
-const coffees = (await getCollection("coffee")).sort(
-  (a, b) => b.data.dateBrewed.getTime() - a.data.dateBrewed.getTime()
-);
-
-// Extract unique values for filters
-const roasters = [...new Set(coffees.map((c) => c.data.roaster))].sort();
-const origins = [...new Set(coffees.map((c) => c.data.origin))].sort();
-const brewMethods = [...new Set(coffees.map((c) => c.data.brewMethod))].sort();
-const ratings = ["Buy again", "Worth another shot", "Don't buy"];
+const { coffeeEntries = [] } = Astro.props;
 ---
 
-<div class="space-y-6">
-  <!-- Filters -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <select id="filter-roaster" class="filter-select">
-      <option value="">All Roasters</option>
-      {roasters.map((r) => <option value={r}>{r}</option>)}
-    </select>
-    
-    <select id="filter-origin" class="filter-select">
-      <option value="">All Origins</option>
-      {origins.map((o) => <option value={o}>{o}</option>)}
-    </select>
-    
-    <select id="filter-method" class="filter-select">
-      <option value="">All Brew Methods</option>
-      {brewMethods.map((m) => <option value={m}>{m}</option>)}
-    </select>
-    
-    <select id="filter-rating" class="filter-select">
-      <option value="">All Ratings</option>
-      {ratings.map((r) => <option value={r}>{r}</option>)}
-    </select>
-  </div>
-
-  <!-- Coffee Table -->
-  <div class="space-y-2">
-    {coffees.map((coffee) => (
-      <details
-        class="coffee-item group border border-black/10 dark:border-white/20 rounded-lg overflow-hidden hover:border-black/20 dark:hover:border-white/30 transition-colors"
-        data-roaster={coffee.data.roaster}
-        data-origin={coffee.data.origin}
-        data-method={coffee.data.brewMethod}
-        data-rating={coffee.data.rating.overall}
-      >
-        <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
-            <div class="font-medium">{coffee.data.name}</div>
-            <div class="text-sm opacity-70">{coffee.data.roaster}</div>
-            <div class="text-sm opacity-70">
-              {coffee.data.dateBrewed.toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              })}
-            </div>
-            <div class="flex items-center gap-2">
-              <span class={`text-sm px-2 py-1 rounded-md ${
-                coffee.data.rating.overall === "Buy again"
-                  ? "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200"
-                  : coffee.data.rating.overall === "Worth another shot"
-                  ? "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200"
-                  : "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200"
-              }`}>
-                {coffee.data.rating.overall}
-              </span>
-            </div>
+<div class="flex flex-col gap-4">
+  {coffeeEntries.map((entry) => (
+    <details 
+      class="coffee-card group border border-black/10 dark:border-white/10 rounded-xl overflow-hidden bg-black/[0.02] dark:bg-white/[0.02]"
+      data-date={entry.data.dateBrewed.toISOString()}
+    >
+      <summary class="list-none cursor-pointer p-4 flex items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-black dark:text-white text-lg leading-tight">
+              {entry.data.name}
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/10 dark:bg-white/20 font-mono font-bold">
+              {entry.data.rating.overall}
+            </span>
           </div>
-          <svg class="w-5 h-5 ml-4 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <div class="flex items-center gap-2 text-sm opacity-60">
+            <span>{entry.data.roaster}</span>
+            <span>•</span>
+            <span>{entry.data.origin}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="hidden md:flex flex-col items-end text-xs">
+            <span class="font-medium opacity-80">{entry.data.brewMethod}</span>
+            <span class="opacity-50">{entry.data.dateBrewed.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-40 group-open:rotate-180 transition-transform duration-300">
+            <path d="m6 9 6 6 6-6"/>
           </svg>
-        </summary>
-        
-        <div class="p-4 pt-0 space-y-4 border-t border-black/10 dark:border-white/20">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            <div>
-              <h4 class="font-medium mb-2">Coffee Details</h4>
-              <dl class="space-y-1 opacity-70">
-                <div><dt class="inline font-medium">Origin:</dt> <dd class="inline">{coffee.data.origin}</dd></div>
-                {coffee.data.region && <div><dt class="inline font-medium">Region:</dt> <dd class="inline">{coffee.data.region}</dd></div>}
-                {coffee.data.variety && <div><dt class="inline font-medium">Variety:</dt> <dd class="inline">{coffee.data.variety}</dd></div>}
-                {coffee.data.process && <div><dt class="inline font-medium">Process:</dt> <dd class="inline">{coffee.data.process}</dd></div>}
-                {coffee.data.elevation && <div><dt class="inline font-medium">Elevation:</dt> <dd class="inline">{coffee.data.elevation}</dd></div>}
-                {coffee.data.roastLevel && <div><dt class="inline font-medium">Roast:</dt> <dd class="inline">{coffee.data.roastLevel}</dd></div>}
-              </dl>
-            </div>
-            
-            <div>
-              <h4 class="font-medium mb-2">Brew Details</h4>
-              <dl class="space-y-1 opacity-70">
-                <div><dt class="inline font-medium">Method:</dt> <dd class="inline">{coffee.data.brewMethod}</dd></div>
-                <div><dt class="inline font-medium">Grind:</dt> <dd class="inline">{coffee.data.grindSize}</dd></div>
-                {coffee.data.waterTemp && <div><dt class="inline font-medium">Water Temp:</dt> <dd class="inline">{coffee.data.waterTemp}</dd></div>}
-                {coffee.data.ratio && <div><dt class="inline font-medium">Ratio:</dt> <dd class="inline">{coffee.data.ratio}</dd></div>}
-              </dl>
-            </div>
-          </div>
+        </div>
+      </summary>
 
-          <div>
-            <h4 class="font-medium mb-2 text-sm">Ratings</h4>
-            <div class="flex gap-4 text-sm opacity-70">
-              <div>Flavor: {"★".repeat(coffee.data.rating.flavor)}{"☆".repeat(5 - coffee.data.rating.flavor)}</div>
-              <div>Body: {"★".repeat(coffee.data.rating.body)}{"☆".repeat(5 - coffee.data.rating.body)}</div>
-              <div>Acidity: {"★".repeat(coffee.data.rating.acidity)}{"☆".repeat(5 - coffee.data.rating.acidity)}</div>
-            </div>
-          </div>
-
-          {coffee.body && (
-            <div class="prose prose-sm dark:prose-invert max-w-none">
-              <Fragment set:html={await coffee.render().then(r => r.Content)} />
+      <div class="p-4 pt-0 border-t border-black/5 dark:border-white/5 bg-white/30 dark:bg-black/10">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 py-6">
+          {entry.data.brewMethod && (
+            <div>
+              <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Method</p>
+              <p class="text-sm">{entry.data.brewMethod}</p>
             </div>
           )}
-
-          {coffee.data.processDetails && (
-            <details class="text-sm">
-              <summary class="cursor-pointer font-medium opacity-70 hover:opacity-100">Process Details</summary>
-              <p class="mt-2 opacity-60">{coffee.data.processDetails}</p>
-            </details>
+          {entry.data.grindSize && (
+            <div>
+              <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Grind Size</p>
+              <p class="text-sm">{entry.data.grindSize}</p>
+            </div>
+          )}
+          {entry.data.waterTemp && (
+            <div>
+              <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Temp</p>
+              <p class="text-sm">{entry.data.waterTemp}</p>
+            </div>
+          )}
+          {entry.data.process && (
+            <div>
+              <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Process</p>
+              <p class="text-sm">{entry.data.process}</p>
+            </div>
+          )}
+           {entry.data.variety && (
+            <div>
+              <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-1">Variety</p>
+              <p class="text-sm">{entry.data.variety}</p>
+            </div>
           )}
         </div>
-      </details>
-    ))}
-  </div>
+
+        <div class="flex gap-6 pb-6 border-b border-black/5 dark:border-white/5">
+           <div class="flex flex-col">
+             <span class="text-[10px] uppercase opacity-50 font-bold">Flavor</span>
+             <span class="font-mono text-sm">{"★".repeat(entry.data.rating.flavor)}{"☆".repeat(5-entry.data.rating.flavor)}</span>
+           </div>
+           <div class="flex flex-col">
+             <span class="text-[10px] uppercase opacity-50 font-bold">Body</span>
+             <span class="font-mono text-sm">{"★".repeat(entry.data.rating.body)}{"☆".repeat(5-entry.data.rating.body)}</span>
+           </div>
+           <div class="flex flex-col">
+             <span class="text-[10px] uppercase opacity-50 font-bold">Acidity</span>
+             <span class="font-mono text-sm">{"★".repeat(entry.data.rating.acidity)}{"☆".repeat(5-entry.data.rating.acidity)}</span>
+           </div>
+        </div>
+        
+        <div class="mt-6 text-sm leading-relaxed prose prose-sm dark:prose-invert max-w-none pb-4">
+          <p class="text-[10px] uppercase tracking-widest opacity-50 font-bold mb-2">Tasting Notes</p>
+          {entry.body}
+        </div>
+      </div>
+    </details>
+  ))}
 </div>
 
 <style>
-  .filter-select {
-    @apply px-3 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all;
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary {
+    list-style: none;
   }
 </style>
-
-<script>
-  const filters = {
-    roaster: document.getElementById('filter-roaster') as HTMLSelectElement,
-    origin: document.getElementById('filter-origin') as HTMLSelectElement,
-    method: document.getElementById('filter-method') as HTMLSelectElement,
-    rating: document.getElementById('filter-rating') as HTMLSelectElement,
-  };
-
-  function filterCoffees() {
-    const items = document.querySelectorAll('.coffee-item');
-    const activeFilters = {
-      roaster: filters.roaster.value,
-      origin: filters.origin.value,
-      method: filters.method.value,
-      rating: filters.rating.value,
-    };
-
-    items.forEach((item) => {
-      const matches = 
-        (!activeFilters.roaster || item.getAttribute('data-roaster') === activeFilters.roaster) &&
-        (!activeFilters.origin || item.getAttribute('data-origin') === activeFilters.origin) &&
-        (!activeFilters.method || item.getAttribute('data-method') === activeFilters.method) &&
-        (!activeFilters.rating || item.getAttribute('data-rating') === activeFilters.rating);
-      
-      (item as HTMLElement).style.display = matches ? 'block' : 'none';
-    });
-  }
-
-  Object.values(filters).forEach((filter) => {
-    filter?.addEventListener('change', filterCoffees);
-  });
-</script>

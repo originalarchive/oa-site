@@ -13,7 +13,7 @@ importPartner: ""
 harvest: ""
 arrivedUK: ""
 roastLevel: "Light"
-dateBrewed: "2025-01-20"
+dateBrewed: "2026-01-20"
 brewMethod: "V60"
 grindSize: "28 clicks" # Commandante C40
 waterTemp: "88°C"

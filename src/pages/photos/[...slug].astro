@@ -1,34 +1,55 @@
 ---
+import Layout from "/src/layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
-
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
-
-  return photos.map((p) => ({
-    params: { slug: p.slug },
-    props: { photoEntry: p },
-  }));
+  // Only build pages for internal galleries
+  return photos
+    .filter(p => p.data.type === "internal")
+    .map((p) => ({
+      params: { slug: p.slug },
+      props: { photoEntry: p },
+    }));
 }
 
-// Props will now include photoEntry directly
 const { photoEntry } = Astro.props;
-const isExternal = photoEntry.data.type === "external";
+// This is the modern way to get the Markdown content
+const { Content } = await photoEntry.render();
 ---
-<html>
-  <head>
-    <title>{photoEntry.data.title}</title>
-  </head>
-  <body>
-    <h1>{photoEntry.data.title}</h1>
-    <p>{photoEntry.data.description}</p>
 
-    {isExternal ? (
-      <a href={photoEntry.data.url} target="_blank">View External Album</a>
-    ) : (
-      <div class="grid grid-cols-3 gap-4">
-        {photoEntry.body && <astro-markdown content={photoEntry.body} />}
+<Layout title={photoEntry.data.title}>
+  <main class="max-w-4xl mx-auto px-6 py-12">
+    <div class="mb-8">
+      <a href="/photos" class="text-sm font-medium opacity-50 hover:opacity-100 transition-opacity flex items-center gap-2">
+        <span>←</span> Back to Galleries
+      </a>
+    </div>
+    
+    <article>
+      <header class="mb-12">
+        <h1 class="text-5xl font-bold tracking-tight">{photoEntry.data.title}</h1>
+        {photoEntry.data.description && (
+          <p class="text-xl mt-4 text-neutral-500 dark:text-neutral-400">
+            {photoEntry.data.description}
+          </p>
+        )}
+      </header>
+
+      <div class="rounded-3xl overflow-hidden border border-black/5 dark:border-white/5 shadow-2xl">
+        <Image 
+          src={photoEntry.data.thumbnail} 
+          alt={photoEntry.data.title}
+          width={1200}
+          height={800}
+          class="w-full h-auto object-cover"
+        />
       </div>
-    )}
-  </body>
-</html>
+
+      <div class="mt-16 prose prose-neutral dark:prose-invert prose-lg max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>

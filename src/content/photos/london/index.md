@@ -1,7 +1,7 @@
 ---
-title: London
-type: album
-featured: true
+title: "London"
+type: "internal"
+featured: "true"
 thumbnail: "./march01.jpg"
 tags: 
   - street
@@ -11,7 +11,7 @@ tags:
   - sport
   - music
   - busking
-description: Street and event photography from London
+description: "Street and event photography from London"
 ---
 
 There is always something going on in London. Here are some images from over the years. 

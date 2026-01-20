@@ -1,56 +1,33 @@
 ---
+import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import { PHOTOS } from "@consts";
+import { Image } from "astro:assets";
 
-const photos = await getCollection("photos");
+const allPhotos = await getCollection("photos");
+const photos = allPhotos.sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
-<PageLayout title={PHOTOS.TITLE} description={PHOTOS.DESCRIPTION}>
-  <div class="animate">
-    <h1 class="text-4xl font-bold mb-2">{PHOTOS.TITLE}</h1>
-    <p class="opacity-60 mb-8">{PHOTOS.DESCRIPTION}</p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {photos.map((gallery) => {
-        const isExternal = gallery.data.type === "external";
-        const thumbnailSrc = gallery.data.thumbnail || `/photos/${gallery.slug}/thumbnail.jpg`;
-        
+<PageLayout title="Photography" description="A collection of photo galleries and portfolios.">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold tracking-tight mb-2">Photography</h1>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {photos.map((photo) => {
+        const isExternal = photo.data.type === "external";
+        const targetUrl = isExternal ? photo.data.url : `/photos/${photo.slug}`;
         return (
-          <a
-            href={isExternal ? gallery.data.url : `/photos/${gallery.slug}`}
-            target={isExternal ? "_blank" : undefined}
-            rel={isExternal ? "noopener noreferrer" : undefined}
-            class="group block relative aspect-square overflow-hidden rounded-lg hover:scale-[1.02] transition-transform duration-300"
-          >
-            {thumbnailSrc ? (
-              <img
-                src={thumbnailSrc}
-                alt={gallery.data.title}
-                class="w-full h-full object-cover"
-              />
-            ) : (
-              <div class="w-full h-full bg-black/5 dark:bg-white/5 flex items-center justify-center">
-                <svg class="w-16 h-16 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-            )}
-            <div class="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] flex items-end p-6 group-hover:bg-black/40 dark:group-hover:bg-black/60 transition-colors">
-              <div class="text-white">
-                <h3 class="text-xl font-semibold mb-1">{gallery.data.title}</h3>
-                {gallery.data.description && (
-                  <p class="text-sm opacity-90 line-clamp-2">{gallery.data.description}</p>
-                )}
-                {isExternal && (
-                  <span class="inline-flex items-center gap-1 text-xs mt-2 opacity-75">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    External gallery
-                  </span>
-                )}
-              </div>
+          <a href={targetUrl} target={isExternal ? "_blank" : "_self"} class="group relative aspect-square overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
+            <Image 
+              src={photo.data.thumbnail} 
+              alt={photo.data.title} 
+              width={600} 
+              height={600} 
+              class="h-full w-full object-cover transition-transform group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+              <h2 class="text-white font-semibold">{photo.data.title}</h2>
             </div>
           </a>
         );

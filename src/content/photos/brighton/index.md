@@ -1,7 +1,7 @@
 ---
-title: Brighton
-type: album
-featured: true
+title: "Brighton"
+type: "internal"
+featured: "true"
 thumbnail: "./brighton_pier_01.jpg"
 tags: 
   - street
@@ -11,7 +11,7 @@ tags:
   - sport 
   - music 
   - busking
-description: Street and event photography around Brighton UK
+description: "Street and event photography around Brighton UK"
 ---
 I live in Brighton. Here is a selection of images from out and about.
 

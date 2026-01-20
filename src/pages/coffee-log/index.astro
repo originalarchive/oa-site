@@ -1,34 +1,98 @@
 ---
+import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import CoffeeTable from "@components/CoffeeTable.astro";
-import ArrowCard from "@components/ArrowCard.astro";
-import { COFFEE } from "@consts";
+import CoffeeTable from "../../components/CoffeeTable.astro";
 
-// Get coffee-tagged articles
-const coffeeArticles = (await getCollection("articles"))
-  .filter((post) => !post.data.draft && post.data.tags?.includes("coffee"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const coffeeEntries = await getCollection("coffee");
+// Sort by date descending
+const sortedEntries = coffeeEntries.sort((a, b) => 
+  b.data.dateBrewed.getTime() - a.data.dateBrewed.getTime()
+);
 ---
 
-<PageLayout title={COFFEE.TITLE} description={COFFEE.DESCRIPTION}>
-  <div class="animate">
-    <h1 class="text-4xl font-bold mb-2">{COFFEE.TITLE}</h1>
-    <p class="opacity-60 mb-8">{COFFEE.DESCRIPTION}</p>
-    
-    <CoffeeTable />
-  </div>
+<PageLayout title="Coffee Log | Original Archive">
+  <main class="max-w-3xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-8">Coffee Log</h1>
+      
+    <div class="flex flex-wrap gap-4 items-center justify-between py-4 border-y border-black/5 dark:border-white/10 mb-8">
+      <div class="flex flex-wrap gap-2">
+        <select id="time-filter" class="bg-black/5 dark:bg-white/10 border-none rounded-md px-3 py-1.5 text-sm outline-none cursor-pointer">
+          <option value="this-month" selected>This Month</option>
+          <option value="last-3">Last 3 Months</option>
+          <option value="all">All Time</option>
+        </select>
+        
+        <input 
+          type="text" 
+          id="search-filter" 
+          placeholder="Search..." 
+          class="bg-black/5 dark:bg-white/10 border-none rounded-md px-3 py-1.5 text-sm outline-none w-64 md:w-80"
+        />
+      </div>
+      
+      <div id="count-display" class="text-xs opacity-50 font-mono italic">
+        Initializing...
+      </div>
+    </div>
 
-  {coffeeArticles.length > 0 && (
-    <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
-      <h2 class="text-2xl font-semibold mb-6">Coffee Articles</h2>
-      <ul class="space-y-4">
-        {coffeeArticles.map((article) => (
-          <li>
-            <ArrowCard entry={article} />
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+    <CoffeeTable coffeeEntries={sortedEntries} />
+  </main>
 </PageLayout>
+
+
+
+<script is:inline>
+  function setupFilters() {
+    const timeFilter = document.getElementById('time-filter');
+    const searchFilter = document.getElementById('search-filter');
+    const items = document.querySelectorAll('.coffee-card');
+
+    if (!timeFilter || !searchFilter || items.length === 0) return;
+
+    function filterBrews() {
+      const timeValue = timeFilter.value;
+      const searchValue = searchFilter.value.toLowerCase().trim();
+      const now = new Date();
+
+      items.forEach(item => {
+        const dateAttr = item.getAttribute('data-date');
+        const brewDate = new Date(dateAttr);
+        const text = item.innerText.toLowerCase();
+        
+        const isThisMonth = brewDate.getMonth() === now.getMonth() && brewDate.getFullYear() === now.getFullYear();
+        const threeMonthsAgo = new Date();
+        threeMonthsAgo.setMonth(now.getMonth() - 3);
+        const isLast3 = brewDate >= threeMonthsAgo;
+
+        let timeMatch = (timeValue === 'all') || (timeValue === 'this-month' && isThisMonth) || (timeValue === 'last-3' && isLast3);
+        let searchMatch = text.includes(searchValue);
+
+        if (timeMatch && searchMatch) {
+          item.classList.remove('filter-hidden');
+        } else {
+          item.classList.add('filter-hidden');
+        }
+      });
+
+      const visible = document.querySelectorAll('.coffee-card:not(.filter-hidden)').length;
+      const display = document.getElementById('count-display');
+      if (display) display.innerText = `Showing ${visible} brew${visible === 1 ? '' : 's'}`;
+    }
+
+    timeFilter.addEventListener('change', filterBrews);
+    searchFilter.addEventListener('input', filterBrews);
+    filterBrews();
+  }
+
+  document.addEventListener('astro:page-load', setupFilters);
+  setupFilters();
+</script>
+
+<style is:global>
+  /* The 'is:global' ensures this class works on items inside CoffeeTable.astro */
+  .filter-hidden {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+  }
+</style>
