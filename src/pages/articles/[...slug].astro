@@ -27,22 +27,23 @@ const relatedArticles = allArticles
     p.data.tags?.some((tag) => article.data.tags?.includes(tag))
   )
   .slice(0, 3);
-  
-
 ---
 
 <PageLayout title={article.data.title} description={article.data.description}>
-  <div class="max-w-2xl mx-auto">
+  {/* pt-32 clears the site header. pb-24 gives space at the bottom */}
+  <div class="max-w-2xl mx-auto px-6 pt-32 pb-24">
     
-    <div class="animate mt-8 [backface-visibility:hidden] [transform:translateZ(0)]">
+    {/* Back Button - No animation class to prevent jumping */}
+    <div class="mb-16">
       <a href="/articles" class="group flex items-center gap-2 text-sm font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
         Back to Articles
       </a>
     </div>
 
-    <article class="animate py-16">
-      <header class="mb-12">
+    <article>
+      {/* 1. Resetting the Header: Explicitly block any animation and force natural spacing */}
+      <header class="block mb-6 relative" style="transform: none !important; opacity: 1 !important; filter: none !important;">
         <div class="flex items-center gap-2 mb-6 text-sm opacity-60 font-mono uppercase tracking-widest">
           <time datetime={article.data.date.toISOString()}>
             {article.data.date.toLocaleDateString("en-GB", {
@@ -63,18 +64,20 @@ const relatedArticles = allArticles
           )}
         </div>
         
-        <h1 class="text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight">
+        {/* Title: Forced to be static to stop the paragraph overlap */}
+        <h1 class="text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight m-0">
           {article.data.title}
         </h1>
       </header>
       
-      <div class="prose prose-neutral dark:prose-invert max-w-none prose-img:rounded-xl">
+      {/* 2. Content: The prose class handles the spacing for "Headings" and text */}
+      <div class="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-24">
         <Content />
       </div>
     </article>
 
     {relatedArticles.length > 0 && (
-      <section class="animate mt-24 border-t border-black/5 dark:border-white/10 pt-12">
+      <section class="mt-24 border-t border-black/5 dark:border-white/10 pt-12">
         <h2 class="text-sm font-mono uppercase tracking-[0.2em] opacity-40 mb-8">
           Related Reading
         </h2>
@@ -87,12 +90,32 @@ const relatedArticles = allArticles
         </ul>
       </section>
     )}
-
-    <div class="animate py-20 border-t border-black/5 dark:border-white/10 mt-12">
-      <a href="/articles" class="group flex items-center justify-center gap-2 text-sm font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity bg-stone-100 dark:bg-stone-800 py-4 rounded-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
-        Return to Articles
-      </a>
-    </div>
   </div>
 </PageLayout>
+
+<style is:global>
+  /* 3. The Nuclear Reset for Stacking Issues */
+  
+  /* Kill the backdrop blur on the main nav to stop the 'blur box' */
+  header#header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: #f5f5f4 !important; /* Light Mode Stone */
+  }
+
+  .dark header#header {
+    background-color: #1c1917 !important; /* Dark Mode Stone */
+  }
+
+  /* Force the title and content to follow a standard vertical flow */
+  h1, .prose p, .prose h2, .prose h3 {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Give headings inside the article more breathing room */
+  .prose :where(h1, h2, h3):first-child {
+    margin-top: 0 !important;
+  }
+</style>

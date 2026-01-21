@@ -7,8 +7,6 @@ They say the answer to becoming a better photographer is to take a hell of a lot
 date: "2024-09-02"
 tags: ["photography"]
 ---
-
-# Exploring Photography
 How do we use the resources around us to read, listen and look for ways to hone our photography skills?
 
 by Ken

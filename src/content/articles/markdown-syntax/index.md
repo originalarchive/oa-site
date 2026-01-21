@@ -5,8 +5,6 @@ date: "2026-01-21"
 tags: ["tech"]
 ---
 
----
-
 ### Headings
 
 To create headings, use hash symbols (#) followed by a space. The number of hash symbols indicates the heading level.
