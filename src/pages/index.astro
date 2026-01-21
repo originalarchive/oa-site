@@ -15,8 +15,20 @@ const blog = allPosts
   .slice(0, 3);
 
 const featuredPhotos = allPhotos
-  .filter((p) => p.data.type !== "external")
-  .sort((a, b) => (a.data.weight ?? 999) - (b.data.weight ?? 999))
+  .sort((a, b) => {
+    // 1. Sort by Weight (Lower numbers first, e.g., 1 comes before 10)
+    const weightA = a.data.weight ?? Infinity;
+    const weightB = b.data.weight ?? Infinity;
+    if (weightA !== weightB) return weightA - weightB;
+
+    // 2. Sort by Date (Newest first)
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    if (dateA !== dateB) return dateB - dateA;
+
+    // 3. Sort by Title (A-Z)
+    return a.data.title.localeCompare(b.data.title);
+  })
   .slice(0, 9);
 ---
 

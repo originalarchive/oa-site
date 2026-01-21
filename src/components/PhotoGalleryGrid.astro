@@ -11,25 +11,25 @@ const { photos } = Astro.props;
 
 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
   {photos.map((photo) => {
+    // 1. Logic for cleaning the slug (internal)
     const cleanSlug = photo.slug.split('/')[0];
     
-    // We cast to 'any' or check existence to satisfy the TypeScript compiler
-    // until your config.ts is updated and synced.
-    const photoData = photo.data as any; 
+    // 2. Determine if external based on the data field
+    const isExternal = photo.data.type === "external";
     
-    // 1. Logic for the URL
-    const url = photoData.type === "external" 
-      ? photoData.externalUrl 
+    // 3. Logic for the URL: uses externalUrl if it exists, otherwise internal slug
+    const url = isExternal 
+      ? photo.data.externalUrl 
       : `/photos/${cleanSlug}`;
 
-    // 2. Logic for the tab behavior
-    const target = photoData.type === "external" ? "_blank" : "_self";
+    // 4. Logic for tab behavior: external opens in new tab
+    const target = isExternal ? "_blank" : "_self";
 
     return (
       <a 
         href={url || "#"} 
         target={target}
-        rel={target === "_blank" ? "noopener noreferrer" : ""}
+        rel={isExternal ? "noopener noreferrer" : ""}
         class="group relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 transition-all duration-300 hover:shadow-lg"
       >
         <Image 

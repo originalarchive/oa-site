@@ -8,7 +8,11 @@ const articles = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     draft: z.boolean().optional(),
-    tags: z.array(z.enum(["coffee", "tech", "life", "photography"])).optional(),
+    // Updated Tag List
+    tags: z.array(z.enum([
+      "review", "journal", "coffee", "tech", "photography", 
+      "opinion", "theory", "model", "research", "news"
+    ])).optional(),
   }),
 });
 
