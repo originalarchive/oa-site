@@ -13,17 +13,21 @@ const { photos } = Astro.props;
   {photos.map((photo) => {
     const cleanSlug = photo.slug.split('/')[0];
     
+    // We cast to 'any' or check existence to satisfy the TypeScript compiler
+    // until your config.ts is updated and synced.
+    const photoData = photo.data as any; 
+    
     // 1. Logic for the URL
-    const url = photo.data.type === "external" 
-      ? photo.data.externalUrl 
+    const url = photoData.type === "external" 
+      ? photoData.externalUrl 
       : `/photos/${cleanSlug}`;
 
     // 2. Logic for the tab behavior
-    const target = photo.data.type === "external" ? "_blank" : "_self";
+    const target = photoData.type === "external" ? "_blank" : "_self";
 
     return (
       <a 
-        href={url} 
+        href={url || "#"} 
         target={target}
         rel={target === "_blank" ? "noopener noreferrer" : ""}
         class="group relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 transition-all duration-300 hover:shadow-lg"

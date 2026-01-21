@@ -21,7 +21,10 @@ const photos = defineCollection({
     weight: z.number().optional(),
     description: z.string().optional(),
     date: z.coerce.date().optional(),
-    thumbnail: image(), // Change z.string() to image()
+    thumbnail: image(),
+    type: z.enum(["internal", "external"]).optional(),
+    url: z.string().optional(),
+    externalUrl: z.string().optional(),
   }),
 });
 
