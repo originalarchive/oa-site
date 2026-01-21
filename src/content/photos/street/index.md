@@ -1,5 +1,5 @@
 ---
-title: S"treet Photography"
+title: "Street Photography"
 type: "internal"
 featured: "true"
 thumbnail: "./streetlife01.jpg"

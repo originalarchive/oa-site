@@ -1,65 +1,72 @@
 ---
 import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import ArrowCard from "@components/ArrowCard.astro";
-import PhotoGalleryGrid from "@components/PhotoGalleryGrid.astro";
-import SocialLinks from "@components/SocialLinks.astro";
-import { SITE } from "@consts";
+import PageLayout from "../layouts/PageLayout.astro";
+import ArrowCard from "../components/ArrowCard.astro";
+import PhotoGalleryGrid from "../components/PhotoGalleryGrid.astro";
+import { SITE, SOCIALS } from "../consts";
 
-// Fetch Latest Articles
-const articles = (await getCollection("articles"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+// 1. Fetch collections
+const allPosts = await getCollection("articles");
+const allPhotos = await getCollection("photos");
+
+// 2. Simplest possible fetch - No filters, just sorting
+const blog = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// Fetch Featured Photos (for the 3x3 grid)
-const photos = (await getCollection("photos"));
-const featuredPhotos = photos
-  .filter(p => p.data)
+const featuredPhotos = allPhotos
+  .filter((p) => p.data.type !== "external")
+  .sort((a, b) => (a.data.weight ?? 999) - (b.data.weight ?? 999))
   .slice(0, 9);
 ---
 
 <PageLayout title="home" description={SITE.DESCRIPTION}>
   
-  <section class="animate mt-4 mb-10">
-    <img 
-      src="/hero.png" 
-      alt="Hero image" 
-      class="w-full max-w-[400px] aspect-square object-cover rounded-lg"
-    />
+  <section class="animate mt-0 mb-10 flex justify-center">
+    <div class="w-full max-w-[350px] aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
+      <img 
+        src="/hero.png" 
+        alt="Hero image" 
+        class="w-[101%] h-[101%] -ml-[0.5%] -mt-[0.5%] object-cover"
+      />
+    </div>
   </section>
 
-  <section class="animate mb-16">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-semibold text-black dark:text-white">Latest Articles</h2>
-      <a href="/articles" class="text-sm border-b border-transparent hover:border-current transition-colors duration-300">
-        View all →
+  <section class="animate space-y-6">
+    <div class="flex flex-wrap items-center justify-between gap-y-2">
+      <h2 class="text-xl font-semibold text-black dark:text-white">
+        Latest posts
+      </h2>
+      <a href="/articles" class="group flex items-center gap-1 text-sm font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
+        <span>View all posts</span>
+        <span class="transition-transform group-hover:translate-x-1">→</span>
       </a>
     </div>
-    <ul class="space-y-4">
-      {articles.map((article) => (
-        <li>
-          <ArrowCard entry={article} />
-        </li>
-      ))}
+    <ul class="flex flex-col gap-4">
+      {blog.length > 0 ? (
+        blog.map((post) => (
+          <li>
+            <ArrowCard entry={post} />
+          </li>
+        ))
+      ) : (
+        <p class="text-sm text-neutral-500">No posts found in src/content/blog/</p>
+      )}
     </ul>
   </section>
 
-  <section class="animate mb-16">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-semibold text-black dark:text-white">Featured Photos</h2>
-      <a href="/photos" class="text-sm border-b border-transparent hover:border-current transition-colors duration-300">
-        View all →
+  <section class="animate space-y-6 mt-12">
+    <div class="flex flex-wrap items-center justify-between gap-y-2">
+      <h2 class="text-xl font-semibold text-black dark:text-white">
+        Featured Photo Albums
+      </h2>
+      <a href="/photos" class="group flex items-center gap-1 text-sm font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
+        <span>View all photos</span>
+        <span class="transition-transform group-hover:translate-x-1">→</span>
       </a>
     </div>
+    
     <PhotoGalleryGrid photos={featuredPhotos} />
-  </section>
-
-  <section class="animate mt-16 pt-8 border-t border-black/10 dark:border-white/20">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm opacity-60">Connect with me</p>
-      <SocialLinks />
-    </div>
   </section>
 
 </PageLayout>

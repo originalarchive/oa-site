@@ -1,5 +1,6 @@
 ---
 title: "Goodwood"
+date: 2025-01-01
 type: "internal"
 featured: "true"
 thumbnail: "./track01.jpg"

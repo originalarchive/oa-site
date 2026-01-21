@@ -9,25 +9,45 @@ interface Props {
 const { photos } = Astro.props;
 ---
 
-<div class="grid grid-cols-3 gap-4 relative z-0">
-  {photos.map((photo: CollectionEntry<"photos">) => (
-    <a 
-      href={photo.data.type === "external" ? photo.data.url : `/photos/${photo.slug}`} 
-      target={photo.data.type === "external" ? "_blank" : "_self"} 
-      class="group relative block aspect-square overflow-hidden rounded-lg"
-    >
-      <Image 
-        src={photo.data.thumbnail} 
-        alt={photo.data.title}
-        width={600}
-        height={600}
-        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
-      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span class="text-white text-xs font-bold uppercase tracking-widest">
-          {photo.data.type === "external" ? "View Portfolio" : "View Gallery"}
-        </span>
-      </div>
-    </a>
-  ))}
+<div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+  {photos.map((photo) => {
+    const cleanSlug = photo.slug.split('/')[0];
+    
+    // 1. Logic for the URL
+    const url = photo.data.type === "external" 
+      ? photo.data.externalUrl 
+      : `/photos/${cleanSlug}`;
+
+    // 2. Logic for the tab behavior
+    const target = photo.data.type === "external" ? "_blank" : "_self";
+
+    return (
+      <a 
+        href={url} 
+        target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : ""}
+        class="group relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 transition-all duration-300 hover:shadow-lg"
+      >
+        <Image 
+          src={photo.data.thumbnail} 
+          alt={photo.data.title} 
+          class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+        />
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+          <div class="flex flex-col translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-white text-xs font-medium">
+              {photo.data.title}
+            </p>
+            
+            {photo.data.date && (
+              <span class="text-white/70 text-[10px] uppercase tracking-wider mt-0.5">
+                {new Date(photo.data.date).toLocaleDateString("en-US", { year: 'numeric' })}
+              </span>
+            )}
+          </div>
+        </div>
+      </a>
+    );
+  })}
 </div>

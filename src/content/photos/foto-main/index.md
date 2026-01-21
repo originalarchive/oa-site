@@ -1,5 +1,5 @@
 ---
-title: "Foto Portfolio x"
+title: "Foto Portfolio"
 type: "external"
 url: "https://the.fotoapp.co/originalarchive"
 thumbnail: "./fotologo.png" 

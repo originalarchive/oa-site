@@ -15,13 +15,13 @@ const articles = defineCollection({
 // Photos collection
 
 const photos = defineCollection({
-  schema: ({ image }) => z.object({
+  type: "content",
+  schema: ({ image }) => z.object({ // Add ({ image }) here
     title: z.string(),
+    weight: z.number().optional(),
     description: z.string().optional(),
-    // Use the image() helper here!
-    thumbnail: image(), 
-    type: z.enum(["internal", "external"]).default("internal"),
-    url: z.string().optional(),
+    date: z.coerce.date().optional(),
+    thumbnail: image(), // Change z.string() to image()
   }),
 });
 

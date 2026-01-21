@@ -5,17 +5,20 @@ import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
-  // Only build pages for internal galleries
+  
   return photos
-    .filter(p => p.data.type === "internal")
-    .map((p) => ({
-      params: { slug: p.slug },
-      props: { photoEntry: p },
-    }));
+    .filter(p => p.data.type === "internal") // Back in!
+    .map((p) => {
+      const cleanSlug = p.slug.split('/')[0];
+
+      return {
+        params: { slug: cleanSlug },
+        props: { photoEntry: p },
+      };
+    });
 }
 
 const { photoEntry } = Astro.props;
-// This is the modern way to get the Markdown content
 const { Content } = await photoEntry.render();
 ---
 

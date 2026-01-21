@@ -1,5 +1,6 @@
 ---
 title: "London"
+weight: 1
 type: "internal"
 featured: "true"
 thumbnail: "./march01.jpg"
