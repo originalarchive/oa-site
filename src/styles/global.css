@@ -76,3 +76,28 @@ html.scrolled #back-to-top {
 .filter-hidden {
   display: none !important;
 }
+
+/* --- Article Card Styles (Coffee Log Style) --- */
+
+/* The Container: Shrinks the gap between cards */
+.article-list-container {
+  @apply flex flex-col gap-3; /* gap-3 matches the tight coffee-log spacing */
+}
+
+/* The Card: Boxed, curved corners, and background */
+.article-card {
+  @apply border border-stone-200 dark:border-stone-800; /* Full box border */
+  @apply rounded-xl p-5;                               /* Curved corners & padding */
+  @apply bg-white dark:bg-stone-800/50;               /* Solid background */
+  @apply transition-colors duration-300;
+}
+
+/* Remove the Date */
+.article-card .date-element {
+  @apply hidden; 
+}
+
+/* Ensure Description is visible */
+.article-card .description-element {
+  @apply block text-sm mt-2 opacity-80;
+}
