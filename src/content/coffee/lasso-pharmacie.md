@@ -22,7 +22,7 @@ rating:
   flavor: 4
   body: 3
   acidity: 3
-  overall: "Buy Again"
+  overall: "Buy again"
 tags:
   - colombia
   - washed
