@@ -1,122 +1,156 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import SocialLinks from "@components/SocialLinks.astro";
 import { ABOUT } from "@consts";
 ---
 
-<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
-  <div class="animate space-y-16">
+<PageLayout title="About">
+  <div class="max-w-2xl mx-auto px-6 pt-12 pb-24">
     
-    <!-- Bio Section -->
-    <section>
-      <h1 class="text-4xl font-bold mb-4">About Me</h1>
-      <div class="prose prose-neutral dark:prose-invert max-w-none">
-        <p>
-         original archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas.
-I hope you enjoy the content and I hope you come back regularly.
-Thanks for visiting.
-Ken
-        </p>
-        <p>
-         All words and images posted on kenmarlow.co.uk are the property of Ken Marlow and are subject to copyright.
-If you would like to share content from kenmarlow.co.uk we just ask that you clearly state where the content came from, limit the copy to a few lines (don’t share the whole post on your site), and link back to the original article.
-If you would like to use any of Ken’s images, you must have written permission or pay a licensing fee before doing so.
-Any form of copyright infringement or theft of content from kenmarlow.co.uk is subject to DMCA takedown notice and/or legal action.
-If you have questions about any of this, or need more info on using Ken’s images, please use the contact form above to get in touch. 
-        </p>
+    <section class="animate show mb-12">
+      <div class="w-full overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
+        <img  
+          src="./km_hero.jpg" 
+          alt="About Hero" 
+          class="w-full h-auto display:block"
+        />
       </div>
     </section>
 
-    <!-- Work History -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-6">Work History</h2>
-      <div class="space-y-6">
+    <section class="animate show mb-12">
+      <h1 class="text-3xl font-sans font-bold text-black dark:text-white tracking-tight">
+        About
+      </h1>
+      <p class="font-sans opacity-50 text-sm mt-2 uppercase tracking-widest">
+        A bit about me and this space.
+      </p>
+    </section>
+
+    <section class="animate show mb-16">
+      <div class="font-serif text-[18px] leading-relaxed text-black/80 dark:text-white/80 space-y-8">
+        <p>
+          Original Archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas. I hope you enjoy the content and I hope you come back regularly. Thanks for visiting.
+          <br/><span class="font-sans font-bold text-sm">— Ken</span>
+        </p>
         
-        <!-- Example Work Entry 1 - Replace with your actual work history -->
-        <div class="border-l-2 border-black/10 dark:border-white/20 pl-6">
-          <h3 class="text-xl font-medium">Competence, Systems & Data Manager</h3>
-          <p class="text-sm opacity-60 mb-2">Transport for London</p>
-          <p class="text-sm opacity-60 mb-3">August 2025 - Present</p>
-          <p class="text-sm opacity-70">
-            Responsible for the strategic design of TfL's Route To Competence, training & competence systems across London Underground, Elizabeth line, Trams and Security, Policing & Enforcement directorates, and the data that underpins these systems that we report on.  
+        <div class="p-6 bg-black/5 dark:bg-white/5 rounded-lg text-[15px] border-l-2 border-black/20 dark:border-white/20 italic">
+          <p class="mb-4">
+            All words and images posted on kenmarlow.co.uk are the property of Ken Marlow and are subject to copyright. If you would like to share content, we ask that you clearly state the source, limit copy to a few lines, and link back.
+          </p>
+          <p>
+            If you would like to use any images, you must have written permission or pay a licensing fee. Any infringement is subject to DMCA notice and/or legal action. Questions? Use the form below.
           </p>
         </div>
-
-        <!-- Example Work Entry 2 -->
-        <div class="border-l-2 border-black/10 dark:border-white/20 pl-6">
-          <h3 class="text-xl font-medium">Training & Competence Systems Manager</h3>
-          <p class="text-sm opacity-60 mb-2">Rail for London Infrastructure</p>
-          <p class="text-sm opacity-60 mb-3">April 2014 - Aug 2025</p>
-          <p class="text-sm opacity-70">
-            Lead the Crossrail / Elizabeth line competence team to establish a route to competence and design and build the competence systems required to open and manage the railway.
-          </p>
-        </div>
-
-        <!-- Add more work entries as needed by copying the div structure above -->
-
       </div>
     </section>
 
-    <!-- Contact Form -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-6">Get in Touch</h2>
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        class="space-y-4 max-w-lg"
+<section class="animate show mb-20 text-center">
+  <h2 class="text-2xl font-sans font-bold mb-6 tracking-tight text-left">Get in Touch</h2>
+  
+  <div class="article-card-box p-10 flex flex-col items-center justify-center gap-4 border-dashed border-2">
+    <div id="contact-initial" class="flex flex-col items-center gap-4">
+      <p class="font-serif text-lg opacity-60 max-w-sm">
+       Have a question, would like to discuss a project, want to use an image or article on this site? 
+      </p>
+      <button 
+        id="reveal-btn"
+        class="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-md hover:scale-105 transition-all font-sans font-bold text-xs uppercase tracking-[0.2em]"
       >
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="hidden">
-          <label>
-            Don't fill this out: <input name="bot-field" />
-          </label>
-        </p>
+        Reveal Email Address
+      </button>
+    </div>
+
+    <div id="contact-success" class="hidden flex flex-col items-center gap-2 animate-in fade-in zoom-in duration-500">
+      <div class="bg-green-500/10 text-green-600 dark:text-green-400 px-4 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest mb-2">
+        Human Verified
+      </div>
+      <p class="font-sans text-xl font-bold text-black dark:text-white tracking-tight">
+        email
+      </p>
+      <p class="font-serif text-sm opacity-50 mb-4">Click to copy address</p>
+      <button 
+        id="copy-btn"
+        class="text-[10px] font-sans font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity border-b border-current"
+      >
+        Copy to Clipboard
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    const revealBtn = document.getElementById('reveal-btn');
+    const initialBox = document.getElementById('contact-initial');
+    const successBox = document.getElementById('contact-success');
+    const emailDisplay = successBox?.querySelector('.font-sans.text-xl'); // Selects the email P tag
+    const copyBtn = document.getElementById('copy-btn');
+    
+    // 1. Deconstruct: The email is never stored as one string in the code
+    const parts = ["photos", "kenmarlow", "com"]; 
+    const glue = String.fromCharCode(64); // This is the '@' symbol
+    const dot = String.fromCharCode(46); // This is the '.' symbol
+
+    revealBtn?.addEventListener('click', () => {
+      // 2. Assemble: The email only exists once a human clicks the button
+      const fullEmail = parts[0] + glue + parts[1] + dot + parts[2];
+      
+      if (emailDisplay) emailDisplay.textContent = fullEmail;
+      
+      initialBox.classList.add('hidden');
+      successBox.classList.remove('hidden');
+
+      // 3. Copy Logic
+      copyBtn?.addEventListener('click', () => {
+        navigator.clipboard.writeText(fullEmail);
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => { copyBtn.textContent = originalText; }, 2000);
+      });
+    });
+  });
+</script>
+
+    <section class="animate show mb-16">
+      <h2 class="font-sans font-semibold text-xs uppercase tracking-widest opacity-30 mb-6 text-left">Find me elsewhere</h2>
+      <div class="grid grid-cols-3 gap-3">
         
-        <div>
-          <label for="name" class="block text-sm font-medium mb-2">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all"
-          />
-        </div>
+        <a href="https://www.instagram.com/originalarchive" target="_blank" rel="noopener noreferrer" class="border border-black/10 dark:border-white/10 rounded-xl py-4 flex flex-col items-center justify-center gap-2 hover:bg-black/5 transition-colors">
+          <img src="https://cdn.simpleicons.org/instagram/current" class="w-5 h-5 opacity-80" alt="Instagram" />
+          <span class="text-[9px] font-sans font-bold uppercase tracking-widest">Instagram</span>
+        </a>
         
-        <div>
-          <label for="email" class="block text-sm font-medium mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all"
-          />
-        </div>
+        <a href="https://the.fotoapp.co/originalarchive" target="_blank" rel="noopener noreferrer" class="row-span-2 border-2 border-black dark:border-white rounded-xl flex flex-col items-center justify-center gap-3 bg-black text-white dark:bg-white dark:text-black transition-transform hover:scale-[1.02]">
+          <img src="./foto_logo.png" class="w-8 h-8 invert dark:invert-0" alt="Foto" />
+          <span class="text-[11px] font-sans font-bold uppercase tracking-[0.2em]">Foto App</span>
+        </a>
+
+        <a href="https://bsky.app/profile/originalarchive.bsky.social" target="_blank" rel="noopener noreferrer" class="border border-black/10 dark:border-white/10 rounded-xl py-4 flex flex-col items-center justify-center gap-2 hover:bg-black/5 transition-colors">
+          <img src="https://cdn.simpleicons.org/bluesky/current" class="w-5 h-5 opacity-80" alt="Bluesky" />
+          <span class="text-[9px] font-sans font-bold uppercase tracking-widest">Bluesky</span>
+        </a>
+
+        <a href="https://www.reddit.com/user/Originalarchive/" target="_blank" rel="noopener noreferrer" class="border border-black/10 dark:border-white/10 rounded-xl py-4 flex flex-col items-center justify-center gap-2 hover:bg-black/5 transition-colors">
+          <img src="https://cdn.simpleicons.org/reddit/current" class="w-5 h-5 opacity-80" alt="Reddit" />
+          <span class="text-[9px] font-sans font-bold uppercase tracking-widest">Reddit</span>
+        </a>
         
-        <div>
-          <label for="message" class="block text-sm font-medium mb-2">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="w-full px-4 py-2 border border-black/10 dark:border-white/20 rounded-md bg-white dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all resize-none"
-          ></textarea>
-        </div>
-        
-        <button
-          type="submit"
-          class="px-6 py-2 bg-black text-white dark:bg-white dark:text-black rounded-md hover:opacity-80 transition-opacity"
-        >
-          Send Message
-        </button>
-      </form>
+        <a href="https://www.threads.com/@originalarchive" target="_blank" rel="noopener noreferrer" class="border border-black/10 dark:border-white/10 rounded-xl py-4 flex flex-col items-center justify-center gap-2 hover:bg-black/5 transition-colors">
+          <img src="https://cdn.simpleicons.org/threads/current" class="w-5 h-5 opacity-80" alt="Threads" />
+          <span class="text-[9px] font-sans font-bold uppercase tracking-widest">Threads</span>
+        </a>
+
+      </div>
     </section>
 
-    
+    <section class="animate show flex justify-center">
+      <div class="max-w-[400px] w-full overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
+        <img
+          src="./km_portrait.png" 
+          alt="About Footer Image" 
+          class="w-full h-auto"
+        />
+      </div>
+    </section>
 
   </div>
 </PageLayout>
