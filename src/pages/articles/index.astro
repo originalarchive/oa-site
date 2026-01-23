@@ -39,14 +39,22 @@ const months = Object.keys(groupedArticles);
       <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Articles</h1>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 mb-12">
-      <div class="hidden md:flex flex-col gap-2 pt-2 sticky top-20 h-fit border-r border-black/5 dark:border-white/5 pr-4">
+    <div class="flex flex-col md:grid md:grid-cols-[100px_1fr] gap-4 mb-12">
+      
+      <aside class="flex flex-col gap-2 mb-8 md:mb-0 md:pt-2 md:sticky md:top-20 h-fit md:border-r border-black/5 dark:border-white/5 md:pr-4">
         <span class="text-[9px] font-mono uppercase tracking-widest opacity-30 mb-2">Archive</span>
-        <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-100 font-bold" data-year="all">All Time</button>
-        {allYears.map(year => (
-          <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" data-year={year}>{year}</button>
-        ))}
-      </div>
+        
+        <div class="flex flex-row md:flex-col flex-wrap md:flex-nowrap gap-4 md:gap-2">
+          <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-100 font-bold" data-year="all">
+            All Time
+          </button>
+          {allYears.map(year => (
+            <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" data-year={year}>
+              {year}
+            </button>
+          ))}
+        </div>
+      </aside>
 
       <div class="space-y-8">
         <div class="space-y-4">
@@ -54,9 +62,8 @@ const months = Object.keys(groupedArticles);
             type="text" 
             id="search" 
             placeholder="Search archive..." 
-            class="w-full px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-md focus:outline-none font-mono text-sm"
+            class="w-full px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-md focus:outline-none font-mono text-sm" 
           />
-
           <div class="flex flex-wrap gap-2 items-center">
             {allTags.map(tag => (
               <button class="tag-filter px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest border border-black/10 dark:border-white/10 rounded-full opacity-50 hover:opacity-100 transition-all" data-tag={tag}>
@@ -66,13 +73,14 @@ const months = Object.keys(groupedArticles);
           </div>
         </div>
 
-        <div id="articles-container" class="space-y-0">
+        <div id="articles-container" class="space-y-12 md:space-y-0">
           {months.map(month => (
-            <section class="month-group relative grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 md:ml-[-104px]">
-              <div class="text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 pt-4 sticky top-20 h-fit text-right pr-4">
+            <section class="month-group relative flex flex-col md:grid md:grid-cols-[100px_1fr] gap-4 md:ml-[-104px]">
+              <div class="text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 pt-4 md:sticky md:top-20 h-fit text-left md:text-right md:pr-4 border-b md:border-b-0 border-black/5 pb-2 md:pb-0">
                 {month.split(' ')[0]}
               </div>
-              <ul class="flex flex-col gap-2 mt-4"> 
+              
+              <ul class="flex flex-col gap-2 mt-4 md:mt-0"> 
                 {groupedArticles[month].map(post => (
                   <li class="article-item group" data-title={post.data.title.toLowerCase()} data-desc={post.data.description?.toLowerCase() || ''} data-tags={post.data.tags?.join(',').toLowerCase() || ''} data-year={post.data.date.getFullYear().toString()}>
                     <a href={`/articles/${post.slug}`} class="flex justify-between gap-4 p-4 rounded-xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 transition-all">
@@ -81,7 +89,7 @@ const months = Object.keys(groupedArticles);
                           {post.data.title}
                         </span>
                         {post.data.description && (
-                          <span class="text-[14px] opacity-60 line-clamp-5 font-serif mt-1 leading-relaxed">
+                          <span class="text-[14px] opacity-60 line-clamp-2 font-serif mt-1 leading-relaxed">
                             {post.data.description}
                           </span>
                         )}
@@ -134,7 +142,7 @@ const months = Object.keys(groupedArticles);
 
       groups.forEach(g => {
         const visible = g.querySelectorAll('.article-item:not([style*="display: none"])');
-        (g as HTMLElement).style.display = visible.length > 0 ? 'grid' : 'none';
+        (g as HTMLElement).style.display = visible.length > 0 ? (window.innerWidth >= 768 ? 'grid' : 'flex') : 'none';
       });
     }
 
