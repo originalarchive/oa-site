@@ -12,6 +12,7 @@ tags:
   - music 
   - busking
 description: "Street and event photography around Brighton UK"
+layout: "../../layouts/PhotoAlbumLayout.astro"
 ---
 I live in Brighton. Here is a selection of images from out and about.
 

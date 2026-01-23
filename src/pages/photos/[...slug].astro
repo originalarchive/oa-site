@@ -1,14 +1,15 @@
 ---
-import Layout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+// 1. Change this import
+import PhotoAlbumLayout from "../../layouts/PhotoAlbumLayout.astro";
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
   
   return photos
-    .filter(p => p.data.type === "internal") // Back in!
+    .filter(p => p.data.type === "internal")
     .map((p) => {
+      // Handles potential subfolder slugs
       const cleanSlug = p.slug.split('/')[0];
 
       return {
@@ -22,40 +23,7 @@ const { photoEntry } = Astro.props;
 const { Content } = await photoEntry.render();
 ---
 
-<Layout 
-  title={photoEntry.data.title} 
-  description={photoEntry.data.description || `Photo gallery for ${photoEntry.data.title}`}
->
-  <main class="max-w-4xl mx-auto px-6 py-12">
-    <div class="mb-8">
-      <a href="/photos" class="text-sm font-medium opacity-50 hover:opacity-100 transition-opacity flex items-center gap-2">
-        <span>←</span> Back to Galleries
-      </a>
-    </div>
-    
-    <article>
-      <header class="mb-12">
-        <h1 class="text-5xl font-bold tracking-tight">{photoEntry.data.title}</h1>
-        {photoEntry.data.description && (
-          <p class="text-xl mt-4 text-neutral-500 dark:text-neutral-400">
-            {photoEntry.data.description}
-          </p>
-        )}
-      </header>
-
-      <div class="rounded-3xl overflow-hidden border border-black/5 dark:border-white/5 shadow-2xl">
-        <Image 
-          src={photoEntry.data.thumbnail} 
-          alt={photoEntry.data.title}
-          width={1200}
-          height={800}
-          class="w-full h-auto object-cover"
-        />
-      </div>
-
-      <div class="mt-16 prose prose-neutral dark:prose-invert prose-lg max-w-none">
-        <Content />
-      </div>
-    </article>
-  </main>
-</Layout>
+{/* 2. Swap <Layout> for <PhotoAlbumLayout> */}
+<PhotoAlbumLayout frontmatter={photoEntry.data}>
+    <Content />
+</PhotoAlbumLayout>

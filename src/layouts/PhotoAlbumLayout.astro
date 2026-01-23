@@ -1,0 +1,141 @@
+---
+import PageLayout from "./PageLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<PageLayout title={frontmatter.title} description={frontmatter.description}>
+  <div class="max-w-7xl mx-auto px-6 py-6">
+    
+    <nav class="mb-6">
+      <a href="/photos" class="text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+        ← Back to Albums
+      </a>
+    </nav>
+    
+    <header class="mb-12">
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase text-black dark:text-white leading-none">
+        {frontmatter.title}
+      </h1>
+      
+      {frontmatter.tags && (
+        <div class="flex flex-wrap gap-4 mt-6">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="text-[10px] font-mono uppercase tracking-widest text-neutral-400">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="album-wrapper">
+      <div id="intro-text" class="prose prose-neutral dark:prose-invert max-w-2xl mb-12 text-xl leading-relaxed">
+        <slot />
+      </div>
+
+      <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+      </div>
+    </div>
+  </div>
+
+<div id="lightbox" class="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-12 md:p-24 cursor-zoom-out">
+  
+  <div class="relative w-full h-full max-w-5xl max-h-[85vh] flex items-center justify-center pointer-events-none">
+    
+    <img 
+      id="lightbox-img" 
+      src="" 
+      class="max-h-full max-w-full rounded-sm shadow-2xl object-contain pointer-events-auto" 
+    />
+    
+  </div>
+</div>
+</PageLayout>
+
+<style is:global>
+
+/* If the ghost is an H1, H2 or Div that we can't find, this hits it */
+[id="brighton"], 
+[aria-label="brighton"],
+header + div > h1 {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* This targets the specific "BRIGHTON" text if it's being auto-generated */
+h1:first-of-type {
+  display: none !important;
+}
+
+/* But keep OUR header visible */
+header h1 {
+  display: block !important;
+}
+
+/* Target the title injected by PageLayout based on your description */
+header h1 + h1, 
+[data-page-title], 
+.page-title { 
+  display: none !important; 
+}
+
+/* If the ghost is the VERY first thing in the main content, hide it */
+main > *:first-child:not(nav):not(div) {
+  display: none !important;
+}
+
+  /* Fix the italics from the screenshot */
+  #intro-text p {
+    font-style: normal !important;
+  }
+
+  /* Prevent Image Tearing */
+  #photo-grid img {
+    @apply rounded-lg w-full h-auto cursor-zoom-in transition-all duration-500 hover:brightness-110 shadow-sm;
+    display: block;
+    break-inside: avoid; /* Prevents splitting across columns */
+    margin-bottom: 1.5rem;
+  }
+
+  /* Ensure the grid doesn't collapse */
+  #photo-grid {
+    display: block;
+    width: 100%;
+  }
+</style>
+
+<script>
+  function initGallery() {
+    const intro = document.getElementById('intro-text');
+    const grid = document.getElementById('photo-grid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+
+    if (!intro || !grid) return;
+
+    // 1. Move images from the text block into the grid to stop "tearing"
+    const images = intro.querySelectorAll('img');
+    images.forEach(img => {
+      // Remove any ghosting by clearing the thumbnail if it repeats
+      grid.appendChild(img);
+    });
+
+    // 2. Modal Lightbox Logic
+    grid.addEventListener('click', (e) => {
+      const target = e.target as HTMLImageElement;
+      if (target.tagName === 'IMG') {
+        lightboxImg.src = target.src;
+        lightbox?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    lightbox?.addEventListener('click', () => {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    });
+  }
+
+  // Handle Astro's view transitions
+  document.addEventListener('astro:page-load', initGallery);
+</script>

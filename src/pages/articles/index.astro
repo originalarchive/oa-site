@@ -7,7 +7,6 @@ const allArticles = (await getCollection("articles"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-// Simplified Tag Counting
 const tagCounts: Record<string, number> = {};
 allArticles.forEach(post => {
   post.data.tags?.forEach(tag => {
@@ -34,8 +33,12 @@ const months = Object.keys(groupedArticles);
 ---
 
 <PageLayout title="Articles">
-  <div class="max-w-4xl mx-auto px-6 pt-4 pb-24">
+  <div class="max-w-8xl mx-auto px-6 py-4">
     
+    <div class="mb-6 relative z-10">
+      <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Articles</h1>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 mb-12">
       <div class="hidden md:flex flex-col gap-2 pt-2 sticky top-20 h-fit border-r border-black/5 dark:border-white/5 pr-4">
         <span class="text-[9px] font-mono uppercase tracking-widest opacity-30 mb-2">Archive</span>
@@ -56,10 +59,7 @@ const months = Object.keys(groupedArticles);
 
           <div class="flex flex-wrap gap-2 items-center">
             {allTags.map(tag => (
-              <button 
-                class="tag-filter px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest border border-black/10 dark:border-white/10 rounded-full opacity-50 hover:opacity-100 transition-all" 
-                data-tag={tag}
-              >
+              <button class="tag-filter px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest border border-black/10 dark:border-white/10 rounded-full opacity-50 hover:opacity-100 transition-all" data-tag={tag}>
                 #{tag} <span class="opacity-30 ml-1">{tagCounts[tag]}</span>
               </button>
             ))}
@@ -68,45 +68,34 @@ const months = Object.keys(groupedArticles);
 
         <div id="articles-container" class="space-y-0">
           {months.map(month => (
-            <section class="month-group relative grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 ml-[-104px]">
+            <section class="month-group relative grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 md:ml-[-104px]">
               <div class="text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 pt-4 sticky top-20 h-fit text-right pr-4">
                 {month.split(' ')[0]}
               </div>
-              
-     <ul class="flex flex-col gap-2 mt-4"> 
-  {groupedArticles[month].map(post => (
-    <li 
-      class="article-item group" 
-      data-title={post.data.title.toLowerCase()} 
-      data-desc={post.data.description?.toLowerCase() || ''}
-      data-tags={post.data.tags?.join(',').toLowerCase() || ''}
-      data-year={post.data.date.getFullYear().toString()}
-    >
-      <a href={`/articles/${post.slug}`} class="article-card-box items-start flex justify-between gap-4">
-        
-        <div class="flex flex-col"> 
-          <span class="text-[16px] font-sans font-semibold tracking-tight text-black dark:text-white leading-snug">
-            {post.data.title}
-          </span>
-          
-          {post.data.description && (
-            <span class="text-[14px] opacity-60 line-clamp-5 font-serif mt-1 leading-relaxed">
-              {post.data.description}
-            </span>
-          )}
-        </div>
-        
-        <div class="h-[24px] flex items-center flex-shrink-0">
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-
-      </a>
-    </li>
-  ))}
-</ul>
+              <ul class="flex flex-col gap-2 mt-4"> 
+                {groupedArticles[month].map(post => (
+                  <li class="article-item group" data-title={post.data.title.toLowerCase()} data-desc={post.data.description?.toLowerCase() || ''} data-tags={post.data.tags?.join(',').toLowerCase() || ''} data-year={post.data.date.getFullYear().toString()}>
+                    <a href={`/articles/${post.slug}`} class="flex justify-between gap-4 p-4 rounded-xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 transition-all">
+                      <div class="flex flex-col"> 
+                        <span class="text-[16px] font-sans font-semibold tracking-tight text-black dark:text-white leading-snug">
+                          {post.data.title}
+                        </span>
+                        {post.data.description && (
+                          <span class="text-[14px] opacity-60 line-clamp-5 font-serif mt-1 leading-relaxed">
+                            {post.data.description}
+                          </span>
+                        )}
+                      </div>
+                      <div class="h-[24px] flex items-center flex-shrink-0">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </section>
           ))}
         </div>
@@ -123,11 +112,12 @@ const months = Object.keys(groupedArticles);
     const items = document.querySelectorAll('.article-item');
     const groups = document.querySelectorAll('.month-group');
 
-    let activeYear = 'all';
-    let activeTag = 'all';
-
     function update() {
       const term = search?.value.toLowerCase() || '';
+      const activeYearBtn = document.querySelector('.year-filter.font-bold') as HTMLElement;
+      const activeYear = activeYearBtn?.getAttribute('data-year') || 'all';
+      const activeTagBtn = document.querySelector('.tag-filter.bg-black, .tag-filter.dark\\:bg-white') as HTMLElement;
+      const activeTag = activeTagBtn?.getAttribute('data-tag') || 'all';
 
       items.forEach(item => {
         const t = item.getAttribute('data-title') || '';
@@ -158,26 +148,20 @@ const months = Object.keys(groupedArticles);
         });
         btn.classList.add('opacity-100', 'font-bold');
         btn.classList.remove('opacity-40');
-        activeYear = btn.getAttribute('data-year') || 'all';
         update();
       });
     });
 
     tagBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const tag = btn.getAttribute('data-tag') || 'all';
-        if (activeTag === tag) {
-          activeTag = 'all';
-          btn.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-          btn.classList.add('opacity-50');
-        } else {
-          tagBtns.forEach(b => {
-            b.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-            b.classList.add('opacity-50');
-          });
+        const isCurrentlyActive = btn.classList.contains('bg-black') || btn.classList.contains('dark:bg-white');
+        tagBtns.forEach(b => {
+          b.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
+          b.classList.add('opacity-50');
+        });
+        if (!isCurrentlyActive) {
           btn.classList.add('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
           btn.classList.remove('opacity-50');
-          activeTag = tag;
         }
         update();
       });
@@ -187,35 +171,3 @@ const months = Object.keys(groupedArticles);
   document.addEventListener('astro:page-load', initFilters);
   initFilters();
 </script>
-
-<style is:global>
-  .article-card-box {
-    display: flex !important;
-    padding: 12px 16px !important; /* Adjusted padding for better text flow */
-    background-color: #ffffff !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: 12px !important;
-    transition: all 0.2s ease-in-out !important;
-    text-decoration: none !important;
-  }
-
-  .dark .article-card-box {
-    background-color: rgba(255, 255, 255, 0.03) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-  }
-
-  /* Specific Font Styles for Coffee Log look */
-  .article-card-box .font-sans {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  }
-
-  .article-card-box .font-serif {
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
-  }
-
-  /* Hover effect */
-  .article-card-box:hover {
-    border-color: rgba(0, 0, 0, 0.15) !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-  }
-</style>

@@ -8,10 +8,11 @@ const photos = allPhotos.sort((a, b) => a.data.title.localeCompare(b.data.title)
 ---
 
 <PageLayout title="Photography" description="A collection of photo galleries and portfolios.">
-  <div class="max-w-8xl mx-auto px-6 py-12">
-    <header class="mb-12">
-      <h1 class="text-4xl font-bold tracking-tight mb-2">Photography</h1>
-    </header>
+  <div class="max-w-8xl mx-auto px-6 py-4">
+    
+    <div class="mb-6 relative z-10">
+      <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Photo Albums</h1>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
       {photos.map((photo) => {
@@ -26,8 +27,13 @@ const photos = allPhotos.sort((a, b) => a.data.title.localeCompare(b.data.title)
               height={600} 
               class="h-full w-full object-cover transition-transform group-hover:scale-105"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-              <h2 class="text-white font-semibold">{photo.data.title}</h2>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="relative w-full">
+                <h2 class="text-white font-semibold">{photo.data.title}</h2>
+                <span class="absolute top-full left-0 text-white/70 font-mono text-[10px] uppercase tracking-widest leading-tight">
+                  {photo.data.date ? new Date(photo.data.date).getFullYear() : ''}
+                </span>
+              </div>
             </div>
           </a>
         );
