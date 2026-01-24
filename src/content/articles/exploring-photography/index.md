@@ -5,7 +5,8 @@ description: "Where to see, learn about and hear about all forms of photography.
 They say the answer to becoming a better photographer is to take a hell of a lot of photographs, get feedback and explore work by other photographers. If we can’t get our fix practically then how do we use the resources around us to read, listen and look for ways to hone our skills?
 "
 date: "2024-09-02"
-tags: ["photography"]
+tags:
+  - photography
 ---
 How do we use the resources around us to read, listen and look for ways to hone our photography skills?
 
