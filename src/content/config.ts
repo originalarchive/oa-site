@@ -29,20 +29,31 @@ const photos = defineCollection({
 });
 
 const coffee = defineCollection({
-  type: "content",
+  type: "content", // This allows us to use the Markdown body for Tasting Notes
   schema: z.object({
     name: z.string(),
     roaster: z.string(),
+    roasterUrl: z.string().url().optional(), // New: Link to roaster
     origin: z.string(),
-    // ... all your other fields stay the same
+    region: z.string().optional(),
+    producer: z.string().optional(),
+    farm: z.string().optional(),
+    variety: z.string().optional(),
+    elevation: z.string().optional(),
+    process: z.string().optional(),
+    processDetails: z.string().optional(),
+    roastDate: z.coerce.date().optional(), // New: Roast date
     dateBrewed: z.coerce.date(),
     brewMethod: z.string(),
     grindSize: z.string(),
+    waterTemp: z.string().optional(),
+    ratio: z.string().optional(),
+    brewNotes: z.string().optional(), // New: Quick brew notes
     rating: z.object({
-      flavor: z.number().min(1).max(5),
-      body: z.number().min(1).max(5),
-      acidity: z.number().min(1).max(5),
-      overall: z.enum(["Don't buy", "Worth another shot", "Buy again"]),
+      flavor: z.number().min(0).max(5),
+      body: z.number().min(0).max(5),
+      acidity: z.number().min(0).max(5),
+      overall: z.enum(["Don't buy", "It's OK", "Buy again", "TBC"]),
     }),
     tags: z.array(z.string()).optional(),
   }),

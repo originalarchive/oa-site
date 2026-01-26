@@ -18,6 +18,7 @@ brewMethod: "V60"
 grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
+brewNotes: 2x 30sec bloom, pour rest in one dose and swirl, 2.5 min. 
 rating:
   flavor: 5
   body: 3
@@ -30,5 +31,5 @@ tags:
   - formative
 ---
 
-Tasting notes: Lychee, vanilla, caramel.
----
+## Tasting notes: 
+Lychee, vanilla, caramel.
