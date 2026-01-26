@@ -13,6 +13,7 @@ importPartner: ""
 harvest: ""
 arrivedUK: ""
 roastLevel: "Light"
+roastDate: "2025-11-21"
 dateBrewed: 2026-01-19
 brewMethod: "V60"
 grindSize: "28 clicks"

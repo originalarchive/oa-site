@@ -65,12 +65,12 @@ const statusColors = {
 
               {/* RIGHT SIDE: Date, Overall Badge, and the Bottom Arrow */}
               <div class="flex flex-col items-end justify-between shrink-0 border-l border-black/5 dark:border-white/5 pl-4">
-                <div class="text-xs font-mono opacity-40">
+                <div class="text-xs font-mono opacity-40 uppercase tracking-tighter">
+                  <span class="text-[12px] opacity-80">Brewed:</span> 
                   {d.dateBrewed.toLocaleDateString("en-GB", { day: '2-digit', month: 'short' })}
                 </div>
 
                 <div class="flex flex-col items-end gap-2 mt-auto">
-                  {/* Fixed width badge (w-24) with dynamic status colors */}
                   <div class:list={[
                     "text-[10px] font-bold uppercase tracking-tighter py-1 rounded border text-center w-24",
                     statusColors[currentStatus] || "bg-black/5 dark:bg-white/10"
@@ -99,7 +99,10 @@ const statusColors = {
                 <p><span class="opacity-50 uppercase text-[9px]">Process:</span> {d.process} {d.processDetails && `(${d.processDetails})`}</p>
               </div>
               <div class="space-y-1.5 border-t md:border-t-0 md:border-l border-black/5 dark:border-white/5 pt-4 md:pt-0 md:pl-6 font-mono text-[11px]">
-                <p><span class="opacity-50 uppercase text-[9px]">Roast Date:</span> {d.roastDate?.toLocaleDateString("en-GB") || "—"}</p>
+                <p>
+                  <span class="opacity-50 uppercase text-[9px]">Roasted:</span> 
+                  {d.roastDate?.toLocaleDateString("en-GB") || "—"}
+                </p>
                 <p><span class="opacity-50 uppercase text-[9px]">Method:</span> {d.brewMethod} ({d.grindSize})</p>
                 <p><span class="opacity-50 uppercase text-[9px]">Temp/Ratio:</span> {d.waterTemp || "—"} / {d.ratio || "—"}</p>
                 <div class="pt-2">
