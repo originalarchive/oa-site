@@ -1,7 +1,7 @@
 ---
 title: "A bunch of photo tips"
 description: "Eric Kim created his 100 photo tips and here is my version. But I stopped at 50, it seemed enough!"
-date: "2026-01-24"
+date: "2025-07-10"
 draft: false
 tags:
   - photography

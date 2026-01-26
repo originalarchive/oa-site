@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  imageMetadata?: any; // This is the 'coverImage' or 'thumbnail' from your frontmatter
+  alt: string;
+  className?: string;
+}
+
+const { imageMetadata, alt, className } = Astro.props;
+
+// Determine what kind of image we have
+const isLocal = typeof imageMetadata === 'object';
+const isExternal = typeof imageMetadata === 'string' && imageMetadata.startsWith('http');
+---
+
+{
+  isLocal ? (
+    /* Astro Image component handles local optimization */
+    <Image 
+      src={imageMetadata} 
+      alt={alt} 
+      class={className} 
+      width={1200} 
+      height={630} 
+      format="webp"
+    />
+  ) : isExternal ? (
+    /* Standard img tag handles Cloudinary/External URLs */
+    <img 
+      src={imageMetadata} 
+      alt={alt} 
+      class={className} 
+      loading="lazy" 
+    />
+  ) : (
+    /* Fallback placeholder prevents the site from crashing if image is missing */
+    <div class:list={["bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center text-xs text-neutral-500", className]}>
+      <span>Image Pending</span>
+    </div>
+  )
+}

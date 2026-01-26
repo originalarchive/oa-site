@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import SafeImage from "./SafeImage.astro"; // 1. Import the new component
 
 interface Props {
   entry: CollectionEntry<"articles"> | CollectionEntry<"coffee"> | CollectionEntry<"photos">;
@@ -7,42 +8,53 @@ interface Props {
 
 const { entry } = Astro.props;
 
-// Coffee entries use 'name', articles/photos use 'title'
+// 2. Map the correct Image field based on collection
+let imageSource;
+if (entry.collection === "articles") {
+  imageSource = entry.data.coverImage;
+} else if (entry.collection === "photos") {
+  imageSource = entry.data.thumbnail;
+}
+// Coffee currently doesn't have an image in your schema, but it's ready if you add one!
+
 const title = entry.collection === "coffee" ? entry.data.name : entry.data.title;
 
-// Coffee entries use roaster/origin as a description
 const description = entry.collection === "coffee" 
   ? `${entry.data.roaster} • ${entry.data.origin}` 
   : entry.data.description;
 ---
 
-<a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-col gap-2 p-4 rounded-xl border border-black/5 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300">
+<a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-col gap-4 p-4 rounded-xl border border-black/5 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300">
   
   <div class="flex justify-between items-start gap-4">
-    <div class="font-semibold text-black dark:text-white transition-colors">
-      {title}
+    <div class="space-y-2">
+      <div class="font-semibold text-black dark:text-white transition-colors">
+        {title}
+      </div>
+      
+      {description && (
+        <p class="text-sm opacity-60 line-clamp-2 transition-opacity group-hover:opacity-100">
+          {description}
+        </p>
+      )}
     </div>
     
     <div class="flex-shrink-0 pt-1">
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24"
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2.5" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
-        class="size-5 group-hover:translate-x-1 transition-transform duration-300"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-5 group-hover:translate-x-1 transition-transform duration-300">
         <line x1="5" y1="12" x2="19" y2="12"></line>
         <polyline points="12 5 19 12 12 19"></polyline>
       </svg>
     </div>
   </div>
 
-  {description && (
-    <p class="text-sm opacity-60 line-clamp-5 transition-opacity group-hover:opacity-100">
-      {description}
-    </p>
+  {/* 3. Add the SafeImage here - it will only render if an image exists */}
+  {imageSource && (
+    <div class="overflow-hidden rounded-lg aspect-video border border-black/5 dark:border-white/5">
+      <SafeImage 
+        imageMetadata={imageSource} 
+        alt={title} 
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+      />
+    </div>
   )}
 </a>
