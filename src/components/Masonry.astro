@@ -1,0 +1,41 @@
+---
+interface Props {
+  cols?: number;
+}
+
+const { cols = 3 } = Astro.props;
+---
+
+<div class="masonry-grid" style={`--cols: ${cols}`}>
+  <slot />
+</div>
+
+<style>
+  .masonry-grid {
+    column-count: var(--cols);
+    column-gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* Ensure items don't break across columns */
+  .masonry-grid :global(img),
+  .masonry-grid :global(div) {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    display: block;
+    width: 100%;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .masonry-grid {
+      column-count: 1;
+    }
+  }
+</style>
