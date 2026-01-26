@@ -7,10 +7,16 @@ interface Props {
 
 const { coffeeEntries } = Astro.props;
 
-// Helper to turn 1-5 numbers into Star strings
+// 1. PRE-RENDER EVERYTHING HERE
+const renderedEntries = await Promise.all(
+  coffeeEntries.map(async (entry) => {
+    const { Content } = await entry.render();
+    return { entry, Content };
+  })
+);
+
 const renderStars = (num: number) => "★".repeat(num) + "☆".repeat(5 - num);
 
-// Status color lookup for the overall rating badge
 const statusColors = {
   "Buy again": "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
   "Don't buy": "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
@@ -20,8 +26,7 @@ const statusColors = {
 ---
 
 <div class="space-y-4">
-  {coffeeEntries.map(async (entry) => {
-    const { Content } = await entry.render();
+  {renderedEntries.map(({ entry, Content }) => {
     const d = entry.data;
     const currentStatus = d.rating.overall;
 
@@ -30,7 +35,6 @@ const statusColors = {
         class="coffee-card group border border-black/5 dark:border-white/10 rounded-xl p-4 transition-all hover:bg-black/[0.02] dark:hover:bg-white/[0.02]"
         data-date={d.dateBrewed.toISOString()}
       >
-        {/* HIDDEN SEARCH KEYWORDS: Included here so item.innerText catches them */}
         <span class="sr-only invisible h-0 w-0 overflow-hidden">
           {d.process} {d.processDetails} {d.region} {d.variety}
         </span>
@@ -39,7 +43,6 @@ const statusColors = {
           <summary class="list-none outline-none cursor-pointer">
             <div class="flex justify-between items-stretch gap-4">
               
-              {/* LEFT SIDE: Identity & Stars */}
               <div class="flex-1 flex flex-col justify-between">
                 <div>
                   <h3 class="font-bold text-lg leading-tight">{d.name}</h3>
@@ -49,7 +52,7 @@ const statusColors = {
                         href={d.roasterUrl} 
                         target="_blank" 
                         class="hover:underline text-black dark:text-white font-medium"
-                        onclick="arguments[0].stopPropagation();"
+                        onclick="event.stopPropagation();"
                       >
                         {d.roaster}
                       </a>
@@ -68,7 +71,6 @@ const statusColors = {
                 </div>
               </div>
 
-              {/* RIGHT SIDE: Date, Overall Badge, and the Bottom Arrow */}
               <div class="flex flex-col items-end justify-between shrink-0 border-l border-black/5 dark:border-white/5 pl-4">
                 <div class="text-xs font-mono opacity-40 uppercase tracking-tighter">
                   <span class="text-[9px] opacity-70">Brewed:</span> 
@@ -93,7 +95,6 @@ const statusColors = {
             </div>
           </summary>
 
-          {/* EXPANDED SECTION */}
           <div class="mt-6 border-t border-black/5 dark:border-white/5 pt-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 rounded-lg bg-stone-100/50 dark:bg-stone-900/50 text-sm border border-black/5 dark:border-white/5">
               <div class="space-y-1.5 font-mono text-[11px]">
