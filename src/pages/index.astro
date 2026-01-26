@@ -11,7 +11,7 @@ const allPosts = await getCollection("articles", ({ data }) => {
 });
 
 const allPhotos = await getCollection("photos", ({ data }) => {
-  return data.draft !== true; // Also filters unfinished photo albums
+  return !('draft' in data && data.draft === true); // Also filters unfinished photo albums
 });
 
 // 2. Sort by Date (and other criteria)

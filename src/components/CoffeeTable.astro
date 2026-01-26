@@ -30,6 +30,11 @@ const statusColors = {
         class="coffee-card group border border-black/5 dark:border-white/10 rounded-xl p-4 transition-all hover:bg-black/[0.02] dark:hover:bg-white/[0.02]"
         data-date={d.dateBrewed.toISOString()}
       >
+        {/* HIDDEN SEARCH KEYWORDS: Included here so item.innerText catches them */}
+        <span class="sr-only invisible h-0 w-0 overflow-hidden">
+          {d.process} {d.processDetails} {d.region} {d.variety}
+        </span>
+
         <details class="group/details">
           <summary class="list-none outline-none cursor-pointer">
             <div class="flex justify-between items-stretch gap-4">
@@ -44,7 +49,7 @@ const statusColors = {
                         href={d.roasterUrl} 
                         target="_blank" 
                         class="hover:underline text-black dark:text-white font-medium"
-                        onclick="event.stopPropagation();" 
+                        onclick="arguments[0].stopPropagation();"
                       >
                         {d.roaster}
                       </a>
@@ -66,7 +71,7 @@ const statusColors = {
               {/* RIGHT SIDE: Date, Overall Badge, and the Bottom Arrow */}
               <div class="flex flex-col items-end justify-between shrink-0 border-l border-black/5 dark:border-white/5 pl-4">
                 <div class="text-xs font-mono opacity-40 uppercase tracking-tighter">
-                  <span class="text-[12px] opacity-80">Brewed:</span> 
+                  <span class="text-[9px] opacity-70">Brewed:</span> 
                   {d.dateBrewed.toLocaleDateString("en-GB", { day: '2-digit', month: 'short' })}
                 </div>
 

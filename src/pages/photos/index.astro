@@ -19,23 +19,31 @@ const photos = allPhotos.sort((a, b) => a.data.title.localeCompare(b.data.title)
         const isExternal = photo.data.type === "external";
         const targetUrl = isExternal ? photo.data.url : `/photos/${photo.slug}`;
         return (
-          <a href={targetUrl} target={isExternal ? "_blank" : "_self"} class="group relative aspect-square overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
-            <Image 
-              src={photo.data.thumbnail} 
-              alt={photo.data.title} 
-              width={600} 
-              height={600} 
-              class="h-full w-full object-cover transition-transform group-hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="relative w-full">
-                <h2 class="text-white font-semibold">{photo.data.title}</h2>
-                <span class="absolute top-full left-0 text-white/70 font-mono text-[10px] uppercase tracking-widest leading-tight">
-                  {photo.data.date ? new Date(photo.data.date).getFullYear() : ''}
-                </span>
-              </div>
-            </div>
-          </a>
+        <a href={targetUrl} target={isExternal ? "_blank" : "_self"} class="group relative aspect-square overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
+  {photo.data.thumbnail ? (
+    <Image 
+      src={photo.data.thumbnail} 
+      alt={photo.data.title} 
+      width={600} 
+      height={600} 
+      class="h-full w-full object-cover transition-transform group-hover:scale-105"
+    />
+  ) : (
+    /* Fallback if no thumbnail exists */
+    <div class="h-full w-full flex items-center justify-center opacity-20 italic text-xs">
+      No Thumbnail
+    </div>
+  )}
+  
+  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div class="relative w-full">
+      <h2 class="text-white font-semibold">{photo.data.title}</h2>
+      <span class="absolute top-full left-0 text-white/70 font-mono text-[10px] uppercase tracking-widest leading-tight">
+        {photo.data.date ? new Date(photo.data.date).getFullYear() : ''}
+      </span>
+    </div>
+  </div>
+</a>
         );
       })}
     </div>
