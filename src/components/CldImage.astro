@@ -6,7 +6,7 @@ interface Props {
   width?: number;
   height?: number;
   class?: string;
-  isLCP?: boolean; // New prop to handle PageSpeed LCP warnings
+  isLCP?: boolean;
 }
 
 const { 
@@ -18,27 +18,25 @@ const {
   isLCP = false 
 } = Astro.props;
 
-// Replace with your actual Cloudinary Cloud Name
-const cloudName = "your-cloud-name";
+const cloudName = "your-cloud-name"; // Ensure this matches your account
 
-// Construct the transformation URL
-// f_auto,q_auto are essential for the performance scores you saw
 const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
 const transformations = `f_auto,q_auto,w_${width}${height ? `,h_${height},c_fill` : ''}`;
 const src = `${baseUrl}/${transformations}/${publicId}`;
 ---
 
+{/* Comment moved outside or wrapped in braces to avoid the "Property 'If' does not exist" build error.
+  isLCP handles:
+  - loading="eager" (Download NOW)
+  - fetchpriority="high" (Top of the queue)
+  - decoding="sync" (Draw to screen immediately)
+*/}
 <img 
   src={src} 
   alt={alt} 
   width={width} 
   height={height} 
   class={className}
-  /* If it's the LCP image: 
-     - loading="eager" tells the browser to download it NOW.
-     - fetchpriority="high" gives it priority over other assets.
-     - decoding="sync" ensures it draws to screen as fast as possible.
-  */
   loading={isLCP ? "eager" : "lazy"}
   fetchpriority={isLCP ? "high" : "auto"}
   decoding={isLCP ? "sync" : "async"}

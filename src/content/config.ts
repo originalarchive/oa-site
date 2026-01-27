@@ -23,6 +23,7 @@ const photos = defineCollection({
     tags: z.array(z.string()).optional(),
     description: z.string().optional(),
     type: z.enum(["internal", "external"]).optional(),
+    externalUrl: z.string().url().optional(),
   }),
 });
 
