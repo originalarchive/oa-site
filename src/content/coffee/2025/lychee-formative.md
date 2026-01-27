@@ -1,6 +1,7 @@
 ---
 name: "Exceptional Lychee"
 roaster: "Formative"
+roasterUrl: "https://formative.coffee/"
 origin: "Colombia"
 region: "Santa Monica"
 producer: ""
@@ -32,5 +33,5 @@ tags:
   - formative
 ---
 
-## Tasting notes: 
+### Tasting notes: 
 Lychee, vanilla, caramel.

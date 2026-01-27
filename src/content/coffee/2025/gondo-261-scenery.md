@@ -13,7 +13,7 @@ processDetails: "Dry fermented for 18 hours overnight"
 roastDate: "2025-10-22"
 dateBrewed: "2025-11-10"
 brewMethod: "V60"
-grindSize: "28"
+grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
 brewNotes: "Oh wow, the fruits smacked you in the nose"
@@ -28,5 +28,4 @@ tags: [coffee, log]
 ### Tasting Notes
 Blackcurrent, Darjeeling, Blood orange
 
-##### Ligtest roast
--
+#### Ligtest roast

@@ -13,7 +13,7 @@ processDetails: "dry 48hr ferment in sealed environment, water added for 48hr ae
 roastDate: 2026-01-26
 dateBrewed: 2026-01-27
 brewMethod: "V60"
-grindSize: "28"
+grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
 brewNotes: ""

@@ -32,75 +32,58 @@ const { frontmatter } = Astro.props;
       </div>
 
       <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        {/* Images will be moved here by the script */}
       </div>
     </div>
   </div>
 
-<div id="lightbox" class="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-12 md:p-24 cursor-zoom-out">
-  
-  <div class="relative w-full h-full max-w-5xl max-h-[85vh] flex items-center justify-center pointer-events-none">
-    
-    <img 
-      id="lightbox-img" 
-      src="" 
-      class="max-h-full max-w-full rounded-sm shadow-2xl object-contain pointer-events-auto" 
-    />
-    
+  {/* Lightbox Modal */}
+  <div id="lightbox" class="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6 md:p-24 cursor-zoom-out">
+    <div class="relative w-full h-full max-w-6xl max-h-[90vh] flex items-center justify-center pointer-events-none">
+      <img 
+        id="lightbox-img" 
+        src="" 
+        class="max-h-full max-w-full rounded-sm shadow-2xl object-contain pointer-events-auto" 
+      />
+    </div>
   </div>
-</div>
 </PageLayout>
 
 <style is:global>
+  /* 1. HIDE AUTO-GENERATED TITLES (The "Ghost" Fix) */
+  .prose > h1:first-child,
+  .prose > h2:first-child,
+  #intro-text h1,
+  #intro-text h2 {
+    display: none !important;
+  }
 
-/* If the ghost is an H1, H2 or Div that we can't find, this hits it */
-[id="brighton"], 
-[aria-label="brighton"],
-header + div > h1 {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  pointer-events: none !important;
-}
-
-/* This targets the specific "BRIGHTON" text if it's being auto-generated */
-h1:first-of-type {
-  display: none !important;
-}
-
-/* But keep OUR header visible */
-header h1 {
-  display: block !important;
-}
-
-/* Target the title injected by PageLayout based on your description */
-header h1 + h1, 
-[data-page-title], 
-.page-title { 
-  display: none !important; 
-}
-
-/* If the ghost is the VERY first thing in the main content, hide it */
-main > *:first-child:not(nav):not(div) {
-  display: none !important;
-}
-
-  /* Fix the italics from the screenshot */
+  /* 2. FIX INTRO TEXT STYLING */
   #intro-text p {
     font-style: normal !important;
   }
 
-  /* Prevent Image Tearing */
-  #photo-grid img {
-    @apply rounded-lg w-full h-auto cursor-zoom-in transition-all duration-500 hover:brightness-110 shadow-sm;
-    display: block;
-    break-inside: avoid; /* Prevents splitting across columns */
-    margin-bottom: 1.5rem;
-  }
-
-  /* Ensure the grid doesn't collapse */
+  /* 3. MASONRY GRID STYLING */
   #photo-grid {
     display: block;
     width: 100%;
+  }
+
+  #photo-grid img {
+    @apply rounded-lg w-full h-auto cursor-zoom-in transition-all duration-500 hover:brightness-110 shadow-sm;
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 4. LIGHTBOX TRANSITION */
+  #lightbox.flex {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 </style>
 
@@ -113,29 +96,42 @@ main > *:first-child:not(nav):not(div) {
 
     if (!intro || !grid) return;
 
-    // 1. Move images from the text block into the grid to stop "tearing"
+    // 1. DATA MIGRATION: Move images from intro content into the grid
     const images = intro.querySelectorAll('img');
-    images.forEach(img => {
-      // Remove any ghosting by clearing the thumbnail if it repeats
+    
+    images.forEach((img) => {
+      // Create a wrapper or just move the img
       grid.appendChild(img);
     });
 
-    // 2. Modal Lightbox Logic
+    // 2. LIGHTBOX INTERACTION
     grid.addEventListener('click', (e) => {
       const target = e.target as HTMLImageElement;
       if (target.tagName === 'IMG') {
+        // If it's a Cloudinary image, we could theoretically swap the width 
+        // transformation here for a higher resolution one if needed.
         lightboxImg.src = target.src;
         lightbox?.classList.remove('hidden');
+        lightbox?.classList.add('flex');
         document.body.style.overflow = 'hidden';
       }
     });
 
     lightbox?.addEventListener('click', () => {
       lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
       document.body.style.overflow = 'auto';
+    });
+    
+    // Close on 'Escape' key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lightbox?.classList.contains('hidden')) {
+        lightbox?.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
     });
   }
 
-  // Handle Astro's view transitions
+  // Handle both initial load and view transitions
   document.addEventListener('astro:page-load', initGallery);
 </script>

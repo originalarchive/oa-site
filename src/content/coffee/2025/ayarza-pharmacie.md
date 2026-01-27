@@ -1,6 +1,7 @@
 ---
 name: "Blue Ayarza"
 roaster: "Pharmacie"
+roasterUrl: "https://pharmacie.coffee"
 origin: "Guatemala"
 region: ""
 producer: ""
