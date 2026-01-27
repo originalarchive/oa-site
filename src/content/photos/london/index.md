@@ -1,6 +1,6 @@
 ---
 title: "London"
-weight: 1
+weight: 3
 type: "internal"
 featured: "true"
 thumbnail: "./march01.jpg"
@@ -14,6 +14,8 @@ tags:
   - busking
 description: "Street and event photography from London"
 ---
+
+## London
 
 There is always something going on in London. Here are some images from over the years. 
 

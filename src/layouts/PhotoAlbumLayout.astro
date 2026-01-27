@@ -4,134 +4,75 @@ const { frontmatter } = Astro.props;
 ---
 
 <PageLayout title={frontmatter.title} description={frontmatter.description}>
-  <div class="max-w-7xl mx-auto px-6 py-6">
+  {/* The pt-32 clears your fixed navigation bar once and for all */}
+  <div class="max-w-4xl mx-auto px-6 pt-4 pb-12">
     
-    <nav class="mb-6">
-      <a href="/photos" class="text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
-        ← Back to Albums
+    <nav class="mb-8">
+      <a href="/photos" class="text-[14px] font-mono uppercase tracking-[0.3em] text-neutral-500 hover:text-white transition-colors">
+        <span class="mr-2">‹</span> BACK TO ALBUMS
       </a>
     </nav>
     
-    <header class="mb-12">
-      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase text-black dark:text-white leading-none">
-        {frontmatter.title}
-      </h1>
-      
-      {frontmatter.tags && (
-        <div class="flex flex-wrap gap-4 mt-6">
-          {frontmatter.tags.map((tag: string) => (
-            <span class="text-[10px] font-mono uppercase tracking-widest text-neutral-400">#{tag}</span>
-          ))}
-        </div>
-      )}
-    </header>
-
     <div class="album-wrapper">
-      <div id="intro-text" class="prose prose-neutral dark:prose-invert max-w-2xl mb-12 text-xl leading-relaxed">
+      <div id="photo-content" class="prose prose-neutral dark:prose-invert max-w-none">
         <slot />
       </div>
 
-      <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+      <div id="photo-grid" class="columns-1 md:columns-2 gap-8 space-y-8 mt-4">
         {/* Images will be moved here by the script */}
       </div>
-    </div>
-  </div>
-
-  {/* Lightbox Modal */}
-  <div id="lightbox" class="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6 md:p-24 cursor-zoom-out">
-    <div class="relative w-full h-full max-w-6xl max-h-[90vh] flex items-center justify-center pointer-events-none">
-      <img 
-        id="lightbox-img" 
-        src="" 
-        class="max-h-full max-w-full rounded-sm shadow-2xl object-contain pointer-events-auto" 
-      />
     </div>
   </div>
 </PageLayout>
 
 <style is:global>
-  /* 1. HIDE AUTO-GENERATED TITLES (The "Ghost" Fix) */
-  .prose > h1:first-child,
-  .prose > h2:first-child,
-  #intro-text h1,
-  #intro-text h2 {
-    display: none !important;
+  /* 1. HIDE AUTOMATIC H1 */
+  #photo-content h1 { 
+    display: none !important; 
   }
 
-  /* 2. FIX INTRO TEXT STYLING */
-  #intro-text p {
-    font-style: normal !important;
+  /* 2. STYLE YOUR ## TITLE */
+  #photo-content h2 {
+    @apply text-5xl md:text-4xl font-bold tracking-tight text-white uppercase mb-8;
+    display: block !important;
   }
 
-  /* 3. MASONRY GRID STYLING */
-  #photo-grid {
-    display: block;
-    width: 100%;
+  /* 3. DESCRIPTION STYLE */
+  #photo-content p {
+    @apply text-xl leading-relaxed font-serif text-neutral-400 mb-8;
   }
+
+  /* 4. MASONRY LOGIC & CLEANUP */
+  #photo-content img { display: none !important; }
+  
+  /* Collapses empty paragraphs left behind after moving images */
+  #photo-content p:empty { display: none; }
 
   #photo-grid img {
-    @apply rounded-lg w-full h-auto cursor-zoom-in transition-all duration-500 hover:brightness-110 shadow-sm;
+    @apply rounded-sm w-full h-auto cursor-zoom-in transition-opacity duration-500 hover:opacity-80;
     display: block;
     break-inside: avoid;
-    margin-bottom: 1.5rem;
-  }
-
-  /* 4. LIGHTBOX TRANSITION */
-  #lightbox.flex {
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    margin-bottom: 2rem;
   }
 </style>
 
 <script>
   function initGallery() {
-    const intro = document.getElementById('intro-text');
+    const content = document.getElementById('photo-content');
     const grid = document.getElementById('photo-grid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
 
-    if (!intro || !grid) return;
+    if (!content || !grid) return;
 
-    // 1. DATA MIGRATION: Move images from intro content into the grid
-    const images = intro.querySelectorAll('img');
+    // Select images that haven't been moved yet
+    const images = content.querySelectorAll('img');
     
     images.forEach((img) => {
-      // Create a wrapper or just move the img
+      // Ensure the image is visible before moving it to the grid
+      img.style.display = 'block';
       grid.appendChild(img);
-    });
-
-    // 2. LIGHTBOX INTERACTION
-    grid.addEventListener('click', (e) => {
-      const target = e.target as HTMLImageElement;
-      if (target.tagName === 'IMG') {
-        // If it's a Cloudinary image, we could theoretically swap the width 
-        // transformation here for a higher resolution one if needed.
-        lightboxImg.src = target.src;
-        lightbox?.classList.remove('hidden');
-        lightbox?.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-
-    lightbox?.addEventListener('click', () => {
-      lightbox.classList.add('hidden');
-      lightbox.classList.remove('flex');
-      document.body.style.overflow = 'auto';
-    });
-    
-    // Close on 'Escape' key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !lightbox?.classList.contains('hidden')) {
-        lightbox?.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
     });
   }
 
-  // Handle both initial load and view transitions
+  // This ensures the gallery re-runs when navigating back and forth
   document.addEventListener('astro:page-load', initGallery);
 </script>

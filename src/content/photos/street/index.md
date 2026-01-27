@@ -17,6 +17,8 @@ tags:
 description: "Street photos from around the world."
 ---
 
+## Street
+
 I have wandered around with a camera for much of my life and here are some shots I have taken that might fit the street category. 
 
 ![StreetLife](./streetlife01.jpg)
