@@ -3,20 +3,18 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import SafeImage from "@components/SafeImage.astro";
+import { formatDate } from "@lib/utils";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
-  
-  // Only build pages for non-drafts
   const publishedArticles = articles.filter((post) => !post.data.draft);
 
   return publishedArticles.map((article) => ({
     params: { slug: article.slug },
-    props: { article }, // Passing it as an object named 'article'
+    props: { article },
   }));
 }
 
-// Define the shape of our props clearly
 interface Props {
   article: CollectionEntry<"articles">;
 }
@@ -24,13 +22,13 @@ interface Props {
 const { article } = Astro.props;
 const { Content } = await article.render();
 
-// Fetch related articles
+// Fetch related articles based on tags
 const allArticles = await getCollection("articles");
 const relatedArticles = allArticles
   .filter((p) => 
     !p.data.draft && 
     p.slug !== article.slug &&
-    p.data.tags?.some((tag) => article.data.tags?.includes(tag))
+    p.data.tags?.some((tag: string) => article.data.tags?.includes(tag))
   )
   .slice(0, 3);
 ---
@@ -46,7 +44,6 @@ const relatedArticles = allArticles
     </div>
 
     <article>
-      {/* 2. ADD HERO IMAGE HERE */}
       {article.data.coverImage && (
         <div class="mb-8 rounded-2xl overflow-hidden aspect-video">
            <SafeImage 
@@ -57,8 +54,25 @@ const relatedArticles = allArticles
         </div>
       )}
 
-      <header class="block mb-6 relative">
-        {/* ... (Your existing header content: date, tags, title) ... */}
+      <header class="block mb-0 relative">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest opacity-50 mb-4">
+          <time datetime={article.data.date.toISOString()}>
+            {formatDate(article.data.date)}
+          </time>
+          {article.data.tags && article.data.tags.length > 0 && (
+            <>
+              <span>•</span>
+              <div class="flex gap-2">
+                {article.data.tags.map((tag: string) => (
+                  <span class="text-black dark:text-white">#{tag}</span>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-black dark:text-white leading-tight">
+          {article.data.title}
+        </h1>
       </header>
 
       <div class="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-24">
@@ -66,6 +80,17 @@ const relatedArticles = allArticles
       </div>
     </article>
 
-    {/* ... (Rest of the file: Related reading, etc) ... */}
+    {relatedArticles.length > 0 && (
+      <section class="mt-20 pt-10 border-t border-black/5 dark:border-white/5">
+        <h2 class="font-mono uppercase tracking-widest text-xs opacity-50 mb-6">
+          Recommended Reading
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {relatedArticles.map((item) => (
+            <ArrowCard entry={item} />
+          ))}
+        </div>
+      </section>
+    )}
   </div>
 </PageLayout>

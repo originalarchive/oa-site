@@ -13,7 +13,7 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
   <main class="max-w-3xl mx-auto px-6 py-2">
     <div class="flex justify-between items-end mb-8">
         <div>
-            <h1 class="text-4xl font-bold">Coffee Log</h1>
+            <h1 class="text-4xl font-bold text-black dark:text-white">Coffee Log</h1>
             <p class="opacity-60 mt-2">Daily brewing experiments and notes.</p>
         </div>
         <div id="count-display" class="text-xs font-mono opacity-40 pb-1 italic">
@@ -22,7 +22,7 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
     </div>
       
     <div class="flex flex-wrap gap-3 items-center py-4 border-y border-black/5 dark:border-white/10 mb-8">
-        <select id="time-filter" class="bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-3 py-1.5 text-sm outline-none cursor-pointer hover:border-black/20 focus:ring-1 focus:ring-black">
+        <select id="time-filter" class="bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-3 py-1.5 text-sm outline-none cursor-pointer hover:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white">
           <option value="last-6" selected>Last 6 months</option>
           <option value="last-12">Last 12 months</option>
           <option value="all">All Time</option>
@@ -32,7 +32,7 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
           type="text" 
           id="search-filter" 
           placeholder="Search origin, roaster, or notes..." 
-          class="flex-1 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-3 py-1.5 text-sm outline-none focus:border-black/20 focus:ring-1 focus:ring-black"
+          class="flex-1 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-3 py-1.5 text-sm outline-none focus:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white text-black dark:text-white"
         />
     </div>
 
@@ -44,49 +44,59 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
   function setupFilters() {
     const timeFilter = document.getElementById('time-filter');
     const searchFilter = document.getElementById('search-filter');
-    const items = document.querySelectorAll('.coffee-card');
+    const display = document.getElementById('count-display');
 
-    if (!timeFilter || !searchFilter || items.length === 0) return;
+    if (!timeFilter || !searchFilter) return;
 
     function filterBrews() {
+      // Re-query items inside the function to handle View Transition updates
+      const items = document.querySelectorAll('.coffee-card');
+      if (items.length === 0) return;
+
       const timeValue = timeFilter.value;
       const searchValue = searchFilter.value.toLowerCase().trim();
       const now = new Date();
 
+      const sixMonthsAgo = new Date(); 
+      sixMonthsAgo.setMonth(now.getMonth() - 6);
+      const twelveMonthsAgo = new Date(); 
+      twelveMonthsAgo.setMonth(now.getMonth() - 12);
+
       items.forEach(item => {
         const dateAttr = item.getAttribute('data-date');
         const brewDate = new Date(dateAttr);
+        // innerText is perfect here as it catches the sr-only keywords we added
         const text = item.innerText.toLowerCase();
         
-        // Logical spans
-        const sixMonthsAgo = new Date(); sixMonthsAgo.setMonth(now.getMonth() - 6);
-        const twelveMonthsAgo = new Date(); twelveMonthsAgo.setMonth(now.getMonth() - 12);
-
         let timeMatch = false;
         if (timeValue === 'all') timeMatch = true;
         if (timeValue === 'last-6' && brewDate >= sixMonthsAgo) timeMatch = true;
         if (timeValue === 'last-12' && brewDate >= twelveMonthsAgo) timeMatch = true;
 
-        let searchMatch = text.includes(searchValue);
+        const searchMatch = text.includes(searchValue);
 
-        if (timeMatch && searchMatch) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
+        item.style.display = (timeMatch && searchMatch) ? 'block' : 'none';
       });
 
       const visible = Array.from(items).filter(i => i.style.display !== 'none').length;
-      const display = document.getElementById('count-display');
       if (display) display.innerText = `${visible} Entries Found`;
     }
 
+    // Use input event for real-time search filtering
     timeFilter.addEventListener('change', filterBrews);
     searchFilter.addEventListener('input', filterBrews);
-    filterBrews(); // Initial run
+    
+    // Run immediately
+    filterBrews();
   }
 
-  // Handle both initial load and view transitions
+  // Ensure it runs on first load and every subsequent navigation
   document.addEventListener('astro:page-load', setupFilters);
-  setupFilters();
+  
+  // Fallback for non-transition loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFilters);
+  } else {
+    setupFilters();
+  }
 </script>
