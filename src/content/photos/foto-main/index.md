@@ -1,10 +1,10 @@
 ---
-title: "Foto Portfolio"
+title: "foto app Portfolio"
 type: "external"
-url: "https://the.fotoapp.co/originalarchive"
+externalUrl: "https://the.fotoapp.co/originalarchive"
 thumbnail: "./fotologo.png" 
 ---
 
-Click on the icon for the iOS or Android version for foto.
+Visit my foto album and portfolio page. Viewable from a web browser with limitations. 
 
 ![Foto_Logo](./fotologo.png)
