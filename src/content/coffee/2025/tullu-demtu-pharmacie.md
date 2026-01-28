@@ -25,7 +25,7 @@ rating:
   flavor: 2
   body: 3
   acidity: 2
-  overall: "It's OK"
+  overall: "Good"
 tags:
   - Ethiopia
   

@@ -25,7 +25,7 @@ rating:
   flavor: 3
   body: 4
   acidity: 2
-  overall: "It's OK"
+  overall: "Good"
 tags:
   - burundi
   - washed

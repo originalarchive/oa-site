@@ -52,7 +52,7 @@ const coffee = defineCollection({
       flavor: z.number().min(0).max(5),
       body: z.number().min(0).max(5),
       acidity: z.number().min(0).max(5),
-      overall: z.enum(["Don't buy", "It's OK", "Buy again", "TBC"]),
+      overall: z.enum(["Meh", "Good", "Great", "TBC"]),
     }),
     tags: z.array(z.string()).optional(),
   }),

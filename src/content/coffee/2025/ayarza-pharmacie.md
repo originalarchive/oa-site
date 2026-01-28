@@ -25,7 +25,7 @@ rating:
   flavor: 5
   body: 3
   acidity: 4
-  overall: "Don't buy"
+  overall: "Meh"
 tags:
   - colombia
   - washed

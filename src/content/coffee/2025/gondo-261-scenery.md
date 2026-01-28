@@ -21,7 +21,7 @@ rating:
   flavor: 5
   body: 4
   acidity: 3
-  overall: "Buy again"
+  overall: "Great"
 tags: [coffee, log]
 ---
 
