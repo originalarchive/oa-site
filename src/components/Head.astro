@@ -18,12 +18,13 @@ interface Props {
   image?: string;
 }
 
+// 1. URL Resolution
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/nano.png" } = Astro.props;
+// 2. Default Image: Updated to your new brand asset
+const { title, description, image = "/og-share.png" } = Astro.props;
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
@@ -37,37 +38,31 @@ const { title, description, image = "/nano.png" } = Astro.props;
 
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
 <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href={lora400} as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href={lora600} as="font" type="font/woff2" crossorigin/>
 
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} /> 
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={new URL(image, Astro.site)} /> 
 
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:url" content={canonicalURL} /> 
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={new URL(image, Astro.site)} /> 
 
-<ClientRouter  />
+<ClientRouter />
 
-<!-- RSS Link -->
 <link rel="alternate" type="application/rss+xml" title={SITE.NAME} href={new URL("rss.xml", Astro.site)} />
 
 <script>
@@ -124,7 +119,6 @@ const { title, description, image = "/nano.png" } = Astro.props;
 
   function animate() {
     const animateElements = document.querySelectorAll(".animate");
-
     animateElements.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add("show");
@@ -148,9 +142,8 @@ const { title, description, image = "/nano.png" } = Astro.props;
     });
   }
 
-function toggleTheme(dark) {
+  function toggleTheme(dark) {
     const css = document.createElement("style");
-
     css.appendChild(
       document.createTextNode(
         `* {
@@ -163,22 +156,18 @@ function toggleTheme(dark) {
         `,
       )
     );
-
     document.head.appendChild(css);
-
     if (dark) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-
-  window.getComputedStyle(css).opacity;
+    window.getComputedStyle(css).opacity;
     document.head.removeChild(css);
   }
 
   function preloadTheme() {
     const userTheme = localStorage.theme;
-
     if (userTheme === "light" || userTheme === "dark") {
       toggleTheme(userTheme === "dark");
     } else {

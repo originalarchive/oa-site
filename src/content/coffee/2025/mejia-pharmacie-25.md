@@ -13,17 +13,17 @@ processDetails: ""
 importPartner: ""
 harvest: ""
 arrivedUK: ""
-roastLevel: "Light"
+roastLevel: "Light to mid"
 roastDate: "2025-12-17"
 dateBrewed: "2025-12-28"
 brewMethod: "v60"
 brewNotes: "Low agitation, develops sweetness"
-grindSize: "28 clicks" # Commandante C40
-waterTemp: "93°C"
+grindSize: "27 clicks" # Commandante C40
+waterTemp: "87°C"
 ratio: "1:15"
 rating:
   flavor: 2
-  body: 3
+  body: 4
   acidity: 2
   overall: "Good"
 tags:
@@ -32,3 +32,6 @@ tags:
 ---
 ### Tasting Notes: 
 Juicy and sweet, notes of dried apricot and melon with creamy hazelnut body. 
+
+### Ken's Notes
+As this is not the lightest of roasts I have played around with the brew. Low agitation works as always. Batch of 350ml worked amazingly well with 87°C water and 27 clicks. Best I have managed. 
