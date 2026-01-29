@@ -5,5 +5,9 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://oa-site.pages.dev",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [
+    mdx(), 
+    sitemap(),
+    tailwind(),
+  ],
 });

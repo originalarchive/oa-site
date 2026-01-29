@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  folderPath: string;
+  filenames?: string[];
+  cols?: number;
+}
+
+const { folderPath, filenames = [], cols = 3 } = Astro.props;
+
+// 1. Grab all images from the articles directory
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/articles/**/*.{png,jpg,jpeg,webp}', { eager: true });
+
+// 2. Filter logic
+const galleryImages = Object.keys(allImages)
+  .filter((key) => {
+    const isInFolder = key.includes(folderPath);
+    const fileName = key.split('/').pop() || "";
+    if (filenames.length > 0) {
+      return isInFolder && filenames.includes(fileName);
+    }
+    return isInFolder && !fileName.includes('hero.png');
+  })
+  .map((key) => allImages[key].default);
+
+// 3. Smart Layout: If 1 image, span full width. 
+const activeCols = galleryImages.length === 1 ? 1 : cols;
+
+const gridClass = {
+  1: "grid-cols-1",
+  2: "grid-cols-2",
+  3: "grid-cols-2 md:grid-cols-3",
+  4: "grid-cols-2 md:grid-cols-4"
+}[activeCols] || "grid-cols-2 md:grid-cols-3";
+
+// Debugging helper
+if (filenames.length > 0 && galleryImages.length < filenames.length) {
+  console.warn(`Gallery Warning: Some files in ${folderPath} were not found. Expected ${filenames.length}, found ${galleryImages.length}.`);
+}
+---
+
+<div class={`grid ${gridClass} gap-2 lg:gap-3 my-10 items-start`}>
+  {galleryImages.length > 0 ? (
+    galleryImages.map((img) => (
+      <div class="overflow-hidden rounded-md">
+        <a href={img.src} class="glightbox block">
+          <Image 
+            src={img} 
+            alt="Journal photo" 
+            width={1200} 
+            /* 'block' on the image removes the tiny descender gap at the bottom */
+            class="hover:opacity-90 transition-opacity cursor-zoom-in w-full h-auto block object-cover" 
+          />
+        </a>
+      </div>
+    ))
+  ) : (
+    <div class="col-span-full p-4 bg-gray-50 border border-dashed border-gray-300 rounded text-center text-sm text-gray-500 italic">
+      No images found in "{folderPath}" {filenames.length > 0 ? `matching your filenames` : ''}
+    </div>
+  )}
+</div>

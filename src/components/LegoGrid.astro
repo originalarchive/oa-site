@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  folderPath: string;
+  topPair: string[]; 
+  bottomFeature: string; 
+}
+
+const { folderPath, topPair, bottomFeature } = Astro.props;
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/articles/**/*.{png,jpg,jpeg,webp}', { eager: true });
+
+function getImage(name: string) {
+  const match = Object.keys(allImages).find((key) => key.includes(folderPath) && key.includes(name));
+  return match ? allImages[match].default : null;
+}
+
+const pair = topPair.map(name => getImage(name));
+const feature = getImage(bottomFeature);
+---
+
+<div class="flex flex-col space-y-2 lg:space-y-3 my-10 antialiased">
+  
+  {/* Top Row: Two Images */}
+  <div class="grid grid-cols-2 gap-2 lg:gap-3">
+    {pair.map((img) => img && (
+      <a href={img.src} class="glightbox overflow-hidden rounded-md block shrink-0">
+        <Image 
+          src={img} 
+          alt="Journal photo" 
+          width={800} 
+          class="hover:opacity-90 transition-opacity w-full h-full object-cover aspect-[4/3] block m-0" 
+        />
+      </a>
+    ))}
+  </div>
+
+  {/* Bottom Row: Single Feature */}
+  {feature && (
+    <div class="block">
+      <a href={feature.src} class="glightbox overflow-hidden rounded-md block shrink-0">
+        <Image 
+          src={feature} 
+          alt="Journal photo" 
+          width={1200} 
+          class="hover:opacity-90 transition-opacity w-full h-auto block m-0" 
+        />
+      </a>
+    </div>
+  )}
+</div>

@@ -4,7 +4,7 @@ const articles = defineCollection({
   type: "content",
   schema: ({ image }) => z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     date: z.coerce.date(),
     draft: z.boolean().optional(),
     // Reverted to standard local image helper

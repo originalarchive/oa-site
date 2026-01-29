@@ -1,16 +1,31 @@
 ---
 title: "Sri Lanka: A Photo Journal"
-description: "Exploring Sri Lanka in 12 days, eight hotels, a fantastic train journey and brilliant tuk tuk rides"
+description: "Exploring Sri Lanka in 12 days, eight hotels, a fantastic train journey and brilliant tuk tuk rides."
 date: "2019-01-02"
-draft: true
-image: "/images/sri-lanka/hero.png"
+draft: false
+tags:
+  - journal
+  - photography
+image: "./hero.png"
 ---
 
-import Masonry from "../../../components/Masonry.astro";
+import SideBySide from "@components/SideBySide.astro";
+import JournalGallery from "@components/JournalGallery.astro";
+import hero from "./hero.png";
 
-Airport to Hikka 1 Jan 2019
+<SideBySide img={hero}>
+  ### Jan 2nd: Airport to Hikka
+ After around ten hours in the air, we touched down in Sri Lanka, a day after leaving the UK. The journey had been thankfully uneventful—just the way I prefer it. Travel is now so often more of a necessary process - airport, flight, transfer, hotel - rather than an enjoyable part of the experience. That said, this time, we had a great direct flight with TUI. I’m not sure if they still offer it, but it made the trip much smoother.
+</SideBySide>
+<Caption text="Our Route" />
 
-After around ten hours in the air, we touched down in Sri Lanka, a day after leaving the UK. The journey had been thankfully uneventful—just the way I prefer it. Travel is now so often more of a necessary process - airport, flight, transfer, hotel - rather than an enjoyable part of the experience. That said, this time, we had a great direct flight with TUI. I’m not sure if they still offer it, but it made the trip much smoother.
+<LegoGrid 
+  folderPath="sri-lanka-photo-journal" 
+  topPair={["tuk-tuk-02.jpg", "tuk-tuk-03.jpg"]} 
+  bottomFeature="tuk-tuk-04.jpg" 
+/>
+
+<Caption text="A view from a Tuk Tuk" />
 
 January on the south coast of Sri Lanka meant 29°C - and that’s not a temperature we are used to in the UK at that time of year. Even better, we were flying out in time for my birthday. And a birthday on the beach is always epic, no matter the temperature. 
 
@@ -20,36 +35,47 @@ We generally avoided taxis on this trip. Partly because of the aggressive drivin
 
 The landing and initial trip down the coast made us realise Sri Lanka is a beautiful country. And to find that climate in January - warm, sunny and tropical - is rare.
 
-We settled into the ride and enjoyed the tropical scenery, the superhighway and the beach views as we made our way south.  On towards Hikkaduwa, our first stop.  
+<SideBySide img="street-worker.jpg" reverse={true}>
+ We settled into the ride and enjoyed the tropical scenery, the superhighway and the beach views as we made our way south.  On towards Hikkaduwa, our first stop.  
 
-  <Masonry cols={2}>
-  <img src="/images/sri-lanka/surf-break.jpg" alt="Surf break at sunset" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/coconut-truck.jpg" alt="Local fruit truck" class="rounded-xl border border-black/5" />
-</Masonry>
+</SideBySide>
+<div class="py-0.5"></div>
+<Caption text="STOP. GO." />
 
-Hikka 2 - 5 Jan 2019
+ 
 
-Hikkaduwa is a lively place - an ex hippy enclave apparently - but we avoided the hustle and bustle and based ourselves about a mile east along Narigama beach in a lovely little hotel called Sapphire Seas. We were welcomed with a smile, a welcome drink, an upgraded room overlooking the sea and the offer that any meals taken at the hotel could be had overlooking the beach. Basically on the beach. Beautiful. 
+### Jan 2nd-5th: Hikkaduwa
 
-_Hikkaduwa beach_
+Hikkaduwa is a lively place - an ex hippy enclave apparently - but we avoided the hustle and bustle and based ourselves about a mile east along Narigama beach in a lovely little hotel called Sapphire Seas. We were welcomed with a smile, a welcome drink, an upgraded room overlooking the sea and the offer that any meals taken at the hotel could be had overlooking the beach. 
+
+<JournalGallery folderPath="sri-lanka-photo-journal" filenames={["hikkaduwa-beach-pano.jpg"]} />
+<Caption text="Hikka Beach" />
 
 That beach, wow! Big waves and a rip tide. It was just safe enough to swim in but it's always worth checking depending on conditions and how confident a swimmer you are in those conditions. 
 
+
 Hikkaduwa beach itself was north of us and it sits on a coral reef that is bleached but still full of fish. At the point between the two beaches there is a hotel called Hikka Trans by Cinnamon and we visited the beach directly in front of the hotel to feed turtles with seaweed. They were incredibly chilled animals and we spent a fair bit of time in the water around them just letting them be. Liz even tripped over one that snuck up behind her! Apparently the turtles appear most days and have become very used to humans. There is no charge for feeding the turtles because it is a public beach and most people behaved themselves around the two enormous turtles - perhaps 500kg loggerheads? 
 
-  
+<div class="py-0.5"></div>
 
-_Sea turtle_
-
+<SideBySide img="turtle-01.jpg" reverse={true}>
 Whilst in with the turtles we got approached by a few boat owners trying to take us out to the snorkelling site about 150m off the coast. A bit far to swim so we took them up on the reasonably priced offer. I took the second oar to help get the very small catamaran out to the reef. There was no discount for helping to row. 
+
+</SideBySide>
+<Caption text="Turtle" />
+
 
 Once out on to the coral the number of fish was perhaps the largest number we have ever seen on a bleached reef, certainly more than we saw in the Seychelles and closer in number to my experiences in parts of the Red Sea.  We saw a fantastic octopus as well as angel fish, several very large parrot fish and a dozen other species we were unable to recognise. We spent about an hour out snorkelling and paddling before returning back to the beach and dragging the boat ashore. 
 
 This type of boat is traditional to Sri Lanka and they are still used daily for fishing and getting about. The larger ones have sails.  
 
-  
+  <JournalGallery 
+  folderPath="sri-lanka-photo-journal" 
+  filenames={["boat-grass.jpg"]} 
+  cols={1} 
+/>
+<Caption text="Traditional oruwa fishing catamaran" />
 
-_Traditional oruwa fishing catamaran_
 
 We didn’t have a huge choice of restaurants where we were based at Hikka. Only Cafe Ceylon really stood out to us. It's owned/run by a German lady who has managed to blend Sri Lankan cooking with European and has come up with a fantastic menu. Everything we had there from the tuna, rice and curry, and deserts was lovely. As were the staff. A strong recommend. It was also where I had my 40th birthday meal. Excellent.
 
@@ -57,29 +83,23 @@ We didn’t have a huge choice of restaurants where we were based at Hikka. Only
 
 The choice of wine and beer was a little limited in the places we visited across the whole south west of Sri Lanka, not just Hikka. Local beer, Lion, is everywhere. It seems they also brew a Carlsberg on the island and both tasted like average holiday lager. Cold, wet and refreshing in the heat. If I was lucky my Lion was served in a cold glass, but I have to say it always hit the spot.
 
-_Beer, pool, beach, sea…._
 
 The Sapphire Seas hotel managed to turn out excellent noodles, a great crab curry, and some amazing homemade spring rolls. 
 
 The day after my birthday I took my first ever surf lesson up nearer Hikka and it was tough. Later in the holiday we met a good surfer who was surprised that I had tried to learn at Hikka, owing to the fierce breaks there. I just know it was bloody hard work but I managed to get up at least six times and made it all the way in to the beach four times.  Not as epic as it sounds if you see the size of the waves but I was still pleased with myself. And there is video evidence too - just ask Liz.
 
-  
+  <div class="py-0.5"></div>
 
-_Surfing_
+<SideBySide img="surfing-ken-01.jpg" reverse={true}>
+  Me, having a go surfing at Hikka beach
+</SideBySide>
+<Caption text="Surfing Hikka" />
+
 
 We both decided that there are many other nice places to visit in Sri Lanka so we wouldn't hurry back to that same resort. Having said that, if we did venture back we would definitely stay on Narigama beach again as Hikka itself had a bit too much hustle and bustle. At least for us. 
 
-  
 
-  
-
-  
-
-  
-
-  
-
-Galle 4 Jan 2019
+### Jan 4th: Galle
 
 Galle - pronounced Gaul - is a Dutch fort town just 15 minutes down the coast from Hikka. Although we made a mistake and visited from Mirissa when it would have made more sense to have taken a Tuk Tuk from Hikka.
 
@@ -87,15 +107,28 @@ As an aside, we booked the whole trip just three weeks before departing yet we m
 
 It seems that it's a 50/50 as to whether you will enjoy Galle. This was simply based on the experiences of various people we met on our journey. We thought that was a bit unfair on the old town because it's really nice for a half-day trip. Or maybe somewhere you stop at when travelling through.  
 
+<JournalGallery folderPath="sri-lanka-photo-journal" filenames={["cricket.jpg"]} />
+<Caption text="Cricket Ground" />
+
 The northern most point of the fort is topped by the international cricket stadium and then the fort walls reach down both sides and form the rest of the peninsular. Our Tuk Tuk driver dropped us off at the very south and we walked the wall all the way round before hitting up the little touristy shops, cafes and restaurants that crisscross the interior of the fort.  Seeing inside the old colonial buildings was fascinating and several of the cafes and hotels such as the Amagalla luxury hotel are worth a quick walk around, if not an extended stop and a meal. 
+
+<JournalGallery folderPath="sri-lanka-photo-journal" filenames={["painted-elephant.jpg"]} />
+<Caption text="Decorated Elephant" />
 
 Some very expensive places by Sri Lankan standards but we really liked:
 
-– ‘A Minute by Tuk Tuk’ is a great restaurant with excellent reviews overlooking the water on the east side of the fort. 
+<SideBySide img="poster-wall.jpg">
+- A Minute by Tuk Tuk’ is a great restaurant with excellent reviews overlooking the water on the east side of the fort. 
 
-– ‘Stick no Bills’ is a great poster shop featuring famous artwork used for Sri Lankan marketing. Beautiful printing quality and a great saving compared to buying in Europe.  
+- Stick no Bills’ is a great poster shop featuring famous artwork used for Sri Lankan marketing. Beautiful printing quality and a great saving compared to buying in Europe.  
 
-– ‘The Heritage Cafe & Bistro’ was lovely and the ginger lemonade was very refreshing. 
+- The Heritage Cafe & Bistro’ was lovely and the ginger lemonade was very refreshing. 
+</SideBySide>
+<Caption text="Stick No Bills" />
+
+
+
+
 
 So many restaurants and cafes there have good reviews and you can see why. Perhaps useful to mention that nothing is cheap in Galle. 
 
@@ -103,21 +136,25 @@ Galle by Tuk Tuk was ideal and it allowed us to get natural air conditioning and
 
 We also stopped off at the stick fishermen in Koggola for a few photos. 
 
-_Stick fishing in Koggola_
+<JournalGallery folderPath="sri-lanka-photo-journal" filenames={["fishing-sticks.jpg"]} />
+<Caption text="Stick fishing in Koggola" />
+
+
 
   
 
   
 
-Mirissa 5 - 8 Jan 2019
+### Jan 5th - 8th: Mirissa
 
 Mirissa is an interesting bay and one like nothing else Liz and I have ever seen on our travels. 
 
 Imagine a small bay of about a kilometre in length that has a 60 metre wide beach and each and every restaurant, cafe and nightclub (the nightclub’s called Salt) has enough room to spread tables out onto the beach so there is no excuse not to eat and drink with your toes in the sand. 
 
-  
+  <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["Mirissa Beach.jpg"]} />
+<Caption text="Mirissa bay - party town" />
 
-_Mirissa bay - party town_
+
 
   
 
@@ -126,22 +163,29 @@ The quality of the restaurants varies enormously but Zephyr stands out by a coun
 There is also a new place opened by a young English couple just three weeks before we arrived and it looks stunning. Almost the perfect beach restaurant. It's simply a shame that the food was between average and extremely poor, the prices high and the service below average. Poorly trained staff just couldn't resolve issues and we were told the ice cream had melted because it's hot in Sri Lanka. They later admitted it was because the freezer was broken but they still served ice cream that could have made us ill and lied about it. I’m sure the place can turn themselves around but it needs some serious work. The owners didn't seem to be receptive to feedback so we left having not really resolved the crap meal. No point mentioning the name. I like to think they will either have sorted all the issues now, or have given up moved on. 
 
 The only downside to the overall Mirissa experience is the volume of the music pumping out of the bars and nightclubs from 2200 through to the early hours of the morning. Bloody annoying if you aren't in town to party but we were forewarned and stayed up on a hill just to the west of the bay. We did wonder if the sound travelled more to where we were staying but there are lots of reports of it being difficult to sleep if you are staying just off the beach. 
+  <div class="py-0.5"></div>
 
-We stayed up in the Palace Marissa which, whilst being rustic and in need of a bit of TLC - had amazing ceiling paintings, lovely grounds with peacocks and peahens,  - was a perfect balance of being able to stay in Marissa without being in Marissa. 
+<SideBySide img="painted-ceiling.jpg" reverse={true}>
+ We stayed up in the Palace Marissa which, whilst being rustic and in need of a bit of TLC - had amazing ceiling paintings, lovely grounds with peacocks and peahens,  - was a perfect balance of being able to stay in Marissa without being in Marissa. 
+
+</SideBySide>
+<Caption text="Traditional painted ceiling" />
 
   
-
-_Traditional painted ceiling_
 
   
 
 I say that because the foot and drink scene in Marissa was exciting and the Palace Marisa hotel buffet food was so bad that we only ate there once in the evening and ventured out for better food the other two days. One nice surprise was that we could use the facilities at the sister hotel right on the beach. A brilliant result.  
 
+  <div class="py-0.5"></div>
+
+<SideBySide img="palm-tree-cliff-view.jpg" >
 The view from the Palace overlooking the ocean from the heights was stunningly beautiful, the sea spanning forever, however we didn't spot any of the famous whales.
 
-  
+</SideBySide>
+<Caption text="Sea view" />
 
-_Sea view_
+
 
   
 
@@ -149,49 +193,59 @@ With hindsight we should have stopped at Galle on the way along to Mirissa and r
 
 The sea was fun. Huge waves to play in but you do have to be careful. There are lots of surfers to both sides of the bay and rocks and reefs in awkward places. Very cool but not a great place for a quiet swim!
 
-  
-
-_Real surfing_
 
   
 
 At the end of the bay was a rocky outcrop we climbed up to get a great view of the surfers and it allows you to look back at the bay. 
 
-_Mirissa bay by day_
+  <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["waves-pano.jpg"]} />
+<Caption text="Surfing" />
+
 
   
 
   
 
-Tangalle 8 - 10 Jan 2019
+### Jan 8th - 10th: Tangalle
 
 Aside from the challenge of finding the Mangrove Beach Cabana, the location was absolutely incredible. The difficulty stemmed from outdated Google Maps information and the business’s hacked website - fun times. Each cabana sits right on the beach, offering direct access to the sand. Stepping out each morning from our deluxe cabana, complete with a cozy daybed and an amazing outdoor shower and bathroom, felt truly magical. I don’t think I’ve ever stayed anywhere quite like it.
 
-  
+    <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["beach-cabin.jpg"]} />
+<Caption text="Our cabana" />
 
-_Our cabana_
 
+  <div class="py-0.5"></div>
+
+<SideBySide img="beach-02.jpg" reverse={true}>
 As soon as we arrive we headed a mile down the beach to a restaurant called The Lounge. Our room wasn't ready and we had heard such good things about The Lounge. A Tuk Tuk would have been easier but it was fun to walk the dunes and what is one of the widest beaches I have ever trudged. And I mean trudged - it was hard work, but….
+
+</SideBySide>
+<Caption text="Mangrove Beach" />
 
 The Lounge was worth it and the owner was a nice guy who seem to do everything from welcome guests, cook, fish, manage the bills and everything between. His staff worked as hard as he did and it was a superb outdoor charcoal cooked meal. It was so good that we went back the next night to take in the lively evening atmosphere. And enjoy a few of those cocktails.   RS.300 for the return by Tuk Tuk - perfect for the evening. 
 
-  
+      <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["beach-bar-01.jpg"]} />
+<Caption text="The Lounge restaurant" />
 
-_The Lounge restaurant_
 
 The Mangrove Beach Cabana was really just a room on a beach - an amazing place if you can’t quite make it out to your private island this month! But the sea was scary - you couldn't swim or even play around because of the rip tides. Even the tides in the natural swimming areas (barriered by coral and rocks) was fierce. You wouldn't want to muck around in there and there were very few people venturing anywhere near the sea. 
 
+  <div class="py-0.5"></div>
+<SideBySide img="tea-beach.jpg" reverse={true}>
 The beach was clean and enormous. Stunning. 
 
+</SideBySide>
+<Caption text="Tea on Tangalle Beach" />
+
   
-
-_Tangalle beach_
-
-  
-
+  <div class="py-0.5"></div>
+<SideBySide img="turtle-trail.jpg" >
 We had planned to see if there were any turtles laying eggs on the beach and decided that we would just have a walk along the beach towards turtle point ourselves without a guide. So there we were having a quick dinner at 1930 to head off. What we didn't know (nor anyone else) was there was a turtle laying her eggs about 100 metres from where we were sitting at that very moment. But in the pitch black of the beach we didn't find this out until after dinner. Unfortunately we didn't find another turtle or any evidence of one on our walk up the beach. 
 
-_Turtle tracks on the beach_
+</SideBySide>
+<Caption text="Turtle tracks on the beach" />
+  
+
 
   
 
@@ -205,41 +259,76 @@ Another word of warning. Mangrove was the only hotel we stayed at that didn't ta
 
   
 
-Ella via Udawalawa Safari
+### Ella via Udawalawa Safari
 
 Now, we had a choice at this point because our next destination was Ella via a Safari Park called Udawalawa. The choice was Tuk Tuk or taxi? About 65 kilometres to Udawalawa and then a further 90 km up to Ella. 
 
 We chose the Tuk Tuk for the experience because we had suffered at the hands of some seriously crap taxi drivers. But although we couldn't honestly recommend this mode of transport to others I wouldn't change what we did. The Tuk Tuk took a a little longer and without a doubt you need a sensible, safe driver and luck that the other road users behave themselves but if that all works out it's a fun way to travel large distances. Just not as safe or as air conditioned as a taxi! But cheaper at only RS.8000 - £35 approx. As I mentioned earlier, the opportunity to hang out the door and take photos is also a real plus. We travel with those North Face water resistant duffel bags that also turn into backpacks. They stuff into small spaces on a sailing boat, squash under seats, make for a comfy bench if your transport is delayed and keep most of the contents dry. I really wouldn’t recommend a long Tuk Tuk or train journey with ‘normal’ suitcases. That Tuk Tuk would have been seriously cramped.  
 
+       <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["tuk-tuk-05.jpg"]} />
+<Caption text="The longest Tuk Tuk ride" />
+
 We started off at 05.00 and our driver arranged our safari on route. Once at the Udawalawa safari we jumped in a beat up old jeep. We had heard that there was a 1.5 hour queue to get in but the small convoy of jeeps disappeared as we arrived and we went straight in via a short stop for tickets. I think this is another benefit of taking the more ‘locals’ route. 
 
 We had also heard that this park was one of the best in Sri Lanka because the jeep drivers were well behaved, more regulated and generally there was no unkindness towards the elephants. We saw nothing to disprove these facts and had an amazing introduction to safaris. Our guide/driver pointed out everything he saw including kingfishers, monkeys, elephants (quite a few), an eagle, water buffaloes, a crocodile and dogs! Yep strays are everywhere in Sri Lanka. 
 
-  
+  <div class="py-0.5"></div>
 
+<LegoGrid 
+  folderPath="sri-lanka-photo-journal" 
+  topPair={["jeep-safari.jpg", "elephant-01.jpg"]} 
+  bottomFeature="peacock.jpg" 
+/>
+ <Caption text="Udawalawa Park" />
+ 
+ <LegoGrid 
+  folderPath="sri-lanka-photo-journal" 
+  topPair={["elephant-02.jpg", "water-bufalo.jpg"]} 
+  bottomFeature="bird-01.jpg" 
+/>
+ <Caption text="More from Udawalawa Park" />
+
+
+  <div class="py-0.5"></div>
+<SideBySide img="waterfall-01.jpg" reverse={true}>
 Then it was onward to Ella and up a few hills that we were pretty sure the Tuk Tuk wouldn't get up. But it did, and we didn’t have to get out or push!
+
+</SideBySide>
+<Caption text="Ravana Falls, Ella" />
 
   
 
 We were a bit fed up with the Tuk Tuk by the end, but it was a cool journey. 
 
-Ella 10 - 11 Jan 2019
+### Jan 10th-11th: Ella
 
 Ella was lively. Unexpectedly so. 
 
-The hotel, Zion View, was nice enough, a stunning view over the mountain ranges, and with our own hammock it seemed like flying over the peaks. An additional bonus was its location - central to the town, but just far enough up a side road that the noise didn’t carry. A shame we were only there for a night, a shame the pool was a bit crap and a shame we had to leave at 0600 the next morning. No breakfast buffet for us. We would definitely have stayed an extra night in Ella if we had the opportunity to re-plan our itinerary - our only slight miscalculation.
+The hotel, Zion View, was nice enough, a stunning view over the mountain ranges, and with our own hammock it seemed like flying over the peaks. 
+    
+    <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["hill-view.jpg"]} />
+<Caption text="Over Ella" />
+
+An additional bonus was its location - central to the town, but just far enough up a side road that the noise didn’t carry. A shame we were only there for a night, a shame the pool was a bit crap and a shame we had to leave at 0600 the next morning. No breakfast buffet for us. We would definitely have stayed an extra night in Ella if we had the opportunity to re-plan our itinerary - our only slight miscalculation.
+
+    
+    <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["rock-view.jpg"]} />
+<Caption text="The view, at the Zion View Hotel" />
 
 The night out in Ella was a drink in Chill bar and a fantastic curry in a tiny little road-side place. The main strip in Ella was quite touristy and some of the bars and restaurants were trying to be very western. The place we picked was the opposite of that and we hoped was a local as possible. It really was a fantastic curry and we wish we had had another day in Ella for a cooking class and to hike up one of the Adams peaks. Next time. The larger of the peaks is a Buddhist pilgrimage route comprising 5000+ stairs but the view is meant to be spectacular if you can cope with starting at 0200 in the morning to arrive for sunset. Our schedule didn't allow us to attempt this. 
 
+
+    <div class="py-0.5"></div>
+<SideBySide img="ella-station.jpg" reverse={true}>
 The hotel had been pretty cool in getting us two tickets for the train to Kandy. Basically, in the past anyone could buy any number of reserved seating train tickets and then resell them at hugely inflated prices. Recently, the government stepped in to ensure each ticket is attached to a passport number and so now availability and price have improved. Our two tickets in 2nd class reserved cost about £5.
 
-  
+</SideBySide>
+<Caption text="The train journey" />
 
   
 
   
 
-The train journey
 
   
 
@@ -253,7 +342,16 @@ It was so much better than we expected. Truly special. 
 
 For the view they say sit on the left of the train, which our hotel had managed to get for us. It was fantastic but the view was spectacular from both sides at different points of the journey.  
 
+<JournalGallery folderPath="sri-lanka-photo-journal" filenames={["train-tracks-distance.jpg", "train-tracks.jpg", "station-view.jpg", "ella-station-view.jpg"]} cols={4} />
+<Caption text="The train journey" />
+  <div class="py-0.5"></div>
   
+<LegoGrid 
+  folderPath="sri-lanka-photo-journal" 
+  topPair={["tea-plantation-01.jpg", "curved-train-01.jpg"]} 
+  bottomFeature="person-between-trains.jpg" 
+/>
+  <Caption text="Through the plantations" />
 
 The only bit that went wrong was when a local fell off the train. Yep, really. He was ok and after a 20 minute search they dragged him back on the train and we got on our way. Mad. It really is a different culture. 
 
@@ -267,27 +365,44 @@ The whistle stop tour continued. 
 
   
 
-Sigirya 11 - 14 Jan 2019
+### Jan 11th-14th: Sigirya
 
 Sigiriya Village hotel was nice. The food was average or even a little below average in the case of the grilled sandwich The rooms were a bit damp and humid. But we were aware of all this before we booked. 
 
+    <div class="py-0.5"></div>
+<SideBySide img="monkey-02.jpg" reverse={true}>
 The highlight were the two families of monkeys that lived nearby and jumped around the roof and pool, many with babies hanging under their bellies.  A group of larger monkeys with white fluffy fur around their face also ran through, though they were bigger and a little scarier.  We also had cheeky chipmunks scampering about and hundreds of fireflies that came out at night.
+
+</SideBySide>
+<Caption text="Monkey" />
+
 
 Everything else about our few days in Sigirya and Dambulla’s cave temple down the road from us was bloody great. Lion rock, the Buddhist cave temple, shopping for an elephant (wooden) and all but one of the meals was superb. 
 
-  
+      <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["rock-garden.jpg"]} />
+<Caption text="Lion rock" />
 
 Lion rock is a huge rock that originally had a palace built on top for a playboy prince. Waterways, gardens, pools and an enormous climb to the top. Really impressive. A cool extra were the monks sightseeing and letting people take pictures of them.  
 
-  
+    <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["monkey-tree.jpg"]} />
+<Caption text="Toque Monkey" />
 
 The Buddhist cave temple is made up of five temples built within ages old caves and contain what seems like hundreds of Buddha statues. All of them were impressive and the whole temple made for an amazing first visit to a Buddhist temple. It was cheap to get in and nice because at least 50% of the visitors were Sri Lankan's worshipping. The Golden temple at the very bottom of the mountain was impressive but the museum was disappointing. 
 
-  
+    <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["buddha-01.jpg"]} />
+<Caption text="Golden Statue of Buddha" />
+ 
+ <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["buddha-02.jpg"]} />
+<Caption text="Dambulla, Buddhist temple" />
 
 We went on our second safari, this time to Eco Park and although it wasn't the quality experience of Udawalawa and although we saw a smaller range of animals we did see an awful lot of elephants. 
-
-  
+  <div class="py-0.5"></div>
+  <LegoGrid 
+  folderPath="sri-lanka-photo-journal" 
+  topPair={["two-elephants.jpg", "mum-baby-elephant.jpg"]} 
+  bottomFeature="mum-baby-elephant-02.jpg" 
+/>
+<Caption text="Elephants" />
 
 ... including a number of baby elephants. 
 
@@ -298,6 +413,13 @@ It's was just a shame that the jeep drivers were gits who thought nothing of sca
 Perhaps because of the number of elephants we saw we spent a bit of time looking for a wooden elephant to take home as a memory of the holiday. It took two trips and four shops to find one we loved but eventually we did. 
 
 The shopping experience was interesting in itself and we had a nice Tuk Tuk driver take us to all the places we had scoped out. Each wood shop had a distinct personality but one thing they all had in common was the way you have to haggle. Hard. Otherwise you don't get a fair price. In our experience we had to almost halve the ’sticker’ price. 
+
+<JournalGallery 
+  folderPath="sri-lanka-photo-journal" 
+  filenames={["elephants-carved-01.jpg", "our-carved-elephant-01.jpg"]} 
+  cols={2} 
+/>
+<Caption text="Wooden Elephants & our unfinished elephant" />
 
 We bought on faith because the piece of wood we found only just resembled an elephant - it still had a few days before it would be finished and then shipped to the U.K,  exciting! But we had seen the quality of their work and had great faith the elephant would be amazing. It also allowed us to point to their other work and say which styles we liked so it because a bit of a custom piece for us.
 
@@ -311,7 +433,7 @@ From here we jumped in a taxi to Negombo. 
 
   
 
-Negombo
+### Negombo
 
 Our final stop of the trip was the Jetwing Beach five star hotel in Negombo. Negombo is just north of the capital, Colombo, and much nearer to the airport for a quick exit. 
 
@@ -320,41 +442,33 @@ The idea was two final relaxing days before flying home. We even did half board 
   
 
 We saw very little of Negombo but had a great chillout to finish the holiday before jumping in a taxi and heading home. 
+  <div class="py-0.5"></div>
+<JournalGallery 
+  folderPath="sri-lanka-photo-journal" 
+  filenames={["", "boats-beach.jpg"]} 
+  cols={2} 
+/>
+<Caption text="Negombo Beach" />
 
+ <JournalGallery folderPath="sri-lanka-photo-journal" filenames={["sunset-beach.jpg"]} />
+<Caption text="Negombo Sunset" />
   
+  <div class="py-0.5"></div>
+> "The light in Sri Lanka is unlike anywhere else. It feels thick, golden, and permanent."
 
-For more photos click:
+    <div class="py-0.5"></div>
 
-[Sri Lanka](https://www.icloud.com/sharedalbum/#B0b5Uzl7VTSJgx) for a larger photo album.
-
-  
 
 Thanks for reading.
 
 Ken & Liz
 
-# The High Country
+<JournalGallery 
+  folderPath="sri-lanka-photo-journal" 
+  filenames={["Ken_Liz_Hikka.jpg", ""]} 
+  cols={2} 
+/>
 
-After landing in Colombo, we took the "blue train" up into the highlands. The air changed instantly—cooler, crisper, and smelling of damp earth and tea leaves.
 
-<Masonry cols={3}>
-  <img src="/images/sri-lanka/train-view.jpg" alt="View from the train" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/tea-picker.jpg" alt="Local tea picker" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/ella-rock.jpg" alt="Climbing Ella Rock" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/breakfast.jpg" alt="Traditional hopper breakfast" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/misty-mountains.jpg" alt="Misty morning in Nuwara Eliya" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/waterfall.jpg" alt="Hidden waterfall" class="rounded-xl border border-black/5" />
-</Masonry>
-
-## The Southern Coast
-
-We finished the trip in Hiriketiya. The surfing was gentle, and the pace of life slowed down even further. We spent most days moving between the ocean and a small coconut shack.
-
-<Masonry cols={2}>
-  <img src="/images/sri-lanka/surf-break.jpg" alt="Surf break at sunset" class="rounded-xl border border-black/5" />
-  <img src="/images/sri-lanka/coconut-truck.jpg" alt="Local fruit truck" class="rounded-xl border border-black/5" />
-</Masonry>
-
-> "The light in Sri Lanka is unlike anywhere else. It feels thick, golden, and permanent."
 
 ---

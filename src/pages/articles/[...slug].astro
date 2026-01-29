@@ -5,6 +5,12 @@ import ArrowCard from "@components/ArrowCard.astro";
 import SafeImage from "@components/SafeImage.astro";
 import { formatDate } from "@lib/utils";
 
+// 1. Import your custom MDX components
+import JournalGallery from "@components/JournalGallery.astro";
+import SideBySide from "@components/SideBySide.astro";
+import LegoGrid from "@components/LegoGrid.astro";
+import Caption from "@components/Caption.astro"; // Added this
+
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
   const publishedArticles = articles.filter((post) => !post.data.draft);
@@ -21,6 +27,14 @@ interface Props {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
+
+// 2. Map the components so MDX recognizes them globally
+const components = {
+  JournalGallery,
+  SideBySide,
+  LegoGrid,
+  Caption // Added this
+};
 
 // Fetch related articles based on tags
 const allArticles = await getCollection("articles");
@@ -76,7 +90,8 @@ const relatedArticles = allArticles
       </header>
 
       <div class="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-24">
-        <Content />
+        {/* 3. Pass the components mapping here */}
+        <Content components={components} />
       </div>
     </article>
 
@@ -93,4 +108,42 @@ const relatedArticles = allArticles
       </section>
     )}
   </div>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script is:inline src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+  <script is:inline>
+    function initLightbox() {
+      if (window.GLightbox) {
+        window.GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true,
+          loop: true,
+          zoomable: false,
+          draggable: false,
+          closeOnOutsideClick: true
+        });
+      }
+    }
+
+    initLightbox();
+    document.addEventListener('astro:after-swap', initLightbox);
+    document.addEventListener('astro:page-load', initLightbox);
+  </script>
 </PageLayout>
+
+<style is:global>
+  /* Reduce space between text and custom components */
+  .prose p + div, 
+  .prose div + p {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Ensure the GLightbox anchor doesn't add extra vertical space */
+  .prose .glightbox {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: block;
+  }
+</style>

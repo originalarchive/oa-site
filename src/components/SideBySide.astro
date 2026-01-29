@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  img: string | ImageMetadata;
+  reverse?: boolean;
+}
+
+const { img, reverse = false } = Astro.props;
+
+let optimizedImage;
+if (typeof img === 'string') {
+  const images = import.meta.glob<{ default: ImageMetadata }>('/src/content/articles/**/*.{png,jpg,jpeg,webp}', { eager: true });
+  const match = Object.keys(images).find((key) => key.includes(img.replace('./', '')));
+  optimizedImage = match ? images[match].default : null;
+} else {
+  optimizedImage = img;
+}
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-12">
+  <div class={`prose dark:prose-invert ${reverse ? 'md:order-last' : ''}`}>
+    <slot />
+  </div>
+
+  <div class={`not-prose ${reverse ? 'md:order-first' : ''}`}>
+    {optimizedImage ? (
+      <a href={optimizedImage.src} class="glightbox">
+        <Image 
+          src={optimizedImage} 
+          alt="Journal photo" 
+          class="rounded-xl shadow-lg w-full h-auto object-cover m-0 hover:opacity-90 transition-opacity cursor-zoom-in"
+        />
+      </a>
+    ) : (
+      <div class="bg-gray-100 p-10 rounded-xl text-red-500 border-2 border-dashed border-red-200 text-center">
+        Image not found: {img}
+      </div>
+    )}
+  </div>
+</div>
