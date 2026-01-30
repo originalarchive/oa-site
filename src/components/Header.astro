@@ -2,18 +2,18 @@
 import { LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.astro";
 import { Image } from 'astro:assets';
-// Replace this path with the actual path to your current hero image
-import heroImage from "public/hero.png"; 
+// RECOMMENDED: Move image to src/assets/hero.png
+import heroImage from "../assets/hero.png"; 
 
 const pathname = new URL(Astro.request.url).pathname;
 ---
 
-
 <header class="fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
   <div class="mx-auto max-w-4xl px-6">
     <nav class="flex items-center justify-between h-16">
-     <a href="/" class="group flex items-center h-full text-xl font-semibold tracking-tight transition-opacity hover:opacity-80">
-        <div class="h-full py-0.5 flex items-center"> <Image 
+      <a href="/" class="group flex items-center h-full text-xl font-semibold tracking-tight transition-opacity hover:opacity-80">
+        <div class="h-full py-0.5 flex items-center"> 
+          <Image 
             src={heroImage} 
             alt="Original Archive" 
             class="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -21,10 +21,11 @@ const pathname = new URL(Astro.request.url).pathname;
         </div>
         <span class="ml-2">original archive</span>
       </a>
+      
       <div class="flex items-center gap-4">
         <ul class="hidden sm:flex items-center">
           {LINKS.map((link, i) => (
-            <Fragment>
+            <Fragment key={link.HREF}>
               <li>
                 <a
                   href={link.HREF}
@@ -60,10 +61,10 @@ const pathname = new URL(Astro.request.url).pathname;
       </div>
     </nav>
     
-    <div id="mobile-menu" class="hidden sm:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-black/5 dark:border-white/5">
-      <ul class="flex flex-col gap-4 py-6">
+    <div id="mobile-menu" class="hidden sm:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-black/5 dark:border-white/5 bg-white/90 dark:bg-black/90 backdrop-blur-lg">
+      <ul class="flex flex-col gap-4 py-6 px-2">
         {LINKS.map((link) => (
-          <li>
+          <li key={link.HREF}>
             <a
               href={link.HREF}
               class={`text-lg font-medium block transition-opacity ${
@@ -86,11 +87,17 @@ const pathname = new URL(Astro.request.url).pathname;
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     
-    menuToggle?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
-    });
+    if (!menuToggle || !mobileMenu) return;
+
+    const toggle = () => {
+      mobileMenu.classList.toggle('hidden');
+    };
+
+    // Use click, but touchstart helps iOS respond instantly
+    menuToggle.addEventListener('click', toggle);
   }
 
   setupHeader();
+  // Critical for View Transitions
   document.addEventListener('astro:after-swap', setupHeader);
 </script>
