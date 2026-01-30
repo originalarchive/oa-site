@@ -4,10 +4,11 @@ const { folderPath, images, reverse = false } = Astro.props;
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/**/*.{png,jpg,jpeg,webp}', { eager: true });
 
-const galleryImages = images.map(name => {
+// FIX 1 & 2: Added ': string' and ': any' to satisfy the TypeScript compiler
+const galleryImages = images.map((name: string) => {
   const match = Object.keys(allImages).find((key) => key.includes(folderPath) && key.includes(name));
   return match ? allImages[match].default : null;
-}).filter((img): img is ImageMetadata => img !== null);
+}).filter((img: any): img is ImageMetadata => img !== null);
 ---
 
 <section class={`editorial-frame ${reverse ? 'flex-row-reverse is-reversed' : ''}`}>
@@ -51,7 +52,7 @@ const galleryImages = images.map(name => {
   </div>
 </section>
 
-<style is:global>
+<style>
   /* 1. THE TITLE KILLER */
   .feature-breakout > h1:first-of-type,
   .feature-breakout > header:first-of-type { 
