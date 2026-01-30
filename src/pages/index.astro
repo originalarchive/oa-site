@@ -7,11 +7,11 @@ import { SITE, SOCIALS } from "../consts";
 
 // 1. Fetch collections with DRAFT filter
 const allPosts = await getCollection("articles", ({ data }) => {
-  return data.draft !== true; // Only pulls files where draft is false or missing
+  return data.draft !== true; 
 });
 
 const allPhotos = await getCollection("photos", ({ data }) => {
-  return !('draft' in data && data.draft === true); // Also filters unfinished photo albums
+  return !('draft' in data && data.draft === true); 
 });
 
 // 2. Sort by Date (and other criteria)
@@ -21,7 +21,6 @@ const blog = allPosts
 
 const featuredPhotos = allPhotos
   .sort((a, b) => {
-    // Keep your existing weight -> date -> title sorting logic here
     const weightA = a.data.weight ?? Infinity;
     const weightB = b.data.weight ?? Infinity;
     if (weightA !== weightB) return weightA - weightB;
@@ -35,55 +34,56 @@ const featuredPhotos = allPhotos
   .slice(0, 9);
 ---
 
-
-
 <PageLayout title="home" description={SITE.DESCRIPTION}>
   <div class="container-narrow">
-  <section class="animate mt-0 mb-10 flex justify-center">
-    <div class="w-full max-w-[350px] aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
-      <img 
-        src="/hero.png" 
-        alt="Hero image" 
-        class="w-[101%] h-[101%] -ml-[0.5%] -mt-[0.5%] object-cover"
-      />
-    </div>
-  </section>
-
-  <section class="animate space-y-6">
-    <div class="flex flex-wrap items-center justify-between gap-y-2">
-      <h2 class="text-xl font-semibold text-black dark:text-white">
-        Latest posts
-      </h2>
-      <a href="/articles" class="group flex items-center gap-1 text-sm font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
-        <span>View all posts</span>
-        <span class="transition-transform group-hover:translate-x-1">→</span>
-      </a>
-    </div>
-    <ul class="flex flex-col gap-4">
-      {blog.length > 0 ? (
-        blog.map((post) => (
-          <li>
-            <ArrowCard entry={post} />
-          </li>
-        ))
-      ) : (
-        <p class="text-sm text-neutral-500">No posts found in src/content/blog/</p>
-      )}
-    </ul>
-  </section>
-
-  <section class="animate space-y-6 mt-12">
-    <div class="flex flex-wrap items-center justify-between gap-y-2">
-      <h2 class="text-xl font-semibold text-black dark:text-white">
-        Featured Photo Albums
-      </h2>
-      <a href="/photos" class="group flex items-center gap-1 text-sm font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
-        <span>View all photos</span>
-        <span class="transition-transform group-hover:translate-x-1">→</span>
-      </a>
-    </div>
     
-    <PhotoGalleryGrid photos={featuredPhotos} />
-  </section>
-</div>
+    <section class="animate mt-4 mb-16">
+      <div class="max-w-[700px]">
+        <h1 class="text-2xl font-serif text-black/80 dark:text-white/80 leading-snug">
+          Articles, photos, journals and a coffee log 
+        </h1>
+        <p class="mt-3 text-xs uppercase tracking-[0.2em] text-neutral-400">
+          by Ken
+        </p>
+      </div>
+    </section>
+
+    <section class="animate space-y-6 mb-16">
+      <div class="flex flex-wrap items-center justify-between gap-y-2">
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-black/30 dark:text-white/30">
+          Featured Albums
+        </h2>
+        <a href="/photos" class="group flex items-center gap-1 text-xs font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
+          <span>View all photos</span>
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+      
+      <PhotoGalleryGrid photos={featuredPhotos} />
+    </section>
+
+    <section class="animate space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-y-2">
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-black/30 dark:text-white/30">
+          Latest posts
+        </h2>
+        <a href="/articles" class="group flex items-center gap-1 text-xs font-medium transition-colors hover:text-black dark:hover:text-white text-neutral-500">
+          <span>View all posts</span>
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+      <ul class="flex flex-col gap-4">
+        {blog.length > 0 ? (
+          blog.map((post) => (
+            <li>
+              <ArrowCard entry={post} />
+            </li>
+          ))
+        ) : (
+          <p class="text-sm text-neutral-500">No posts found.</p>
+        )}
+      </ul>
+    </section>
+
+  </div>
 </PageLayout>
