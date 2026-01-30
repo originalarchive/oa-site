@@ -26,7 +26,7 @@ const galleryImages = images.map((name: string) => {
 
     <div class="swiper editorial-swiper group">
       <div class="swiper-wrapper">
-        {galleryImages.map((img) => (
+        {galleryImages.map((img: any) => (
           <div class="swiper-slide">
             <a href={img.src} class="glightbox">
               <Image 
