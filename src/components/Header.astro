@@ -1,17 +1,26 @@
 ---
 import { LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.astro";
+import { Image } from 'astro:assets';
+// Replace this path with the actual path to your current hero image
+import heroImage from "public/hero.png"; 
 
 const pathname = new URL(Astro.request.url).pathname;
 ---
 
+
 <header class="fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
   <div class="mx-auto max-w-4xl px-6">
-    <nav class="flex items-center justify-between py-4">
-      <a href="/" class="text-xl font-semibold tracking-tight">
-        original archive
+    <nav class="flex items-center justify-between h-16">
+     <a href="/" class="group flex items-center h-full text-xl font-semibold tracking-tight transition-opacity hover:opacity-80">
+        <div class="h-full py-0.5 flex items-center"> <Image 
+            src={heroImage} 
+            alt="Original Archive" 
+            class="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <span class="ml-2">original archive</span>
       </a>
-      
       <div class="flex items-center gap-4">
         <ul class="hidden sm:flex items-center">
           {LINKS.map((link, i) => (
@@ -78,16 +87,10 @@ const pathname = new URL(Astro.request.url).pathname;
     const mobileMenu = document.getElementById('mobile-menu');
     
     menuToggle?.addEventListener('click', () => {
-      const isHidden = mobileMenu?.classList.contains('hidden');
-      if (isHidden) {
-        mobileMenu?.classList.remove('hidden');
-      } else {
-        mobileMenu?.classList.add('hidden');
-      }
+      mobileMenu?.classList.toggle('hidden');
     });
   }
 
-  // Run on initial load and after view transitions
   setupHeader();
   document.addEventListener('astro:after-swap', setupHeader);
 </script>
