@@ -2,7 +2,7 @@
 import { LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.astro";
 import { Image } from 'astro:assets';
-// RECOMMENDED: Move image to src/assets/hero.png
+// Ensure hero.png is moved to src/assets/hero.png
 import heroImage from "../assets/hero.png"; 
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -17,6 +17,7 @@ const pathname = new URL(Astro.request.url).pathname;
             src={heroImage} 
             alt="Original Archive" 
             class="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+            loading="eager"
           />
         </div>
         <span class="ml-2">original archive</span>
@@ -25,8 +26,7 @@ const pathname = new URL(Astro.request.url).pathname;
       <div class="flex items-center gap-4">
         <ul class="hidden sm:flex items-center">
           {LINKS.map((link, i) => (
-            <Fragment key={link.HREF}>
-              <li>
+            <Fragment> <li>
                 <a
                   href={link.HREF}
                   class={`text-sm font-medium transition-all ${
@@ -64,8 +64,7 @@ const pathname = new URL(Astro.request.url).pathname;
     <div id="mobile-menu" class="hidden sm:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-black/5 dark:border-white/5 bg-white/90 dark:bg-black/90 backdrop-blur-lg">
       <ul class="flex flex-col gap-4 py-6 px-2">
         {LINKS.map((link) => (
-          <li key={link.HREF}>
-            <a
+          <li> <a
               href={link.HREF}
               class={`text-lg font-medium block transition-opacity ${
                 pathname === link.HREF || pathname.startsWith(link.HREF + "/")
@@ -89,15 +88,16 @@ const pathname = new URL(Astro.request.url).pathname;
     
     if (!menuToggle || !mobileMenu) return;
 
-    const toggle = () => {
+    // Logic to fix iOS "dead" button issue
+    const toggle = (e) => {
       mobileMenu.classList.toggle('hidden');
     };
 
-    // Use click, but touchstart helps iOS respond instantly
     menuToggle.addEventListener('click', toggle);
   }
 
+  // Initial setup
   setupHeader();
-  // Critical for View Transitions
+  // Setup for View Transitions (Astro 3.0+)
   document.addEventListener('astro:after-swap', setupHeader);
 </script>
