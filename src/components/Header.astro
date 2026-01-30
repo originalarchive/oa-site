@@ -2,7 +2,7 @@
 import { LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.astro";
 import { Image } from 'astro:assets';
-// Ensure hero.png is moved to src/assets/hero.png
+// Ensure hero.png is in src/assets/hero.png
 import heroImage from "../assets/hero.png"; 
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -26,7 +26,8 @@ const pathname = new URL(Astro.request.url).pathname;
       <div class="flex items-center gap-4">
         <ul class="hidden sm:flex items-center">
           {LINKS.map((link, i) => (
-            <Fragment> <li>
+            <Fragment>
+              <li>
                 <a
                   href={link.HREF}
                   class={`text-sm font-medium transition-all ${
@@ -64,7 +65,8 @@ const pathname = new URL(Astro.request.url).pathname;
     <div id="mobile-menu" class="hidden sm:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-black/5 dark:border-white/5 bg-white/90 dark:bg-black/90 backdrop-blur-lg">
       <ul class="flex flex-col gap-4 py-6 px-2">
         {LINKS.map((link) => (
-          <li> <a
+          <li>
+            <a
               href={link.HREF}
               class={`text-lg font-medium block transition-opacity ${
                 pathname === link.HREF || pathname.startsWith(link.HREF + "/")
@@ -88,16 +90,14 @@ const pathname = new URL(Astro.request.url).pathname;
     
     if (!menuToggle || !mobileMenu) return;
 
-    // Logic to fix iOS "dead" button issue
-    const toggle = (e) => {
+    // Removed (e) to satisfy TypeScript strict rules
+    const toggle = () => {
       mobileMenu.classList.toggle('hidden');
     };
 
     menuToggle.addEventListener('click', toggle);
   }
 
-  // Initial setup
   setupHeader();
-  // Setup for View Transitions (Astro 3.0+)
   document.addEventListener('astro:after-swap', setupHeader);
 </script>
