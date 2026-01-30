@@ -1,43 +1,37 @@
 ---
 import { Image } from 'astro:assets';
-
-interface Props {
-  folderPath: string;
-  images: string[];
-  reverse?: boolean; 
-}
-
 const { folderPath, images, reverse = false } = Astro.props;
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/**/*.{png,jpg,jpeg,webp}', { eager: true });
 
-// Explicitly type the result and filter out nulls
 const galleryImages = images.map(name => {
-  const match = Object.keys(allImages).find((key) => 
-    key.includes(folderPath) && key.includes(name)
-  );
+  const match = Object.keys(allImages).find((key) => key.includes(folderPath) && key.includes(name));
   return match ? allImages[match].default : null;
-}).filter((img): img is ImageMetadata => img !== null); // This type guard fixes the build error
+}).filter((img): img is ImageMetadata => img !== null);
 ---
 
-<div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start my-12 ${reverse ? 'lg:direction-rtl' : ''}`}>
-  
-  <div class="lg:col-span-5 flex flex-col justify-center min-h-[300px] lg:h-[80vh] lg:sticky lg:top-10">
-    <div class="prose prose-sm md:prose-base dark:prose-invert max-w-none lg:pr-8 lg:overflow-y-auto custom-scrollbar">
+<section class={`editorial-frame ${reverse ? 'flex-row-reverse is-reversed' : ''}`}>
+  <div class="editorial-text-col">
+    <div class="prose prose-sm dark:prose-invert custom-scrollbar">
        <slot />
     </div>
   </div>
 
-  <div class="lg:col-span-7 not-prose h-[60vh] lg:h-[80vh] w-full">
-    <div class="swiper editorial-swiper rounded-3xl overflow-hidden shadow-2xl h-full w-full bg-neutral-100 dark:bg-neutral-900 group">
+  <div class="editorial-image-col">
+    <a href="/articles" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Back to Articles
+    </a>
+
+    <div class="swiper editorial-swiper group">
       <div class="swiper-wrapper">
         {galleryImages.map((img) => (
-          <div class="swiper-slide h-full">
-            <a href={img.src} class="glightbox h-full block w-full">
+          <div class="swiper-slide">
+            <a href={img.src} class="glightbox">
               <Image 
                 src={img} 
                 alt="Feature visual" 
-                class="w-full h-full object-cover"
+                class="editorial-img"
                 loading="eager"
               />
             </a>
@@ -45,68 +39,167 @@ const galleryImages = images.map(name => {
         ))}
       </div>
       
-      <div class="swiper-button-prev !text-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      <div class="swiper-button-next !text-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       <div class="swiper-pagination"></div>
     </div>
-  </div>
+    
+    <div class="editorial-caption">
+  <slot name="caption" />
 </div>
+    
+  </div>
+</section>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style is:global>
+  /* 1. THE TITLE KILLER */
+  .feature-breakout > h1:first-of-type,
+  .feature-breakout > header:first-of-type { 
+    display: none !important; 
+  }
 
-<script is:inline>
-  function setupSwiper() {
-    const swiperEl = document.querySelector('.editorial-swiper');
-    // Reference window.Swiper to avoid TS "not found" warnings in some environments
-    if (swiperEl && typeof window.Swiper !== 'undefined') {
-      new window.Swiper('.editorial-swiper', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 0,
-        observer: true, 
-        observeParents: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      });
+  /* 2. THE SNAP TRACK */
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  @media (min-width: 1024px) {
+    .editorial-frame {
+      min-height: 100vh !important;
+      margin: 0 auto !important;
+      display: flex !important;
+      align-items: flex-start !important; 
+      scroll-snap-align: center;
+      position: relative;
+      overflow: visible !important; 
+    }
+    
+    /* ADD THIS to your @media (min-width: 1024px) section */
+.editorial-caption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #777; /* Subtle grey to not distract from content */
+  font-weight: 600;
+  text-align: center;
+  width: 400px; /* Matches your swiper width to keep it aligned */
+}
+
+/* Ensure the image column doesn't squeeze the caption */
+.editorial-image-col {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+    .editorial-frame::after {
+      content: "";
+      position: absolute;
+      left: 55%;
+      top: 160px; 
+      height: 60vh; 
+      width: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .is-reversed::after { left: 45%; }
+
+    .editorial-text-col {
+      flex: 0 0 55%;
+      padding: 120px 4rem 100px 0; 
+      display: flex;
+      flex-direction: column;
+    }
+
+    .is-reversed .editorial-text-col {
+      padding: 120px 0 100px 4rem;
+    }
+
+    .editorial-image-col {
+      flex: 1;
+      position: relative;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 120px; 
+      overflow: visible !important;
+    }
+
+    .back-link {
+      align-self: flex-start;
+      margin-left: 4rem;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #777;
+      text-decoration: none;
+      z-index: 50;
+    }
+
+    .back-link:hover { color: #fff; }
+    .is-reversed .back-link { margin-left: 0; margin-right: 4rem; align-self: flex-end; }
+
+    .editorial-swiper {
+      height: 500px !important; 
+      width: 400px !important;
+      border-radius: 2rem !important; 
+      overflow: hidden !important; 
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      position: relative !important;
+    }
+
+    .editorial-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      border-radius: 2rem !important;
+    }
+
+    /* THE FIX: Restore Switchers with Pointer Priority */
+    .swiper-button-next, .swiper-button-prev {
+      color: #ffffff !important;
+      background: rgba(0, 0, 0, 0.3) !important;
+      backdrop-filter: blur(8px) !important;
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      z-index: 100 !important; /* Above the Glightbox link */
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      opacity: 0 !important;
+      transition: all 0.3s ease !important;
+      pointer-events: auto !important; /* Ensure they are clickable over the link */
+    }
+
+    .editorial-swiper:hover .swiper-button-next,
+    .editorial-swiper:hover .swiper-button-prev {
+      opacity: 1 !important;
+    }
+
+    .swiper-button-next::after, .swiper-button-prev::after {
+      font-size: 18px !important;
+      font-weight: bold !important;
+    }
+
+    .swiper-button-next { right: 15px !important; }
+    .swiper-button-prev { left: 15px !important; }
+    
+    .swiper-pagination-bullet-active {
+      background: #fff !important;
     }
   }
 
-  setupSwiper();
-  document.addEventListener('astro:after-swap', setupSwiper);
-  document.addEventListener('astro:page-load', setupSwiper);
-</script>
-
-<style>
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 3px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.1);
-    border-radius: 10px;
-  }
-  :global(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  :global(.swiper-button-next), :global(.swiper-button-prev) {
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(4px);
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 50%;
-    transform: scale(0.8);
-  }
-  :global(.swiper-pagination-bullet-active) {
-    background: white !important;
-  }
+  .custom-scrollbar::-webkit-scrollbar { width: 2px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(100,100,100,0.3); }
 </style>
