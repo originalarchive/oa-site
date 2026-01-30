@@ -1,21 +1,18 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
-import ArrowCard from "@components/ArrowCard.astro";
-import SafeImage from "@components/SafeImage.astro";
 import { formatDate } from "@lib/utils";
 
-// 1. Import your custom MDX components
+// Components
+import EditorialLayout from "@components/EditorialLayout.astro";
 import JournalGallery from "@components/JournalGallery.astro";
 import SideBySide from "@components/SideBySide.astro";
 import LegoGrid from "@components/LegoGrid.astro";
-import Caption from "@components/Caption.astro"; // Added this
+import Caption from "@components/Caption.astro";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
-  const publishedArticles = articles.filter((post) => !post.data.draft);
-
-  return publishedArticles.map((article) => ({
+  return articles.map((article) => ({
     params: { slug: article.slug },
     props: { article },
   }));
@@ -28,87 +25,71 @@ interface Props {
 const { article } = Astro.props;
 const { Content } = await article.render();
 
-// 2. Map the components so MDX recognizes them globally
+// Logic check for the 'feature' tag
+const isFeature = article.data.tags?.some(tag => tag.toLowerCase().trim() === 'feature');
+
 const components = {
+  EditorialLayout,
   JournalGallery,
   SideBySide,
   LegoGrid,
-  Caption // Added this
+  Caption
 };
-
-// Fetch related articles based on tags
-const allArticles = await getCollection("articles");
-const relatedArticles = allArticles
-  .filter((p) => 
-    !p.data.draft && 
-    p.slug !== article.slug &&
-    p.data.tags?.some((tag: string) => article.data.tags?.includes(tag))
-  )
-  .slice(0, 3);
 ---
 
 <PageLayout title={article.data.title} description={article.data.description}>
-  <div class="max-w-2xl mx-auto px-6 pt-6 pb-24">
+  <div class={`mx-auto px-6 pb-24 ${isFeature ? 'feature-breakout' : 'max-w-2xl'}`}>
     
-    <div class="mb-6">
-      <a href="/articles" class="group flex items-center gap-2 text-sm font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
-        Back to Articles
-      </a>
-    </div>
-
-    <article>
-      {article.data.coverImage && (
-        <div class="mb-8 rounded-2xl overflow-hidden aspect-video">
-           <SafeImage 
-            imageMetadata={article.data.coverImage} 
-            alt={article.data.title} 
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
-
-      <header class="block mb-0 relative">
-        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest opacity-50 mb-4">
-          <time datetime={article.data.date.toISOString()}>
-            {formatDate(article.data.date)}
-          </time>
-          {article.data.tags && article.data.tags.length > 0 && (
-            <>
-              <span>•</span>
-              <div class="flex gap-2">
-                {article.data.tags.map((tag: string) => (
-                  <span class="text-black dark:text-white">#{tag}</span>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-black dark:text-white leading-tight">
-          {article.data.title}
-        </h1>
-      </header>
-
-      <div class="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-24">
-        {/* 3. Pass the components mapping here */}
-        <Content components={components} />
+    {/* 1. FEATURE NAVIGATION: Minimalist link for wide layouts */}
+    {isFeature && (
+      <div class="pt-8 mb-6">
+        <a href="/articles" class="group inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 hover:opacity-100 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
+          Back to Articles
+        </a>
       </div>
-    </article>
-
-    {relatedArticles.length > 0 && (
-      <section class="mt-20 pt-10 border-t border-black/5 dark:border-white/5">
-        <h2 class="font-mono uppercase tracking-widest text-xs opacity-50 mb-6">
-          Recommended Reading
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {relatedArticles.map((item) => (
-            <ArrowCard entry={item} />
-          ))}
-        </div>
-      </section>
     )}
+
+    {/* 2. STANDARD HEADER: Only shows if NOT a feature article */}
+    {!isFeature && (
+      <>
+        <div class="pt-8 mb-4">
+          <a href="/articles" class="group flex items-center gap-2 text-sm font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Articles
+          </a>
+        </div>
+
+        <header class="mb-4 relative z-10">
+          <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest opacity-50 mb-2">
+            <time datetime={article.data.date.toISOString()}>
+              {formatDate(article.data.date)}
+            </time>
+            {article.data.tags && (
+              <>
+                <span>•</span>
+                <div class="flex gap-2">
+                  {article.data.tags.map((tag: string) => (
+                    <span class="text-black dark:text-white">#{tag.toUpperCase()}</span>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold text-black dark:text-white leading-tight">
+            {article.data.title}
+          </h1>
+        </header>
+      </>
+    )}
+
+    {/* 3. MAIN CONTENT: Features start higher (pt-0) because of the new nav */}
+    <article class={`prose prose-neutral dark:prose-invert max-w-none ${isFeature ? 'pt-0' : ''}`}>
+      <Content components={components} />
+    </article>
   </div>
-  
+
+  {/* Lightbox Setup */}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <script is:inline src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
@@ -125,7 +106,6 @@ const relatedArticles = allArticles
         });
       }
     }
-
     initLightbox();
     document.addEventListener('astro:after-swap', initLightbox);
     document.addEventListener('astro:page-load', initLightbox);
@@ -133,17 +113,30 @@ const relatedArticles = allArticles
 </PageLayout>
 
 <style is:global>
-  /* Reduce space between text and custom components */
-  .prose p + div, 
-  .prose div + p {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
+  /* Editorial Feature Breakout (Forces 1440px wide regardless of parent) */
+  .feature-breakout {
+    width: 90vw !important;
+    max-width: 1440px !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -45vw !important;
+    margin-right: -45vw !important;
   }
 
-  /* Ensure the GLightbox anchor doesn't add extra vertical space */
-  .prose .glightbox {
+  /* Reset breakout on mobile for standard padding */
+  @media (max-width: 768px) {
+    .feature-breakout {
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  /* Remove extra space at the top of the article body */
+  .prose h2:first-of-type {
     margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    display: block;
   }
 </style>

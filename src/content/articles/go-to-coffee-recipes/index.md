@@ -5,6 +5,7 @@ date: "2026-01-24"
 draft: false
 tags:
   - coffee
+  - recipe
 ---
 
 I’ve been passionate about great coffee for a long time. 
