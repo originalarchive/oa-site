@@ -9,15 +9,15 @@ interface Props {
 
 const { folderPath, images, reverse = false } = Astro.props;
 
-// Search for images in the content folder
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/**/*.{png,jpg,jpeg,webp}', { eager: true });
 
+// Explicitly type the result and filter out nulls
 const galleryImages = images.map(name => {
   const match = Object.keys(allImages).find((key) => 
     key.includes(folderPath) && key.includes(name)
   );
   return match ? allImages[match].default : null;
-}).filter(Boolean);
+}).filter((img): img is ImageMetadata => img !== null); // This type guard fixes the build error
 ---
 
 <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start my-12 ${reverse ? 'lg:direction-rtl' : ''}`}>
@@ -58,8 +58,9 @@ const galleryImages = images.map(name => {
 <script is:inline>
   function setupSwiper() {
     const swiperEl = document.querySelector('.editorial-swiper');
-    if (swiperEl && typeof Swiper !== 'undefined') {
-      new Swiper('.editorial-swiper', {
+    // Reference window.Swiper to avoid TS "not found" warnings in some environments
+    if (swiperEl && typeof window.Swiper !== 'undefined') {
+      new window.Swiper('.editorial-swiper', {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 0,
@@ -83,7 +84,6 @@ const galleryImages = images.map(name => {
 </script>
 
 <style>
-  /* Custom scrollbar for the text side on desktop */
   .custom-scrollbar::-webkit-scrollbar {
     width: 3px;
   }
@@ -97,11 +97,6 @@ const galleryImages = images.map(name => {
   :global(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.1);
   }
-
-  /* Swiper Slide/Button Adjustments */
-  .swiper-slide {
-    height: 100%;
-  }
   
   :global(.swiper-button-next), :global(.swiper-button-prev) {
     background: rgba(0,0,0,0.3);
@@ -111,12 +106,6 @@ const galleryImages = images.map(name => {
     border-radius: 50%;
     transform: scale(0.8);
   }
-
-  :global(.swiper-button-next:after), :global(.swiper-button-prev:after) {
-    font-size: 18px !important;
-    font-weight: bold;
-  }
-
   :global(.swiper-pagination-bullet-active) {
     background: white !important;
   }
