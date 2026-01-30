@@ -35,8 +35,10 @@ const featuredPhotos = allPhotos
   .slice(0, 9);
 ---
 
+
+
 <PageLayout title="home" description={SITE.DESCRIPTION}>
-  
+  <div class="container-narrow">
   <section class="animate mt-0 mb-10 flex justify-center">
     <div class="w-full max-w-[350px] aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
       <img 
@@ -83,5 +85,5 @@ const featuredPhotos = allPhotos
     
     <PhotoGalleryGrid photos={featuredPhotos} />
   </section>
-
+</div>
 </PageLayout>
