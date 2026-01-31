@@ -42,6 +42,7 @@ const coffee = defineCollection({
     process: z.string().optional(),
     processDetails: z.string().optional(),
     roastDate: z.coerce.date().optional(),
+    status: z.string().optional(),
     dateBrewed: z.coerce.date(),
     brewMethod: z.string(),
     grindSize: z.string(),

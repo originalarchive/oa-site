@@ -39,7 +39,8 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
           </select>
 
           <select id="time-filter" class="w-32 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-2 py-1.5 text-sm outline-none cursor-pointer hover:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white">
-            <option value="last-6" selected>Last 6mo</option>
+            <option value="open" selected>Open</option>
+            <option value="last-6">Last 6mo</option>
             <option value="last-12">Last 12mo</option>
             <option value="all">All Time</option>
           </select>
@@ -85,10 +86,24 @@ const sortedEntries = coffeeEntries.sort((a, b) =>
         const ratingBadge = item.querySelector('[data-rating-value]');
         const actualRating = ratingBadge ? ratingBadge.getAttribute('data-rating-value') : "";
 
-        // 2. TIME LOGIC
-        let timeMatch = (timeValue === 'all') || 
-                        (timeValue === 'last-6' && brewDate >= sixMonthsAgo) || 
-                        (timeValue === 'last-12' && brewDate >= twelveMonthsAgo);
+
+  // 2. TIME LOGIC (BULLETPROOF VERSION)
+const rawStatus = item.getAttribute('data-pantry-status') || 'finished';
+const pantryStatus = rawStatus.toLowerCase();
+const isOpen = pantryStatus === 'open';
+
+let timeMatch = false;
+
+if (timeValue === 'all') {
+    timeMatch = true;
+} else if (timeValue === 'open') {
+    timeMatch = isOpen;
+} else if (timeValue === 'last-6') {
+    // Show if it's within 6 months OR currently open
+    timeMatch = (brewDate >= sixMonthsAgo) || isOpen;
+} else if (timeValue === 'last-12') {
+    timeMatch = (brewDate >= twelveMonthsAgo) || isOpen;
+}
 
         // 3. RATING LOGIC (FIXED: STRICT MATCHING)
         // We no longer fallback to text.includes(). It's either 'all' or an exact match.

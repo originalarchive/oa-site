@@ -14,8 +14,9 @@ importPartner: ""
 harvest: ""
 arrivedUK: ""
 roastLevel: "Light to mid"
-roastDate: "2025-12-17"
-dateBrewed: "2025-12-28"
+roastDate: 2025-12-17
+status: "Open"
+dateBrewed: 2025-12-28
 brewMethod: "v60"
 brewNotes: "Low agitation, develops sweetness"
 grindSize: "27 clicks" # Commandante C40
