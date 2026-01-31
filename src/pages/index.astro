@@ -57,9 +57,9 @@ const featuredPhotos = allPhotos
           </div>
         </div>
 
-{/* w-[100ps] change this for the mobile image size, md:w-[250px] change for the desktop image size */}
-<div class="md:col-span-5 flex justify-center md:justify-end">
-  <div class="relative group w-[100px] md:w-[250px] aspect-square overflow-hidden rounded-2xl bg-stone-100 dark:bg-neutral-900 p-2">
+{/* w-[250px] change for the desktop image size, mobile image is hidden */}
+<div class="hidden md:flex md:col-span-5 md:justify-end">
+  <div class="relative group w-[250px] aspect-square overflow-hidden rounded-2xl bg-stone-100 dark:bg-neutral-900 p-2">
     <img 
       src="/hero.png" 
       alt="Hero image" 
