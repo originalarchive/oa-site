@@ -15,6 +15,7 @@ harvest: ""
 arrivedUK: ""
 roastLevel: "Light"
 roastDate: "2026-01-14"
+status: "Open"
 dateBrewed: "2026-01-20"
 brewMethod: "V60"
 grindSize: "28 clicks" # Commandante C40
