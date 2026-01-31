@@ -4,7 +4,7 @@ import { ABOUT } from "@consts";
 ---
 
 <PageLayout title="About">
-  <div class="max-w-2xl mx-auto px-6 pt-12 pb-24">
+  <div class="max-w-2xl mx-auto px-6 pt-2 pb-24">
     
     <section class="animate show mb-12">
       <div class="w-full overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
@@ -26,18 +26,52 @@ import { ABOUT } from "@consts";
     </section>
 
     <section class="animate show mb-16">
-      <div class="font-serif text-[18px] leading-relaxed text-black/80 dark:text-white/80 space-y-8">
+      <div class="font-serif text-[18px] leading-relaxed text-black/80 dark:text-white/80 space-y-4">
         <p>
-          Original Archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas. I hope you enjoy the content and I hope you come back regularly. Thanks for visiting.
+          original archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas. 
+          
+          I have just refreshed the site and cleaned out all the old technology articles and reviews. It's time to start afresh. 
+          <p>
+          The site is back as a custom Astro build and this time has a new coffee log section. Keep popping back for new posts, albums and coffee.
+          </p>
+          <p>
+          I hope you enjoy the content and thanks for visiting.
+    
           <br/><span class="font-sans font-bold text-sm">— Ken</span>
         </p>
         
+        {/* Button element with text*/}
+        <section class="animate my-16 p-8 rounded-2xl bg-stone-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+    
+    <div class="max-w-md">
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-black/30 dark:text-white/30 mb-2">
+        Support original archive
+      </h3>
+      <p class="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
+The support oa button takes you to Amazon.co.uk via my affiliate link. If you click this before buying something I'll become rich. Very, very slowly. There may also be links from products mentioned in articles. Those links will make me richer slightly quicker. Many thanks. 
+      </p>
+    </div>
+
+    <div class="shrink-0">
+      <a href="https://www.amazon.co.uk/?&linkCode=sl2&tag=oa_photo-21&linkId=e73f53d9c97dba7461bb9d1194bbdf30&language=en_GB&ref_=as_li_ss_tl" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="inline-flex items-center px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest transition-transform hover:scale-105 active:scale-95">
+        Support this site
+        <span class="ml-2">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+        
         <div class="p-6 bg-black/5 dark:bg-white/5 rounded-lg text-[15px] border-l-2 border-black/20 dark:border-white/20 italic">
           <p class="mb-4">
-            All words and images posted on kenmarlow.co.uk are the property of Ken Marlow and are subject to copyright. If you would like to share content, we ask that you clearly state the source, limit copy to a few lines, and link back.
+            All words and images posted on kenmarlow.co.uk and originalarchive.net are the property of Ken Marlow (unless otherwise stated) and are subject to copyright. If you would like to share content, we ask that you clearly state the source, limit copy to a few lines, and link back.
           </p>
           <p>
-            If you would like to use any images, you must have written permission or pay a licensing fee. Any infringement is subject to DMCA notice and/or legal action. Questions? Use the form below.
+            If you would like to use any images, you must have written permission or pay a licensing fee. Any infringement is subject to DMCA notice and/or legal action. Questions? Use the email address below.
           </p>
         </div>
       </div>
@@ -151,6 +185,5 @@ import { ABOUT } from "@consts";
         />
       </div>
     </section>
-
   </div>
 </PageLayout>
