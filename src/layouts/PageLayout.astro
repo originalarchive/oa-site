@@ -20,5 +20,55 @@ import { SITE } from "@consts";
     <footer class="w-full border-t border-black/5 dark:border-white/5">
       <Footer />
     </footer>
+
+    <div 
+      id="lb-overlay" 
+      style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.98); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; touch-action: none;"
+      onclick="this.style.display='none'; document.body.style.overflow='auto';"
+    >
+      <img 
+        id="lb-img" 
+        src="" 
+        style="max-width: 95vw; max-height: 85vh; object-fit: contain; display: block; user-select: none; -webkit-user-drag: none; box-shadow: 0 0 40px rgba(0,0,0,0.5);" 
+        oncontextmenu="return false;"
+      />
+
+      <div id="lb-caption" style="margin-top: 20px; text-align: center; color: rgba(255,255,255,0.7); font-family: sans-serif; pointer-events: none;">
+        <p id="lb-title" style="text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; margin: 0;"></p>
+        <p style="font-size: 0.7rem; margin-top: 4px; opacity: 0.5;">
+          © <span id="copyright-year"></span> Ken Marlow @ original archive
+        </p>
+      </div>
+    </div>
+
+    <script is:inline>
+      // Automatically handle the year
+      const yearEl = document.getElementById('copyright-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      window.openLightbox = function(publicId, title = "") {
+        const overlay = document.getElementById('lb-overlay');
+        const img = document.getElementById('lb-img');
+        const titleEl = document.getElementById('lb-title');
+        const cloudName = "dtjrlrbky"; // [cite: 2026-02-01]
+        
+        if (overlay && img) {
+          img.src = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_1600/${publicId}`;
+          
+          if (titleEl) {
+            // Using your updated fallback [cite: 2026-02-01]
+            titleEl.textContent = title || "IMAGE NAME TBC";
+          }
+
+          overlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      // Block right-clicks on the lightbox image
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.id === 'lb-img') e.preventDefault();
+      }, false);
+    </script>
   </body>
 </html>

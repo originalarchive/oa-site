@@ -18,7 +18,7 @@ const {
   isLCP = false 
 } = Astro.props;
 
-const cloudName = "ydtjrlrbky"; // Ensure this matches your account
+const cloudName = "dtjrlrbky"; // Ensure this matches your account
 
 const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
 const transformations = `f_auto,q_auto,w_${width}${height ? `,h_${height},c_fill` : ''}`;
@@ -36,7 +36,7 @@ const src = `${baseUrl}/${transformations}/${publicId}`;
   alt={alt} 
   width={width} 
   height={height} 
-  class={className}
+  class:list={["scale 101% block w-full h-auto m-0 p-0", className]}
   loading={isLCP ? "eager" : "lazy"}
   fetchpriority={isLCP ? "high" : "auto"}
   decoding={isLCP ? "sync" : "async"}

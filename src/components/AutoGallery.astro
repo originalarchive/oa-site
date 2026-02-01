@@ -1,0 +1,28 @@
+---
+import { getImagesByTag } from '../lib/cloudinary';
+const { tag } = Astro.props;
+const images = await getImagesByTag(tag) || [];
+const cloudName = "dtjrlrbky"; // [cite: 2026-02-01]
+---
+
+<div id="gallery-root" class="columns-1 md:columns-2 lg:columns-3 gap-0 space-y-0 bg-black">
+  {images.map((img) => {
+    // Clean up the title if it's just a raw filename
+    const cleanTitle = img.alt ? img.alt.replace(/-/g, ' ').replace(/_/g, ' ') : "";
+    
+    return (
+      <div class="break-inside-avoid">
+        <img 
+          src={`https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/${img.publicId}`}
+          alt={cleanTitle}
+          class="w-full h-auto cursor-pointer block scale-[1.01]"
+          onclick={`window.openLightbox('${img.publicId}', '${cleanTitle}')`}
+        />
+      </div>
+    )
+  })}
+</div>
+
+<style>
+  #gallery-root { line-height: 0; font-size: 0; }
+</style>
