@@ -1,40 +1,82 @@
 ---
 import { getCollection } from "astro:content";
-import PhotoAlbumLayout from "../../layouts/PhotoAlbumLayout.astro";
-
-// 1. You must import all these components here
-import JournalGallery from "@components/JournalGallery.astro";
-import SideBySide from "@components/SideBySide.astro";
-import LegoGrid from "@components/LegoGrid.astro";
-import Caption from "@components/Caption.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
-  
   return photos
-    .filter(p => p.data.type === "internal")
-    .map((p) => {
-      const cleanSlug = p.slug.split('/')[0];
-      return {
-        params: { slug: cleanSlug },
-        props: { photoEntry: p },
-      };
-    });
+    .filter(p => p.data.type !== "external")
+    .map((p) => ({
+      params: { slug: p.slug },
+      props: { photoEntry: p },
+    }));
 }
 
 const { photoEntry } = Astro.props;
 const { Content } = await photoEntry.render();
-
-// 2. Define the components mapping object inside the code fence
-const components = {
-  JournalGallery,
-  SideBySide,
-  LegoGrid,
-  Caption
-};
 ---
 
-<PhotoAlbumLayout frontmatter={photoEntry.data}>
-  {/* 3. Pass the components object to Content here */}
-  <Content components={components} />
-</PhotoAlbumLayout>
+<PageLayout title={photoEntry.data.title}>
+  <div class="max-w-6xl mx-auto px-6 pt-50 pb-24">
+    
+    <div class="mb-1">
+      <a 
+        href="/photos" 
+        class="group inline-flex items-center gap-2 text-sm font-sans uppercase tracking-widest text-stone-500 hover:text-black dark:text-stone-400 dark:hover:text-white transition-all duration-300"
+      >
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="16" 
+          height="16" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="transition-transform duration-300 group-hover:-translate-x-1"
+        >
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        Back to Albums
+      </a>
+    </div>
+
+    <header class="mb-2 relative z-10">
+      <h1 class="text-5xl md:text-4xl font-bold tracking-tighter uppercase leading-[0.85] text-stone-900 dark:text-white">
+        {photoEntry.data.title}
+      </h1>
+      {photoEntry.data.description && (
+        <p class="mt-2 text-xl font-serif text-stone-600 dark:text-stone-400">
+          {photoEntry.data.description}
+        </p>
+      )}
+    </header>
+
+    <div class="album-content-root">
+      <div id="photo-content" class="hidden">
+        <Content />
+      </div>
+      
+      <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-1 space-y-0">
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  function setupAlbum() {
+    const source = document.getElementById('photo-content');
+    const grid = document.getElementById('photo-grid');
+    if (!source || !grid || grid.children.length > 0) return;
+
+    const images = source.querySelectorAll('img');
+    images.forEach(img => {
+      img.style.display = 'block';
+      grid.appendChild(img);
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupAlbum);
+  setupAlbum();
+</script>

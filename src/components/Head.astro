@@ -1,13 +1,17 @@
 ---
 import "../styles/global.css";
+// Keep these imports - they are essential for the site-wide styles
 import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-600.css";
 import "@fontsource/lora/400.css";
 import "@fontsource/lora/600.css";
-import inter400 from "@fontsource/inter/files/inter-latin-400-normal.woff2";
-import inter600 from "@fontsource/inter/files/inter-latin-600-normal.woff2";
-import lora400 from "@fontsource/lora/files/lora-latin-400-normal.woff2";
-import lora600 from "@fontsource/lora/files/lora-latin-600-normal.woff2";
+
+// We import them like this so Astro processes them into the 'dist' folder 
+// instead of leaving them in 'node_modules'
+import inter400 from "@fontsource/inter/files/inter-latin-400-normal.woff2?url";
+import inter600 from "@fontsource/inter/files/inter-latin-600-normal.woff2?url";
+import lora400 from "@fontsource/lora/files/lora-latin-400-normal.woff2?url";
+import lora600 from "@fontsource/lora/files/lora-latin-600-normal.woff2?url";
 
 import { ClientRouter } from "astro:transitions";
 import { SITE } from "@consts";
@@ -18,12 +22,14 @@ interface Props {
   image?: string;
 }
 
-// 1. URL Resolution
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-// 2. Default Image: Updated to your new brand asset
 const { title, description, image = "/og-share.png" } = Astro.props;
 ---
+
+<link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href={lora400} as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href={lora600} as="font" type="font/woff2" crossorigin/>
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -38,10 +44,7 @@ const { title, description, image = "/og-share.png" } = Astro.props;
 
 <meta name="generator" content={Astro.generator} />
 
-<link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href={lora400} as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href={lora600} as="font" type="font/woff2" crossorigin/>
+
 
 <link rel="canonical" href={canonicalURL} />
 
@@ -78,43 +81,63 @@ const { title, description, image = "/og-share.png" } = Astro.props;
 
 <script is:inline>
   function init() {
-    preloadTheme();
     onScroll();
     animate();
 
-    const backToTop = document.getElementById("back-to-top");
-    backToTop?.addEventListener("click", (event) => scrollToTop(event));
-
-    const backToPrev = document.getElementById("back-to-prev");
-    backToPrev?.addEventListener("click", () => window.history.back());
-
-    const lightThemeButton = document.getElementById("light-theme-button");
-    lightThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "light");
-      toggleTheme(false);
-    });
-
-    const darkThemeButton = document.getElementById("dark-theme-button");
-    darkThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "dark");
-      toggleTheme(true);
-    });
-
-    const systemThemeButton = document.getElementById("system-theme-button");
-    systemThemeButton?.addEventListener("click", () => {
-      localStorage.setItem("theme", "system");
-      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    });
+    // Event Listeners
+    setupClick("back-to-top", (e) => scrollToTop(e));
+    setupClick("back-to-prev", () => window.history.back());
+    setupClick("light-theme-button", () => setTheme("light"));
+    setupClick("dark-theme-button", () => setTheme("dark"));
+    setupClick("system-theme-button", () => setTheme("system"));
 
     window.matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", event => {
         if (localStorage.theme === "system" || !localStorage.theme) {
-          toggleTheme(event.matches);
+          applyTheme(event.matches);
         }
-      }
-    );
+      });
 
     document.addEventListener("scroll", onScroll);
+  }
+
+  function setupClick(id, callback) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("click", callback);
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+    if (theme === "system") {
+      applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    } else {
+      applyTheme(theme === "dark");
+    }
+  }
+
+  function applyTheme(dark) {
+    const css = document.createElement("style");
+    css.appendChild(document.createTextNode(`* { transition: none !important; }`));
+    document.head.appendChild(css);
+    
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    
+    window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (userTheme === "dark" || (userTheme !== "light" && systemDark)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }
 
   function animate() {
@@ -122,7 +145,7 @@ const { title, description, image = "/og-share.png" } = Astro.props;
     animateElements.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add("show");
-      }, index * 150);
+      }, index * 100);
     });
   }
 
@@ -136,46 +159,17 @@ const { title, description, image = "/og-share.png" } = Astro.props;
 
   function scrollToTop(event) {
     event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function toggleTheme(dark) {
-    const css = document.createElement("style");
-    css.appendChild(
-      document.createTextNode(
-        `* {
-             -webkit-transition: none !important;
-             -moz-transition: none !important;
-             -o-transition: none !important;
-             -ms-transition: none !important;
-             transition: none !important;
-          }
-        `,
-      )
-    );
-    document.head.appendChild(css);
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    window.getComputedStyle(css).opacity;
-    document.head.removeChild(css);
-  }
-
-  function preloadTheme() {
-    const userTheme = localStorage.theme;
-    if (userTheme === "light" || userTheme === "dark") {
-      toggleTheme(userTheme === "dark");
-    } else {
-      toggleTheme(window.matchMedia("(prefers-color-scheme: light)").matches);
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => init());
-  document.addEventListener("astro:after-swap", () => init());
+  // EXECUTION
+  // Run preload immediately to prevent flash
   preloadTheme();
+
+  // Re-run on every Astro transition
+  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("astro:after-swap", () => {
+    preloadTheme();
+    init();
+  });
 </script>

@@ -5,7 +5,7 @@
 html {
   overflow-y: scroll;
   color-scheme: light;
-  overflow-x: hidden; /* Prevents 100vw horizontal jitter */
+  overflow-x: hidden;
 }
 
 html.dark {
@@ -23,14 +23,11 @@ body {
   @apply text-black/50 dark:text-white/75;
 }
 
-/* --- THE GLOBAL WIDTH FIX --- */
-
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-5;
   @apply bg-stone-100/75 dark:bg-stone-900/25 backdrop-blur-sm saturate-200;
 }
 
-/* Fixed Menu: Always 5xl to keep logo/nav separate */
 header > nav,
 footer > div {
   @apply max-w-5xl mx-auto px-6 w-full flex justify-between items-center;
@@ -38,26 +35,12 @@ footer > div {
 
 main {
   @apply flex-1 py-32;
-  /* Naked container allows Editorial & Photos to be full-width */
 }
 
-/* --- REUSABLE CONTAINERS --- */
+.container-narrow { @apply max-w-3xl mx-auto px-6 w-full; }
+.container-standard { @apply max-w-4xl mx-auto px-6 w-full; }
 
-/* Use for Home Page */
-.container-narrow {
-  @apply max-w-3xl mx-auto px-6 w-full;
-}
-
-/* Use for Articles List & About */
-.container-standard {
-  @apply max-w-4xl mx-auto px-6 w-full;
-}
-
-footer {
-  @apply py-5 text-sm;
-}
-
-/* --- Rest of your styles --- */
+footer { @apply py-5 text-sm; }
 
 article {
   @apply max-w-full prose dark:prose-invert prose-img:mx-auto prose-img:my-auto;
@@ -74,17 +57,59 @@ article {
   }
 }
 
-.animate {
-  @apply opacity-0 translate-y-3 transition-all duration-700 ease-out;
-}
-
-.animate.show {
-  @apply opacity-100 translate-y-0;
-}
+.animate { @apply opacity-0 translate-y-3 transition-all duration-700 ease-out; }
+.animate.show { @apply opacity-100 translate-y-0; }
 
 .article-list-container { @apply flex flex-col gap-3; }
 .article-card {
   @apply border border-stone-200 dark:border-stone-800 rounded-xl p-5 bg-white dark:bg-stone-800/50 transition-colors duration-300;
 }
-.article-card .date-element { @apply hidden; }
-.article-card .description-element { @apply block text-sm mt-2 opacity-80; }
+
+/* --- NUCLEAR OVERRIDES FOR ALBUM PAGES --- */
+
+/* Title Overrides - FIXED TO 2REM */
+#photo-content h1,
+#photo-content h2,
+#brighton,
+h2#brighton {
+  color: #1c1917 !important; /* Stone-900 */
+  font-weight: 900 !important;
+  font-size: 2rem !important; 
+  letter-spacing: -0.05em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+
+.dark #photo-content h1,
+.dark #photo-content h2,
+.dark #brighton {
+  color: #e7e5e4 !important; /* Stone-200 */
+}
+
+/* NOTE: All "BACK LINK" CSS has been removed. 
+   The styling is now handled directly by the classes in your Astro file
+   to match the "Back to Articles" behavior.
+*/
+
+/* --- UNIVERSAL BACK-LINK RESET --- */
+/* This targets the specific HTML structure found in your articles */
+.group.inline-flex.items-center {
+  color: #78716c !important; /* Stone-500 */
+  text-decoration: none !important;
+}
+
+.group.inline-flex.items-center:hover {
+  color: #000000 !important; /* Black in Light Mode */
+}
+
+.dark .group.inline-flex.items-center:hover {
+  color: #ffffff !important; /* White in Dark Mode */
+}
+
+/* Force the arrow movement */
+.group:hover svg {
+  transform: translateX(-4px) !important;
+}
