@@ -68,7 +68,7 @@ If we take an image with many layers, each layer being a significant distance fr
 Depending on the level of distortion the viewer will feel close or even too close to the subject and exaggerate the psychological connection they have to the subject. Perhaps it will even make us feel like we are intruding into the person's world.
 
 ## What about telephoto lenses?
-So I only have an 85mm lens which some wouldn't even class as a telephoto. However, even at this focal length the lens is exhibiting the behaviour of shrinking the distance between objects. 
+I only have an 85mm lens which some wouldn't even class as a telephoto. However, even at this focal length the lens is exhibiting the behaviour of shrinking the distance between objects. 
 
 Although they do help get you shots from further away - perhaps where the subject would change their behaviour if you were nearer or it's at an event where you cannot get closer - telephoto lenses are better used to flatten images and flatter the human form by avoiding accentuation or distortion. A portrait taken with something between an 85mm and a 105mm will just look so much better than with a wide lens. But, you have to be far enough away because generally these lenses need more distance before they will focus.
 
@@ -105,7 +105,7 @@ The Sony FE 24-105mm zoom would be amazing if I didn't need to to be faster than
 - Sony FE 24-70mm F2.8 GM (886g) - £1900
 
 ### Update Jan 2026
-I ended up with two lenses. The 20mm Sony prime, from the list above, and I grabbed a supreme Viltrox AF 28mm F/4.5 FE fixed focal length pancake lens. 
+I ended up with two lenses. The 20mm Sony prime, from the list above, and I grabbed the superb <a href="https://amzn.to/4tm4DGH" target="_blank" rel="noopener">Viltrox 28mm </a>F/4.5 FE fixed focal length pancake lens. 
 
 Both lenses are superb but in very different ways. The Viltrox is tiny, lives on the front of my camera in place of a lens cap, takes characterful pictures and cost me £65 (current price £90).
 

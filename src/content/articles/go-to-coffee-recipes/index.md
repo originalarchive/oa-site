@@ -18,23 +18,25 @@ But it wasn’t until 2020 that I got a chance to play with the V60 pour-over co
 ## My Equipment 
 Updated January 2026
 
-- Hario Switch (v60 base allows for immersion and/or percolation)
+- <a href="https://amzn.to/4k9P948" target="_blank" rel="noopener">Hario Switch </a> 02 (v60 base allows for immersion and/or percolation)
 - Glass v60 cones (01, 02, 03 ) fit the switch base. Selected based on cup size / guests.
-- Smoked glass coffee carafe by Fellow. Lovely piece of glass. See my review here.
-- Comandante C40 v4 coffee grinder. Sweet smooth cup with good clarity
+- Smoked glass coffee <a href="https://amzn.to/4qVbGnS" target="_blank" rel="noopener">carafe by Fellow</a>. Lovely piece of glass. See my [review](fellow-mighty-carafe-review) here.
+- <a href="https://amzn.to/4ryvTA1" target="_blank" rel="noopener">Comandante C40 v4</a> coffee grinder. Sweet smooth cup with good clarity
 - Cafec T90 paper filters
-- Timemore Black Mirror scale.
+- <a href="https://amzn.to/4qd5Z3u" target="_blank" rel="noopener">Timemore Black Mirror scale.</a>
 - Brewista gooseneck kettle.
-- Fellow Atmos vacuum canisters (various sizes)
+- <a href="https://amzn.to/4kgTse3" target="_blank" rel="noopener">Fellow Atmos </a>vacuum canisters (various sizes)
 - Hario Olive Wood Dripper stand
 - Kinto Sepia amber coffee cup and wooden saucer (270ml)
-- Kinto CLK-151 ceramic cup 180ml
+- <a href="https://amzn.to/3NThcck" target="_blank" rel="noopener">Kinto CLK-151</a> ceramic cup 180ml
 
 ![Coffee equipment](./coffee-equipment.jpeg)
 ## Coffee
 I was a bit lazy when it comes to coffee beans. I have a subscription to the amazing Pharmacie coffee roasters in Lewes, and I picked up the odd extra bag from other roasters. 
 
 Now, in 2026, I have reduced the coffee I get on subscription and buy from several roasters directly in London or from roasters and amazing coffee shops in Brighton.  
+
+A big shout out to Scenery and Skylark roasters.
 
 This means I normally have between two and four beans on the go at once and typically have a selection of washed and natural beans with the odd anaerobic process or co-ferment when I fancy something different. 
 
@@ -73,7 +75,7 @@ That means that I now start with 89°C and I don't reheat the water or try to ke
 
 This temperature tends to preserve delicate flavours and reduce to liklihood of funky flavours developing. Whilst many would argue that I am missing out of some of the potential of the coffee I would argue that I get a smoother, more aromatic and generally sweeter cup. Every time. The downside is that I might miss out somewhere. Maybe. 
 
-I'm not against trying a 94-96°C brew and I'll drop to 80°C if I want to experiment. Sometimes I will try a hot start and a colder finish, but generally not the other way round. If I struggle with a bean, then I try a full immersion recipe using the Hario switch to steep the grains and cut down the number of variables I have to consider. See my 50/50 recipe below. 
+I'm not against trying a 94-96°C brew, I'll start less specialist beans at around 94°C, and I'll drop to 80°C if I want to experiment. Sometimes I will try a hot start and a colder finish, but generally not the other way round. If I struggle with a bean, then I try a full immersion recipe using the Hario switch to steep the grains and cut down the number of variables I have to consider. See my 50/50 recipe below. 
 
 The other change I mentioned is that I now believe in low agitation brewing.
 
@@ -94,7 +96,7 @@ The following recipes are for one cup using the switch base and the glass v60 co
 
 My killer switch recipe is a go-to for larger batches, lazy Sunday mornings and perfect when I'm struggling to dial-in a coffee.
 
-#### Ken's Switch 50:50 
+### Ken's Switch 50:50 
 Approx 1:16 ratio -  e.g. 41g coffee to 650g water (03 cone), or 30g to 470ml of water (02 cone), or 25g to 390ml. 
 23 - 25 clicks on Commandante grinder 
 90° C starting temperature
@@ -109,7 +111,7 @@ For a light/medium roast coffee:
 
 Total brew time should be between 3 and 4 minutes. If yours is shorter you can grind a bit finer or steep the brew for 30 seconds after the second pour.
 
-#### Ken's Single cup V60 - the go-to recipe and new for 2025
+### Ken's Single cup V60 - the go-to recipe for fancy floral and funky beans
 1:15 ratio - 20g : 300ml, coffee:water
 Bottle water - Sainsburys own spring water
 89°C and don't maintain temperature

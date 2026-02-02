@@ -29,7 +29,7 @@ It has that look of a 1970s piece - pure style.
 
 It does have the FELLOW logo low down near the base, and I would probably prefer it without that, but it's not a show-stopper. The only other coffee glassware I like as much are the Kinto CAST AMBER and Sepia vintage ranges.  
 
-I own the [sepia](https://kinto-europe.co.uk/products/21740?variant=41561361547360&utm_source=google&utm_medium=cpc&utm_campaign=G%7CPMax%7CUK_NEW_SITE&gad_source=1&gad_campaignid=22287429561&gbraid=0AAAAABnPfbaIA6pfsJYNtTwSdNTctIDJ4&gclid=Cj0KCQiA-NHLBhDSARIsAIhe9X0E-1nyfPdFzuIc6vx6QBh-DThFAxGka__ygpw4AVZQbMnxgr90l8QaAhOIEALw_wcB) amber coffee cup and wooden saucer - so nice and always cheers me up to drink from a cup quite that orange. 
+I own the <a href="https://amzn.to/3Ol5CGM" target="_blank" rel="noopener">sepia</a> amber coffee cup and wooden saucer - so nice and always cheers me up to drink from a cup quite that orange. 
 
 It's borosilicate glass, and I'm likely to break it one day.  Also have to mention that.
 

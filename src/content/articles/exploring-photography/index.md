@@ -81,5 +81,3 @@ Clubs, events and galleries are a bit time consuming and can be in sort supply d
 [photography now](http://photography-now.com/exhibition/?type=A) always has a good selection of UK exhibitions.
 
 I’ll come back and add to this page as I find new, cool and interesting places to look at photos. I can guarantee I have missed loads.
-
-Last update: sept21
