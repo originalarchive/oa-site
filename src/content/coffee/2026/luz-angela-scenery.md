@@ -11,6 +11,7 @@ elevation: ""
 process: "Anoxic Natural"
 processDetails: "dry 48hr ferment in sealed environment, water added for 48hr aerobic ferment. Dried for 72hrs. "
 roastDate: 2026-01-26
+status: "Open"
 dateBrewed: 2026-01-27
 brewMethod: "V60"
 grindSize: "28 clicks"
