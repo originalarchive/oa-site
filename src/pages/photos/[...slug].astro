@@ -47,35 +47,88 @@ const { Content } = await photoEntry.render();
         {photoEntry.data.title}
       </h1>
       {photoEntry.data.description && (
-        <p class="mt-2 text-xl font-serif text-stone-600 dark:text-stone-400">
+        <p class="mt-2 text-xl font text-stone-600 dark:text-stone-400">
           {photoEntry.data.description}
         </p>
       )}
     </header>
 
-   <div class="album-content-root">
-  <div class="prose dark:prose-invert max-w-none mb-12">
-    <Content />
+    <div class="album-content-root">
+      <div id="photo-content" class="prose dark:prose-invert max-w-none mb-12">
+        <Content />
+      </div>
+      
+      <div id="photo-grid" class="flex flex-wrap gap-1 justify-start bg-white dark:bg-stone-950 p-1">
+      </div>
+    </div>
   </div>
-  
-  <div id="photo-grid" class="columns-1 md:columns-2 lg:columns-3 gap-1 space-y-0">
-  </div>
-</div>
 </PageLayout>
 
 <script>
   function setupAlbum() {
     const source = document.getElementById('photo-content');
     const grid = document.getElementById('photo-grid');
+    
     if (!source || !grid || grid.children.length > 0) return;
 
     const images = source.querySelectorAll('img');
     images.forEach(img => {
+      const container = document.createElement('div');
+      container.className = 'gallery-image-container';
+      
       img.style.display = 'block';
-      grid.appendChild(img);
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.removeAttribute('height');
+      img.removeAttribute('width');
+      
+      container.appendChild(img);
+      grid.appendChild(container);
     });
+    
+    source.style.display = 'none';
   }
 
   document.addEventListener('astro:page-load', setupAlbum);
   setupAlbum();
 </script>
+
+<style is:global>
+  #photo-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important; /* This creates the consistent white borders */
+    justify-content: flex-start !important;
+  }
+
+  .gallery-image-container {
+    height: 300px !important; /* Matches your old site height */
+    flex: 1 1 auto !important; /* Allows images to share the row */
+    overflow: hidden !important;
+    background-color: white !important;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .gallery-image-container img {
+    height: 100% !important;
+    width: auto !important; /* Prevents the 'stretching' you see in your screenshot */
+    min-width: 100% !important;
+    object-fit: cover !important; /* Crops slightly to keep the rows perfectly level */
+    display: block !important;
+  }
+
+#photo-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  /* Change justify-start to center */
+  justify-content: center !important; 
+  background-color: transparent !important; /* Removes the white box background */
+}
+
+/* Remove the ::after block entirely if you use justify-center */
+#photo-grid::after {
+  display: none;
+}
+</style>
