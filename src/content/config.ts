@@ -17,8 +17,8 @@ const photos = defineCollection({
   type: "content",
   schema: ({ image }) => z.object({
     title: z.string(),
-    thumbnail: image(),
-    weight: z.number().optional(), // Add this line!
+    thumbnail: image().optional(), // Reverting to image helper
+    weight: z.number().optional(),
     date: z.coerce.date().optional(),
     tags: z.array(z.string()).optional(),
     description: z.string().optional(),

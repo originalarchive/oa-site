@@ -3,10 +3,18 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
+// 1. Fetch the collection once
 const allPhotos = await getCollection("photos");
 
-// SORTING: Alphabetical by title (A-Z)
-const photos = allPhotos.sort((a, b) => a.data.title.localeCompare(b.data.title));
+// 2. Debug log to terminal (Keep this until you see 'cuba' in the list)
+console.log("Found slugs:", allPhotos.map(p => p.slug));
+
+// 3. SAFE SORTING: Alphabetical by title (A-Z)
+const photos = allPhotos.sort((a, b) => {
+  const titleA = a.data.title || "";
+  const titleB = b.data.title || "";
+  return titleA.localeCompare(titleB);
+});
 ---
 
 <PageLayout title="Photography" description="A collection of photo galleries and portfolios.">
