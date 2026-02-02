@@ -4,7 +4,8 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://oa-site.pages.dev",
+  // Change this to your primary custom domain
+  site: "https://originalarchive.net", 
   integrations: [
     mdx(), 
     sitemap(),
