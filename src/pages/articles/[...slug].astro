@@ -35,6 +35,25 @@ const components = {
   LegoGrid,
   Caption
 };
+
+// 1. Fetch all articles [cite: 2026-02-01]
+const allArticles = await getCollection("articles");
+
+// 2. Filter out current [cite: 2026-02-01]
+const otherArticles = allArticles.filter(a => a.id !== article.id);
+
+// 3. Define the current tags first! [cite: 2026-02-01]
+const currentTags = article.data.tags?.map(t => t.toLowerCase()) || [];
+
+// 4. Find matching articles [cite: 2026-02-01]
+const relatedArticles = otherArticles
+  .filter(art => {
+    return art.data.tags?.some(tag => 
+      tag.toLowerCase() !== 'feature' && currentTags.includes(tag.toLowerCase())
+    );
+  })
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
 <PageLayout title={article.data.title} description={article.data.description}>
@@ -87,6 +106,34 @@ const components = {
     <article class={`prose prose-neutral dark:prose-invert max-w-none ${isFeature ? 'pt-0' : ''}`}>
       <Content components={components} />
     </article>
+    
+{relatedArticles.length > 0 && (
+  <div class="mt-24 pt-12 border-t border-black/10 dark:border-white/10 max-w-4xl mx-auto">
+    <h3 class="text-xs font-mono font-bold uppercase tracking-[0.4em] text-black dark:text-white mb-12 text-center">
+      Keep Reading
+    </h3>
+    
+    {/* Grid with vertical dividers (divide-x) between articles [cite: 2026-02-01] */}
+    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/10 dark:divide-white/10">
+      {relatedArticles.map((rel, index) => (
+        <a href={`/articles/${rel.slug}/`} class="group block px-0 md:px-6 first:pl-0 last:pr-0 py-8 md:py-0">
+          <time class="text-[10px] font-mono uppercase tracking-widest opacity-40 mb-3 block">
+            {formatDate(rel.data.date)}
+          </time>
+          <h4 class="text-xl font-bold leading-tight mb-3 group-hover:underline decoration-1 underline-offset-4 text-black dark:text-white">
+            {rel.data.title}
+          </h4>
+          {rel.data.description && (
+            <p class="text-sm leading-relaxed opacity-60 line-clamp-3">
+              {rel.data.description}
+            </p>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+    
   </div>
 
   {/* Lightbox Setup */}
