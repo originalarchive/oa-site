@@ -15,8 +15,8 @@ collections:
     folder: "src/content/coffee"
     nested: { depth: 2 }
     create: true
-    delete: true # Enables the management functions [cite: 2026-01-22]
-    # This line fixes the sidebar by grouping files by their year folder
+    delete: true # [cite: 2026-01-22]
+    # Groups the stray sidebar entries into Year folders [cite: 2026-02-05]
     view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
     path: "{{year}}/{{slug}}" 
@@ -55,13 +55,14 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    nested: { depth: 2 } # Fix for subfolders
+    nested: { depth: 1 } # Looks inside /50-photo-tips/ for index.md
     create: true
     delete: true # [cite: 2026-01-22]
-    # Only show .md files to exclude .mdx journals from the dashboard
     filter: { field: "extension", value: "md" }
-    summary: "{{title}} | {{date}} | {{tags}}"
-    path: "{{slug}}/index"
+    summary: "{{title}} | {{date}}"
+    path: "{{slug}}/index" 
+    extension: "md"
+    format: "frontmatter"
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
