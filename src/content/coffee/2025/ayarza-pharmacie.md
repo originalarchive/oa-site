@@ -15,7 +15,7 @@ harvest: ""
 arrivedUK: ""
 roastLevel: "Light"
 roastDate: 2025-12-19
-status: "Open"
+status: "Finished"
 dateBrewed: 2025-12-26
 brewMethod: "Switch"
 grindSize: "28 clicks"

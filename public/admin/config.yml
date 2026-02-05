@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: originalarchive/oa-site # WE NEED TO UPDATE THIS
+  branch: main
+  base_url: https://coffee-cms-auth.ken-marlow.workers.dev
+  auth_endpoint: auth
+
+media_folder: "public/images/coffee" # Where your Cloudinary-linked images live
+public_folder: "/images/coffee"
+
+collections:
+  - name: "coffee"
+    label: "Coffee Logs"
+    folder: "src/content/coffee"
+    create: true
+    slug: "{{year}}/{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Roaster", name: "roaster", widget: "string" }
+      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
+      - { label: "Origin", name: "origin", widget: "string" }
+      - { label: "Region", name: "region", widget: "string", required: false }
+      - { label: "Producer", name: "producer", widget: "string", required: false }
+      - { label: "Farm", name: "farm", widget: "string", required: false }
+      - { label: "Variety", name: "variety", widget: "string", required: false }
+      - { label: "Elevation", name: "elevation", widget: "string", required: false }
+      - { label: "Process", name: "process", widget: "string", required: false }
+      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
+      - { label: "Roast Date", name: "roastDate", widget: "datetime", format: "YYYY-MM-DD", required: false }
+      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: false }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Brew Method", name: "brewMethod", widget: "string" }
+      - { label: "Grind Size", name: "grindSize", widget: "string" }
+      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
+      - { label: "Ratio", name: "ratio", widget: "string", required: false }
+      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
+      - name: "rating"
+        label: "Rating"
+        widget: "object"
+        fields:
+          - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"] }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body Content", name: "body", widget: "markdown", required: false }
+
+  - name: "articles"
+    label: "Articles"
+    folder: "src/content/articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body Content", name: "body", widget: "markdown" }
