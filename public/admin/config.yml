@@ -24,20 +24,19 @@ collections:
       - { label: "Status", field: "status" }
     summary: "{{name}} | {{roaster}} | {{status}} | {{roastDate}}"
     path: "{{year}}/{{slug}}"
-    slug: "{{slug}}"
+    slug: "{{name}}" # FIX: Keeps filenames short and clean
     fields:
-      - { label: "Draft", name: "draft", widget: "boolean", default: false } # New Draft Toggle
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
-      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false, hint: "Must be a full URL like https://..." }
-      - { label: "Origin", name: "origin", widget: "string", required: false }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      # Astro says these TWO are REQUIRED
+      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: true, hint: "Just type the site, no https needed" } # FIX: Hardcode-friendly
+      - { label: "Origin", name: "origin", widget: "string", required: true }
       - { label: "Brew Method", name: "brewMethod", widget: "string", required: true, default: "V60" }
       - { label: "Grind Size", name: "grindSize", widget: "string", required: true, default: "Medium" }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Region", name: "region", widget: "string", required: false }
       - { label: "Producer", name: "producer", widget: "string", required: false }
       - { label: "Farm", name: "farm", widget: "string", required: false }
@@ -69,7 +68,7 @@ collections:
     path: "{{slug}}/index"
     extension: "md"
     format: "frontmatter"
-    slug: "{{slug}}"
+    slug: "{{title}}"
     summary: "{{title}} | {{date}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
