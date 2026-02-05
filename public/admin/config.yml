@@ -53,14 +53,15 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
-  - name: "articles"
+ - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    nested: { depth: 1 } # [cite: 2026-02-05]
+    # Removing 'nested' to see if it's blocking the scan [cite: 2026-02-05]
     create: true
     delete: true # [cite: 2026-01-22]
     media_folder: "" 
     public_folder: ""
+    # Explicitly telling the CMS that every entry is an index.md file
     path: "{{slug}}/index"
     extension: "md"
     format: "frontmatter"
