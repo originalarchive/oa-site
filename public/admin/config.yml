@@ -15,17 +15,20 @@ collections:
     folder: "src/content/coffee"
     create: true
     delete: true
-    media_folder: ""
-    public_folder: ""
+    extension: "md"
+    format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
+    # Fixes the missing Sort/Filter in the CMS UI
+    summary: "{{name}} - {{roaster}} ({{roastDate}})"
+    sortable_fields: ["roastDate", "name", "roaster"]
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
+      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true, default: "Open" }
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Origin", name: "origin", widget: "string", required: true }
       - { label: "Region", name: "region", widget: "string", required: false }
@@ -52,11 +55,13 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
-  - name: "blog"
+  - name: "articles"
     label: "Articles"
-    folder: "src/content/blog"
+    folder: "src/content/articles" # Corrected folder name
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} ({{pubDate}})"
+    sortable_fields: ["pubDate", "title"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
