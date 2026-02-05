@@ -18,14 +18,14 @@ roastDate: "2026-01-14"
 status: "Open"
 dateBrewed: "2026-01-20"
 brewMethod: "V60"
-grindSize: "28 clicks" # Commandante C40
-waterTemp: "88°C"
-ratio: "1:15"
+grindSize: "25 clicks" # Commandante C40
+waterTemp: "94°C"
+ratio: "1:14"
 rating:
-  flavor: 0
-  body: 0
-  acidity: 0
-  overall: "TBC"
+  flavor: 4
+  body: 3
+  acidity: 4
+  overall: "Great"
 tags:
   - colombia
   - washed
@@ -33,7 +33,10 @@ tags:
   - pharmacie
 ---
 ### Ken's notes: 
-not tasted yet. 26th Jan 2026. Entry for test purposes.
+First cup 1:14 300ml at 25 clicks has a lovely fruit on the nose with just a tiny bit of funk. Sweet with flavours of oranges and a lingering taste. A little bitter.
+
+Test2: lower temp. 
+Test3: alter grind.
 
 ### Tasting Notes: 
 Juicy notes of nectarine and tropical fruit with creamy caramel and coconut water body.
