@@ -16,7 +16,8 @@ collections:
     nested: { depth: 2 }
     create: true
     delete: true # Enables the management functions [cite: 2026-01-22]
-    # This adds Roaster, Status, and Date to the list view
+    # This line fixes the sidebar by grouping files by their year folder
+    view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
@@ -57,9 +58,9 @@ collections:
     nested: { depth: 2 } # Fix for subfolders
     create: true
     delete: true # [cite: 2026-01-22]
-    # Adds Date and Tags to the Article list view
+    # Only show .md files to exclude .mdx journals from the dashboard
+    filter: { field: "extension", value: "md" }
     summary: "{{title}} | {{date}} | {{tags}}"
-    # Matches the 'folder-per-post' style seen in your screenshot
     path: "{{slug}}/index"
     slug: "{{slug}}"
     fields:
