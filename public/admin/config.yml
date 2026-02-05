@@ -14,19 +14,28 @@ collections:
     label: "Coffee Logs"
     folder: "src/content/coffee"
     create: true
-    delete: true
+    delete: true # [cite: 2026-01-22]
     media_folder: ""
     public_folder: ""
-    view_groups: [{ label: "Year", field: "year" }]
-    summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
+    sortable_fields: ["roastDate", "name", "roaster"]
+    view_groups: 
+      - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
+      - { label: "Status", field: "status" }
+    summary: "{{name}} | {{roaster}} | {{status}} | {{roastDate}}"
+    # Use {{fields.roastDate}} with a transformation or keep the simple path
+    # If the CMS doesn't auto-extract year for the path, we'll use:
     path: "{{year}}/{{slug}}"
     slug: "{{slug}}"
     fields:
-      - { label: "Year", name: "year", widget: "string", hint: "e.g. 2025" }
+      - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
+      # Hidden year field that auto-populates from roastDate to keep your folder structure [cite: 2026-02-05]
+      - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Origin", name: "origin", widget: "string" }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Region", name: "region", widget: "string", required: false }
       - { label: "Producer", name: "producer", widget: "string", required: false }
       - { label: "Farm", name: "farm", widget: "string", required: false }
@@ -34,11 +43,8 @@ collections:
       - { label: "Elevation", name: "elevation", widget: "string", required: false }
       - { label: "Process", name: "process", widget: "string", required: false }
       - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: false }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Brew Method", name: "brewMethod", widget: "string" }
-      - { label: "Grind Size", name: "grindSize", widget: "string" }
+      - { label: "Brew Method", name: "brewMethod", widget: "string", required: false }
+      - { label: "Grind Size", name: "grindSize", widget: "string", required: false }
       - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
       - { label: "Ratio", name: "ratio", widget: "string", required: false }
       - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
@@ -57,7 +63,7 @@ collections:
     label: "Articles"
     folder: "src/content/articles"
     create: true
-    delete: true
+    delete: true # [cite: 2026-01-22]
     media_folder: ""
     public_folder: ""
     path: "{{slug}}/index"
