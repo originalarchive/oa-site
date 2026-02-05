@@ -15,74 +15,48 @@ const renderedEntries = await Promise.all(
 );
 
 const renderStars = (num: number) => "★".repeat(num) + "☆".repeat(5 - num);
-
-const statusColors = {
-  "Great": "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
-  "Good": "bg-stone-500/10 text-stone-600 dark:text-stone-400 border-stone-500/20",
-  "Meh": "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-  "TBC": "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
-};
 ---
 
-<div class="space-y-8">
+<div class="space-y-4">
   {renderedEntries.map(({ entry, Content }) => {
     const d = entry.data;
     const currentStatus = d.rating.overall;
 
     return (
       <div 
-        class="coffee-card group/details bg-white dark:bg-stone-900 border-2 border-black/10 dark:border-white/10 rounded-2xl shadow-sm hover:shadow-md hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 overflow-hidden" 
+        class="coffee-card group border border-black/10 dark:border-white/10 rounded-xl overflow-hidden bg-white dark:bg-stone-900 shadow-sm transition-all"
         data-date={d.dateBrewed?.toISOString() ?? d.roastDate?.toISOString() ?? new Date().toISOString()}
         data-pantry-status={String(d.status || "Finished")}
       >
         <details class="group/details">
-          <summary class="list-none outline-none cursor-pointer p-6 sm:p-8">
-            <div class="flex justify-between items-stretch gap-6">
-              <div class="flex-1 min-w-0 flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-xl sm:text-2xl leading-tight text-black dark:text-white">{d.name}</h3>
-                  <div class="flex items-center gap-2 text-sm opacity-60 mt-2 font-medium">
-                    <span class="text-black dark:text-white underline decoration-black/20 underline-offset-4">{d.roaster}</span>
-                    <span class="opacity-30">•</span>
-                    <span>{d.origin}</span>
-                  </div>
-                </div>
-
-                <div class="mt-6 flex gap-5 text-[10px] font-mono uppercase tracking-[0.15em] opacity-60">
-                  <span>Flavor <span class="text-black dark:text-white ml-1">{renderStars(d.rating.flavor)}</span></span>
-                  <span>Body <span class="text-black dark:text-white ml-1">{renderStars(d.rating.body)}</span></span>
+          <summary class="list-none cursor-pointer p-4 sm:p-5">
+            <div class="flex justify-between items-start gap-4">
+              <div class="space-y-1 flex-1 min-w-0">
+                <h3 class="text-lg font-bold leading-tight truncate text-black dark:text-white">{d.name}</h3>
+                <p class="text-[12px] opacity-60">
+                  <span class="font-bold">{d.roaster}</span> • {d.origin}
+                </p>
+                <div class="flex gap-4 pt-1 text-[9px] font-mono uppercase tracking-widest opacity-40">
+                  <span>Flavor {renderStars(d.rating.flavor)}</span>
+                  <span>Body {renderStars(d.rating.body)}</span>
                 </div>
               </div>
 
-              <div class="flex flex-col items-end justify-between shrink-0 border-l-2 border-black/5 dark:border-white/5 pl-6 sm:pl-8 min-w-[110px]">
-                <div class="text-[12px] font-mono font-bold opacity-40 uppercase tracking-tighter">
-                  {d.dateBrewed 
-                    ? d.dateBrewed.toLocaleDateString("en-GB", { day: '2-digit', month: 'short', year: '2-digit' }) 
-                    : "STASHED"}
+              <div class="text-right flex flex-col items-end gap-2 shrink-0">
+                <div class="text-[10px] font-mono opacity-40 font-bold uppercase">
+                  {d.dateBrewed ? d.dateBrewed.toLocaleDateString("en-GB", { day: '2-digit', month: 'short' }) : "OPEN"}
                 </div>
-
-                <div class="flex flex-col items-end gap-4 mt-auto w-full">
-                  <div 
-                    data-rating-value={currentStatus.toLowerCase()}
-                    class:list={[
-                      "text-[10px] font-black uppercase tracking-[0.1em] py-2 rounded-xl border-2 text-center w-[85px] leading-none shadow-sm",
-                      statusColors[currentStatus] || "bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60"
-                    ]}
-                  >
-                    {currentStatus}
-                  </div>
-                  <div class="opacity-20 group-hover/details:opacity-100 transition-all duration-300 group-open/details:rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                  </div>
+                <div class="px-2.5 py-1 rounded border border-black/5 dark:border-white/10 text-[9px] font-bold uppercase tracking-tight bg-stone-50 dark:bg-stone-800">
+                  {currentStatus}
+                </div>
+                <div class="opacity-20 group-hover/details:opacity-60 transition-transform group-open/details:rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </div>
               </div>
             </div>
           </summary>
-
-          <div class="border-t-2 border-black/5 dark:border-white/5 bg-black/[0.01] dark:bg-white/[0.01] p-8">
-             <div class="max-w-none prose prose-stone dark:prose-invert">
-                <Content />
-             </div>
+          <div class="px-5 pb-5 border-t border-black/5 dark:border-white/5 pt-4 text-sm prose prose-stone dark:prose-invert max-w-none">
+            <Content />
           </div>
         </details>
       </div>

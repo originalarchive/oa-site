@@ -20,49 +20,32 @@ collections:
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
     summary: "{{name}} - {{roaster}} ({{roastDate}})"
-    sortable_fields: ["roastDate", "name", "roaster"]
+    sortable_fields: ["roastDate", "name"]
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true, default: "Open" }
-      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
+      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
       - { label: "Origin", name: "origin", widget: "string", required: true }
-      - { label: "Region", name: "region", widget: "string", required: false }
-      - { label: "Producer", name: "producer", widget: "string", required: false }
-      - { label: "Farm", name: "farm", widget: "string", required: false }
-      - { label: "Variety", name: "variety", widget: "string", required: false }
-      - { label: "Elevation", name: "elevation", widget: "string", required: false }
-      - { label: "Process", name: "process", widget: "string", required: false }
-      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Brew Method", name: "brewMethod", widget: "string", required: true, default: "V60" }
-      - { label: "Grind Size", name: "grindSize", widget: "string", required: true, default: "Medium" }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
-      - { label: "Ratio", name: "ratio", widget: "string", required: false }
-      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
       - name: "rating"
         label: "Rating"
         widget: "object"
         fields:
-          - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
-          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
-          - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
+          - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
           - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC" }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
     create: true
-    # This specifically targets your folder structure: folder-name/index.md
-    nested: true
+    # Corrected nested syntax:
+    nested: { depth: 10 }
     path: "{{slug}}/index"
-    media_folder: ""
-    public_folder: ""
     summary: "{{title}} ({{pubDate}})"
     sortable_fields: ["pubDate", "title"]
     fields:
