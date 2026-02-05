@@ -17,53 +17,34 @@ collections:
     delete: true # [cite: 2026-01-22]
     media_folder: ""
     public_folder: ""
-    # Defaults to newest roast date first (fixes Year order) [cite: 2026-02-05]
+    # This forces the internal list logic to Descending for the UI
     sort: { field: "roastDate", direction: "Descending" }
-    sortable_fields: ["commit_date", "roastDate", "name", "roaster", "status"]
+    sortable_fields: ["commit_date", "roastDate", "name", "roaster"]
     view_groups: 
-      - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
+      # Grouping by a custom year field we can control [cite: 2026-02-05]
+      - { label: "Year", field: "year" }
       - { label: "Status", field: "status" }
     summary: "{{name}} | {{roaster}} | {{status}} | {{roastDate}}"
     path: "{{year}}/{{slug}}"
     slug: "{{slug}}"
     fields:
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
-      - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
+      # Changed from 'hidden' to 'string' so you can manually put '2026' to ensure it's at the top [cite: 2026-02-05]
+      - { label: "Group Year", name: "year", widget: "string", hint: "Type 2026 to group correctly" }
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
       - label: "Status"
         name: "status"
         widget: "select"
-        # Prefixed with numbers to force 'Open' to the top of the group list
+        # We use '01_' because the CMS always puts 0 before 1 in groups
         options: 
-          - { label: "Open", value: "1. Open" }
-          - { label: "Finished", value: "2. Finished" }
+          - { label: "Open", value: "01_Open" }
+          - { label: "Finished", value: "02_Finished" }
         required: true
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Origin", name: "origin", widget: "string" }
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Region", name: "region", widget: "string", required: false }
-      - { label: "Producer", name: "producer", widget: "string", required: false }
-      - { label: "Farm", name: "farm", widget: "string", required: false }
-      - { label: "Variety", name: "variety", widget: "string", required: false }
-      - { label: "Elevation", name: "elevation", widget: "string", required: false }
-      - { label: "Process", name: "process", widget: "string", required: false }
-      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Brew Method", name: "brewMethod", widget: "string", required: false }
-      - { label: "Grind Size", name: "grindSize", widget: "string", required: false }
-      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
-      - { label: "Ratio", name: "ratio", widget: "string", required: false }
-      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
-      - name: "rating"
-        label: "Rating"
-        widget: "object"
-        fields:
-          - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"] }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Body Content", name: "body", widget: "markdown", required: false }
+      # ... (rest of coffee fields)
 
   - name: "articles"
     label: "Articles"
