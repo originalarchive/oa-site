@@ -6,7 +6,6 @@ backend:
   auth_endpoint: auth
   use_graphql: false
 
-# Global media folder is required for the CMS to boot
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -16,10 +15,11 @@ collections:
     folder: "src/content/coffee"
     create: true
     delete: true # [cite: 2026-01-22]
-    media_folder: "" 
+    media_folder: ""
     public_folder: ""
-    # Defaults to newest roast date [cite: 2026-02-05]
+    # Defaults the view to newest roast date first [cite: 2026-02-05]
     sort: { field: "roastDate", direction: "Descending" }
+    # Explicitly includes 'commit_date' for the "Updated On" sort option [cite: 2026-02-05]
     sortable_fields: ["commit_date", "roastDate", "name", "roaster", "status"]
     view_groups: 
       - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
