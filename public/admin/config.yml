@@ -3,6 +3,8 @@ backend:
   repo: originalarchive/oa-site
   branch: main
   base_url: https://coffee-cms-auth.ken-marlow.workers.dev
+  auth_endpoint: auth
+  use_graphql: false # ADD THIS: Forces standard REST API, which is more stable for PATs
 
 media_folder: "public/images/coffee" # Where your Cloudinary-linked images live
 public_folder: "/images/coffee"
