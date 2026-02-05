@@ -14,12 +14,12 @@ collections:
     label: "Coffee Logs"
     folder: "src/content/coffee"
     create: true
-    delete: true # [cite: 2026-01-22]
-    media_folder: "" 
+    delete: true
+    media_folder: ""
     public_folder: ""
     view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
-    path: "{{year}}/{{slug}}" 
+    path: "{{year}}/{{slug}}"
     slug: "{{slug}}"
     fields:
       - { label: "Year", name: "year", widget: "string", hint: "e.g. 2025" }
@@ -45,7 +45,7 @@ collections:
       - name: "rating"
         label: "Rating"
         widget: "object"
-        fields: # Fixed indentation here
+        fields:
           - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
           - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
           - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
@@ -53,15 +53,13 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
- - name: "articles"
+  - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    # Removing 'nested' to see if it's blocking the scan [cite: 2026-02-05]
     create: true
-    delete: true # [cite: 2026-01-22]
-    media_folder: "" 
+    delete: true
+    media_folder: ""
     public_folder: ""
-    # Explicitly telling the CMS that every entry is an index.md file
     path: "{{slug}}/index"
     extension: "md"
     format: "frontmatter"
