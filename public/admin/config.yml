@@ -9,30 +9,31 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-collections:
-  - name: "coffee"
+- name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
     create: true
     delete: true # [cite: 2026-01-22]
     media_folder: ""
     public_folder: ""
-    sortable_fields: ["roastDate", "name", "roaster"]
+    # 'commit_date' adds the "Updated On" sort back in
+    sortable_fields: ["commit_date", "roastDate", "name", "roaster", "status"]
     view_groups: 
+      # Pattern extracts the year; the list will follow the default sort [cite: 2026-02-05]
       - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
       - { label: "Status", field: "status" }
     summary: "{{name}} | {{roaster}} | {{status}} | {{roastDate}}"
-    # Use {{fields.roastDate}} with a transformation or keep the simple path
-    # If the CMS doesn't auto-extract year for the path, we'll use:
     path: "{{year}}/{{slug}}"
     slug: "{{slug}}"
     fields:
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
-      # Hidden year field that auto-populates from roastDate to keep your folder structure [cite: 2026-02-05]
+      # Hidden year field for folder pathing [cite: 2026-02-05]
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
+      - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
+      # Hidden year field that auto-populates from roastDate to keep your folder structure [cite: 2026-02-05]
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Origin", name: "origin", widget: "string" }
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
