@@ -21,17 +21,18 @@ collections:
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
     summary: "{{name}} - {{roaster}} ({{roastDate}})"
-    sortable_fields: ["roastDate", "name"]
+    sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
       - label: "Currently Open"
         field: status
         pattern: "Open"
-      - label: "Finished / Stashed"
+      - label: "Finished"
         field: status
         pattern: "Finished"
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Last Updated", name: "lastUpdated", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
