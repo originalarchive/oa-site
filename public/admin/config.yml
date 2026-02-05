@@ -20,7 +20,7 @@ collections:
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
-    summary: "{{name}} - {{roaster}} ({{roastDate}}) {% if draft == true %}[DRAFT]{% else %}[PUBLISHED]{% endif %}"
+    summary: "{{name}} - {{roaster}} ({{roastDate}}) [Draft: {{draft}}]"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
       - label: "Currently Open"
@@ -69,7 +69,7 @@ collections:
     create: true
     nested: { depth: 2 } # Surgical depth for /folder/index.md structure
     path: "{{slug}}/index"
-    summary: "{{title}} ({{date}}) {% if draft == true %}[DRAFT]{% else %}[PUBLISHED]{% endif %}"
+    summary: "{{title}} ({{date}}) [Draft: {{draft}}]"
     sortable_fields: ["date", "title"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
