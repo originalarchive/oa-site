@@ -14,17 +14,11 @@ collections:
     label: "Coffee Logs"
     folder: "src/content/coffee"
     create: true
-    delete: true # [cite: 2026-01-22]
+    delete: true
     media_folder: ""
     public_folder: ""
-    sort: { field: "roastDate", direction: "Descending" }
-    sortable_fields: ["commit_date", "roastDate", "name", "roaster", "status"]
-    view_groups: 
-      - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
-      - { label: "Status", field: "status" }
-    summary: "{{name}} | {{roaster}} | {{status}} | {{roastDate}}"
     path: "{{year}}/{{slug}}"
-    slug: "{{name}}" # FIX: Keeps filenames short and clean
+    slug: "{{name}}" # THIS PREVENTS THE MEGA-SLUG
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
@@ -32,21 +26,10 @@ collections:
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
-      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: true, hint: "Just type the site, no https needed" } # FIX: Hardcode-friendly
-      - { label: "Origin", name: "origin", widget: "string", required: true }
+      - { label: "Origin", name: "origin", widget: "string", required: true } # REQUIRED FOR ASTRO
+      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: true } # REQUIRED FOR ASTRO
       - { label: "Brew Method", name: "brewMethod", widget: "string", required: true, default: "V60" }
       - { label: "Grind Size", name: "grindSize", widget: "string", required: true, default: "Medium" }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Region", name: "region", widget: "string", required: false }
-      - { label: "Producer", name: "producer", widget: "string", required: false }
-      - { label: "Farm", name: "farm", widget: "string", required: false }
-      - { label: "Variety", name: "variety", widget: "string", required: false }
-      - { label: "Elevation", name: "elevation", widget: "string", required: false }
-      - { label: "Process", name: "process", widget: "string", required: false }
-      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
-      - { label: "Ratio", name: "ratio", widget: "string", required: false }
-      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
       - name: "rating"
         label: "Rating"
         widget: "object"
@@ -55,25 +38,18 @@ collections:
           - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
           - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
           - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC" }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
     create: true
-    delete: true # [cite: 2026-01-22]
-    media_folder: ""
-    public_folder: ""
+    delete: true
     path: "{{slug}}/index"
     extension: "md"
     format: "frontmatter"
     slug: "{{title}}"
-    summary: "{{title}} | {{date}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD" }
+      - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Body Content", name: "body", widget: "markdown" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
