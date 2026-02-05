@@ -1,10 +1,8 @@
 backend:
   name: github
-  repo: originalarchive/oa-site # WE NEED TO UPDATE THIS
+  repo: originalarchive/oa-site
   branch: main
   base_url: https://coffee-cms-auth.ken-marlow.workers.dev
-  site_domain: originalarchive.net
-  auth_endpoint: auth
 
 media_folder: "public/images/coffee" # Where your Cloudinary-linked images live
 public_folder: "/images/coffee"
