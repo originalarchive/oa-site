@@ -13,10 +13,11 @@ collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    nested: { depth: 2 } # Allows CMS to see files inside /2024, /2025, etc.
+    nested: { depth: 2 }
     create: true
-    delete: true # [cite: 2026-01-22]
-    # This 'path' logic ensures NEW logs are saved in a folder named after the current year
+    delete: true # Enables the management functions [cite: 2026-01-22]
+    # This adds Roaster, Status, and Date to the list view
+    summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
     fields:
@@ -53,8 +54,13 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
+    nested: { depth: 2 } # Fix for subfolders
     create: true
     delete: true # [cite: 2026-01-22]
+    # Adds Date and Tags to the Article list view
+    summary: "{{title}} | {{date}} | {{tags}}"
+    # Matches the 'folder-per-post' style seen in your screenshot
+    path: "{{slug}}/index"
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
