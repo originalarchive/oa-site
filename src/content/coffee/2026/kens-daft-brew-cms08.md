@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 roastDate: 2026-02-05
 year: "{{year}}"
 name: Kens Daft brew CMS08
