@@ -3,10 +3,22 @@ import Layout from '../layouts/PageLayout.astro';
 ---
 
 <Layout title="404 - Page Not Found">
-  <main style="text-align: center; padding: 50px;">
-    <img src="/oa-404.png" class="block mx-auto w-48 alt="Original Archive 404 Logo" style="width: 200px;" />
-    <h1>Oops! Page Not Found</h1>
-    <p>It looks like this link is broken or the page has moved.</p>
-    <a href="/">Return Home</a>
+  <main class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
+    <img 
+      src="/oa-404.png" 
+      alt="Original Archive 404 Logo" 
+      class="block mx-auto w-48 h-auto bg-transparent border-none shadow-none" 
+      style="width: 200px; mix-blend-mode: multiply;" 
+    />
+    <h1 class="text-3xl font-bold mt-8 text-black dark:text-white">Oops! Page Not Found</h1>
+    <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-md">
+      It looks like this link is broken or the page has moved.
+    </p>
+    <a 
+      href="/" 
+      class="mt-8 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+    >
+      Return Home
+    </a>
   </main>
 </Layout>
