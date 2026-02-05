@@ -51,3 +51,15 @@ collections:
           - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
+
+  - name: "blog"
+    label: "Articles"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Pub Date", name: "pubDate", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
