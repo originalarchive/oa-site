@@ -26,3 +26,6 @@ rating:
   acidity: 2
   overall: Good
 ---
+
+
+![](chess.png)
