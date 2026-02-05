@@ -1,8 +1,9 @@
 ---
-title: "Focal length matters"
-description: "I debated what lens to buy and ended up with something I didn't originally plan for."
-date: "2026-01-20"
-draft: false
+title: Focal length matters
+description: I debated what lens to buy and ended up with something I didn't
+  originally plan for.
+date: 2026-01-20
+draft: true
 tags:
   - photography
 ---
