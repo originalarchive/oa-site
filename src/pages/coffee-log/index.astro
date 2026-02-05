@@ -4,8 +4,6 @@ import { getCollection } from "astro:content";
 import CoffeeTable from "../../components/CoffeeTable.astro";
 
 const coffeeEntries = await getCollection("coffee");
-
-// FIX: Handle cases where dateBrewed might be undefined
 const sortedEntries = coffeeEntries.sort((a, b) => {
   const dateA = a.data.dateBrewed ?? a.data.roastDate;
   const dateB = b.data.dateBrewed ?? b.data.roastDate;
@@ -29,17 +27,17 @@ const sortedEntries = coffeeEntries.sort((a, b) => {
         <input 
           type="text" 
           id="search-filter" 
-          placeholder="Search..." 
+          placeholder="Search roaster, origin, process..." 
           class="flex-1 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-3 py-1.5 text-sm outline-none focus:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white text-black dark:text-white min-w-0"
         />
 
         <div class="flex gap-2">
           <select id="rating-filter" class="w-24 sm:w-28 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-2 py-1.5 text-sm outline-none cursor-pointer hover:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white">
             <option value="all" selected>All Ratings</option>
-            <option value="Great">Great</option>
-            <option value="Good">Good</option>
-            <option value="Meh">Meh</option>
-            <option value="TBC">TBC</option>
+            <option value="great">Great</option>
+            <option value="good">Good</option>
+            <option value="meh">Meh</option>
+            <option value="tbc">TBC</option>
           </select>
 
           <select id="time-filter" class="w-32 bg-black/5 dark:bg-white/10 border border-transparent rounded-md px-2 py-1.5 text-sm outline-none cursor-pointer hover:border-black/20 focus:ring-1 focus:ring-black dark:focus:ring-white">
@@ -66,81 +64,43 @@ const sortedEntries = coffeeEntries.sort((a, b) => {
 
     function filterBrews() {
       const items = document.querySelectorAll('.coffee-card');
-      if (items.length === 0) return;
-
       const timeValue = timeFilter.value;
       const ratingValue = ratingFilter.value.toLowerCase();
       const searchValue = searchFilter.value.toLowerCase().trim();
       const now = new Date();
-
-      const sixMonthsAgo = new Date(); 
-      sixMonthsAgo.setMonth(now.getMonth() - 6);
-      const twelveMonthsAgo = new Date(); 
-      twelveMonthsAgo.setMonth(now.getMonth() - 12);
+      const sixMonthsAgo = new Date(); sixMonthsAgo.setMonth(now.getMonth() - 6);
+      const twelveMonthsAgo = new Date(); twelveMonthsAgo.setMonth(now.getMonth() - 12);
 
       items.forEach(item => {
-        // 1. DATA EXTRACTION
         const dateAttr = item.getAttribute('data-date');
         const brewDate = new Date(dateAttr);
-        
-        // Search bar looks at all text in the card
         const allText = item.innerText.toLowerCase();
-        
-        // Rating filter looks ONLY at the data attribute we added to the badge
         const ratingBadge = item.querySelector('[data-rating-value]');
         const actualRating = ratingBadge ? ratingBadge.getAttribute('data-rating-value') : "";
+        const rawStatus = item.getAttribute('data-pantry-status') || 'finished';
+        const isOpen = rawStatus.toLowerCase() === 'open';
 
+        let timeMatch = (timeValue === 'all') || 
+                        (timeValue === 'open' && isOpen) || 
+                        (timeValue === 'last-6' && (brewDate >= sixMonthsAgo || isOpen)) || 
+                        (timeValue === 'last-12' && (brewDate >= twelveMonthsAgo || isOpen));
 
-  // 2. TIME LOGIC (BULLETPROOF VERSION)
-const rawStatus = item.getAttribute('data-pantry-status') || 'finished';
-const pantryStatus = rawStatus.toLowerCase();
-const isOpen = pantryStatus === 'open';
-
-let timeMatch = false;
-
-if (timeValue === 'all') {
-    timeMatch = true;
-} else if (timeValue === 'open') {
-    timeMatch = isOpen;
-} else if (timeValue === 'last-6') {
-    // Show if it's within 6 months OR currently open
-    timeMatch = (brewDate >= sixMonthsAgo) || isOpen;
-} else if (timeValue === 'last-12') {
-    timeMatch = (brewDate >= twelveMonthsAgo) || isOpen;
-}
-
-        // 3. RATING LOGIC (FIXED: STRICT MATCHING)
-        // We no longer fallback to text.includes(). It's either 'all' or an exact match.
         const ratingMatch = (ratingValue === 'all') || (actualRating === ratingValue);
-
-        // 4. SEARCH LOGIC
         const searchMatch = allText.includes(searchValue);
 
-        // 5. APPLY VISIBILITY
         item.style.display = (timeMatch && ratingMatch && searchMatch) ? 'block' : 'none';
       });
 
-      // Update the "Entries Found" count
       const visible = Array.from(items).filter(i => i.style.display !== 'none').length;
       if (display) display.innerText = `${visible} Entries Found`;
     }
 
-    // Listeners
     timeFilter.addEventListener('change', filterBrews);
     ratingFilter.addEventListener('change', filterBrews);
     searchFilter.addEventListener('input', filterBrews);
-    
-    // Initial run
     filterBrews();
   }
 
-  // Support for View Transitions
   document.addEventListener('astro:page-load', setupFilters);
-  
-  // Initial load logic
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFilters);
-  } else {
-    setupFilters();
-  }
+  setupFilters();
 </script>
