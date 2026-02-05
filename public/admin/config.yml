@@ -19,7 +19,6 @@ collections:
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
-    # Fixes the missing Sort/Filter in the CMS UI
     summary: "{{name}} - {{roaster}} ({{roastDate}})"
     sortable_fields: ["roastDate", "name", "roaster"]
     fields:
@@ -57,9 +56,13 @@ collections:
 
   - name: "articles"
     label: "Articles"
-    folder: "src/content/articles" # Corrected folder name
+    folder: "src/content/articles"
     create: true
-    slug: "{{slug}}"
+    # This specifically targets your folder structure: folder-name/index.md
+    nested: true
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
     summary: "{{title}} ({{pubDate}})"
     sortable_fields: ["pubDate", "title"]
     fields:
