@@ -17,7 +17,7 @@ collections:
     delete: true
     media_folder: ""
     public_folder: ""
-   path: "{{year}}/{{slug}}"
+    path: "{{year}}/{{slug}}"
     slug: "{{name}}"
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -51,18 +51,3 @@ collections:
           - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
-
-
-  - name: "articles"
-    label: "Articles"
-    folder: "src/content/articles"
-    create: true
-    delete: true
-    path: "{{slug}}/index"
-    extension: "md"
-    format: "frontmatter"
-    slug: "{{title}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body Content", name: "body", widget: "markdown" }
