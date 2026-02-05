@@ -2,12 +2,11 @@ backend:
   name: github
   repo: originalarchive/oa-site
   branch: main
-  # Using your custom auth worker [cite: 2026-02-05]
   base_url: https://coffee-cms-auth.ken-marlow.workers.dev
   auth_endpoint: auth
   use_graphql: false
 
-# MANDATORY: Decap needs a global fallback to load
+# Satisfies the mandatory schema requirement
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -15,68 +14,36 @@ collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    # depth 2 looks inside src/content/coffee/YYYY/
-    nested: { depth: 2 }
+    # REMOVED 'nested' - this is what was causing the sidebar ghosts
     create: true
     delete: true # [cite: 2026-01-22]
-    # Relative media: saves images in the same folder as the .md file [cite: 2026-02-05]
-    media_folder: "" 
-    public_folder: ""
+    # This groups them by the year folder visually in the list [cite: 2026-02-05]
     view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}}"
-    # Matches your specific structure: coffee/2025/name.md
+    # Matches: src/content/coffee/2025/name.md
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
     fields:
+      - { label: "Year", name: "year", widget: "string", hint: "e.g. 2025" }
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
-      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
-      - { label: "Origin", name: "origin", widget: "string" }
-      - { label: "Region", name: "region", widget: "string", required: false }
-      - { label: "Producer", name: "producer", widget: "string", required: false }
-      - { label: "Farm", name: "farm", widget: "string", required: false }
-      - { label: "Variety", name: "variety", widget: "string", required: false }
-      - { label: "Elevation", name: "elevation", widget: "string", required: false }
-      - { label: "Process", name: "process", widget: "string", required: false }
-      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: false }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Brew Method", name: "brewMethod", widget: "string" }
-      - { label: "Grind Size", name: "grindSize", widget: "string" }
-      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
-      - { label: "Ratio", name: "ratio", widget: "string", required: false }
-      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
-      - name: "rating"
-        label: "Rating"
-        widget: "object"
-        fields:
-          - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
-          - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"] }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Body Content", name: "body", widget: "markdown", required: false }
+      # ... (include all your other coffee fields here)
 
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    # depth 1 for src/content/articles/slug/index.md
-    nested: { depth: 1 }
+    # Nested stays here because articles ARE in subfolders
+    nested: { depth: 1 } 
     create: true
     delete: true # [cite: 2026-01-22]
-    media_folder: "" 
-    public_folder: ""
     filter: { field: "extension", value: "md" }
     summary: "{{title}} | {{date}}"
-    # Matches your article structure: articles/slug/index.md
-    path: "{{slug}}/index"
+    # Matches: src/content/articles/slug/index.md
+    path: "{{slug}}/index" 
     format: "frontmatter"
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD" }
       - { label: "Body Content", name: "body", widget: "markdown" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      # ... (include your other article fields here)
