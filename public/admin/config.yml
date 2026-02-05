@@ -17,9 +17,8 @@ collections:
     delete: true # [cite: 2026-01-22]
     media_folder: ""
     public_folder: ""
-    # Defaults the view to newest roast date first [cite: 2026-02-05]
+    # Defaults to newest roast date first (fixes Year order) [cite: 2026-02-05]
     sort: { field: "roastDate", direction: "Descending" }
-    # Explicitly includes 'commit_date' for the "Updated On" sort option [cite: 2026-02-05]
     sortable_fields: ["commit_date", "roastDate", "name", "roaster", "status"]
     view_groups: 
       - { label: "Year", field: "roastDate", pattern: "\\d{4}" }
@@ -32,7 +31,14 @@ collections:
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" } 
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        # Prefixed with numbers to force 'Open' to the top of the group list
+        options: 
+          - { label: "Open", value: "1. Open" }
+          - { label: "Finished", value: "2. Finished" }
+        required: true
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Origin", name: "origin", widget: "string" }
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
