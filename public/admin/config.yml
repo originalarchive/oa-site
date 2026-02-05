@@ -6,6 +6,7 @@ backend:
   auth_endpoint: auth
   use_graphql: false
 
+# Global CMS setting preserved
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -21,6 +22,13 @@ collections:
     slug: "{{name}}"
     summary: "{{name}} - {{roaster}} ({{roastDate}})"
     sortable_fields: ["roastDate", "name"]
+    view_filters:
+      - label: "Currently Open"
+        field: status
+        pattern: "Open"
+      - label: "Finished / Stashed"
+        field: status
+        pattern: "Finished"
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
@@ -29,6 +37,8 @@ collections:
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
       - { label: "Origin", name: "origin", widget: "string", required: true }
+      # Image area for Coffee using Cloudinary support
+      - { label: "Coffee Image", name: "image", widget: "image", media_library: { config: { multiple: false } } }
       - name: "rating"
         label: "Rating"
         widget: "object"
@@ -43,14 +53,15 @@ collections:
     label: "Articles"
     folder: "src/content/articles"
     create: true
-    # Corrected nested syntax:
-    nested: { depth: 10 }
+    nested: { depth: 2 } # Surgical depth for /folder/index.md structure
     path: "{{slug}}/index"
     summary: "{{title}} ({{pubDate}})"
     sortable_fields: ["pubDate", "title"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
-      - { label: "Pub Date", name: "pubDate", widget: "datetime" }
+      - { label: "Pub Date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      # Image area for Articles using folder-relative uploads
+      - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }
