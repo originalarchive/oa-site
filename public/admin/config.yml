@@ -4,17 +4,21 @@ backend:
   branch: main
   base_url: https://coffee-cms-auth.ken-marlow.workers.dev
   auth_endpoint: auth
-  use_graphql: false # ADD THIS: Forces standard REST API, which is more stable for PATs
+  use_graphql: false
 
-media_folder: "public/images/coffee" # Where your Cloudinary-linked images live
-public_folder: "/images/coffee"
+media_folder: "src/assets/images/coffee"
+public_folder: "/src/assets/images/coffee"
 
 collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
+    nested: { depth: 2 } # Allows CMS to see files inside /2024, /2025, etc.
     create: true
-    slug: "{{year}}/{{slug}}"
+    delete: true # [cite: 2026-01-22]
+    # This 'path' logic ensures NEW logs are saved in a folder named after the current year
+    path: "{{year}}/{{slug}}" 
+    slug: "{{slug}}"
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Roaster", name: "roaster", widget: "string" }
@@ -27,9 +31,9 @@ collections:
       - { label: "Elevation", name: "elevation", widget: "string", required: false }
       - { label: "Process", name: "process", widget: "string", required: false }
       - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Roast Date", name: "roastDate", widget: "datetime", format: "YYYY-MM-DD", required: false }
+      - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: false }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Brew Method", name: "brewMethod", widget: "string" }
       - { label: "Grind Size", name: "grindSize", widget: "string" }
       - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
@@ -50,11 +54,12 @@ collections:
     label: "Articles"
     folder: "src/content/articles"
     create: true
+    delete: true # [cite: 2026-01-22]
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body Content", name: "body", widget: "markdown" }
