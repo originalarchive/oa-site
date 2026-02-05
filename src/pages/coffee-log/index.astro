@@ -4,9 +4,13 @@ import { getCollection } from "astro:content";
 import CoffeeTable from "../../components/CoffeeTable.astro";
 
 const coffeeEntries = await getCollection("coffee");
-const sortedEntries = coffeeEntries.sort((a, b) => 
-  b.data.dateBrewed.getTime() - a.data.dateBrewed.getTime()
-);
+
+// FIX: Handle cases where dateBrewed might be undefined
+const sortedEntries = coffeeEntries.sort((a, b) => {
+  const dateA = a.data.dateBrewed ?? a.data.roastDate;
+  const dateB = b.data.dateBrewed ?? b.data.roastDate;
+  return dateB.getTime() - dateA.getTime();
+});
 ---
 
 <PageLayout title="Coffee Log" description="Technical brewing log and tasting archive.">
