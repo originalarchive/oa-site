@@ -3,7 +3,7 @@ title: "Exploring Photography"
 date: 2024-09-02
 tags:
   - photography
-description: "Where to see, learn about and hear about all forms of photography. It’s funny that trying to find interesting photo blogs, tech sites, online portfolios or generally feed our obsession with photography passively when we can’t take pictures and we don’t want to sit and edit photographs is harder than I realised. They say the answer to becoming a better photographer is to take a hell of a lot of photographs, get feedback and explore work by other photographers. If we can’t get our fix practically then how do we use the resources around us to read, listen and look for ways to hone our skills?""
+description: "Where to see, learn about and hear about all forms of photography. It’s funny that trying to find interesting photo blogs, tech sites, online portfolios or generally feed our obsession with photography passively when we can’t take pictures and we don’t want to sit and edit photographs is harder than I realised. They say the answer to becoming a better photographer is to take a hell of a lot of photographs, get feedback and explore work by other photographers. If we can’t get our fix practically then how do we use the resources around us to read, listen and look for ways to hone our skills?"
 draft: false
 
 ---
