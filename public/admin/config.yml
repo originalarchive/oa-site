@@ -6,19 +6,24 @@ backend:
   auth_endpoint: auth
   use_graphql: false
 
+# MANDATORY: Decap requires a global fallback even if we use relative folders
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
 collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    # depth: 2 allows the CMS to see src/content/coffee/2025/file.md
+    # depth 2 for src/content/coffee/2025/file.md
     nested: { depth: 2 }
     create: true
-    delete: true # [cite: 2026-01-22]
+    delete: true
+    # Keeps images in the same folder as the .md file
     media_folder: "" 
     public_folder: ""
     view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}}"
-    # Removed '/index' because your coffee files are named 'slug.md' inside the year folder
+    # Matches your structure: src/content/coffee/YYYY/slug.md
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
     fields:
@@ -55,15 +60,15 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    # depth: 1 for articles/folder-name/index.md structure
+    # depth 1 for src/content/articles/slug/index.md
     nested: { depth: 1 }
     create: true
-    delete: true # [cite: 2026-01-22]
+    delete: true
     media_folder: "" 
     public_folder: ""
     filter: { field: "extension", value: "md" }
     summary: "{{title}} | {{date}}"
-    # Correctly targets the index.md file within the subfolder
+    # Correctly targets index.md within subfolders
     path: "{{slug}}/index"
     format: "frontmatter"
     slug: "{{slug}}"
