@@ -6,20 +6,19 @@ backend:
   auth_endpoint: auth
   use_graphql: false
 
-media_folder: "src/assets/images/coffee"
-public_folder: "/src/assets/images/coffee"
-
 collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    # depth: 2 is correct for coffee/YYYY/file.md
-    nested: { depth: 2 } 
+    # depth: 2 allows the CMS to see src/content/coffee/2025/file.md
+    nested: { depth: 2 }
     create: true
     delete: true # [cite: 2026-01-22]
-    # This line is the ONLY way to fix those stray sidebar entries [cite: 2026-02-05]
+    media_folder: "" 
+    public_folder: ""
     view_groups: [{ label: "Year", field: "year" }]
-    summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
+    summary: "{{name}} | {{roaster}} | {{status}}"
+    # Removed '/index' because your coffee files are named 'slug.md' inside the year folder
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
     fields:
@@ -56,21 +55,22 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    # depth: 1 for articles/slug/index.md
-    nested: { depth: 1 } 
+    # depth: 1 for articles/folder-name/index.md structure
+    nested: { depth: 1 }
     create: true
     delete: true # [cite: 2026-01-22]
+    media_folder: "" 
+    public_folder: ""
     filter: { field: "extension", value: "md" }
     summary: "{{title}} | {{date}}"
-    # Simplified path to avoid the .md.md conflict
-    path: "{{slug}}/index" 
-    extension: "md"
+    # Correctly targets the index.md file within the subfolder
+    path: "{{slug}}/index"
     format: "frontmatter"
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD" }
+      - { label: "Body Content", name: "body", widget: "markdown" }
       - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Body Content", name: "body", widget: "markdown" }
