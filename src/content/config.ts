@@ -49,6 +49,7 @@ const coffee = defineCollection({
     waterTemp: z.string().optional(),
     ratio: z.string().optional(),
     brewNotes: z.string().optional(),
+    image: z.string().optional(),
     rating: z.object({
       flavor: z.number().min(0).max(5),
       body: z.number().min(0).max(5),
