@@ -32,7 +32,7 @@ const coffee = defineCollection({
   schema: z.object({
     name: z.string(),
     roaster: z.string(),
-    roasterUrl: z.string().url().optional(),
+    roasterUrl: z.string().optional(), // Removed .url() to allow simple text
     origin: z.string(),
     region: z.string().optional(),
     producer: z.string().optional(),
@@ -41,9 +41,9 @@ const coffee = defineCollection({
     elevation: z.string().optional(),
     process: z.string().optional(),
     processDetails: z.string().optional(),
-    roastDate: z.coerce.date().optional(),
+    roastDate: z.coerce.date(), // Required to match CMS
     status: z.string().optional(),
-    dateBrewed: z.coerce.date(),
+    dateBrewed: z.coerce.date().optional(), // NOW OPTIONAL: Won't crash build if empty
     brewMethod: z.string(),
     grindSize: z.string(),
     waterTemp: z.string().optional(),
@@ -56,6 +56,8 @@ const coffee = defineCollection({
       overall: z.enum(["Meh", "Good", "Great", "TBC"]),
     }),
     tags: z.array(z.string()).optional(),
+    draft: z.boolean().default(false), // Added to match CMS toggle
+    year: z.string().optional(), // Added to match CMS hidden field
   }),
 });
 
