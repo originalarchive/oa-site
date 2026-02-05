@@ -6,7 +6,6 @@ backend:
   auth_endpoint: auth
   use_graphql: false
 
-# Global media folder is required for the CMS to boot
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -15,12 +14,10 @@ collections:
     label: "Coffee Logs"
     folder: "src/content/coffee"
     create: true
-    delete: true #
-    # This ensures new images for coffee stay in the specific year/slug folder
+    delete: true # [cite: 2026-01-22]
     media_folder: "" 
     public_folder: ""
     view_groups: [{ label: "Year", field: "year" }]
-    # ADDED {{dateBrewed}} to the summary for visibility in the list
     summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
     path: "{{year}}/{{slug}}" 
     slug: "{{slug}}"
@@ -48,7 +45,7 @@ collections:
       - name: "rating"
         label: "Rating"
         widget: "object"
-        fields:
+        fields: # Fixed indentation here
           - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5 }
           - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5 }
           - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5 }
@@ -59,20 +56,20 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    # Nested allows looking into folder/index.md
-    nested: { depth: 1 } 
+    nested: { depth: 1 } # [cite: 2026-02-05]
     create: true
-    delete: true #
+    delete: true # [cite: 2026-01-22]
     media_folder: "" 
     public_folder: ""
-    # Filter by 'index' specifically since that is your filename
-    filter: { field: "title", value: ".*" } 
-    summary: "{{title}} | {{date}}"
-    # Explicitly targeting index files
     path: "{{slug}}/index"
     extension: "md"
     format: "frontmatter"
     slug: "{{slug}}"
+    summary: "{{title}} | {{date}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD" }
+      - { label: "Body Content", name: "body", widget: "markdown" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
