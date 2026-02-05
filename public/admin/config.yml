@@ -13,10 +13,11 @@ collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    nested: { depth: 2 }
+    # depth: 2 is correct for coffee/YYYY/file.md
+    nested: { depth: 2 } 
     create: true
     delete: true # [cite: 2026-01-22]
-    # Groups the stray sidebar entries into Year folders [cite: 2026-02-05]
+    # This line is the ONLY way to fix those stray sidebar entries [cite: 2026-02-05]
     view_groups: [{ label: "Year", field: "year" }]
     summary: "{{name}} | {{roaster}} | {{status}} | {{dateBrewed}}"
     path: "{{year}}/{{slug}}" 
@@ -55,11 +56,13 @@ collections:
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
-    nested: { depth: 1 } # Looks inside /50-photo-tips/ for index.md
+    # depth: 1 for articles/slug/index.md
+    nested: { depth: 1 } 
     create: true
     delete: true # [cite: 2026-01-22]
     filter: { field: "extension", value: "md" }
     summary: "{{title}} | {{date}}"
+    # Simplified path to avoid the .md.md conflict
     path: "{{slug}}/index" 
     extension: "md"
     format: "frontmatter"
