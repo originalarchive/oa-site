@@ -2,8 +2,6 @@ backend:
   name: github
   repo: originalarchive/oa-site
   branch: main
-  base_url: https://coffee-cms-auth.ken-marlow.workers.dev
-  auth_endpoint: auth
   use_graphql: false
 
 # Global CMS setting preserved
