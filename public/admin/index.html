@@ -8,12 +8,14 @@
 </head>
 <body>
   <script>
-    // This MUST be set before the CMS script loads
+    // This MUST be set before the script loads to stop the "Not Found" redirect
     window.CMS_MANUAL_INIT = true;
   </script>
+  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
   <script>
-    // Manually trigger the login box with your specific repo settings
+    // This forces the login box to appear for your Fine-Grained Token
     window.CMS.init({
       config: {
         backend: {
