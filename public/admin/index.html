@@ -3,12 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Original Archive Content Manager</title>
+  <title>Content Manager</title>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <script>
+    // This script manually initializes the CMS 
+    // It tells it to ignore external auth workers
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'originalarchive/oa-site',
+          branch: 'main',
+          use_graphql: false,
+        },
+        // Point to your existing config.yml for collections
+        load_config_file: true, 
+      },
+    });
+  </script>
 </body>
 </html>
