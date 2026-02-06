@@ -8,14 +8,14 @@
 </head>
 <body>
   <script>
-    // This MUST be set before the script loads to stop the "Not Found" redirect
+    // 1. This is the "Kill Switch" for the Netlify redirect loop.
     window.CMS_MANUAL_INIT = true;
   </script>
   
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // This forces the login box to appear for your Fine-Grained Token
+    // 2. This manually forces the GitHub Token login box to appear.
     window.CMS.init({
       config: {
         backend: {
