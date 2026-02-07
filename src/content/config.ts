@@ -50,12 +50,21 @@ const coffee = defineCollection({
     ratio: z.string().optional(),
     brewNotes: z.string().optional(),
     image: z.string().optional(),
+
+        // NEW flat rating fields
+    ratingFlavor: z.number().min(0).max(5),
+    ratingBody: z.number().min(0).max(5),
+    ratingAcidity: z.number().min(0).max(5),
+    ratingOverall: z.enum(["Meh", "Good", "Great", "TBC"]),
+    
+    // OLD nested rating (make optional for backward compatibility)
     rating: z.object({
-      flavor: z.number().min(0).max(5),
-      body: z.number().min(0).max(5),
-      acidity: z.number().min(0).max(5),
-      overall: z.enum(["Meh", "Good", "Great", "TBC"]),
-    }),
+      flavor: z.number(),
+      body: z.number(),
+      acidity: z.number(),
+      overall: z.string()
+    }).optional(),
+    
     tags: z.array(z.string()).optional(),
     draft: z.boolean().default(false), // Added to match CMS toggle
     year: z.string().optional(), // Added to match CMS hidden field
