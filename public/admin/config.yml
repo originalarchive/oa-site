@@ -19,7 +19,7 @@ collections:
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
-    summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}}"
+    summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - {{#if draft}}[DRAFT]{{/if}}"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
       - label: "Currently Open"
@@ -28,10 +28,16 @@ collections:
       - label: "Finished"
         field: status
         pattern: "Finished"
+      - label: "Drafts"
+        field: draft
+        pattern: true
+      - label: "Published"
+        field: draft
+        pattern: false
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
-      - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" }
+      - { label: "Year", name: "year", widget: "hidden", default: "{{roastDate | date('YYYY')}}" }
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
