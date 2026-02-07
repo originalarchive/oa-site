@@ -6,7 +6,7 @@ backend:
   auth_endpoint: /auth
   use_graphql: false
 
-# Global CMS setting preserved
+# Global Media Settings
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -14,8 +14,8 @@ collections:
   - name: "coffee"
     label: "Coffee Logs"
     folder: "src/content/coffee"
-    create: true
-    delete: true
+    create: true # Enables 'New record'
+    delete: true # Enables 'Delete'
     extension: "md"
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
@@ -51,23 +51,22 @@ collections:
       - { label: "Process Details", name: "processDetails", widget: "text", required: false }
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
-      # Image area for Coffee using Cloudinary support
-      - { label: "Coffee Image", name: "image", widget: "image", required: false, media_library: { config: { multiple: false } } }
+      - { label: "Coffee Image", name: "image", widget: "image", required: false }
       - name: "rating"
         label: "Rating"
         widget: "object"
         fields:
           - { label: "Flavor (0-5)", name: "flavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
-          - { label: "Body (0-5)", name: "body", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
+          - { label: "Body Score (0-5)", name: "body_score", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
           - { label: "Acidity (0-5)", name: "acidity", widget: "number", value_type: "int", min: 0, max: 5, default: 0 }
           - { label: "Overall", name: "overall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC" }
-      - { label: "Body Content", name: "body", widget: "markdown", required: false }
+      - { label: "Notes Content", name: "body", widget: "markdown", required: false }
 
   - name: "articles"
     label: "Articles"
     folder: "src/content/articles"
     create: true
-    nested: { depth: 2 } # Surgical depth for /folder/index.md structure
+    nested: { depth: 2 }
     path: "{{slug}}/index"
     summary: "{{title}} ({{date}}) [Draft: {{draft}}]"
     sortable_fields: ["date", "title"]
@@ -75,7 +74,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
-      # Image area for Articles using folder-relative uploads
       - { label: "Featured Image", name: "coverImage", widget: "image", required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }

@@ -7,13 +7,15 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <div id="nc-root"></div>
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // FACT: For OAuth workers, we do NOT use CMS_MANUAL_INIT. 
-    // The CMS needs to automatically handle the handshake callback logic.
     CMS.init({
       config: {
+        // 2. ADD THIS LINE: Tells the CMS to mount inside the div above
+        container_id: 'nc-root',
         backend: {
           name: 'github',
           repo: 'originalarchive/oa-site',
