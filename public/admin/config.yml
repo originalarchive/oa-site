@@ -48,7 +48,7 @@ collections:
       - { label: "Elevation", name: "elevation", widget: "string", required: false }
       - { label: "Process", name: "process", widget: "string", required: false }
       - { label: "Process Details", name: "processDetails", widget: "text", required: false }
-      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
       - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
       - { label: "Coffee Image", name: "image", widget: "image", required: false, media_library: { config: { multiple: false } } }
       - { label: "Rating - Flavor (0-5)", name: "ratingFlavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
