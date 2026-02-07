@@ -7,40 +7,59 @@ interface Props {
 
 const { coffeeEntries } = Astro.props;
 
-// 1. PRE-RENDER EVERYTHING
-const renderedEntries = await Promise.all(
-  coffeeEntries.map(async (entry) => {
-    const { Content } = await entry.render();
-    return { entry, Content };
-  })
-);
+// 1. HELPER FUNCTIONS
+const renderStars = (num: number) => "★".repeat(Math.max(0, Math.min(5, num))) + "☆".repeat(Math.max(0, 5 - num));
 
-// 2. HELPER FUNCTIONS
-const renderStars = (num: number) => "★".repeat(num) + "☆".repeat(5 - num);
-
-const statusColors = {
+// Factual Fix: Adding Record<string, string> prevents the TS7053 index error
+const statusColors: Record<string, string> = {
   "Great": "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
   "Good": "bg-stone-500/10 text-stone-600 dark:text-stone-400 border-stone-500/20",
   "Meh": "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
   "TBC": "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
 };
+
+// 2. PRE-RENDER & DATA NORMALIZATION
+const renderedEntries = await Promise.all(
+  coffeeEntries.map(async (entry) => {
+    const { Content } = await entry.render();
+    const d = entry.data;
+
+    // Factual Fix: Safe extraction to handle both Flat and Nested schemas
+    // This prevents the "possibly undefined" crash for old records
+    const ratings = {
+      flavor: d.ratingFlavor ?? d.rating?.flavor ?? 0,
+      body: d.ratingBody ?? d.rating?.body ?? 0,
+      acidity: d.ratingAcidity ?? d.rating?.acidity ?? 0,
+      overall: (d.ratingOverall || d.rating?.overall || "TBC") as keyof typeof statusColors
+    };
+
+    return { 
+      entry, 
+      Content,
+      ratings,
+      colorClass: statusColors[ratings.overall] || statusColors["TBC"]
+    };
+  })
+);
 ---
 
 <div class="space-y-4">
-  {renderedEntries.map(({ entry, Content }) => {
-    const d = entry.data;
-    const currentStatus = d.rating.overall;
-    
-    // SAFE DATE FALLBACK: Prevents crash if Date Brewed is empty
+  {renderedEntries.map((item) => {
+    // 1. EXTRACT DATA FROM THE NORMALIZED ITEM
+    const { entry, Content, ratings, colorClass } = item;
+    const d = entry.data; 
+    const currentStatus = ratings.overall;
+
+    // 2. SAFE DATE FALLBACK
     const displayDate = d.dateBrewed || d.roastDate || new Date();
     const isoDate = displayDate.toISOString();
 
     return (
-     <div 
-      class="coffee-card bg-white dark:bg-stone-900 border border-black/10 dark:border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" 
-      data-date={isoDate}
-      data-pantry-status={String(d.status || "Finished")}
-    >
+      <div 
+        class="coffee-card bg-white dark:bg-stone-900 border border-black/10 dark:border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" 
+        data-date={isoDate}
+        data-pantry-status={String(d.status || "Finished")}
+      >
         <span class="sr-only invisible h-0 w-0 overflow-hidden">
           {d.process} {d.processDetails} {d.region} {d.variety}
         </span>
@@ -72,9 +91,9 @@ const statusColors = {
                 </div>
 
                 <div class="mt-3 flex gap-3 sm:gap-4 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest opacity-50">
-                  <span>Flv: <span class="text-black dark:text-white">{renderStars(d.rating.flavor)}</span></span>
-                  <span>Bdy: <span class="text-black dark:text-white">{renderStars(d.rating.body)}</span></span>
-                  <span>Acd: <span class="text-black dark:text-white">{renderStars(d.rating.acidity)}</span></span>
+                  <span>Flv: <span class="text-black dark:text-white">{renderStars(ratings.flavor)}</span></span>
+                  <span>Bdy: <span class="text-black dark:text-white">{renderStars(ratings.body)}</span></span>
+                  <span>Acd: <span class="text-black dark:text-white">{renderStars(ratings.acidity)}</span></span>
                 </div>
               </div>
 
@@ -90,7 +109,7 @@ const statusColors = {
                     data-rating-value={currentStatus.toLowerCase()}
                     class:list={[
                       "text-[9px] font-bold uppercase tracking-tighter py-1 rounded border text-center w-[64px] leading-tight shadow-sm",
-                      statusColors[currentStatus] || "bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60"
+                      colorClass
                     ]}
                   >
                     {currentStatus}
@@ -138,7 +157,6 @@ const statusColors = {
     );
   })}
 </div>
-
 <style>
   summary::-webkit-details-marker { display: none; }
   summary { list-style: none; }
