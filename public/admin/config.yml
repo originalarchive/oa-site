@@ -19,7 +19,7 @@ collections:
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
-    summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - {{#if draft}}[DRAFT]{{/if}}"
+    summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - [Draft: {{draft}}]"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
       - label: "Currently Open"
