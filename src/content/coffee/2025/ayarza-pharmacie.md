@@ -21,11 +21,10 @@ grindSize: 28 clicks
 waterTemp: 89°C
 ratio: 1:15
 brewNotes: Dull and britter blend. Switch only.
-rating:
-  flavor: 1
-  body: 1
-  acidity: 2
-  overall: Meh
+ratingFlavor: 1
+ratingBody: 1
+ratingAcidity: 2
+ratingOverall: Meh
 tags:
   - colombia
   - washed
