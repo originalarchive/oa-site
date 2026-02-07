@@ -22,7 +22,7 @@ collections:
     summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - [Draft: {{draft}}]"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
-      - label: "Currently Open"
+      - label: "Open"
         field: status
         pattern: "Open"
       - label: "Finished"
