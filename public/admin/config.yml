@@ -50,7 +50,7 @@ collections:
       - { label: "Process Details", name: "processDetails", widget: "text", required: false }
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
-      - { label: "Coffee Image", name: "image", widget: "image", required: false }
+      - { label: "Coffee Image", name: "image", widget: "image", required: false, media_library: { config: { multiple: false } } }
       - { label: "Rating - Flavor (0-5)", name: "ratingFlavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
       - { label: "Rating - Body (0-5)", name: "ratingBody", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
       - { label: "Rating - Acidity (0-5)", name: "ratingAcidity", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }

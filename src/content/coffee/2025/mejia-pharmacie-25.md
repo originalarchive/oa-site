@@ -22,11 +22,10 @@ brewNotes: "Low agitation, develops sweetness"
 grindSize: "27 clicks" # Commandante C40
 waterTemp: "87°C"
 ratio: "1:15"
-rating:
-  flavor: 2
-  body: 4
-  acidity: 2
-  overall: "Good"
+ratingFlavor: 2
+ratingBody: 4
+ratingAcidity: 2
+ratingOverall: "Good"
 tags:
   - honduras
   

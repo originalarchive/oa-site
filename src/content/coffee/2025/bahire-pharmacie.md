@@ -22,11 +22,10 @@ brewNotes: "50/50 recipe - 350ml or 450ml"
 grindSize: "28 clicks" # Commandante C40
 waterTemp: "89°C"
 ratio: "1:15"
-rating:
-  flavor: 3
-  body: 4
-  acidity: 2
-  overall: "Good"
+ratingFlavor: 3
+ratingBody: 4
+ratingAcidity: 2
+ratingOverall: "Good"
 tags:
   - burundi
   - washed

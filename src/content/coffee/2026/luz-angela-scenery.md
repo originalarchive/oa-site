@@ -18,11 +18,10 @@ grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
 brewNotes: ""
-rating:
-  flavor: 0
-  body: 0
-  acidity: 0
-  overall: "TBC"
+ratingFlavor: 0
+ratingBody: 0
+ratingAcidity: 0
+ratingOverall: "TBC"
 tags: [coffee, log]
 ---
 

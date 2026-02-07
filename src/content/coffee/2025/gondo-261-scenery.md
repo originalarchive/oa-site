@@ -12,16 +12,16 @@ process: "Washed"
 processDetails: "Dry fermented for 18 hours overnight"
 roastDate: "2025-10-22"
 dateBrewed: "2025-11-10"
+status: "Finished"
 brewMethod: "V60"
 grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
 brewNotes: "Oh wow, the fruits smacked you in the nose"
-rating:
-  flavor: 5
-  body: 4
-  acidity: 3
-  overall: "Great"
+ratingFlavor: 5
+ratingBody: 4
+ratingAcidity: 3
+ratingOverall: "Great"  
 tags: [coffee, log]
 ---
 

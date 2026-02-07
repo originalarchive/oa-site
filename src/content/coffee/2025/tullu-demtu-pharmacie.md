@@ -16,16 +16,16 @@ arrivedUK: ""
 roastLevel: "Light"
 roastDate: "2025-11-15"
 dateBrewed: "2025-12-05"
+status: "Finished"
 brewMethod: "v60"
 brewNotes: " "
 grindSize: "28 clicks" # Commandante C40
 waterTemp: "93°C"
 ratio: "1:15"
-rating:
-  flavor: 2
-  body: 3
-  acidity: 2
-  overall: "Good"
+ratingFlavor: 2
+ratingBody: 3
+ratingAcidity: 2
+ratingOverall: "Good"
 tags:
   - Ethiopia
   

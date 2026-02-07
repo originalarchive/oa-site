@@ -21,11 +21,10 @@ brewMethod: "V60"
 grindSize: "25 clicks" # Commandante C40
 waterTemp: "94°C"
 ratio: "1:14"
-rating:
-  flavor: 4
-  body: 3
-  acidity: 4
-  overall: "Great"
+ratingFlavor: 4
+ratingBody: 3
+ratingAcidity: 4
+ratingOverall: "Great"
 tags:
   - colombia
   - washed

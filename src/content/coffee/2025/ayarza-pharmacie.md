@@ -15,7 +15,7 @@ elevation: 1400-2000 MASL
 process: Washed
 processDetails: ""
 roastDate: 2025-12-19
-status: Finished
+status: "Finished"
 dateBrewed: 2025-12-26
 grindSize: 28 clicks
 waterTemp: 89°C
@@ -24,7 +24,7 @@ brewNotes: Dull and britter blend. Switch only.
 ratingFlavor: 1
 ratingBody: 1
 ratingAcidity: 2
-ratingOverall: Meh
+ratingOverall: "Meh"
 tags:
   - colombia
   - washed

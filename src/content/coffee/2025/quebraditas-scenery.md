@@ -12,16 +12,16 @@ process: "Advanced Natural"
 processDetails: "Hydro / Yeast innoculated - 72hrs anoxic, slow dried, water and yeast culture 248hrs, dried natural."
 roastDate: 2025-12-04
 dateBrewed: 2025-12-20
+status: "Finished"
 brewMethod: "V60"
 grindSize: "28 clicks"
 waterTemp: "89°C"
 ratio: "1:15"
 brewNotes: "First time I really explored low temp brewing for this style. Low agitation brew method."
-rating:
-  flavor: 5
-  body: 3
-  acidity: 3
-  overall: "Great"
+ratingFlavor: 5
+ratingBody: 3
+ratingAcidity: 3
+ratingOverall: "Great"
 tags: [coffee, log]
 ---
 
