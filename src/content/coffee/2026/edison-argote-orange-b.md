@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 roastDate: 2026-02-03
 year: ''
 name: Edison Argote Orange B
@@ -26,3 +26,7 @@ ratingBody: 0
 ratingAcidity: 0
 ratingOverall: TBC
 ---
+
+### Skylark tasting notes
+
+Pink Grapefruit, Vanilla, Aperol Spritz
