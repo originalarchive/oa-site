@@ -41,9 +41,9 @@ const coffee = defineCollection({
     elevation: z.string().optional(),
     process: z.string().optional(),
     processDetails: z.string().optional(),
-    roastDate: z.coerce.date(), // Required to match CMS
+    roastDate: z.coerce.date().nullable().optional(),
     status: z.string().optional(),
-    dateBrewed: z.coerce.date().nullable().optional(),
+    dateBrewed: z.preprocess((val) => { if (val === 'dateBrewed' || val === '') return null; return val; }, z.coerce.date().nullable().optional()),
     brewMethod: z.string(),
     grindSize: z.string(),
     waterTemp: z.string().optional(),
