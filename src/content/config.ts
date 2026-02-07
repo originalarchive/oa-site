@@ -43,7 +43,7 @@ const coffee = defineCollection({
     processDetails: z.string().optional(),
     roastDate: z.coerce.date(), // Required to match CMS
     status: z.string().optional(),
-    dateBrewed: z.union([z.date(), z.string(), z.null()]).optional().transform((val) => (val instanceof Date ? val : null)),
+    dateBrewed: z.coerce.date().nullable().optional(),
     brewMethod: z.string(),
     grindSize: z.string(),
     waterTemp: z.string().optional(),
