@@ -8,5 +8,23 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // FACT: For OAuth workers, we do NOT use CMS_MANUAL_INIT. 
+    // The CMS needs to automatically handle the handshake callback logic.
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'originalarchive/oa-site',
+          branch: 'main',
+          base_url: 'https://coffee-cms-auth.ken-marlow.workers.dev',
+          auth_endpoint: '/auth',
+          use_graphql: false
+        },
+        load_config_file: true
+      }
+    });
+  </script>
 </body>
 </html>
