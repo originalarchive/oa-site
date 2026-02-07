@@ -18,7 +18,7 @@ variety: Orange Bourbon
 elevation: 1600-1850 MASL
 process: Natural
 processDetails: ''
-dateBrewed: 2026-07-02
+dateBrewed: ''
 brewNotes: ''
 image: ''
 ratingFlavor: 0
