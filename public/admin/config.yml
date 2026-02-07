@@ -28,12 +28,6 @@ collections:
       - label: "Finished"
         field: status
         pattern: "Finished"
-      - label: "Drafts"
-        field: draft
-        pattern: true
-      - label: "Published"
-        field: draft
-        pattern: false
     fields:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
