@@ -19,7 +19,7 @@ collections:
     format: "frontmatter"
     path: "{{year}}/{{slug}}"
     slug: "{{name}}"
-    summary: "{{name}} - {{roaster}} ({{roastDate}})"
+    summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}}"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
       - label: "Currently Open"
@@ -34,8 +34,23 @@ collections:
       - { label: "Year", name: "year", widget: "hidden", default: "{{year}}" }
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Roaster", name: "roaster", widget: "string", required: true }
+      - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
+      - { label: "Brew Method", name: "brewMethod", widget: "string", required: true }
+      - { label: "Grind Size", name: "grindSize", widget: "string", required: true }
+      - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
+      - { label: "Ratio", name: "ratio", widget: "string", required: false }
       - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
       - { label: "Origin", name: "origin", widget: "string", required: true }
+      - { label: "Region", name: "region", widget: "string", required: false }
+      - { label: "Producer", name: "producer", widget: "string", required: false }
+      - { label: "Farm", name: "farm", widget: "string", required: false }
+      - { label: "Variety", name: "variety", widget: "string", required: false }
+      - { label: "Elevation", name: "elevation", widget: "string", required: false }
+      - { label: "Process", name: "process", widget: "string", required: false }
+      - { label: "Process Details", name: "processDetails", widget: "text", required: false }
+      - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Brew Notes", name: "brewNotes", widget: "text", required: false }
+      - { label: "Coffee Image", name: "image", widget: "image", required: false }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
   - name: "articles"
