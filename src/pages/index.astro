@@ -22,7 +22,7 @@ const allPhotos = await getCollection("photos", ({ data }) => {
 // 2. Sort by Date (and other criteria)
 const blog = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 5);
+  .slice(0, 8);
 
 const featuredPhotos = allPhotos
   .sort((a, b) => {
@@ -42,7 +42,7 @@ const featuredPhotos = allPhotos
 <PageLayout title="home" description={SITE.DESCRIPTION}>
   <div class="container-narrow">
     
- <section class="animate mt-4 mb-20">
+ <section class="animate mt-4 mb-8">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         
         <div class="md:col-span-7 space-y-6">
