@@ -9,6 +9,7 @@ import { SITE } from "@consts";
 <html lang="en">
   <head>
     <Head title={SITE.NAME} description={SITE.DESCRIPTION} />
+    <link rel="canonical" href={Astro.url} />
   </head>
   <body class="bg-[#f5f5f4] dark:bg-stone-900 text-stone-800 dark:text-stone-200 transition-colors duration-300 flex flex-col min-h-screen">
     <Header />
