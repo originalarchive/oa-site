@@ -71,4 +71,19 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Featured Image", name: "coverImage", widget: "image", required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      # NEW TAGS FIELD
+      - label: "Tags"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        options:
+          - "coffee"
+          - "photography"
+          - "journal"
+          - "recipe"
+          - "review"
+          - "tech"
+          - "kids"
+          - "opinion"
+          - "feature"
       - { label: "Body", name: "body", widget: "markdown" }

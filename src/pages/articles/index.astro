@@ -32,77 +32,89 @@ const months = Object.keys(groupedArticles);
 ---
 
 <PageLayout title="Articles">
-<div class="container-standard">
-  <div class="max-w-8xl mx-auto px-6 py-4">
-    <div class="mb-6 relative z-10">
-      <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Articles</h1>
-    </div>
+  <div class="container-standard">
+    <div class="max-w-8xl mx-auto px-6 py-4">
+      <div class="mb-6 relative z-10">
+        <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Articles</h1>
+      </div>
 
-    <div class="flex flex-col md:grid md:grid-cols-[100px_1fr] gap-4 mb-12">
-      <aside class="flex flex-col gap-2 mb-8 md:mb-0 md:pt-2 md:sticky md:top-20 h-fit md:border-r border-black/5 dark:border-white/5 md:pr-4">
-        <span class="text-[9px] font-mono uppercase tracking-widest opacity-30 mb-2">Archive</span>
-        <div class="flex flex-row md:flex-col flex-wrap md:flex-nowrap gap-4 md:gap-2">
-          <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-100 font-bold" data-year="all">
-            All Time
-          </button>
-          {allYears.map(year => (
-            <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" data-year={year}>
-              {year}
-            </button>
-          ))}
-        </div>
-      </aside>
+      <div class="flex flex-col md:grid md:grid-cols-[140px_1fr] gap-4 mb-12">
+        <aside class="flex flex-col gap-8 mb-8 md:mb-0 md:pt-2 md:sticky md:top-20 h-fit md:border-r border-black/5 dark:border-white/5 md:pr-4">
+          
+          {/* Categories Section */}
+          <div class="flex flex-col gap-2">
+            <span class="text-[9px] font-mono uppercase tracking-widest opacity-30 mb-2">Categories</span>
+            <div class="flex flex-row md:flex-col flex-wrap md:flex-nowrap gap-2">
+              {allTags.filter(tag => tag !== 'feature').map(tag => (
+                <button 
+                  class="tag-filter text-left text-[10px] font-mono lowercase tracking-widest opacity-60 hover:opacity-100 transition-opacity truncate" 
+                  data-tag={tag}
+                >
+                  #{tag} <span class="opacity-20 ml-1">{tagCounts[tag]}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <div class="space-y-8">
-        <div class="space-y-4">
-          <input 
-            type="text" 
-            id="search" 
-            placeholder="Search archive..." 
-            class="w-full px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-md focus:outline-none font-mono text-sm" 
-          />
-          <div class="flex flex-wrap gap-2 items-center">
-            {allTags.map(tag => (
-              <button class="tag-filter px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest border border-black/10 dark:border-white/10 rounded-full opacity-50 hover:opacity-100 transition-all" data-tag={tag}>
-                #{tag} <span class="opacity-30 ml-1">{tagCounts[tag]}</span>
+          {/* Archive Section */}
+          <div class="flex flex-col gap-2">
+            <span class="text-[9px] font-mono uppercase tracking-widest opacity-30 mb-2">Archive</span>
+            <div class="flex flex-row md:flex-col flex-wrap md:flex-nowrap gap-4 md:gap-2">
+              <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-100 font-bold" data-year="all">
+                All Time
               </button>
+              {allYears.map(year => (
+                <button class="year-filter text-left text-[10px] font-mono uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" data-year={year}>
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <input 
+              type="text" 
+              id="search" 
+              placeholder="Search archive..." 
+              class="w-full px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-md focus:outline-none font-mono text-sm" 
+            />
+          </div>
+
+          <div id="articles-container" class="space-y-4">
+            {months.map(month => (
+              <section class="month-group flex flex-col md:grid md:grid-cols-[140px_1fr] gap-0 md:gap-4 md:ml-[-104px]">
+                {/* Month Label */}
+                <div class="text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 pt-8 pb-2 md:pt-4 md:sticky md:top-20 h-fit text-left md:text-right md:pr-4">
+                  {month.split(' ')[0]}
+                </div>
+                
+                {/* Cards container */}
+                <div class="flex flex-col gap-4"> 
+                  {groupedArticles[month].map(post => (
+                    <div class="article-item" data-title={post.data.title.toLowerCase()} data-desc={post.data.description?.toLowerCase() || ''} data-tags={post.data.tags?.join(',').toLowerCase() || ''} data-year={post.data.date.getFullYear().toString()}>
+                      <a href={`/articles/${post.slug}`} class="group flex justify-between gap-4 p-4 rounded-xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 transition-all hover:border-black/20 dark:hover:border-white/20">
+                        <div class="flex flex-col"> 
+                          <span class="text-[16px] font-sans font-semibold tracking-tight text-black dark:text-white leading-snug">{post.data.title}</span>
+                          {post.data.description && <span class="text-[14px] opacity-60 line-clamp-2 font-serif mt-1 leading-relaxed">{post.data.description}</span>}
+                        </div>
+                        <div class="h-[24px] flex items-center flex-shrink-0">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                        </div>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>
-
-     <div id="articles-container" class="space-y-4">
-  {months.map(month => (
-    <section class="month-group flex flex-col md:grid md:grid-cols-[100px_1fr] gap-0 md:gap-4 md:ml-[-104px]">
-      {/* Month Label: Left aligned on mobile, right aligned on desktop */}
-      <div class="text-[10px] font-mono uppercase tracking-[0.2em] opacity-30 pt-8 pb-2 md:pt-4 md:sticky md:top-20 h-fit text-left md:text-right md:pr-4">
-        {month.split(' ')[0]}
-      </div>
-      
-      {/* Cards container: No extra padding on mobile to keep it tight */}
-      <div class="flex flex-col gap-4"> 
-        {groupedArticles[month].map(post => (
-          <div class="article-item" data-title={post.data.title.toLowerCase()} data-desc={post.data.description?.toLowerCase() || ''} data-tags={post.data.tags?.join(',').toLowerCase() || ''} data-year={post.data.date.getFullYear().toString()}>
-            <a href={`/articles/${post.slug}`} class="group flex justify-between gap-4 p-4 rounded-xl border border-black/5 dark:border-white/5 bg-white dark:bg-white/5 transition-all hover:border-black/20 dark:hover:border-white/20">
-              <div class="flex flex-col"> 
-                <span class="text-[16px] font-sans font-semibold tracking-tight text-black dark:text-white leading-snug">{post.data.title}</span>
-                {post.data.description && <span class="text-[14px] opacity-60 line-clamp-2 font-serif mt-1 leading-relaxed">{post.data.description}</span>}
-              </div>
-              <div class="h-[24px] flex items-center flex-shrink-0">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
-    </section>
-  ))}
-</div>
       </div>
     </div>
-  </div>
   </div>
 </PageLayout>
 
@@ -151,28 +163,28 @@ const months = Object.keys(groupedArticles);
       });
     });
 
-    tagBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tag = btn.getAttribute('data-tag') || 'all';
-        
-        if (currentTag === tag) {
-          // Deselect
-          currentTag = 'all';
-          btn.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-          btn.classList.add('opacity-50');
-        } else {
-          // Select new
-          tagBtns.forEach(b => {
-            b.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-            b.classList.add('opacity-50');
-          });
-          currentTag = tag;
-          btn.classList.add('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-          btn.classList.remove('opacity-50');
-        }
-        update();
+  tagBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tag = btn.getAttribute('data-tag') || 'all';
+    
+    if (currentTag === tag) {
+      // Deselecting: return to muted opacity
+      currentTag = 'all';
+      btn.classList.remove('opacity-100', 'font-bold');
+      btn.classList.add('opacity-60');
+    } else {
+      // Selecting new: Reset others and highlight this one
+      tagBtns.forEach(b => {
+        b.classList.remove('opacity-100', 'font-bold');
+        b.classList.add('opacity-60');
       });
-    });
+      currentTag = tag;
+      btn.classList.add('opacity-100', 'font-bold');
+      btn.classList.remove('opacity-60');
+    }
+    update();
+  });
+});
   }
 
   document.addEventListener('astro:page-load', initFilters);

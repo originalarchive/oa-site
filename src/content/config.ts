@@ -9,7 +9,17 @@ const articles = defineCollection({
     draft: z.boolean().optional(),
     // Reverted to standard local image helper
     coverImage: image().optional(), 
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.enum([
+      "coffee", 
+      "photography", 
+      "journal", 
+      "recipe", 
+      "review", 
+      "tech", 
+      "kids", 
+      "opinion", 
+      "feature"
+    ])).default([]),
   }),
 });
 
