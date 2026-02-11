@@ -7,7 +7,7 @@ roaster: Scenery
 roasterUrl: HTTPS://scenery.coffee
 brewMethod: V60
 grindSize: '25'
-waterTemp: '94'
+waterTemp: '93'
 ratio: 1:15
 status: Open
 origin: Colombia
@@ -18,13 +18,16 @@ variety: Caturra/Castillo
 elevation: 1800 MASL
 process: Traditional washed
 processDetails: Ripe coffees picked, with a 12 hr in cherry fermentation before pulping. Post pulping, the parchment was fermented for 24 hrs in open tanks, washed, before drying in a marquesina
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-02-11
+brewNotes: |-
+  1st brew: Used double recipe. A nice cup low on the nose. Got some nice caramel, unspecified fruit sweetness, perhaps stewed apples. 
+
+  Temp change next
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 3
+ratingBody: 3
+ratingAcidity: 2
+ratingOverall: Good
 ---
 
 Bright lemon cake, caramel and apple aromas. In the cup it's got a delightful combination of rich sweetness and bright acidity - cox's orange pippin apple, satsuma, lemon cake and blackcurrant jam for the acidity, but then dense & rich body and finish that reminds us of muscovado and raisin, with a frangipani element - like fruitcake.
