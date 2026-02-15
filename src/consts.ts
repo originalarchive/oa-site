@@ -80,4 +80,10 @@ export const SOCIALS: Socials = [
     TEXT: "u/Originalarchive",
     HREF: "https://www.reddit.com/user/Originalarchive/",
   },
+   { 
+    NAME: "Mastodon",
+    ICON: "mastodon",
+    TEXT: "u/Originalarchive",
+    HREF: "https://mstdn.social/@originalarchive",
+  },
 ];
