@@ -7,6 +7,7 @@ draft: false
 tags:
   - review
   - photography
+  - kids
 ---
 
 ## The gap in my every day carry
