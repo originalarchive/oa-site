@@ -57,6 +57,12 @@ export const LINKS: Links = [
 // Socials
 export const SOCIALS: Socials = [
   { 
+    NAME: "Foto",
+    ICON: "foto",
+    TEXT: "@originalarchive",
+    HREF: "https://the.fotoapp.co/originalarchive",
+  },
+  { 
     NAME: "Instagram",
     ICON: "instagram",
     TEXT: "@originalarchive",
