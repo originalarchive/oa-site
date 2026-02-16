@@ -19,7 +19,7 @@ Enter Hiplok. A UK based company started in 2009 who try to solve the problem of
 
 I knew of Hiplok from years ago when I had one of their original wearable locks. It was great until it got damaged when someone had a go at it outside a pub and I ended up replacing it with a different d-lock.
 
-Searching Amazon I came across the Hiplok Airtag holder - officially called the 'Track'  and available for around £17. 
+Searching Amazon I came across the Hiplok Airtag holder - officially called the 'Track'  and available for around £17.
 
 Excuse the product shots:
 
@@ -44,4 +44,6 @@ This is a nearly perfect combination for my needs. I recommend this lock. I just
 If you want to check current prices and buy from Amazon, use my affiliate links below:
 
 [Hiplok Airtag Holder](https://amzn.to/46Rq9cq)
+
+
 [HIplok Z-Lok Combination lock](https://amzn.to/469Cuso)
