@@ -4,7 +4,6 @@ const { folderPath, images, reverse = false } = Astro.props;
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/content/**/*.{png,jpg,jpeg,webp}', { eager: true });
 
-// FIX 1 & 2: Added ': string' and ': any' to satisfy the TypeScript compiler
 const galleryImages = images.map((name: string) => {
   const match = Object.keys(allImages).find((key) => key.includes(folderPath) && key.includes(name));
   return match ? allImages[match].default : null;
@@ -19,34 +18,48 @@ const galleryImages = images.map((name: string) => {
   </div>
 
   <div class="editorial-image-col">
-    <a href="/articles" class="back-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-      Back to Articles
-    </a>
+    <!-- Back link is now INSIDE the image col's normal flow, not floating -->
+    <div class="back-link-wrapper">
+      <a href="/articles" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Articles
+      </a>
+    </div>
 
-    <div class="swiper editorial-swiper group bg-transparent overflow-hidden"> <div class="swiper-wrapper">
-    {galleryImages.map((img: any) => (
-      <div class="swiper-slide">
-        <a href={img.src} class="glightbox">
-          <Image 
-            src={img} 
-            alt="Feature visual" 
-            class="editorial-img object-top m-0 block" loading="eager"
-          />
-        </a>
-          </div>
-        ))}
+    <div class="swiper editorial-swiper group bg-transparent overflow-hidden"> 
+      <div class="swiper-wrapper">
+        {galleryImages.map((img: any) => {
+          const albumData = galleryImages.map(i => ({ publicId: i.src, title: "Feature visual" }));
+          
+          return (
+            <div class="swiper-slide">
+              <button 
+                type="button"
+                class="cursor-zoom-in block w-full h-full border-none bg-transparent p-0"
+                data-src={img.src}
+                data-album={JSON.stringify(albumData)}
+                onclick="window.openLightbox(this.dataset.src, 'Feature visual', this.dataset.album)"
+              >
+                <Image 
+                  src={img} 
+                  alt="Feature visual" 
+                  class="editorial-img object-top m-0 block" 
+                  loading="eager"
+                />
+              </button>
+            </div>
+          );
+        })}
       </div>
       
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
       <div class="swiper-pagination"></div>
     </div>
-    
+
     <div class="editorial-caption">
-  <slot name="caption" />
-</div>
-    
+      <slot name="caption" />
+    </div>
   </div>
 </section>
 
@@ -73,26 +86,6 @@ const galleryImages = images.map((name: string) => {
       position: relative;
       overflow: visible !important; 
     }
-    
-    /* ADD THIS to your @media (min-width: 1024px) section */
-.editorial-caption {
-  margin-top: 0.1rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #777; /* Subtle grey to not distract from content */
-  font-weight: 600;
-  text-align: center;
-  width: 400px; /* Matches your swiper width to keep it aligned */
-}
-
-/* Ensure the image column doesn't squeeze the caption */
-.editorial-image-col {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
 
     .editorial-frame::after {
       content: "";
@@ -125,51 +118,65 @@ const galleryImages = images.map((name: string) => {
       display: flex !important;
       flex-direction: column;
       align-items: center;
-      padding-top: 170px; 
+      /* Padding-top now just needs to clear the Header height (~80px) */
+      padding-top: 100px !important;
       padding-bottom: 0px;
       overflow: visible !important;
     }
 
-.back-link {
-  align-self: flex-start;
-  margin-left: 4rem;
-  margin-bottom: 20px; /* Keeping your negative margin to stay tight to image */
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #777;
-  text-decoration: none;
-  z-index: 50;
-  
-  /* ANIMATION BASE */
-  transition: all 0.3s ease; /* Smoothly animates color and transform */
-}
+    /* 
+      FIX: back-link-wrapper constrains the link to the image column's flow.
+      It sits at the top of the column before the swiper, aligned left.
+    */
+    .back-link-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 1rem;
+      margin-bottom: 24px;
+    }
 
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #777;
+      text-decoration: none;
+      z-index: 50;
+      transition: all 0.3s ease;
+      /* Removed: align-self, margin-left — those caused the bleed */
+    }
 
- /* THE HOVER COLOR FIX */
-.back-link:hover { 
-  color: #000; /* Black for the white background (default) */
-}
+    .back-link:hover { 
+      color: #000;
+    }
 
-/* Switches to white text when the .dark class is active on the html/body */
-:global(.dark) .back-link:hover { 
-  color: #fff; 
-}
+    :global(.dark) .back-link:hover { 
+      color: #fff; 
+    }
 
-.back-link svg {
-  transition: transform 0.3s ease; /* Specifically for the arrow move */
-}
+    .back-link svg {
+      transition: transform 0.3s ease;
+    }
 
+    .back-link:hover svg {
+      transform: translateX(-5px);
+    }
 
-
-/* THE "NUDGE" ANIMATION */
-.back-link:hover svg {
-  transform: translateX(-5px); /* Moves the arrow left on hover */
-}
+    .editorial-caption {
+      margin-top: 0.1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #777;
+      font-weight: 600;
+      text-align: center;
+      width: 400px;
+    }
 
     .editorial-swiper {
       height: 500px !important; 
@@ -188,7 +195,6 @@ const galleryImages = images.map((name: string) => {
       border-radius: 2rem !important;
     }
 
-    /* THE FIX: Restore Switchers with Pointer Priority */
     .swiper-button-next, .swiper-button-prev {
       color: #ffffff !important;
       background: rgba(0, 0, 0, 0.3) !important;
@@ -196,12 +202,12 @@ const galleryImages = images.map((name: string) => {
       width: 44px !important;
       height: 44px !important;
       border-radius: 50% !important;
-      z-index: 100 !important; /* Above the Glightbox link */
+      z-index: 100 !important;
       top: 50% !important;
       transform: translateY(-50%) !important;
       opacity: 0 !important;
       transition: all 0.3s ease !important;
-      pointer-events: auto !important; /* Ensure they are clickable over the link */
+      pointer-events: auto !important;
     }
 
     .editorial-swiper:hover .swiper-button-next,

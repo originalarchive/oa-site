@@ -2,17 +2,14 @@
 import { LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.astro";
 import { Image } from 'astro:assets';
-// Ensure hero.png is in src/assets/hero.png
 import heroImage from "../assets/hero.png"; 
-
 const pathname = new URL(Astro.request.url).pathname;
 ---
-
-<header class="fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+<header class="fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-black/40 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300 overflow-hidden">
   <div class="mx-auto max-w-4xl px-6">
     <nav class="flex items-center justify-between h-16">
       <a href="/" class="group flex items-center h-full text-xl font-semibold tracking-tight transition-opacity hover:opacity-80">
-        <div class="h-full py-0.5 flex items-center"> 
+        <div class="h-12 py-0.5 flex items-center overflow-hidden"> 
           <Image 
             src={heroImage} 
             alt="Original Archive" 
@@ -82,22 +79,17 @@ const pathname = new URL(Astro.request.url).pathname;
     </div>
   </div>
 </header>
-
 <script>
   function setupHeader() {
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     
     if (!menuToggle || !mobileMenu) return;
-
-    // Removed (e) to satisfy TypeScript strict rules
     const toggle = () => {
       mobileMenu.classList.toggle('hidden');
     };
-
     menuToggle.addEventListener('click', toggle);
   }
-
   setupHeader();
   document.addEventListener('astro:after-swap', setupHeader);
 </script>

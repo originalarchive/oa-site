@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
-
 export async function getStaticPaths() {
   const photos = await getCollection("photos");
   return photos
@@ -11,15 +10,13 @@ export async function getStaticPaths() {
       props: { photoEntry: p },
     }));
 }
-
 const { photoEntry } = Astro.props;
 const { Content } = await photoEntry.render();
 ---
-
 <PageLayout title={photoEntry.data.title}>
-  <div class="max-w-6xl mx-auto px-6 pt-50 pb-24">
+  <div class="max-w-6xl mx-auto px-6 pt-4 pb-24">
     
-    <div class="mb-1">
+    <div class="mb-2 pt-6">
       <a 
         href="/photos" 
         class="group inline-flex items-center gap-2 text-sm font-sans uppercase tracking-widest text-stone-500 hover:text-black dark:text-stone-400 dark:hover:text-white transition-all duration-300"
@@ -72,16 +69,37 @@ const { Content } = await photoEntry.render();
     if (!source || !grid || grid.children.length > 0) return;
 
     const images = source.querySelectorAll('img');
-    images.forEach(img => {
+    if (images.length === 0) return;
+
+    // The MDX-rendered imgs have onclick="window.openLightbox('publicId', 'title')"
+    // Extract the publicId from that attribute; fall back to img.src for plain imgs.
+    const album = Array.from(images).map(img => {
+      const onclick = img.getAttribute('onclick') || '';
+      const match = onclick.match(/openLightbox\(['"]([^'"]+)['"]/);
+      const publicId = match ? match[1] : img.src;
+      return { publicId, title: img.alt || '' };
+    });
+
+    const albumJson = JSON.stringify(album);
+
+    images.forEach((img, index) => {
       const container = document.createElement('div');
       container.className = 'gallery-image-container';
-      
+
       img.style.display = 'block';
       img.style.width = '100%';
       img.style.height = '100%';
       img.removeAttribute('height');
       img.removeAttribute('width');
-      
+
+      // Strip the old 2-arg inline onclick so it doesn't fire separately
+      img.removeAttribute('onclick');
+
+      // Attach a single click handler with the full album context
+      container.addEventListener('click', () => {
+        (window as any).openLightbox(album[index].publicId, album[index].title, albumJson);
+      });
+
       container.appendChild(img);
       grid.appendChild(container);
     });
@@ -97,38 +115,35 @@ const { Content } = await photoEntry.render();
   #photo-grid {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 8px !important; /* This creates the consistent white borders */
-    justify-content: flex-start !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    background-color: transparent !important;
+  }
+
+  #photo-grid::after {
+    display: none;
   }
 
   .gallery-image-container {
-    height: 300px !important; /* Matches your old site height */
-    flex: 1 1 auto !important; /* Allows images to share the row */
+    height: 300px !important;
+    flex: 1 1 auto !important;
     overflow: hidden !important;
     background-color: white !important;
     position: relative;
     max-width: 100%;
+    cursor: zoom-in;
   }
 
   .gallery-image-container img {
     height: 100% !important;
-    width: auto !important; /* Prevents the 'stretching' you see in your screenshot */
+    width: auto !important;
     min-width: 100% !important;
-    object-fit: cover !important; /* Crops slightly to keep the rows perfectly level */
+    object-fit: cover !important;
     display: block !important;
+    transition: transform 0.3s ease;
   }
 
-#photo-grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  /* Change justify-start to center */
-  justify-content: center !important; 
-  background-color: transparent !important; /* Removes the white box background */
-}
-
-/* Remove the ::after block entirely if you use justify-center */
-#photo-grid::after {
-  display: none;
-}
+  .gallery-image-container:hover img {
+    transform: scale(1.03);
+  }
 </style>

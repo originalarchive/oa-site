@@ -24,9 +24,13 @@ import { SITE } from "@consts";
 
     <div 
       id="lb-overlay" 
-      style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.98); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; touch-action: none;"
-      onclick="this.style.display='none'; document.body.style.overflow='auto';"
+      style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.98); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; touch-action: none;"
     >
+      <div style="position: absolute; inset: 0; z-index: -1;" onclick="window.closeLightbox()"></div>
+
+      <button id="lb-prev" style="position: absolute; left: 20px; color: white; background: none; border: none; font-size: 3rem; cursor: pointer; z-index: 10001; padding: 20px; display: none;">‹</button>
+      <button id="lb-next" style="position: absolute; right: 20px; color: white; background: none; border: none; font-size: 3rem; cursor: pointer; z-index: 10001; padding: 20px; display: none;">›</button>
+
       <img 
         id="lb-img" 
         src="" 
@@ -43,33 +47,104 @@ import { SITE } from "@consts";
     </div>
 
     <script is:inline>
-      // Automatically handle the year
-      const yearEl = document.getElementById('copyright-year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      const cloudName = "dtjrlrbky";
+      let currentAlbum = [];
+      let currentIndex = 0;
 
-      window.openLightbox = function(publicId, title = "") {
-        const overlay = document.getElementById('lb-overlay');
-        const img = document.getElementById('lb-img');
-        const titleEl = document.getElementById('lb-title');
-        const cloudName = "dtjrlrbky"; // [cite: 2026-02-01]
-        
-        if (overlay && img) {
-          img.src = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_1600/${publicId}`;
-          
-          if (titleEl) {
-            // Using your updated fallback [cite: 2026-02-01]
-            titleEl.textContent = title || "IMAGE NAME TBC";
+      // Always look up DOM nodes fresh — never cache them at script-parse time.
+      // This is the fix for Astro view transitions breaking the lightbox.
+      function getEl(id) {
+        return document.getElementById(id);
+      }
+
+      function updateLightbox() {
+        const item = currentAlbum[currentIndex];
+        if (!item) return;
+
+        const isGallery = currentAlbum.length > 1;
+        const prevBtn = getEl('lb-prev');
+        const nextBtn = getEl('lb-next');
+        if (prevBtn) prevBtn.style.display = isGallery ? 'block' : 'none';
+        if (nextBtn) nextBtn.style.display = isGallery ? 'block' : 'none';
+
+        const img = getEl('lb-img');
+        if (img) {
+          const src = item.publicId;
+          if (src.startsWith('http') || src.startsWith('/') || src.startsWith('./')) {
+            img.src = src;
+          } else {
+            img.src = `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_1600/${src}`;
           }
-
-          overlay.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
         }
+
+        const titleEl = getEl('lb-title');
+        if (titleEl) titleEl.textContent = item.title || '';
+      }
+
+      window.openLightbox = function(publicId, title, albumJson) {
+        currentAlbum = JSON.parse(albumJson || '[]');
+        currentIndex = currentAlbum.findIndex(item => item.publicId === publicId);
+        if (currentIndex === -1) {
+          currentAlbum = [{ publicId, title }];
+          currentIndex = 0;
+        }
+
+        updateLightbox();
+
+        const overlay = getEl('lb-overlay');
+        if (overlay) overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
       };
 
-      // Block right-clicks on the lightbox image
+      window.closeLightbox = function() {
+        const overlay = getEl('lb-overlay');
+        if (overlay) overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      };
+
+      function nextImg(e) {
+        if (e) e.stopPropagation();
+        currentIndex = (currentIndex + 1) % currentAlbum.length;
+        updateLightbox();
+      }
+
+      function prevImg(e) {
+        if (e) e.stopPropagation();
+        currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+        updateLightbox();
+      }
+
+      // Re-bind arrow buttons and keyboard on every page load
+      // (covers both hard refresh AND Astro client-side navigation)
+      function bindLightboxControls() {
+        const nextBtn = getEl('lb-next');
+        const prevBtn = getEl('lb-prev');
+        if (nextBtn) nextBtn.onclick = nextImg;
+        if (prevBtn) prevBtn.onclick = prevImg;
+
+        const yearEl = getEl('copyright-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+      }
+
+      // Runs on hard refresh
+      bindLightboxControls();
+
+      // Runs on every Astro client-side navigation
+      document.addEventListener('astro:page-load', bindLightboxControls);
+
+      // Keyboard navigation — also re-bound safely
+      document.addEventListener('keydown', (e) => {
+        const overlay = getEl('lb-overlay');
+        if (!overlay || overlay.style.display !== 'flex') return;
+        if (e.key === 'ArrowRight') nextImg();
+        if (e.key === 'ArrowLeft') prevImg();
+        if (e.key === 'Escape') window.closeLightbox();
+      });
+
+      // Block right-click on lightbox image
       document.addEventListener('contextmenu', (e) => {
-        if (e.target.id === 'lb-img') e.preventDefault();
-      }, false);
+        if (e.target && e.target.id === 'lb-img') e.preventDefault();
+      });
     </script>
   </body>
 </html>
