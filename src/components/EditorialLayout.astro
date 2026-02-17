@@ -29,7 +29,7 @@ const galleryImages = images.map((name: string) => {
     <div class="swiper editorial-swiper group bg-transparent overflow-hidden"> 
       <div class="swiper-wrapper">
         {galleryImages.map((img: any) => {
-          const albumData = galleryImages.map(i => ({ publicId: i.src, title: "Feature visual" }));
+          const albumData = galleryImages.map((i: any) => ({ publicId: i.src, title: "Feature visual" }));
           
           return (
             <div class="swiper-slide">
