@@ -18,13 +18,13 @@ const photos = allPhotos.sort((a, b) => {
 ---
 
 <PageLayout title="Photography" description="A collection of photo galleries and portfolios.">
-  <div class="max-w-5xl mx-auto px-6 py-4">
+  <div class="max-w-4xl mx-auto px-6 py-4">
     
     <div class="mb-10 relative z-10">
       <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">Photo Albums</h1>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-1">
       {photos.map((photo, index) => {
         const isExternal = photo.data.type === "external";
         const targetUrl = isExternal ? photo.data.externalUrl : `/photos/${photo.slug}`;
