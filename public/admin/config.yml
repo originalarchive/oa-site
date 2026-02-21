@@ -87,3 +87,18 @@ collections:
           - "opinion"
           - "feature"
       - { label: "Body", name: "body", widget: "markdown" }
+      
+      - name: "management"
+    label: "Site Management"
+    delete: false # Prevent accidental deletion of the trigger
+    editor:
+      preview: false
+    files:
+      - name: "refresh"
+        label: "Cloudinary & Build Refresh"
+        file: "src/data/refresh.json"
+        fields:
+          - label: "Trigger Build"
+            name: "last_refresh"
+            widget: "datetime"
+            hint: "Update this date/time and hit 'Save' to force the site to pull new images from Cloudinary."
