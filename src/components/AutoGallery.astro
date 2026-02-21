@@ -2,22 +2,35 @@
 import { getImagesByTag } from '../lib/cloudinary';
 const { tag } = Astro.props;
 const images = await getImagesByTag(tag) || [];
-const cloudName = "dtjrlrbky"; // [cite: 2026-02-01]
+const cloudName = "dtjrlrbky";
 ---
 
 <div id="gallery-root" class="columns-1 md:columns-2 lg:columns-3 gap-0 space-y-0 bg-black">
   {images.map((img) => {
-    // Clean up the title if it's just a raw filename
     const cleanTitle = img.alt ? img.alt.replace(/-/g, ' ').replace(/_/g, ' ') : "";
+    
+    // 1. Create the album list for the lightbox navigation [cite: 2026-02-01]
+    const albumData = images.map(i => ({ 
+      publicId: i.publicId, 
+      title: i.alt || "Gallery Image" 
+    }));
     
     return (
       <div class="break-inside-avoid">
-        <img 
-          src={`https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/${img.publicId}`}
-          alt={cleanTitle}
-          class="w-full h-auto cursor-pointer block scale-[1.01]"
-          onclick={`window.openLightbox('${img.publicId}', '${cleanTitle}')`}
-        />
+        <button
+          type="button"
+          class="w-full h-auto border-none bg-transparent p-0 m-0 cursor-zoom-in block overflow-hidden"
+          data-publicid={img.publicId}
+          data-title={cleanTitle}
+          data-album={JSON.stringify(albumData)}
+          onclick="window.openLightbox(this.dataset.publicid, this.dataset.title, this.dataset.album)"
+        >
+          <img 
+            src={`https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,w_800/${img.publicId}`}
+            alt={cleanTitle}
+            class="w-full h-auto block scale-[1.01] transition-transform duration-500 hover:scale-105"
+          />
+        </button>
       </div>
     )
   })}
@@ -25,4 +38,6 @@ const cloudName = "dtjrlrbky"; // [cite: 2026-02-01]
 
 <style>
   #gallery-root { line-height: 0; font-size: 0; }
+  /* Ensure buttons don't have default padding/borders */
+  button:focus { outline: none; }
 </style>
