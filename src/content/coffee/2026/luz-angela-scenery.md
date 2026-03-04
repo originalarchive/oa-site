@@ -7,7 +7,7 @@ brewMethod: V60
 grindSize: 28 clicks
 waterTemp: 89°C
 ratio: 1:14.5
-status: Open
+status: Finished
 origin: Colombia
 region: Oporapa, Hulla
 producer: Luz Angela Rojas
@@ -21,6 +21,8 @@ brewNotes: |-
   The super low agitation two blooms and a single non laminar pour turned out the best cup. Low temp, course grind. 17g:250g  89° 
 
   One of the best coffee cups I have ever made. Excellent roast.
+
+  Tried between 89° and 94° and around 93° really cut the bitterness but kept the aroma.  Great until the end and kept a lovely nose. Very enjoyable.
 ratingFlavor: 4
 ratingBody: 5
 ratingAcidity: 4
