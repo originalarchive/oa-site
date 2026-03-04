@@ -2,9 +2,8 @@ import type { Site, Page, Links, Socials } from "@types";
 
 // Global
 export const SITE = {
-  NAME: "original archive",
-  DESCRIPTION: "A collection of photos and coffee logs.",
-  EMAIL: "your@email.com",
+  NAME: "Ken Marlow | original archive",
+  DESCRIPTION: "A collection of photos and coffee logs by Ken Marlow.",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
   NUM_WORKS_ON_HOMEPAGE: 2,
@@ -72,7 +71,7 @@ export const SOCIALS: Socials = [
     NAME: "Threads",
     ICON: "threads", 
     TEXT: "@originalarchive",
-    HREF: "https://www.threads.com/@originalarchive",
+    HREF: "https://www.threads.net/@originalarchive",
   },
   { 
     NAME: "Bluesky",
