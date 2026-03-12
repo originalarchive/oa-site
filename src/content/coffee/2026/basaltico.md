@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '25'
 waterTemp: '93'
 ratio: 1:15
-status: Open
+status: Finished
 origin: Colombia
 region: La Esperanza, Casabianca, North Tolima
 producer: Guillermo Cardona
