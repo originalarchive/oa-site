@@ -3,7 +3,7 @@ import type { Site, Page, Links, Socials } from "@types";
 // Global
 export const SITE = {
   NAME: "Ken Marlow | original archive",
-  DESCRIPTION: "A collection of photos and coffee logs by Ken Marlow.",
+  DESCRIPTION: "A collection of photos, articles and coffee logs by Ken Marlow.",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
   NUM_WORKS_ON_HOMEPAGE: 2,
