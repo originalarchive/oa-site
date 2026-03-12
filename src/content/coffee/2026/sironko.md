@@ -6,7 +6,7 @@ name: Sironko
 roaster: Pharmacie
 roasterUrl: https://pharmacie.coffee
 brewMethod: v60
-grindSize: '25'
+grindSize: '24'
 waterTemp: '95'
 ratio: 1:15
 status: Open
@@ -40,6 +40,6 @@ Roaster's notes:
 
 _Light and juicy, magnolia florals with raisin sweetness and creamy vanilla body._
 
-_Ken's Notes:_
+_Ken's Notes: _
 
-_The bigger batches turned out perfectly drinkable but still lacks descrnatibe tasting notes past some brown sugar, a little vanilla in the sweetness and a bit of tobacco or roasty slightly burnt flavours until the coffee settles and cools enough. The lingering taste is much nicer than at the point of drinking it. The biggest different with this batch is that it sat in a flask for 2 hours before drinking._
+_The bigger batches turned out perfectly drinkable but still lacks discernible tasting notes past some brown sugar, a little vanilla in the sweetness and a bit of tobacco or roasty slightly burnt flavours until the coffee settles and cools enough. The lingering taste is much nicer than at the point of drinking it. The biggest different with this batch is that it sat in a flask for 2 hours before drinking._
