@@ -6,8 +6,8 @@ name: Sironko
 roaster: Pharmacie
 roasterUrl: https://pharmacie.coffee
 brewMethod: v60
-grindSize: '28'
-waterTemp: '94'
+grindSize: '25'
+waterTemp: '95'
 ratio: 1:15
 status: Open
 origin: Uganda
@@ -29,8 +29,7 @@ brewNotes: |-
   1st: C28, 89C, 20-300g, low agitation. Dull
   2nd C28, 94C, 26.5-405g, low agitation. Still dull.
 
-  Next up:
-  3rd C22, 94C, 27-415g, low agitation......????...... How did it turn out?
+  3rd C25, 95C, 27-415g, low agitation......this bigger batch turned out perfectly drinkable but still lacks descrnatibe tasting notes past some brown sugar, a little vanilla in the sweetness and a bit of tobacco or roasty slightly burnt flavours until the coffee settles and cools enough. The lingering taste is much nicer than at the point of drinking it. The biggest different with this batch is that it sat in a flask for 2 hours before drinking.
 image: ''
 ratingFlavor: 1
 ratingBody: 3
