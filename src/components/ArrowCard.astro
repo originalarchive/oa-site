@@ -4,9 +4,10 @@ import SafeImage from "./SafeImage.astro";
 
 interface Props {
   entry: CollectionEntry<"articles"> | CollectionEntry<"coffee"> | CollectionEntry<"photos">;
+  showImage?: boolean; // Add this line
 }
 
-const { entry } = Astro.props;
+const { entry, showImage = true } = Astro.props; // Default to true
 
 let imageSource;
 if (entry.collection === "articles") {
@@ -23,8 +24,8 @@ const description = entry.collection === "coffee"
 
 <a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-row items-stretch overflow-hidden rounded-xl border border-black/5 dark:border-white/5 bg-neutral-100/50 dark:bg-neutral-900/50 transition-all duration-300 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50">
   
-  {/* IMAGE COLUMN (112px) */}
-  {imageSource && (
+  {/* Only show the image column if showImage is true AND we have a source */}
+  {showImage && imageSource && (
     <div class="relative w-28 shrink-0 border-r border-black/5 dark:border-white/5 bg-neutral-200/50 dark:bg-neutral-800/50">
       <SafeImage 
         imageMetadata={imageSource} 
@@ -34,7 +35,6 @@ const description = entry.collection === "coffee"
     </div>
   )}
 
-  {/* CONTENT COLUMN */}
   <div class="flex flex-col justify-center p-4 grow min-w-0 gap-1">
     <div class="flex items-start justify-between gap-4">
       <h3 class="font-semibold text-black dark:text-white leading-tight line-clamp-2">

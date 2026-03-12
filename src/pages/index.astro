@@ -99,7 +99,7 @@ const featuredPhotos = allPhotos
         {blog.length > 0 ? (
           blog.map((post) => (
             <li>
-              <ArrowCard entry={post} />
+              <ArrowCard entry={post} showImage={false}/>
             </li>
           ))
         ) : (
