@@ -2,7 +2,7 @@
 title: Review of the Hiplok Airtag holder and bike cable lock
 description: Finding a good lock for my bikes and my kids' bikes has been difficult. Finding Hiplok cable locks and airtag holders has really improved the security convenience factor.
 date: 2026-02-16
-coverImage: ''
+coverImage: hiplok-airtag-holder-bike-z-lok-weatherproof-tracker.jpg
 draft: false
 tags:
   - kids
@@ -44,6 +44,5 @@ This is a nearly perfect combination for my needs. I recommend this lock. I just
 If you want to check current prices and buy from Amazon, use my affiliate links below:
 
 [Hiplok Airtag Holder](https://amzn.to/46Rq9cq)
-
 
 [HIplok Z-Lok Combination lock](https://amzn.to/469Cuso)
