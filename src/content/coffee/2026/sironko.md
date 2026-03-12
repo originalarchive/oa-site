@@ -28,8 +28,7 @@ brewNotes: |-
 
   1st: C28, 89C, 20-300g, low agitation. Dull
   2nd C28, 94C, 26.5-405g, low agitation. Still dull.
-
-  3rd C25, 95C, 27-415g, low agitation......this bigger batch turned out perfectly drinkable but still lacks descrnatibe tasting notes past some brown sugar, a little vanilla in the sweetness and a bit of tobacco or roasty slightly burnt flavours until the coffee settles and cools enough. The lingering taste is much nicer than at the point of drinking it. The biggest different with this batch is that it sat in a flask for 2 hours before drinking.
+  3rd C25, 95C, 27-415g, low agitation......dull.
 image: ''
 ratingFlavor: 1
 ratingBody: 3
@@ -40,3 +39,7 @@ ratingOverall: Meh
 Roaster's notes:
 
 _Light and juicy, magnolia florals with raisin sweetness and creamy vanilla body._
+
+_Ken's Notes:_
+
+_The bigger batches turned out perfectly drinkable but still lacks descrnatibe tasting notes past some brown sugar, a little vanilla in the sweetness and a bit of tobacco or roasty slightly burnt flavours until the coffee settles and cools enough. The lingering taste is much nicer than at the point of drinking it. The biggest different with this batch is that it sat in a flask for 2 hours before drinking._
