@@ -2,7 +2,7 @@
 title: A review of the Ulanzi M38 Carabiner Maglock phone stand and tripod
 description: 'A review of a super cool tripod with maglock and a carabiner. Feature include: 1. Phone stand, various heights and angles      2. Handheld mode, a short selfie stick      3. Tripod mode - a small leg tripod and reasonably stable      4. Magnetic / snap mode - use the magnetic base to attach to anything magnetic      5. Mantis - use the built in hook to suspend it from thin structures like the top of a TV, phone tray etc.      6. Quick release Arca tripod connector and standard 1/4” female thread connector for attaching to tripods.      7. Carabiner to connect to a bag or strap for carrying      8. Magnetic Maglock connector for phones - very strong magnet and a weaker magnet on the reverse of the head allowing other Maglock devices to be attached.      9. 360 degree rotating head'
 date: 2026-02-13
-coverImage: ''
+coverImage: ulanzi-ma38-caribiner-phone-tripod-and-stand.jpeg
 draft: false
 tags:
   - review
