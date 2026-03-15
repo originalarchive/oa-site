@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '28'
 waterTemp: '89'
 ratio: 1:15
-status: Open
+status: Finished
 origin: Colombia
 region: ''
 producer: MiCafe
@@ -30,3 +30,7 @@ ratingOverall: Great
 ### Skylark tasting notes
 
 Pink Grapefruit, Vanilla, Aperol Spritz
+
+### Ken’s notes
+
+The final brew was the best of all. 90°c 1:15.5 28C low agitation double recipe with 21.5g of coffee. Amazing brew. 15 March makes it 4 weeks after roast.
