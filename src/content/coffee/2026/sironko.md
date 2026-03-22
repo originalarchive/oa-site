@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '28'
 waterTemp: '96'
 ratio: 1:15
-status: Open
+status: Finished
 origin: Uganda
 region: Sironko, Budadiri, Mount Elgon
 producer: smallholders
