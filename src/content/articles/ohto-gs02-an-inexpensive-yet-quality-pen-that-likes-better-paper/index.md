@@ -2,7 +2,7 @@
 title: Ohto GS02 an inexpensive yet quality pen that likes better paper
 description: 'The OHTO GS02  is an excellent pen: slim, aluminium-bodied, and engineered with a restrained Japanese design language. It looks like a technical instrument rather than a disposable office pen, and paired with the PG-M05NP 0.5 mm ceramic gel refill it becomes an enjoyable everyday writing tool.'
 date: 2026-03-22
-coverImage: ''
+coverImage: ohto-gs02-mint-gel-pen.jpeg
 draft: false
 tags:
   - review
@@ -135,6 +135,6 @@ What Ohto has done is optimise the Parker format as much as possible:
 
 ## In summary
 
-I won't stop using the Sarasa vintage range any time soon, but for travel and spending time enjoying my writing, the Ohto will be my go-to from now on. And the Cross ATX to be saved for writing very occasional letters.
+I won't stop using the Sarasa vintage range any time soon, but for travel and spending time enjoying my writing, the Ohto will be my go-to from now on. And the Cross ATX is to be saved for writing very occasional letters.
 
 Grab the OHTO GS02 pen from Amazon [here](https://amzn.to/47j7ZAO).
