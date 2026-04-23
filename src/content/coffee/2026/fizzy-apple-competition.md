@@ -18,13 +18,13 @@ variety: Castillo
 elevation: 1450-1500 MASL
 process: Co-ferment (Green Apple)
 processDetails: A controlled dry anaerobic co-fermentation with green apples introduces bold, layered flavours and a bright, juicy acidity that lifts the cup without overwhelming it.
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-04-10
+brewNotes: 28c at 90C with 19.8g to 300g water seems to be the sweet spot literally. Lovely flavour, sweetness and apple scent. It's not bitter at all (unless I brew it wrong or too fine) but the acidity, especilayy nearer the bag opening, was intense. Not unplesant in any way, but the most acidity I have had in a cup brewed at home. A great bean.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 4
+ratingBody: 3
+ratingAcidity: 5
+ratingOverall: Great
 ---
 
 Formative’s notes
