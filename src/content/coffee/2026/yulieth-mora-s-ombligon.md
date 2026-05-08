@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '28'
 waterTemp: 90°c
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Colombia
 region: Vereda Sinaí, Palestina, Huila
 producer: Yulieth Mora Ortega
@@ -23,6 +23,8 @@ brewNotes: |-
   Scenery recommends: Best Rested: 3-4 weeks. Filter: 64g/L & 93°C, with rest we like to move down to 91°C - reduce the process notes.
 
   Started at 90°c and C28. Citra and passion fruit on the nose, mouthful of fruit. Superb first cup. No bitterness and lots of sweetness.
+
+  A wonderful cup till the last bean. So fruit forward. So good.
 image: ''
 ratingFlavor: 4
 ratingBody: 5
