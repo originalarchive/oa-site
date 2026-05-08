@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '28'
 waterTemp: 90°c
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Colombia
 region: Quindío
 producer: Jairo Arcila
@@ -19,7 +19,10 @@ elevation: 1450-1500 MASL
 process: Co-ferment (Green Apple)
 processDetails: A controlled dry anaerobic co-fermentation with green apples introduces bold, layered flavours and a bright, juicy acidity that lifts the cup without overwhelming it.
 dateBrewed: 2026-04-10
-brewNotes: 28c at 90C with 19.8g to 300g water seems to be the sweet spot literally. Lovely flavour, sweetness and apple scent. It's not bitter at all (unless I brew it wrong or too fine) but the acidity, especilayy nearer the bag opening, was intense. Not unplesant in any way, but the most acidity I have had in a cup brewed at home. A great bean.
+brewNotes: |-
+  28c at 90C with 19.8g to 300g water seems to be the sweet spot literally. Lovely flavour, sweetness and apple scent. It's not bitter at all (unless I brew it wrong or too fine) but the acidity, especilayy nearer the bag opening, was intense. Not unplesant in any way, but the most acidity I have had in a cup brewed at home. A great bean.
+
+  This got better and better until finished. Lovely and best in those 300ml batches.
 image: ''
 ratingFlavor: 4
 ratingBody: 3
