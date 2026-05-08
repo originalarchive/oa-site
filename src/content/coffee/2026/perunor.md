@@ -8,7 +8,7 @@ roasterUrl: https://pharmacie.coffee
 brewMethod: v60
 grindSize: '28'
 waterTemp: '96'
-ratio: 1:15
+ratio: 1:15.5
 status: Open
 origin: Peru
 region: ''
@@ -18,13 +18,16 @@ variety: Caturra, Pacas, Timor Hybrids
 elevation: 1600-1700 MASL
 process: Fully Washed
 processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-05-04
+brewNotes: |-
+  Wow. Burnt flavours like an over roasted bean. 90°.  Just a cup of burnt sugar. 
+
+  Tried again at 96°. Much better sitting in an insulated flash for an hour or so. Softens it. Not my style. .
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 1
+ratingBody: 3
+ratingAcidity: 2
+ratingOverall: Meh
 ---
 
 Pharmacie notes:
