@@ -23,9 +23,11 @@ brewNotes: |-
   Wow. Burnt flavours like an over roasted bean. 90°.  Just a cup of burnt sugar. 
 
   Tried again at 96°. Much better sitting in an insulated flash for an hour or so. Softens it. Not my style. .
+
+  95° works fine and this becomes a very easy drinking big batch 32g to 500g. Low bitterness, little sweetness, nothing unpleasant going on but the burnt sugar flavours start to return as the coffee cools to the normal temperature I enjoy drinking at.
 image: ''
 ratingFlavor: 1
-ratingBody: 3
+ratingBody: 2
 ratingAcidity: 2
 ratingOverall: Meh
 ---
