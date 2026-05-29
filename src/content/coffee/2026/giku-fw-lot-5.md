@@ -6,9 +6,9 @@ name: 'Giku FW Lot #5'
 roaster: Scenery
 roasterUrl: https://scenery.coffee
 brewMethod: v60
-grindSize: '28'
-waterTemp: '90'
-ratio: 1:15.5
+grindSize: '26'
+waterTemp: '94'
+ratio: 1:16
 status: Open
 origin: Burundi
 region: Gikungere, Butaganzwa, Kayanza Province
@@ -25,11 +25,14 @@ brewNotes: |-
   Prefer 90° over 96°. Lacking a little flavour. Very tea like- agree with oolong. Some of that grape and shortbread coming through. 
 
   Have tasted in store as well as at home and I’m getting a very similar cup. Zero bitterness as it cools. Nice coffee and something a little different for me.
+
+  ‘Perfect’ near end brew:
+  94° 15:250, 2 bloom, 2 small pours, final large pour and let sit until finished. Beautiful cup. Rating upgraded.
 image: ''
-ratingFlavor: 2
+ratingFlavor: 3
 ratingBody: 3
-ratingAcidity: 3
-ratingOverall: Good
+ratingAcidity: 4
+ratingOverall: Great
 ---
 
 Scenery notes:
