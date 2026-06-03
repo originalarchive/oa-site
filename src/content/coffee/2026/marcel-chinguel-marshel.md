@@ -38,4 +38,4 @@ Grape juice, strawberry, mandarin
 
 Ken’s comments
 
-Lovely to the end. Feel mean rating as great.
+Lovely to the end. Feel mean rating as good.
