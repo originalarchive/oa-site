@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: 28c C40
 waterTemp: 91°
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Peru
 region: ''
 producer: ''
@@ -35,3 +35,7 @@ ratingOverall: Good
 Skylark notes:
 
 Grape juice, strawberry, mandarin
+
+Ken’s comments
+
+Lovely to the end. Feel mean rating as great.
