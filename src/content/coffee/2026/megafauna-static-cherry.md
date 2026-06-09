@@ -2,7 +2,7 @@
 draft: false
 roastDate: 2026-06-02
 year: ''
-name: Megafauna Static Cherry
+name: Megadu Static Cherry
 roaster: Scenery
 roasterUrl: https://scenery.coffee/
 brewMethod: v60
