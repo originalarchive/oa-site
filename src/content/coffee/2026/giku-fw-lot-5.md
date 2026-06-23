@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '26'
 waterTemp: '94'
 ratio: 1:16
-status: Open
+status: Finished
 origin: Burundi
 region: Gikungere, Butaganzwa, Kayanza Province
 producer: ''
@@ -28,6 +28,8 @@ brewNotes: |-
 
   ‘Perfect’ near end brew:
   94° 15:250, 2 bloom, 2 small pours, final large pour and let sit until finished. Beautiful cup. Rating upgraded.
+
+  Lovely to the end with a 24:372 brew.
 image: ''
 ratingFlavor: 3
 ratingBody: 3
