@@ -7,7 +7,7 @@ roaster: Scenery
 roasterUrl: https://scenery.coffee/
 brewMethod: v60
 grindSize: '28'
-waterTemp: '90'
+waterTemp: '96'
 ratio: 1:15.5
 status: Open
 origin: Ethiopia
@@ -18,13 +18,16 @@ variety: 74112, 74110, Enat Buna Megadu
 elevation: ''
 process: Static Cheery Anoxic Natural
 processDetails: Ripe cherries picked and floated before placing on covered drying beds for a gentle 24 hour static pre-dry. Cherries added to sealed barrels alongside water and fermented for 96 hours in anoxic conditions before draining and drying on beds.
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-06-27
+brewNotes: |-
+  96° 1:15.5 (17:260) - smooth as hell. 4 week off roast. Light cherry notes as it cooled. Slight unexpected bitterness near and of cup. Next, try 1:15. Keep temp. 
+
+  Bloody lovely cup though.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 4
+ratingBody: 4
+ratingAcidity: 2
+ratingOverall: Great
 ---
 
 Scenery - Blueberry danish, Marmalade, Floral
