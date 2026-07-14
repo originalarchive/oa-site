@@ -6,8 +6,8 @@ name: Coproca
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee/
 brewMethod: V60
-grindSize: '28'
-waterTemp: '90'
+grindSize: '26'
+waterTemp: '96'
 ratio: 1:15.5
 status: Open
 origin: Rwanda
@@ -17,14 +17,16 @@ farm: ''
 variety: Red Bourbon
 elevation: 1800m
 process: Natural
-processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+processDetails: Natural
+dateBrewed: 2026-06-19
+brewNotes: Low agitation brew. Makes bigger batches really well - 450g.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 2
+ratingBody: 2
+ratingAcidity: 2
+ratingOverall: Good
 ---
 
 Skylark notes: Rhubarb, Lemon, Brown sugar
+
+Ken: Basic enjoyable coffee. Been good for work. No bitterness.
