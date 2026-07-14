@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '26'
 waterTemp: '90'
 ratio: 1:15.1
-status: Open
+status: Finished
 origin: Colombia
 region: ''
 producer: Sudus
