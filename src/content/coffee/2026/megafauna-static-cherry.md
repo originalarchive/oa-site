@@ -6,8 +6,8 @@ name: Megadu Static Cherry
 roaster: Scenery
 roasterUrl: https://scenery.coffee/
 brewMethod: v60
-grindSize: '28'
-waterTemp: '96'
+grindSize: '26'
+waterTemp: '95'
 ratio: 1:15.5
 status: Open
 origin: Ethiopia
@@ -23,6 +23,8 @@ brewNotes: |-
   96° 1:15.5 (17:260) - smooth as hell. 4 week off roast. Light cherry notes as it cooled. Slight unexpected bitterness near and of cup. Next, try 1:15. Keep temp. 
 
   Bloody lovely cup though.
+
+  Dropped temp to 95° and grind to 26. Two pours, low agitation. Like an oolong tea. So good.
 image: ''
 ratingFlavor: 4
 ratingBody: 4
