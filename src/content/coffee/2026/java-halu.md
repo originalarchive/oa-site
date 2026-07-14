@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '28'
 waterTemp: '96'
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: West Java
 region: ''
 producer: Rani Mayasarl
@@ -27,7 +27,9 @@ image: ''
 ratingFlavor: 3
 ratingBody: 3
 ratingAcidity: 2
-ratingOverall: Good
+ratingOverall: Meh
 ---
 
 Skylark: Freshly squeezed tropical juice
+
+Ken: never really developed despite pushing extraction. Nice enough.
