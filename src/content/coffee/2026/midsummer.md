@@ -18,8 +18,8 @@ variety: Castillo,
 elevation: 1600-1800 MASL
 process: Natural
 processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-07-11
+brewNotes: 88 degrees has been my best cup at C26. Will keep experimenting but low agitation easy cups seem to been amazing with this bean.
 image: ''
 ratingFlavor: 4
 ratingBody: 3
