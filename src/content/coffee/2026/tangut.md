@@ -9,7 +9,7 @@ brewMethod: V60 Switch
 grindSize: '26'
 waterTemp: '96'
 ratio: 1:14.5
-status: Open
+status: Finished
 origin: Ethiopia
 region: Taferi Kela, Sidamo
 producer: Bette Buna
@@ -22,7 +22,7 @@ dateBrewed: 2026-07-11
 brewNotes: |-
   Lower temps don't bring out the cup, needs smaller ratio (don't stretch too thin) and hotter extraction than my normal low temp 90 degree range. Try finer grind than 26 next.
 
-  Wrote to Skylark who suggested an immersion method. 96 degrees, C26, 6 minutes in the Switch. Much better cup. Nice, easy drinker. No rough edges. Much more flavour.
+  Wrote to Skylark who suggested immersion method. 96 degrees, C26, 6 minutes in the Switch. Much better cup. Nice, easy drinker. No rough edges. Much more flavour.
 image: ''
 ratingFlavor: 3
 ratingBody: 3
