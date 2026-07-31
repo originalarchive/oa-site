@@ -25,11 +25,13 @@ brewNotes: |-
   Second brew was 90 degrees 1:15.5 and a huge improvement. Bitterness down, sweetness up, some flavours muted. 
 
   Try immersion next.
+
+  Now using switch 03 on 400g brew at 15.5 or 16 and it makes a nice enough coffee for work. Wouldn’t buy again.
 image: ''
 ratingFlavor: 3
 ratingBody: 2
 ratingAcidity: 3
-ratingOverall: Good
+ratingOverall: Meh
 ---
 
 Oddly Knocky notes: smooth sweetness, and notes of milk chocolate, mixed spices, and blackcurrant.
