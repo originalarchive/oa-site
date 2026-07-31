@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '26'
 waterTemp: '95'
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Ethiopia
 region: Megadu, Shakisso Woreda, Guji Zone, Oromia region
 producer: Dawit & Heater Syoum-Westerveld
@@ -35,3 +35,7 @@ ratingOverall: Great
 Scenery - Blueberry danish, Marmalade, Floral
 
 62g/L at 96 degrees rest 3 + weeks.
+
+Ken
+
+Oolong with cherry. One of the nicest coffees I have even brewed.
