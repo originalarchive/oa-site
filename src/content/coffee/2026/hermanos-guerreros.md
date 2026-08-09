@@ -7,7 +7,7 @@ roaster: Skylark
 roasterUrl: https://www.skylark.coffee/
 brewMethod: V60
 grindSize: '26'
-waterTemp: '90'
+waterTemp: '96'
 ratio: 1:15.5
 status: Open
 origin: Peru
@@ -18,12 +18,15 @@ variety: Gesha, Catual
 elevation: 1800 MASL
 process: Natural
 processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-08-09
+brewNotes: |-
+  96° low agitation didn’t bring out the best. Mid sweet and chocolate and berry notes as it cooled. Some bitterness though. 
+
+  Try 89°
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
+ratingFlavor: 3
+ratingBody: 4
+ratingAcidity: 3
 ratingOverall: TBC
 ---
 
