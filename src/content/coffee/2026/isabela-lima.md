@@ -18,13 +18,16 @@ variety: Catual
 elevation: 920-1080 MASL
 process: Fully Natural
 processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-08-07
+brewNotes: |-
+  Solid first brew. 96° Low bitterness with a real sweetness as the cup cooled. Nice choc notes as if it was a darker roast. Not much fruit in my first cup. 
+
+  Try 90°
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 4
+ratingBody: 4
+ratingAcidity: 3
+ratingOverall: Great
 ---
 
 Skylark: CHERRY, CHOCOLATE, TROPICAL FRUITS
