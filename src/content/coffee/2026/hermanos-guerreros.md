@@ -26,7 +26,7 @@ brewNotes: |-
 
   C24, 96 degrees, 1:15 in a Switch. Better from a bitterness point of view but lost flavours. 
 
-  Next up, try ratio change.
+  Next up, try ratio (and everything) change. E.g. 90 degrees, C30, 1:18.
 image: ''
 ratingFlavor: 2
 ratingBody: 4
