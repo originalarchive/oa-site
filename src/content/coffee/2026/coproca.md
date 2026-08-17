@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '26'
 waterTemp: '96'
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Rwanda
 region: ''
 producer: 603 small holder blend
