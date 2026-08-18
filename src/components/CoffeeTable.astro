@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { marked } from "marked";
 
 interface Props {
   coffeeEntries: CollectionEntry<"coffee">[];
@@ -10,7 +11,6 @@ const { coffeeEntries } = Astro.props;
 // 1. HELPER FUNCTIONS
 const renderStars = (num: number) => "★".repeat(Math.max(0, Math.min(5, num))) + "☆".repeat(Math.max(0, 5 - num));
 
-// Factual Fix: Adding Record<string, string> prevents the TS7053 index error
 const statusColors: Record<string, string> = {
   "Great": "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
   "Good": "bg-stone-500/10 text-stone-600 dark:text-stone-400 border-stone-500/20",
@@ -24,8 +24,6 @@ const renderedEntries = await Promise.all(
     const { Content } = await entry.render();
     const d = entry.data;
 
-    // Factual Fix: Safe extraction to handle both Flat and Nested schemas
-    // This prevents the "possibly undefined" crash for old records
     const ratings = {
       flavor: d.ratingFlavor ?? d.rating?.flavor ?? 0,
       body: d.ratingBody ?? d.rating?.body ?? 0,
@@ -33,10 +31,14 @@ const renderedEntries = await Promise.all(
       overall: (d.ratingOverall || d.rating?.overall || "TBC") as keyof typeof statusColors
     };
 
+    // Parse brewNotes markdown frontmatter to HTML
+    const brewNotesHtml = d.brewNotes ? await marked.parse(d.brewNotes) : null;
+
     return { 
       entry, 
       Content,
       ratings,
+      brewNotesHtml,
       colorClass: statusColors[ratings.overall] || statusColors["TBC"]
     };
   })
@@ -46,7 +48,7 @@ const renderedEntries = await Promise.all(
 <div class="space-y-4">
   {renderedEntries.map((item) => {
     // 1. EXTRACT DATA FROM THE NORMALIZED ITEM
-    const { entry, Content, ratings, colorClass } = item;
+    const { entry, Content, ratings, brewNotesHtml, colorClass } = item;
     const d = entry.data; 
     const currentStatus = ratings.overall;
 
@@ -142,7 +144,13 @@ const renderedEntries = await Promise.all(
                 <p><span class="opacity-50 uppercase text-[9px]">Temp/Ratio:</span> {d.waterTemp || "—"} / {d.ratio || "—"}</p>
                 <div class="pt-2">
                   <span class="opacity-50 uppercase text-[9px] block mb-1">Brew Notes:</span>
-                  <p class="italic opacity-80 leading-relaxed font-sans text-xs">{d.brewNotes || "No specific brew notes."}</p>
+                  {brewNotesHtml ? (
+                    <div class="prose prose-sm dark:prose-invert max-w-none text-xs text-neutral-600 dark:text-neutral-300 italic leading-relaxed">
+                      <Fragment set:html={brewNotesHtml} />
+                    </div>
+                  ) : (
+                    <p class="italic opacity-80 leading-relaxed font-sans text-xs">No specific brew notes.</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -157,6 +165,7 @@ const renderedEntries = await Promise.all(
     );
   })}
 </div>
+
 <style>
   summary::-webkit-details-marker { display: none; }
   summary { list-style: none; }
