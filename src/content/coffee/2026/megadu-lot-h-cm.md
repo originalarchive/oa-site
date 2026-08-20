@@ -5,10 +5,10 @@ year: ''
 name: Megadu Lot-H CM
 roaster: Scenery
 roasterUrl: https://scenery.coffee/
-brewMethod: Switch
-grindSize: '26'
+brewMethod: V60
+grindSize: '24'
 waterTemp: '96'
-ratio: 1:15.5
+ratio: 1:15
 status: Open
 origin: Ethiopia
 region: Megadu, Shakisso Woreda, Guji
@@ -18,8 +18,11 @@ variety: Wild Guji Megadu (local landrace), JARC 74112/74158
 elevation: ''
 process: Carbonic Macerated Natural
 processDetails: Sorted ripe cherries placed into hermetically sealed barrels flushed with CO2 for a 96-hour carbonic maceration. Post ferment, cherries drained and dried on raised beds with shade control. Milled in the Guji highlands with optical and hand sorting.
-dateBrewed: ''
-brewNotes: 'Don’t brew before 4 weeks: 23 August approx.'
+dateBrewed: 2026-08-20
+brewNotes: |-
+  Don’t brew before 4 weeks: 23 August approx.
+
+  First brew: 96, c24, 3 pour, stunning straight out. Oolong tea, tannins and light mandarin fruits.
 image: ''
 ratingFlavor: 0
 ratingBody: 0
