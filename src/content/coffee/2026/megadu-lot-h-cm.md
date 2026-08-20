@@ -24,12 +24,14 @@ brewNotes: |-
 
   First brew: 96, c24, 3 pour, stunning straight out. Oolong tea, tannins and light mandarin fruits.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 3
+ratingBody: 4
+ratingAcidity: 2
+ratingOverall: Great
 ---
 
 Scenery: Crème de Cerise, Blueberry, Lavender. Lightest roast. 
 
 Ken’s notes: Expecting this to be like the last Megadu. Big shoes to fill.
+
+Oolong punch. Huge tannins. Light fruit - more mandarin coming through on first cups.
