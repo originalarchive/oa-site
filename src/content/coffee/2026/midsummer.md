@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '26'
 waterTemp: '88'
 ratio: 1:15.5
-status: Open
+status: Finished
 origin: Colombia
 region: ''
 producer: ''
