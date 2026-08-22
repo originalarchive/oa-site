@@ -143,7 +143,7 @@ Let stand with the v60 in the carafe (regulates the heat) for 5 or more minutes.
 
 Suggested improvements based on common challenges. Your milage may vary.
 
-- Thin / under extracted: (Grind finer, more agitation)
-- Bitter / heavy/ too much funk: (Grind coarser, less agitation)
+- Thin / sour / under extracted: (Grind finer, more agitation)
+- Bitter / heavy / too much funk: (Grind coarser, less agitation)
 - Washed coffees: (Generally Higher temp, & finer)
-- Natural / anaerobic: (Generally lower temp and courser)
+- Natural / anaerobic: (Generally lower temp and coarser)
