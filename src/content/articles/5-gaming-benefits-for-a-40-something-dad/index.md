@@ -13,7 +13,7 @@ For years I had convinced myself that gaming was something I no longer do. Perha
 
 When I upgraded my Apple TV to the 4K version a few years back, I stumbled across a couple of much more interesting games. Games that started to draw me back in. Teenage Mutant Ninja Turtles: Splintered Fate, Sneaky Sasquatch, and LEGO Star Wars: Castaway. It helped that they were games my kids enjoyed. Their enjoyment encouraged me. 
 
-So, I kept playing. I convinced myself a Nintendo Switch 2 would be a good idea - have a read of my musings here - and then found some significant benefits to playing ‘real’ games again. 
+So, I kept playing. I convinced myself a Nintendo Switch 2 would be a good idea - [have a read of my musings here](https://originalarchive.net/articles/nintendo-switch-2-initial-review-and-should-you-buy/) - and then found some significant benefits to playing ‘real’ games again. 
 
 Here are the five biggest benefits I found in returning to gaming:
 
