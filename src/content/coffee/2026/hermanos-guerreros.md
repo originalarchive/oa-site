@@ -29,11 +29,14 @@ brewNotes: |-
   Next up, try ratio (and everything) change. E.g. 90 degrees, C30, 1:18.
 
   1:13.5, c30, 90°, ultra low agitation with no swirl. Bloom and single pour. Sweet, no bitterness, a bit strong. Some fruit notes. Nice brew. Either longer ratio or add hot water after percolation has finished.
+
+
+  Just missing something. It’s ok.
 image: ''
 ratingFlavor: 2
 ratingBody: 4
 ratingAcidity: 3
-ratingOverall: Good
+ratingOverall: Meh
 ---
 
 Skylark: PINEAPPLE, CHERRY, MANDARIN
