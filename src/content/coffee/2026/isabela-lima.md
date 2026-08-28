@@ -29,7 +29,7 @@ image: ''
 ratingFlavor: 4
 ratingBody: 4
 ratingAcidity: 4
-ratingOverall: Great
+ratingOverall: Good
 ---
 
 Skylark: CHERRY, CHOCOLATE, TROPICAL FRUITS
