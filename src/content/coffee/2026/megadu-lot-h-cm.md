@@ -8,7 +8,7 @@ roasterUrl: https://scenery.coffee/
 brewMethod: V60
 grindSize: '24'
 waterTemp: '96'
-ratio: 1:15
+ratio: 1:15 - 1:16
 status: Open
 origin: Ethiopia
 region: Megadu, Shakisso Woreda, Guji
@@ -23,6 +23,8 @@ brewNotes: |-
   Don’t brew before 4 weeks: 23 August approx.
 
   First brew: 96, c24, 3 pour, stunning straight out. Oolong tea, tannins and light mandarin fruits.
+
+  Can stretch out beyond 1:16 but loses some of the tea-like qualities.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
@@ -35,3 +37,5 @@ Scenery: Crème de Cerise, Blueberry, Lavender. Lightest roast.
 Ken’s notes: Expecting this to be like the last Megadu. Big shoes to fill.
 
 Oolong punch. Huge tannins. Light fruit - more mandarin coming through on first cups.
+
+Possibly my favourite megadu scenery so far.
