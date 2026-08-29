@@ -1,14 +1,14 @@
 ---
-draft: true
+draft: false
 roastDate: 2026-08-20
 year: ''
 name: Bette Buna Kickstart
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee/
 brewMethod: V60
-grindSize: '28'
-waterTemp: '80'
-ratio: 1:15
+grindSize: '26'
+waterTemp: '96'
+ratio: 1:15.5
 status: Open
 origin: Ethiopia
 region: ''
@@ -18,13 +18,13 @@ variety: 74112, 74110, wild guji megadu
 elevation: 1900-2200 MASL
 process: Natural kickstart
 processDetails: ''
-dateBrewed: ''
-brewNotes: ''
+dateBrewed: 2026-08-29
+brewNotes: 96°, c26, 1min bloom, low agitation single pour, swirl. Amazing first cup.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 3
+ratingBody: 4
+ratingAcidity: 1
+ratingOverall: Great
 ---
 
 Skylark notes: score 87
