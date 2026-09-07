@@ -30,8 +30,9 @@ brewNotes: |-
 
   1:13.5, c30, 90°, ultra low agitation with no swirl. Bloom and single pour. Sweet, no bitterness, a bit strong. Some fruit notes. Nice brew. Either longer ratio or add hot water after percolation has finished.
 
-
   Just missing something. It’s ok.
+
+  1:14, 29:410, c30, switch 03, 90°, 11 min immersion. Just a stir. Really nice. 7th Sept - a long time since roasting  interesting
 image: ''
 ratingFlavor: 2
 ratingBody: 4
