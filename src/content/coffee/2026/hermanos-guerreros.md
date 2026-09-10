@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '30'
 waterTemp: '90'
 ratio: 1:13.5
-status: Open
+status: Finished
 origin: Peru
 region: ''
 producer: ''
