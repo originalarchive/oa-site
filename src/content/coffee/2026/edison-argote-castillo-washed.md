@@ -5,9 +5,9 @@ year: ''
 name: Edison Argote Castillo washed
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee/
-brewMethod: V60
-grindSize: '28'
-waterTemp: '96'
+brewMethod: V60 switch
+grindSize: '30'
+waterTemp: '94'
 ratio: 1:14
 status: Open
 origin: Colombia
@@ -26,7 +26,7 @@ brewNotes: |-
 
   c25 at 1:14 created strange bitterness as cup cooled but managed to find and interesting grapefruit flavour. 
 
-  C28-30 seems to be ideal.
+  C30 is ideal. 1:14 Switch and mid temp 94. 10-12 min in the switch 03. Made an amazing cup 10th Sept.
 image: ''
 ratingFlavor: 2
 ratingBody: 1
