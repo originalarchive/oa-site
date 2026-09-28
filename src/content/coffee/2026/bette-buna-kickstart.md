@@ -1,6 +1,6 @@
 ---
 draft: false
-roastDate: 2026-08-20
+roastDate: 2026-09-21
 year: ''
 name: Bette Buna Kickstart
 roaster: Skylark
@@ -30,3 +30,9 @@ ratingOverall: Great
 Skylark notes: score 87
 
 Cherry juice, coffee blossom
+
+KM: Solid coffee. Easy to get lots of tropical notes or make it an easy drinker. Get the temperature wrong and it does have a tendancy to produce some undesirable bitter notes and loses its fruity nose as it degasses. 
+
+First batch RD:20/08/2026
+
+Second batch RD:21/09/2026
