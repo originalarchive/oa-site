@@ -9,7 +9,7 @@ brewMethod: V60 switch
 grindSize: '30'
 waterTemp: '94'
 ratio: 1:14
-status: Open
+status: Finished
 origin: Colombia
 region: ''
 producer: Edison Argote
@@ -29,8 +29,8 @@ brewNotes: |-
   C30 is ideal. 1:14 Switch and mid temp 94. 10-12 min in the switch 03. Made an amazing cup 10th Sept.
 image: ''
 ratingFlavor: 2
-ratingBody: 1
-ratingAcidity: 3
+ratingBody: 2
+ratingAcidity: 2
 ratingOverall: Good
 ---
 
