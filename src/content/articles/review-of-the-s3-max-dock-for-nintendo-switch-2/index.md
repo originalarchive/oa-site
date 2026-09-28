@@ -28,7 +28,7 @@ Excuse the rough and ready product shot:
 
 ![Antank S3 Max dock for Switch 2. Box and front of dock.](antank-s3-switch-2-dock-and-charger-front.jpeg "Antank S3 Max dock for Nintendo Switch 2")
 
-Importantly, it comes with a printed card to help users manage [firmware updates]([https://teliqi.net/pages/s3-max-firmware-update](https://teliqi.net/pages/s3-max-firmware-update) should Nintendo make changes and try to block the use of third-party accessories. Really cool.
+Importantly, it comes with a printed card to help users manage [firmware updates]([https://teliqi.net/pages/s3-max-firmware-update](https://teliqi.net/pages/s3-max-firmware-update)) should Nintendo make changes and try to block the use of third-party accessories. Really cool.
 
 So, how does it work.
 
