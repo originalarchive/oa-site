@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '262'
 waterTemp: '906'
 ratio: 1:15
-status: Open
+status: Finished
 origin: Brazil
 region: ''
 producer: ''
@@ -26,10 +26,12 @@ brewNotes: |-
 
   C22, 96°, 1:15, 3 pours. Low ish agitation. Wow! What a cup. Still low aroma. Huge acidity compared to my normal style but is able to carry the choc and cherry and stewed fruits beautifully. Amazing sweetness like candy.
 image: ''
-ratingFlavor: 4
+ratingFlavor: 3
 ratingBody: 4
 ratingAcidity: 4
 ratingOverall: Good
 ---
 
 Skylark: CHERRY, CHOCOLATE, TROPICAL FRUITS
+
+Didn't do anything special for me this. A nice cup of coffee. Made a good big batch for work.
