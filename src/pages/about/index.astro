@@ -11,7 +11,7 @@ import { ABOUT } from "@consts";
         <img  
           src="/km_hero.jpg" 
           alt="About Hero" 
-          class="w-full h-auto display:block"
+          class="w-full h-auto block"
         />
       </div>
     </section>
@@ -31,118 +31,115 @@ import { ABOUT } from "@consts";
           original archive by Ken Marlow is a site that has been up and running in some form for nearly twenty years. It has been my portfolio, a review site, and a place to jot down my thoughts and ideas. 
           
           I have just refreshed the site and cleaned out all the old technology articles and reviews. It's time to start afresh. 
-          <p>
+        </p>
+        <p>
           The site is back as a custom Astro build and this time has a new coffee log section. Keep popping back for new posts, albums and coffee.
-          </p>
-          <p>
+        </p>
+        <p>
           I hope you enjoy the content and thanks for visiting.
     
           <br/><span class="font-sans font-bold text-sm">— Ken</span>
         </p>
-        
-        {/* Button element with text*/}
-        <section class="animate my-16 p-8 rounded-2xl bg-stone-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
-  <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-    
-    <div class="max-w-md">
-      <h3 class="text-sm font-semibold uppercase tracking-widest text-black/30 dark:text-white/30 mb-2">
-        Support original archive
-      </h3>
-      <p class="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
-The support oa button takes you to Amazon.co.uk via my affiliate link. If you click this before buying something I'll become rich. Very, very slowly. There may also be links from products mentioned in articles. Those links will make me richer slightly quicker. Many thanks. 
-      </p>
-    </div>
+      </div>
+    </section>
 
-    <div class="shrink-0">
-      <a href="https://www.amazon.co.uk/?&linkCode=sl2&tag=oa_photo-21&linkId=e73f53d9c97dba7461bb9d1194bbdf30&language=en_GB&ref_=as_li_ss_tl" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="inline-flex items-center px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest transition-transform hover:scale-105 active:scale-95">
-        Support this site
-        <span class="ml-2">→</span>
-      </a>
-    </div>
+    <section class="animate my-16 p-8 rounded-2xl bg-stone-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="max-w-md">
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-black/30 dark:text-white/30 mb-2">
+            Support original archive
+          </h3>
+          <p class="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
+            The support oa button takes you to Amazon.co.uk via my affiliate link. If you click this before buying something I'll become rich. Very, very slowly. There may also be links from products mentioned in articles. Those links will make me richer slightly quicker. Many thanks. 
+          </p>
+        </div>
 
-  </div>
-</section>
+        <div class="shrink-0">
+          <a href="https://www.amazon.co.uk/?&linkCode=sl2&tag=oa_photo-21&linkId=e73f53d9c97dba7461bb9d1194bbdf30&language=en_GB&ref_=as_li_ss_tl" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="inline-flex items-center px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest transition-transform hover:scale-105 active:scale-95">
+            Support this site
+            <span class="ml-2">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
         
-        <div class="p-6 bg-black/5 dark:bg-white/5 rounded-lg text-[15px] border-l-2 border-black/20 dark:border-white/20 italic">
-          <p class="mb-4">
-            All words and images posted on kenmarlow.co.uk and originalarchive.net are the property of Ken Marlow (unless otherwise stated) and are subject to copyright. If you would like to share content, we ask that you clearly state the source, limit copy to a few lines, and link back.
+    <section class="animate show mb-16">
+      <div class="p-6 bg-black/5 dark:bg-white/5 rounded-lg text-[15px] border-l-2 border-black/20 dark:border-white/20 italic">
+        <p class="mb-4">
+          All words and images posted on kenmarlow.co.uk and originalarchive.net are the property of Ken Marlow (unless otherwise stated) and are subject to copyright. If you would like to share content, we ask that you clearly state the source, limit copy to a few lines, and link back.
+        </p>
+        <p>
+          If you would like to use any images, you must have written permission or pay a licensing fee. Any infringement is subject to DMCA notice and/or legal action. Questions? Use the email address below.
+        </p>
+      </div>
+    </section>
+
+    <section class="animate show mb-20 text-center">
+      <h2 class="text-2xl font-sans font-bold mb-6 tracking-tight text-left">Get in Touch</h2>
+      
+      <div class="article-card-box p-10 flex flex-col items-center justify-center gap-4 border-dashed border-2">
+        <div id="contact-initial" class="flex flex-col items-center gap-4">
+          <p class="font-serif text-lg opacity-60 max-w-sm">
+           Have a question, would like to discuss a project, want to use an image or article on this site? 
           </p>
-          <p>
-            If you would like to use any images, you must have written permission or pay a licensing fee. Any infringement is subject to DMCA notice and/or legal action. Questions? Use the email address below.
+          <button 
+            id="reveal-btn"
+            class="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-md hover:scale-105 transition-all font-sans font-bold text-xs uppercase tracking-[0.2em]"
+          >
+            Reveal Email Address
+          </button>
+        </div>
+
+        <div id="contact-success" class="hidden flex flex-col items-center gap-2 animate-in fade-in zoom-in duration-500">
+          <div class="bg-green-500/10 text-green-600 dark:text-green-400 px-4 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest mb-2">
+            Human Verified
+          </div>
+          <p class="font-sans text-xl font-bold text-black dark:text-white tracking-tight">
+            email
           </p>
+         
+          <button 
+            id="copy-btn"
+            class="text-[10px] font-sans font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity border-b border-current"
+          >
+            Copy to Clipboard
+          </button>
         </div>
       </div>
     </section>
 
-<section class="animate show mb-20 text-center">
-  <h2 class="text-2xl font-sans font-bold mb-6 tracking-tight text-left">Get in Touch</h2>
-  
-  <div class="article-card-box p-10 flex flex-col items-center justify-center gap-4 border-dashed border-2">
-    <div id="contact-initial" class="flex flex-col items-center gap-4">
-      <p class="font-serif text-lg opacity-60 max-w-sm">
-       Have a question, would like to discuss a project, want to use an image or article on this site? 
-      </p>
-      <button 
-        id="reveal-btn"
-        class="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-md hover:scale-105 transition-all font-sans font-bold text-xs uppercase tracking-[0.2em]"
-      >
-        Reveal Email Address
-      </button>
-    </div>
+    <script is:inline>
+      document.addEventListener('astro:page-load', () => {
+        const revealBtn = document.getElementById('reveal-btn');
+        const initialBox = document.getElementById('contact-initial');
+        const successBox = document.getElementById('contact-success');
+        const emailDisplay = successBox?.querySelector('.font-sans.text-xl');
+        const copyBtn = document.getElementById('copy-btn');
+        
+        const parts = ["photos", "kenmarlow", "com"]; 
+        const glue = String.fromCharCode(64);
+        const dot = String.fromCharCode(46);
 
-    <div id="contact-success" class="hidden flex flex-col items-center gap-2 animate-in fade-in zoom-in duration-500">
-      <div class="bg-green-500/10 text-green-600 dark:text-green-400 px-4 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-widest mb-2">
-        Human Verified
-      </div>
-      <p class="font-sans text-xl font-bold text-black dark:text-white tracking-tight">
-        email
-      </p>
-     
-      <button 
-        id="copy-btn"
-        class="text-[10px] font-sans font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity border-b border-current"
-      >
-        Copy to Clipboard
-      </button>
-    </div>
-  </div>
-</section>
+        revealBtn?.addEventListener('click', () => {
+          const fullEmail = parts[0] + glue + parts[1] + dot + parts[2];
+          
+          if (emailDisplay) emailDisplay.textContent = fullEmail;
+          
+          initialBox?.classList.add('hidden');
+          successBox?.classList.remove('hidden');
 
-<script is:inline>
-  document.addEventListener('astro:page-load', () => {
-    const revealBtn = document.getElementById('reveal-btn');
-    const initialBox = document.getElementById('contact-initial');
-    const successBox = document.getElementById('contact-success');
-    const emailDisplay = successBox?.querySelector('.font-sans.text-xl'); // Selects the email P tag
-    const copyBtn = document.getElementById('copy-btn');
-    
-    // 1. Deconstruct: The email is never stored as one string in the code
-    const parts = ["photos", "kenmarlow", "com"]; 
-    const glue = String.fromCharCode(64); // This is the '@' symbol
-    const dot = String.fromCharCode(46); // This is the '.' symbol
-
-    revealBtn?.addEventListener('click', () => {
-      // 2. Assemble: The email only exists once a human clicks the button
-      const fullEmail = parts[0] + glue + parts[1] + dot + parts[2];
-      
-      if (emailDisplay) emailDisplay.textContent = fullEmail;
-      
-      initialBox.classList.add('hidden');
-      successBox.classList.remove('hidden');
-
-      // 3. Copy Logic
-      copyBtn?.addEventListener('click', () => {
-        navigator.clipboard.writeText(fullEmail);
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => { copyBtn.textContent = originalText; }, 2000);
+          copyBtn?.addEventListener('click', () => {
+            navigator.clipboard.writeText(fullEmail);
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => { copyBtn.textContent = originalText; }, 2000);
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
 
     <section class="animate show mb-16">
       <h2 class="font-sans font-semibold text-xs uppercase tracking-widest opacity-30 mb-6 text-left">Find me elsewhere</h2>
