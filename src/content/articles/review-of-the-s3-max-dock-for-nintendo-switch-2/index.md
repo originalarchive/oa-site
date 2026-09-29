@@ -11,6 +11,8 @@ tags:
 
 I wanted a second dock for my Switch 2 when travelling and to use with a monitor in my office. 
 
+**NOTE: this review has been updated since the 23.0.0 firmware Switch 2 update was released on the 9th September 2026.**
+
 The S3 Max + LAN sold by Antank for £28 at the time of writing (discounted from £35 and bought with my own money) fitted the bill.
 
 Alternatives I discounted included: Nintendo's official dock and charger for £90. A range of Amazon specials ranging from £11 to £30 but many of which had reports of not working when Nintendo updated firmware and finally the Genki travel dock. The Genki looks amazing but it is £70 and currently completely out of stock. 
@@ -40,7 +42,9 @@ The instructions strongly suggest using a Windows PC to carry out the updates ow
 
 So, how does the dock work.
 
-Grab your Switch 2 sans case and plonk it on the stand. There are no fans or holes at the bottom but the gap and the fact that there is no other enclosure around the console means the Switch 2 didn't get any hotter in use than docked in the official Nintendo unit. In fact, when I pointed a heat radar gun at it the Switch 2 was slightly cooler using the S3 after an hour compared to the Nintendo dock. By 2 degrees. My heat gun might not even be accurate enough to worry about the difference to be fair. 
+Despite being behind on firmware, the dock continues to work though I had to remove the Switch 2, unplug all cables and then plug in the power (USB-C) and check for the little blue indicator light, then plug in HDMI, and then reattach the Switch 2. Until I unplugged everything and started with power, there was no sign of life. 
+
+So, in theory, grab your Switch 2 sans case and plonk it on the stand (after you have already connected your power/HDMI in the right order). There are no fans or holes at the bottom but the gap and the fact that there is no other enclosure around the console means the Switch 2 didn't get any hotter in use than docked in the official Nintendo unit. In fact, when I pointed a heat radar gun at it the Switch 2 was slightly cooler using the S3 after an hour compared to the Nintendo dock. By 2 degrees. My heat gun might not even be accurate enough to worry about the difference to be fair. 
 
 Other than that, the HDMI output works perfectly, sound carries through and auto input change worked on my monitor so it's doing all the things you would expect in 2026. 
 
