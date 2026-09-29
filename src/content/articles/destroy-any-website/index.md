@@ -8,4 +8,8 @@ tags:
   - tech
 ---
 
-This pixel sprite game only works from a laptop / desktop. Great fun, assuming you have ever wanted to (pretend to) destroy a website. [Game Link](https://destroy.spritefusion.com)
+This pixel sprite game only works from a laptop or desktop. 
+
+Great fun, assuming you have ever wanted to (pretend to) destroy a website. 
+
+[Game Link](https://destroy.spritefusion.com)
