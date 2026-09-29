@@ -32,7 +32,11 @@ Importantly, it comes with a printed card to help users manage [firmware updates
 
 **EXTRA NOTE ON FIRMWARE UPDATES...**
 
-The instructions strongly suggest using a Windows PC to carry out the updates owing to the technical nature of the Mac updates. Mac requires terminal work and placing the folder specifically on your desktop despite the instructions not being clear about this. The big issue with the Mac version is it requires a second audio/video USB-C cable with a female socket on one end. This is a cable I don't have. The instructions ask that both cables are used to connect the dock to the Mac. At this time I have not been able to test this feature and strongly suggest that only PC users grab this dock until the company simplifies the Mac process. I have reached out to Antank to see if they will be improving this process for Mac users in the future. 
+The instructions strongly suggest using a Windows PC to carry out the updates owing to the technical nature of the Mac updates. Mac requires terminal work and placing the folder specifically on your desktop despite the instructions not being clear about this. The big issue with the Mac version is it requires a second audio/video USB-C cable with a female socket on one end. This is a cable I don't have. The instructions ask that both cables are used to connect the dock to the Mac. At this time I have not been able to test this feature and strongly suggest that only PC users grab this dock until the company simplifies the Mac process. I reached out to Antank and here is the reply verbatim:
+
+> _For the male-to-female USB‑C adapter required for Mac firmware updates, please select a full‑function model that supports audio and video signal transmission._
+
+> _Our product team is following up on this feature, but we are unable to simplify the process at this stage. Should we release any improved update tools or simplified instructions in the future, all information will be posted on our official website promptly._
 
 So, how does the dock work.
 
@@ -56,8 +60,8 @@ The dock is a bit hollow and made of thin plastic, not sure sure if I should com
 
 In summary
 
-It's a dock. It outputs HDMI and charges my Switch 2. It didn't cost the earth. Excellent.
+It's a dock. It outputs HDMI and charges my Switch 2. It didn't cost the earth. If you are a Mac user and value firmware updates I cannot recommend this product at this time.
 
-Thanks for reading. Non-affiliate link to [Antank here.](https://antank.net/)
+Thanks for reading.
 
 Consider buying something from my [affiliate link](https://link.amazon/B0iuqI3D9) to support this site.
