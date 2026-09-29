@@ -30,7 +30,11 @@ Excuse the rough and ready product shot:
 
 Importantly, it comes with a printed card to help users manage [firmware updates ](https://antank.net/pages/s3-max-firmware-update?srsltid=AU7gw4XvnKcsB8sDV0fjf-yJx8-geurbUSUDAC7q1vxEtW1wx0NLC7bN)should Nintendo make changes and try to block the use of third-party accessories. Really cool.
 
-So, how does it work.
+**EXTRA NOTE ON FIRMWARE UPDATES...**
+
+The instructions strongly suggest using a Windows PC to carry out the updates owing to the technical nature of the Mac updates. Mac requires terminal work and placing the folder specifically on your desktop despite the instructions not being clear about this. The big issue with the Mac version is it requires a second audio/video USB-C cable with a female socket on one end. This is a cable I don't have. The instructions ask that both cables are used to connect the dock to the Mac. At this time I have not been able to test this feature and strongly suggest that only PC users grab this dock until the company simplifies the Mac process. I have reached out to Antank to see if they will be improving this process for Mac users in the future. 
+
+So, how does the dock work.
 
 Grab your Switch 2 sans case and plonk it on the stand. There are no fans or holes at the bottom but the gap and the fact that there is no other enclosure around the console means the Switch 2 didn't get any hotter in use than docked in the official Nintendo unit. In fact, when I pointed a heat radar gun at it the Switch 2 was slightly cooler using the S3 after an hour compared to the Nintendo dock. By 2 degrees. My heat gun might not even be accurate enough to worry about the difference to be fair. 
 
