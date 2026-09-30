@@ -6,9 +6,9 @@ name: Dahwe FW
 roaster: Scenery
 roasterUrl: https://scenery.coffee
 brewMethod: V60
-grindSize: '26'
+grindSize: '25'
 waterTemp: '96'
-ratio: 15.5:1
+ratio: 1:14.5
 status: Open
 origin: Rwanda
 region: 'Trading Company REGION:'
@@ -22,7 +22,9 @@ dateBrewed: 2026-09-25
 brewNotes: |-
   1st cup: 16:1, v60 97 degrees, c26, Hoffman bloom and 2 pours. Slight bitterness as it cooled.
 
-  2nd cup: 15.5:1 v60 95 degrees, c28, low agitation. Superb. Needed the extra strength for the courser grind.
+  2nd cup: 15.5:1 v60 95 degrees, c28, low agitation. Superb. Needed the extra strength for the coarser grind.
+
+  3rd cup: 1:14.8 v60 96degrees, c25, low agitation. Even better. Chewy and interesting.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
