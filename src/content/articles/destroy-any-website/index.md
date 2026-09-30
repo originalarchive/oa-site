@@ -2,8 +2,10 @@
 title: Destroy any website
 description: Pixel sprite game that takes over a website and allows you to destroy it.
 date: 2026-09-29
-coverImage: ''
 draft: false
+coverImage: destroy-any-website-character.png
+coverAlt: ''
+hideImage: false
 tags:
   - tech
 ---
