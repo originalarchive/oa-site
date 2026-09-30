@@ -16,7 +16,7 @@ let isImageHidden = false;
 
 if (entry.collection === "articles") {
   imageSource = entry.data.coverImage;
-  imageAlt = entry.data.coverAlt || entry.data.title;
+  imageAlt = entry.data.coverAlt || entry.data.title || "";
   isImageHidden = entry.data.hideImage ?? false;
 } else if (entry.collection === "photos") {
   imageSource = entry.data.thumbnail;
