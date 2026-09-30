@@ -19,7 +19,10 @@ elevation: 1900-2200 MASL
 process: Natural kickstart
 processDetails: ''
 dateBrewed: 2026-08-29
-brewNotes: 96°, c26, 1min bloom, low agitation single pour, swirl. Amazing first cup.
+brewNotes: |-
+  96°, c26, 1min bloom, low agitation single pour, swirl. Amazing first cup.
+
+  96°, c25, 1:15, 1min bloom, low agitation single pour. Trying to chase the first cup!!! An amazing aroma of tropical fruits.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
