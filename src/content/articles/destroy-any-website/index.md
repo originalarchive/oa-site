@@ -4,8 +4,8 @@ description: Pixel sprite game that takes over a website and allows you to destr
 date: 2026-09-29
 draft: false
 coverImage: destroy-any-website-character.png
-coverAlt: ''
-hideImage: false
+coverAlt: Character holding a gun you play when destroying a website
+hideImage: true
 tags:
   - tech
 ---
