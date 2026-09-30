@@ -1,5 +1,5 @@
 ---
-import SafeImage from "./SafeImage.astro"; // 1. Swap Image for SafeImage
+import SafeImage from "./SafeImage.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -9,8 +9,8 @@ interface Props {
 const { photos } = Astro.props;
 ---
 
-<div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-  {photos.map((photo) => {
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+  {photos.map((photo, index) => {
     // Logic for cleaning the slug (internal)
     const cleanSlug = photo.slug.split('/')[0];
     
@@ -29,9 +29,11 @@ const { photos } = Astro.props;
         href={url || "#"} 
         target={target}
         rel={isExternal ? "noopener noreferrer" : ""}
-        class="group relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 transition-all duration-300 hover:shadow-lg"
+        class:list={[
+          "group relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800 transition-all duration-300 hover:shadow-lg",
+          { "hidden sm:block": index === 8 }
+        ]}
       >
-        {/* 2. Use SafeImage with your thumbnail data */}
         <SafeImage 
           imageMetadata={photo.data.thumbnail} 
           alt={photo.data.title} 
