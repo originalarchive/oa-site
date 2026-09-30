@@ -9,6 +9,8 @@ const articles = defineCollection({
     draft: z.boolean().optional(),
     // Reverted to standard local image helper
     coverImage: image().optional(), 
+    coverAlt: z.string().optional(), // Accessible alt text
+    hideImage: z.boolean().default(false), // Toggle thumbnail display per article
     tags: z.array(z.enum([
       "coffee", 
       "photography", 

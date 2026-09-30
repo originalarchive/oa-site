@@ -4,17 +4,27 @@ import SafeImage from "./SafeImage.astro";
 
 interface Props {
   entry: CollectionEntry<"articles"> | CollectionEntry<"coffee"> | CollectionEntry<"photos">;
-  showImage?: boolean; // Add this line
+  showImage?: boolean;
 }
 
-const { entry, showImage = true } = Astro.props; // Default to true
+const { entry, showImage = false } = Astro.props;
 
+// Determine if images are hidden per-post or collection type
 let imageSource;
+let imageAlt;
+let isImageHidden = false;
+
 if (entry.collection === "articles") {
   imageSource = entry.data.coverImage;
+  imageAlt = entry.data.coverAlt || entry.data.title;
+  isImageHidden = entry.data.hideImage ?? false;
 } else if (entry.collection === "photos") {
   imageSource = entry.data.thumbnail;
+  imageAlt = entry.data.title;
 }
+
+// Check if image should render based on prop, post setting, and source presence
+const shouldRenderImage = showImage && !isImageHidden && Boolean(imageSource);
 
 const title = entry.collection === "coffee" ? entry.data.name : entry.data.title;
 const description = entry.collection === "coffee" 
@@ -22,20 +32,20 @@ const description = entry.collection === "coffee"
   : entry.data.description;
 ---
 
-<a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-row items-stretch overflow-hidden rounded-xl border border-black/5 dark:border-white/5 bg-neutral-100/50 dark:bg-neutral-900/50 transition-all duration-300 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50">
+<a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-row items-center p-3 gap-4 overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 bg-neutral-100/50 dark:bg-neutral-900/50 transition-all duration-300 hover:bg-white dark:hover:bg-neutral-800 shadow-sm transition-shadow">
   
-  {/* Only show the image column if showImage is true AND we have a source */}
-  {showImage && imageSource && (
-    <div class="relative w-28 shrink-0 border-r border-black/5 dark:border-white/5 bg-neutral-200/50 dark:bg-neutral-800/50">
+  {/* Rounded squircle thumbnail thumbnail matching design mockup */}
+  {shouldRenderImage && (
+    <div class="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-neutral-200 dark:bg-neutral-800">
       <SafeImage 
         imageMetadata={imageSource} 
-        alt={title} 
-        className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
+        alt={imageAlt} 
+        className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
       />
     </div>
   )}
 
-  <div class="flex flex-col justify-center p-4 grow min-w-0 gap-1">
+  <div class="flex flex-col justify-center grow min-w-0 gap-1">
     <div class="flex items-start justify-between gap-4">
       <h3 class="font-semibold text-black dark:text-white leading-tight line-clamp-2">
         {title}
@@ -48,7 +58,7 @@ const description = entry.collection === "coffee"
     </div>
     
     {description && (
-      <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">
+      <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed">
         {description}
       </p>
     )}
