@@ -2,8 +2,10 @@
 title: 5 gaming benefits for a 40 something dad
 description: Returning to playing games after taking a break had some surprising personal benefits including:- Convenience / accessibility. Emotional benefits. Cognitive benefits. Recovery benefits. Intrinsic enjoyment. See if you agree with my list.
 date: 2026-08-22
-coverImage: ''
 draft: false
+coverImage: PNG image.png
+coverAlt: Dad and sons play video games together
+hideImage: false
 tags:
   - tech
   - opinion
