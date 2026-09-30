@@ -2,8 +2,10 @@
 title: Review of the S3 Max dock for Nintendo Switch 2
 description: I wanted a second Nintendo Switch 2 dock for travelling and to keep in my office. I didn't want to spend lots of money and it had to be small. The Antank S3 MAc dock seemed to fit the bill.
 date: 2026-09-28
-coverImage: ''
 draft: false
+coverImage: antank-s3-switch-2-dock-and-charger-front.jpeg
+coverAlt: S3 Max Switch 2 dock image of dock and box
+hideImage: false
 tags:
   - tech
   - review
