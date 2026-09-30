@@ -5,7 +5,7 @@ date: 2026-09-29
 draft: false
 coverImage: destroy-any-website-character.png
 coverAlt: Character holding a gun you play when destroying a website
-hideImage: true
+hideImage: false
 tags:
   - tech
 ---
