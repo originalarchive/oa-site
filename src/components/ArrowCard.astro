@@ -9,21 +9,21 @@ interface Props {
 
 const { entry, showImage = false } = Astro.props;
 
-// Determine if images are hidden per-post or collection type
 let imageSource;
-let imageAlt;
+let imageAlt: string = "";
 let isImageHidden = false;
 
 if (entry.collection === "articles") {
   imageSource = entry.data.coverImage;
-  imageAlt = entry.data.coverAlt || entry.data.title || "";
+  imageAlt = entry.data.coverAlt ?? entry.data.title ?? "";
   isImageHidden = entry.data.hideImage ?? false;
 } else if (entry.collection === "photos") {
   imageSource = entry.data.thumbnail;
-  imageAlt = entry.data.title;
+  imageAlt = entry.data.title ?? "";
+} else if (entry.collection === "coffee") {
+  imageAlt = entry.data.name ?? "";
 }
 
-// Check if image should render based on prop, post setting, and source presence
 const shouldRenderImage = showImage && !isImageHidden && Boolean(imageSource);
 
 const title = entry.collection === "coffee" ? entry.data.name : entry.data.title;
@@ -34,7 +34,6 @@ const description = entry.collection === "coffee"
 
 <a href={`/${entry.collection}/${entry.slug}`} class="group flex flex-row items-center p-3 gap-4 overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 bg-neutral-100/50 dark:bg-neutral-900/50 transition-all duration-300 hover:bg-white dark:hover:bg-neutral-800 shadow-sm transition-shadow">
   
-  {/* Rounded squircle thumbnail thumbnail matching design mockup */}
   {shouldRenderImage && (
     <div class="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-neutral-200 dark:bg-neutral-800">
       <SafeImage 
