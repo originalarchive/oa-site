@@ -2,8 +2,10 @@
 title: A review of the Ulanzi M38 Carabiner Maglock phone stand and tripod
 description: 'A review of a super cool tripod with maglock and a carabiner. Feature include: 1. Phone stand, various heights and angles      2. Handheld mode, a short selfie stick      3. Tripod mode - a small leg tripod and reasonably stable      4. Magnetic / snap mode - use the magnetic base to attach to anything magnetic      5. Mantis - use the built in hook to suspend it from thin structures like the top of a TV, phone tray etc.      6. Quick release Arca tripod connector and standard 1/4” female thread connector for attaching to tripods.      7. Carabiner to connect to a bag or strap for carrying      8. Magnetic Maglock connector for phones - very strong magnet and a weaker magnet on the reverse of the head allowing other Maglock devices to be attached.      9. 360 degree rotating head'
 date: 2026-02-13
-coverImage: ulanzi-ma38-caribiner-phone-tripod-and-stand.jpeg
 draft: false
+coverImage: ulanzi-ma38-caribiner-phone-tripod-and-stand.jpeg
+coverAlt: Ulanzi MA38 Carabiner Phone Tripod showing phones in different positions
+hideImage: false
 tags:
   - review
   - photography
@@ -95,8 +97,8 @@ I also ended up buying a bluetooth remote camera shutter button so I can use the
 
 I strongly recommend this tipod. If you are looking for a jack of all trades then this might just fit the bill. I have a much smaller magnetic stand that is so small I can leave on the back of the phone in my pocket and I hardly notice. This is for all those times when I need a substantial stand, a flexible stand, and one that can direct my phone with confidence. The internet seems to agree with me because there are so many similarly designed stands with less than glowing reviews all over the place. Stick to the original. Ulanzi has great reviews as a serious if budget photography company.
 
-Support the site by buying from Amazon
+Support the site by buying from Amazon:
 
-- [MA38 Maglock carabiner Phone Tripod with mantis mode](https://amzn.to/4tzqSsH)
-- [MA30 Maglock carabiner tripod](https://amzn.to/46410uS)
-- [Bluetooth camera remote shutter button](https://amzn.to/3MHssYQ)
+- Ad: [MA38 Maglock carabiner Phone Tripod with mantis mode](https://amzn.to/4tzqSsH)
+- Ad: [MA30 Maglock carabiner tripod](https://amzn.to/46410uS)
+- Ad: [Bluetooth camera remote shutter button](https://amzn.to/3MHssYQ)
