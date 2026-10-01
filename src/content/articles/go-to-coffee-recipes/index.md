@@ -2,12 +2,16 @@
 title: Go-to Coffee Recipes and my coffee equipment
 description: "Brewing coffee: Ken's equipment and recipes. Updated 2026."
 date: 2026-01-24
-coverImage: coffee-equipment.jpeg
 draft: false
+coverImage: coffee-equipment.jpeg
+coverAlt: Coffee equipment
+hideImage: false
 tags:
   - coffee
   - recipe
 ---
+
+_This guide is independent, but this post contains affiliate links. If you click a link and buy something, I may earn a commission._
 
 I’ve been passionate about great coffee for a long time.
 
