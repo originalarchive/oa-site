@@ -2,8 +2,10 @@
 title: Focal length matters
 description: I debated what lens to buy and ended up with something I didn't originally plan for.
 date: 2026-01-20
-coverImage: viltrox-28mm-pancake-lens.jpg
 draft: false
+coverImage: viltrox-28mm-pancake-lens.jpg
+coverAlt: Viltrox 28mm pancake camera lens on white background
+hideImage: false
 tags:
   - photography
 ---
@@ -114,7 +116,7 @@ The Sony FE 24-105mm zoom would be amazing if I didn't need to to be faster than
 
 ### Update Jan 2026
 
-I ended up with two lenses. The 20mm Sony prime, from the list above, and I grabbed the superb <a href="https://amzn.to/4tm4DGH" target="_blank" rel="noopener">Viltrox 28mm </a>F/4.5 FE fixed focal length pancake lens.
+I ended up with two lenses. The 20mm Sony prime, from the list above, and I grabbed the superb Viltrox 28mmF/4.5 FE fixed focal length pancake lens.
 
 Both lenses are superb but in very different ways. The Viltrox is tiny, lives on the front of my camera in place of a lens cap, takes characterful pictures and cost me £65 (current price £90).
 
@@ -133,3 +135,5 @@ And as for motorsport, I might go back to exploring hire options for those event
 For street photography I really fancy something in the neutral 40-50 range. Sony have the amazingly small G series that includes a 40mm f2.5. That would be another great walk about lens.
 
 I'll give it some more thought. Perhaps keep an eye on an update in a few years. But for now, I'll focus on getting back out and taking pictures with whatever I have with me.
+
+Ad: Buy the Vitrox lens and support this site <a href="https://amzn.to/4tm4DGH" target="_blank" rel="noopener">Viltrox 28mm </a>
