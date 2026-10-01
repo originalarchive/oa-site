@@ -2,13 +2,17 @@
 title: Pokemon proxies helped my kids play more and avoid the challenges of collecting
 description: Pokemon is a great card /board game. I'm writing this for parents predominantly because I think the approach here can help get you and your kids into the Pokemon card game quickly and for less expense than if you start collecting cards. If you want to play the game, learn how to avoid the cost associated with buying random packs of cards and keep it cheap, then read on.
 date: 2026-02-27
-coverImage: logo-pokemon-gotta-catch-em-all.png.jpeg
 draft: false
+coverImage: logo-pokemon-gotta-catch-em-all.png.jpeg
+coverAlt: Pokemon logo
+hideImage: false
 tags:
   - kids
 ---
 
 I learned to play Pokemon, the trading card game, so that I could teach my son. Along the way I found out all kinds of information about the world of Pokemon cards that I find odd and at times frustrating. The positive is that I found a very simple, if slightly time consuming answer to the most significant of the issues. How to avoid the cost associated with buying random packs of cards.
+
+_This review / guide is independent, but this post contains affiliate links. If you click a link and buy something, I may earn a commission._
 
 I'm writing this for parents predominantly because I think I can help get you and your kids into the Pokemon card game quickly and for less expense than if you start collecting cards. Obviously, if you want to collect cards then buy a folder and enjoy. But if you want to play the game and keep it cheap, then read on.
 
