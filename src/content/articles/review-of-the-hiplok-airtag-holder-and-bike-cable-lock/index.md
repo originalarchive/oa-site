@@ -2,8 +2,10 @@
 title: Review of the Hiplok Airtag holder and bike cable lock
 description: Finding a good lock for my bikes and my kids' bikes has been difficult. Finding Hiplok cable locks and airtag holders has really improved the security convenience factor.
 date: 2026-02-16
-coverImage: hiplok-airtag-holder-bike-z-lok-weatherproof-tracker.jpg
 draft: false
+coverImage: hiplok-airtag-holder-bike-z-lok-weatherproof-tracker.jpg
+coverAlt: ''
+hideImage: false
 tags:
   - kids
   - review
@@ -23,11 +25,11 @@ Searching Amazon I came across the Hiplok Airtag holder - officially called the 
 
 Excuse the product shots:
 
-![Hiplok Track airtag holder for bikes](hiplok-airtag-holder-bike-z-lok-weatherproof-tracker.jpg)
+![Hiplok Track airtag holder for bikes](hiplok-airtag-holder-bike-z-lok-weatherproof-tracker.jpg "AirTag holder that fits on a bike")
 
 But before I pressed buy, I noticed that it had a Z-Lok adapter on it. So, searching for Z-Lok came up with keyed or combination versions (between £10 and £25) of a simple cable lock (that can be attached to the Airtag holder).
 
-![Hiplok acble lock with combination for bike](hiplok-cable-lock-bike.jpg)
+![Hiplok cable lock with combination for bike](hiplok-cable-lock-bike.jpg)
 
 I grabbed two Z-Loks and two Airtag holders.
 
@@ -43,6 +45,6 @@ This is a nearly perfect combination for my needs. I recommend this lock. I just
 
 If you want to check current prices and buy from Amazon, use my affiliate links below:
 
-[Hiplok Airtag Holder](https://amzn.to/46Rq9cq)
+Ad: [Hiplok Airtag Holder](https://amzn.to/46Rq9cq)
 
-[HIplok Z-Lok Combination lock](https://amzn.to/469Cuso)
+Ad: [HIplok Z-Lok Combination lock](https://amzn.to/469Cuso)
