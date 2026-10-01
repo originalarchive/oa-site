@@ -1,9 +1,11 @@
 ---
-title: Ohto GS02 an inexpensive yet quality pen that likes better paper
-description: 'The OHTO GS02  is an excellent pen: slim, aluminium-bodied, and engineered with a restrained Japanese design language. It looks like a technical instrument rather than a disposable office pen, and paired with the PG-M05NP 0.5 mm ceramic gel refill it becomes an enjoyable everyday writing tool.'
+title: Ohto GS02 Review - an inexpensive yet quality pen that likes better paper
+description: 'The OHTO GS02 is an excellent pen: slim, aluminium-bodied, and engineered with a restrained Japanese design language. It looks like a technical instrument rather than a disposable office pen, and paired with the PG-M05NP 0.5 mm ceramic gel refill it becomes an enjoyable everyday writing tool.'
 date: 2026-03-22
-coverImage: ohto-gs02-mint-gel-pen.jpeg
 draft: false
+coverImage: ohto-gs02-mint-gel-pen.jpeg
+coverAlt: OHTO GS02 mint pen on white paper
+hideImage: false
 tags:
   - review
 ---
@@ -26,11 +28,11 @@ The Ohto pens kept coming up in my searches - but the GS02 stood out particularl
 
 ![OHTO GS02 Mint Gel Pen on whiet paper](ohto-gs02-mint-gel-pen.jpeg "OHTO GS02 Mint Gel Pen")
 
-The **OHTO GS02** in mint is an excellent pen: slim, aluminium-bodied, understated except for that mint colour, and engineered with a restrained Japanese design language. It looks like a technical instrument rather than a disposable office pen, and paired with the **PG-M05NP 0.5 mm ceramic gel refill** it becomes an enjoyable everyday writing tool.
+The OHTO GS02 in mint is an excellent pen: slim, aluminium-bodied, understated except for that mint colour, and engineered with a restrained Japanese design language. It looks like a technical instrument rather than a disposable office pen, and paired with the PG-M05NP 0.5 mm ceramic gel refill it becomes an enjoyable everyday writing tool.
 
-As I have already mentioned, I normally write with **Zebra Sarasa Clip (Vintage) gel pens, which are one of the best cheap gel pens available. They are smooth, dark, widely available, and the refills cost very little. That makes them a good benchmark when judging any refillable pen system. The GS02 sits in a different ecosystem - the Parker-style G2 refill format** - so it becomes a compromise between aesthetics, refill choice, and writing feel.
+As I have already mentioned, I normally write with Zebra Sarasa Clip (Vintage) gel pens, which are one of the best cheap gel pens available. They are smooth, dark, widely available, and the refills cost very little. That makes them a good benchmark when judging any refillable pen system. The GS02 sits in a different ecosystem - the Parker-style G2 refill format - so it becomes a compromise between aesthetics, refill choice, and writing feel.
 
-One note to consider, the GS02 takes the [**Ceramic Roller Gel PG-M05NP**](https://amzn.to/4745ja9) refills, as mentioned, but they can be a little hard to find in the U.K. Amazon seems to sell packs of five from time to time.
+One note to consider, the GS02 takes the Ceramic Roller Gel PG-M05NP refills, as mentioned, but they can be a little hard to find in the U.K. Amazon seems to sell packs of five from time to time.
 
 ## Design and ergonomics
 
@@ -48,40 +50,40 @@ I haven't come close to finishing the first ink refill but I was intrigued but t
 
 ## The refill: OHTO PG-M05NP
 
-The **PG-M05NP** is a Parker-style gel refill with a **0.5 mm ceramic ball needle tip**. OHTO’s design uses a silicon-carbide ceramic ball, which is extremely hard and resistant to wear. The refill is designed to write smoothly at shallow angles and to dry quickly on the page. I have a cursive style of writing and need a pen that can work at these angles, perhaps why I generally like gel pens.
+The PG-M05NP is a Parker-style gel refill with a 0.5 mm ceramic ball needle tip. OHTO’s design uses a silicon-carbide ceramic ball, which is extremely hard and resistant to wear. The refill is designed to write smoothly at shallow angles and to dry quickly on the page. I have a cursive style of writing and need a pen that can work at these angles, perhaps why I generally like gel pens.
 
-OHTO also claims a writing distance of **around 700 m**, which is not bad for a gel refill.
+OHTO also claims a writing distance of around 700 m, which is not bad for a gel refill.
 
-In practice the refill behaves like a **fine, controlled gel roller** rather than a wet gel pen.
+In practice the refill behaves like a fine, controlled gel roller rather than a wet gel pen.
 
 ## Writing feel compared with Zebra Sarasa
 
-If you are used to a **Sarasa 0.5 or 0.7**, the difference is noticeable immediately.
+If you are used to a Sarasa 0.5 or 0.7, the difference is noticeable immediately.
 
-The Sarasa is the more luxurious writer in pure smoothness. It glides across the page with almost no resistance. The OHTO refill, by contrast, feels **precise rather than plush**. There is much more feedback, making handwriting tighter and easier to control.
+The Sarasa is the more luxurious writer in pure smoothness. It glides across the page with almost no resistance. The OHTO refill, by contrast, feels precise rather than plush. There is much more feedback, making handwriting tighter and easier to control.
 
 In short:
 
-- Sarasa is **smooth and expressive**
-- Ohto refill is **clean and precise**
+- Sarasa is smooth and expressive
+- Ohto refill is clean and precise
 
 For quick notes or my work scribbles the Sarasa probably wins. For more thoughtful writing, diagrams, and neatening my handwriting, the Ohto is my choice.
 
 ## What the GS02 refill actually is
 
-The refill used in the GS02 is the **OHTO PG-M05NP “ceramic roller gel” refill**. It contains **water-based gel ink** and uses a **0.5 mm ceramic ball tip**.
+The refill used in the GS02 is the OHTO PG-M05NP “ceramic roller gel” refill. It contains water-based gel ink and uses a 0.5 mm ceramic ball tip.
 
 Key technical points:
 
-- \*\*Ink type:\*\* water-based gel
-- \*\*Ball material:\*\* silicon-carbide ceramic
-- \*\*Tip type:\*\* needle point
-- \*\*Ink reservoir:\*\* metal Parker-style refill body
-- \*\*Estimated writing distance:\*\* \~700 m
+- Ink type: water-based gel
+- Ball material: silicon-carbide ceramic
+- Tip type: needle point
+- Ink reservoir: metal Parker-style refill body
+- Estimated writing distance: \~700 m
 
 The ceramic ball is extremely hard (almost diamond-like hardness), corrosion-resistant, and maintains its shape over time, which helps keep the ink flow stable.
 
-So from an ink chemistry standpoint, **it is a gel pen**.
+So from an ink chemistry standpoint, it is a gel pen.
 
 ## Why it feels different from a Sarasa
 
@@ -103,7 +105,7 @@ Effect on writing:
 - “Juicy” feel
 - Ink dries moderately quickly
 
-The Sarasa is all about **smoothness and colour saturation**, which is why it’s great for everyday writing and journaling.
+The Sarasa is all about smoothness and colour saturation, which is why it’s great for everyday writing and journaling.
 
 ### OHTO ceramic roller gel
 
@@ -117,15 +119,15 @@ The ceramic ball has microscopic surface texture that helps retain small amounts
 
 ### **2. Lower ink flow**
 
-The OHTO refill is designed to **lay down less ink** than many Japanese gel pens. This delivers more feedback and better performance across a wide range of paper types.
+The OHTO refill is designed to lay down less ink than many Japanese gel pens. This delivers more feedback and better performance across a wide range of paper types.
 
 ### **3. Needle-point tip geometry**
 
-Sarasa pens use **conical tips**, while the Ohto refill uses a **needle tip**. Ohto gains precision.
+Sarasa pens use conical tips, while the Ohto refill uses a needle tip. Ohto gains precision.
 
 ### **4. Parker-style refill constraints**
 
-Because it fits the **Parker G2 refill format**, the ink reservoir is smaller than the long plastic refills used in Sarasa/EnerGel. The Parker G2 makes for a strong, travel friendly package that manages controlled flow and something like 700m of ink. Based on research, this is ok for a gel pen.
+Because it fits the Parker G2 refill format, the ink reservoir is smaller than the long plastic refills used in Sarasa/EnerGel. The Parker G2 makes for a strong, travel friendly package that manages controlled flow and something like 700m of ink. Based on research, this is ok for a gel pen.
 
 What Ohto has done is optimise the Parker format as much as possible:
 
@@ -137,4 +139,4 @@ What Ohto has done is optimise the Parker format as much as possible:
 
 I won't stop using the Sarasa vintage range any time soon, but for travel and spending time enjoying my writing, the Ohto will be my go-to from now on. And the Cross ATX is to be saved for writing very occasional letters.
 
-Grab the OHTO GS02 pen from Amazon [here](https://amzn.to/47j7ZAO).
+Ad: Grab the OHTO GS02 pen from Amazon [here](https://amzn.to/47j7ZAO).
