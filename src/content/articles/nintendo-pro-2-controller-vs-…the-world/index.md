@@ -2,14 +2,16 @@
 title: Nintendo Pro 2 Controller vs …the World
 description: 'Finding out if the Pro 2 by Nintendo is the best controller I have ever used. Never uncomfortable, feels premium in every way, analogue controls feel silky smooth and ultra-responsive, and it has all the Nintendo first-party extras: amiibo support, a headphone jack, extra programmable buttons, and on/off power control for the Switch 2. Superb.'
 date: 2026-07-20
-coverImage: Nintendo-Pro-2-controller-switch-2.jpg
 draft: false
+coverImage: Nintendo-Pro-2-controller-switch-2.jpg
+coverAlt: Nintendo Switch 2 Pro Controller on a white background
+hideImage: false
 tags:
   - review
   - tech
 ---
 
-The [Pro 2 Controller from Nintendo](https://amzn.to/4yrfVfn) is held up as one of the best controllers on the market today. So, Pro 2 vs the world.
+The Pro 2 Controller from Nintendo is held up as one of the best controllers on the market today. So, Pro 2 vs the world.
 
 Well, not against the world. I bought the CRKD Neo S controller for my Apple TV 4K and, by happy coincidence, it works with the Switch.
 
@@ -21,7 +23,7 @@ Then I picked up the Pro 2 controller by Nintendo. But do I regret the purchase,
 - I think both need to be discounted heavily to make them good value. The Neo has 10 classic designs without stands (available separately) at £39.99, and 10 further special editions with charging stands at £49.99.
 - The Pro 2 comes in one simple colour, and no special editions have been released at the time of writing. Note that the Pro controller did eventually get a special Link edition.
 
-[![Nintendo Pro 2 Controller](Nintendo-Pro-2-controller-switch-2.jpg)](https://amzn.to/4fbE3uL)
+![Nintendo Pro 2 Controller](Nintendo-Pro-2-controller-switch-2.jpg)
 
 - The Neo has Hall-effect sticks with removable pads, but the Pro 2 feels more premium and substantial. I had to research Hall-effect. Clever stuff, with magnets maintaining the centring of the sticks and reducing the likelihood of stick drift. Search it if you wanna learn more.
 - No lag on either (the Neo had some shocking issues at release, but they were all fixed in firmware a year or more ago), and really responsive buttons. That goes for both controllers.
@@ -45,6 +47,6 @@ Then I picked up the Pro 2 controller by Nintendo. But do I regret the purchase,
 
 **CRKD Neo S** – Great for the money. Perfect for travelling. No regrets at £28. An ideal second/third controller.
 
-[Buy the Pro 2 from Amazon to help support my site.](https://amzn.to/4fbE3uL)
+Ad: [Buy the Pro 2 from Amazon to help support my site.](https://amzn.to/4fbE3uL)
 
-[Buy the Neo S from Amazon to help support my site. ](https://amzn.to/44FnaT6)
+Ad: [Buy the Neo S from Amazon to help support my site. ](https://amzn.to/44FnaT6)
