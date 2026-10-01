@@ -2,8 +2,10 @@
 title: Nintendo Switch 2 - Initial review and should you buy
 description: I was a nervous Nintendo Switch 2 shopper. As a dad in his 40s, with kids, would I get hold of this new console and still love gaming? What accessories would I need. Which Nintendo games should I buy? Zelda, Mario, Donkey Kong - are they all still amazing?
 date: 2026-07-25
-coverImage: nintendo-switch-2.jpeg
 draft: false
+coverImage: nintendo-switch-2.jpeg
+coverAlt: Nintendo Switch 2 and Joy Cons sitting on a desk
+hideImage: false
 tags:
   - review
   - tech
@@ -13,6 +15,8 @@ tags:
 I bought a Nintendo Switch 2. And it’s great. The end.
 
 Part of me wanted to stop right there, but perhaps that’s not the most helpful statement to help others decide on a big purchase.
+
+This guide and mini-review is independent, but this post contains affiliate links. If you click a link and buy something, I may earn a commission.
 
 I was a nervous shopper. As a dad in his 40s, would I get hold of this new console and realise why I hadn’t played games properly in 15 years, or would I be sucked back into an exciting world of graphical and story-based distraction?
 
@@ -100,4 +104,4 @@ Some extra things I learned, in no particular order:
 
 I have no regrets. This feels like the best console I have ever owned and is exactly what I needed right now.
 
-[Buy your Switch 2 here if you have enjoyed the read.](https://amzn.to/4c3hFBE)
+Ad: [Buy your Switch 2 here if you have enjoyed the read.](https://amzn.to/4c3hFBE)
