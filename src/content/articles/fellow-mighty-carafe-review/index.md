@@ -2,8 +2,10 @@
 title: Fellow Mighty Carafe Review
 description: Brewing coffee is more than just a process—it can be a ritual. So, how does the Fellow Mighty Small Glass Carafe elevate that ritual and make it feel even more special?
 date: 2025-01-01
-coverImage: Mighty-Small-Glass-Carafe.jpg
 draft: false
+coverImage: Mighty-Small-Glass-Carafe.jpg
+coverAlt: Fellow coffee carafe in smoked glass and clear versions sitting on a wooden bench
+hideImage: false
 tags:
   - coffee
   - review
@@ -31,7 +33,7 @@ It has that look of a 1970s piece - pure style.
 
 It does have the FELLOW logo low down near the base, and I would probably prefer it without that, but it's not a show-stopper. The only other coffee glassware I like as much are the Kinto CAST AMBER and Sepia vintage ranges.
 
-I own the <a href="https://amzn.to/3Ol5CGM" target="_blank" rel="noopener">sepia</a> amber coffee cup and wooden saucer - so nice and always cheers me up to drink from a cup quite that orange.
+I own the sepia amber coffee cup and wooden saucer - so nice and always cheers me up to drink from a cup quite that orange.
 
 It's borosilicate glass, and I'm likely to break it one day.  Also have to mention that.
 
@@ -70,3 +72,5 @@ I have found only one dripper that doesn't work at all, the olive wood base for 
 So avoid the Fellow carafe if you use that olive wood base and look at the Kinto carafes instead.
 
 Other than that, I adore this piece of glass, and it makes my coffee brewing experience just that bit nicer every day that I use it. What's not to love?
+
+Ad. Buy from Amazon to support this site. - <a href="https://amzn.to/3Ol5CGM" target="_blank" rel="noopener">Fellow smoke grey carafe</a>
