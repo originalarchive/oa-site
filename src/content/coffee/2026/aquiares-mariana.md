@@ -26,14 +26,14 @@ brewNotes: |-
 
   2nd. 90° low agitation. C28. 1:15. Dull. Less bitter but a bit flat. Quite a nice cup but nothing special. High acidity.
 
-  3rd 96° three pour. C24. 1:16.
+  3rd 96° three pour. C24. 1:16. Slightly astringent again, need to keep the ratio stronger. Another ok cup.
 image: ''
 ratingFlavor: 2
 ratingBody: 4
-ratingAcidity: 3
+ratingAcidity: 4
 ratingOverall: Good
 ---
 
 Skylark notes: RASPBERRY MOUSSE, COFFEE PULP
 
-KM notes: Tasty.
+KM notes: it’s ok
