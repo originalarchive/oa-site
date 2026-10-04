@@ -6,9 +6,9 @@ name: Bette Buna Kickstart
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee/
 brewMethod: V60
-grindSize: '26'
-waterTemp: '96'
-ratio: 1:15.5
+grindSize: '27'
+waterTemp: '93'
+ratio: 1:15
 status: Open
 origin: Ethiopia
 region: ''
@@ -23,6 +23,8 @@ brewNotes: |-
   96°, c26, 1min bloom, low agitation single pour, swirl. Amazing first cup.
 
   96°, c25, 1:15, 1min bloom, low agitation single pour. Trying to chase the first cup!!! An amazing aroma of tropical fruits.
+
+  92°, c27, 1:14.5, 3x bloom, 2 pour, 3x very gentle sweetness pour, remainder centre pour, heavy swirl. Lovely aroma, sweet cup, lower taste, great strength.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
