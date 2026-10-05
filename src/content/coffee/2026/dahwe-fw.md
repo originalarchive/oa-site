@@ -11,7 +11,7 @@ waterTemp: '96'
 ratio: 1:14.5
 status: Open
 origin: Rwanda
-region: 'Trading Company REGION:'
+region: ''
 producer: 1400 smallholder producers, Muraho Trading Company
 farm: Dahwe CWS
 variety: Red Bourbon
@@ -25,6 +25,8 @@ brewNotes: |-
   2nd cup: 15.5:1 v60 95 degrees, c28, low agitation. Superb. Needed the extra strength for the coarser grind.
 
   3rd cup: 1:14.8 v60 96degrees, c25, low agitation. Even better. Chewy and interesting.
+
+  Tried a 1:14.5 93 degree, c28, 3 pour. Took away, didn't add.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
