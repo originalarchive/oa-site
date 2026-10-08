@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '24'
 waterTemp: '96'
 ratio: 1:15 - 1:16
-status: Open
+status: Finished
 origin: Ethiopia
 region: Megadu, Shakisso Woreda, Guji
 producer: Dawit & Hester Syoum-Westerveld
