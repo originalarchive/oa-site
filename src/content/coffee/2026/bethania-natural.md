@@ -8,7 +8,7 @@ roasterUrl: https://www.skylark.coffee
 brewMethod: v60
 grindSize: '27'
 waterTemp: '97'
-ratio: 1:15.5
+ratio: '1:15.5'
 status: Open
 origin: Nicaragua
 region: ''
@@ -27,7 +27,7 @@ brewNotes: |-
   1. 1:14, c28, 96°, 3 pour. Too strong. But nice chewy cup. 
   2. 1.16, c25, 96°, 3 pour. Good strength. Still chewy but now had some chocolate and fruit coming through. 
 
-  Next cup try 1:15, c29.
+  Next cup try 1:15, c29. Is ok. I’m not making any bad cups, just not great ones.
 image: ''
 ratingFlavor: 3
 ratingBody: 2
