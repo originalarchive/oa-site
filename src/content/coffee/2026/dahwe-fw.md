@@ -8,8 +8,8 @@ roasterUrl: https://scenery.coffee
 brewMethod: V60
 grindSize: '25'
 waterTemp: '96'
-ratio: 1:14.5
-status: Open
+ratio: '1:14.5'
+status: Finished
 origin: Rwanda
 region: ''
 producer: 1400 smallholder producers, Muraho Trading Company
