@@ -8,8 +8,8 @@ roasterUrl: https://www.skylark.coffee/
 brewMethod: V60
 grindSize: '27'
 waterTemp: '93'
-ratio: 1:15
-status: Open
+ratio: '1:15'
+status: Finished
 origin: Ethiopia
 region: ''
 producer: Bette Buna
@@ -25,6 +25,8 @@ brewNotes: |-
   96°, c25, 1:15, 1min bloom, low agitation single pour. Trying to chase the first cup!!! An amazing aroma of tropical fruits.
 
   92°, c27, 1:14.5, 3x bloom, 2 pour, 3x very gentle sweetness pour, remainder centre pour, heavy swirl. Lovely aroma, sweet cup, lower taste, great strength.
+
+  Great to the end. I used a low temp bloom for the final cups. 65° before the rest at normal temperatures. Superb depth, new levels of fruit.
 image: ''
 ratingFlavor: 3
 ratingBody: 4
