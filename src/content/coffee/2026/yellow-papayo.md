@@ -24,10 +24,10 @@ brewNotes: |-
 
   20g to 300g. c25. Water just off boil. 60g bloom with cooler water 70°. Three pours (equal). Amazing flavours.
 image: ''
-ratingFlavor: 0
-ratingBody: 0
-ratingAcidity: 0
-ratingOverall: TBC
+ratingFlavor: 5
+ratingBody: 4
+ratingAcidity: 3
+ratingOverall: Great
 ---
 
 Sustain notes: MANGO • GRENADINE • STRAWBERRY. 200g
