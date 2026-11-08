@@ -24,6 +24,8 @@ brewNotes: |-
 
   C22 - low agitation. 1:15, 96 degrees
 
+  Also tried Hario switch. Still bitter but not as noticeable. 
+
   C28 - low agitation , 1:15, 96 degrees
 
   Next try, 89 degrees. C28, 1:15
@@ -35,3 +37,5 @@ ratingOverall: Meh
 ---
 
 Mango, Nectarine, Lemon
+
+Ken’s notes: THe smell of the beans is stunning. The armona in the cup is beautiful. Then, a mouthful of bitter. I even tried Switch. But was hardly better.
