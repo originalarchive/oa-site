@@ -8,8 +8,8 @@ roasterUrl: https://www.skylark.coffee
 brewMethod: V60
 grindSize: '24'
 waterTemp: '97'
-ratio: 1:15
-status: Open
+ratio: '1:15'
+status: Finished
 origin: Costa Rica
 region: ''
 producer: ''
