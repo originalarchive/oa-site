@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '25'
 waterTemp: '85'
 ratio: '1:15.5'
-status: Open
+status: Finished
 origin: Colombia
 region: Huila
 producer: Nestor Lasso
