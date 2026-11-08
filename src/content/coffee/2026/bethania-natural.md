@@ -9,7 +9,7 @@ brewMethod: v60
 grindSize: '27'
 waterTemp: '97'
 ratio: '1:15.5'
-status: Open
+status: Finished
 origin: Nicaragua
 region: ''
 producer: Martha and Ana (sisters)
