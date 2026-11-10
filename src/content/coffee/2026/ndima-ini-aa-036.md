@@ -24,7 +24,7 @@ image: ''
 ratingFlavor: 4
 ratingBody: 3
 ratingAcidity: 3
-ratingOverall: Good
+ratingOverall: Great
 ---
 
 Blackberry Jam, Currents, Dried Mango
