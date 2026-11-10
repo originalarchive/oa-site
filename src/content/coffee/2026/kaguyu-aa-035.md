@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '25'
 waterTemp: '97'
 ratio: '1:16'
-status: Open
+status: Finished
 origin: Kenya
 region: Inoi North, Kaguyu sub-location, Kirinyaga County
 producer: 100 small holders
