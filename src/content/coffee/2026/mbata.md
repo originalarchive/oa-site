@@ -9,7 +9,7 @@ brewMethod: V60
 grindSize: '28'
 waterTemp: '89'
 ratio: '1:15'
-status: Open
+status: Finished
 origin: Uganda
 region: ''
 producer: ''
