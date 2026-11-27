@@ -3,13 +3,13 @@ draft: false
 roastDate: 2026-10-20
 year: ''
 name: Fredy Orantes
+status: Finished
 roaster: Skylark
 roasterUrl: ''
 brewMethod: V60
 grindSize: '28'
 waterTemp: '96'
 ratio: '1:15'
-status: Open
 origin: Guatemala
 region: ''
 producer: ''
@@ -24,6 +24,8 @@ image: ''
 ratingFlavor: 4
 ratingBody: 3
 ratingAcidity: 3
+ratingSweetness: 3
+ratingFinish: 4
 ratingOverall: Great
 ---
 
