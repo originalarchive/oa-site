@@ -1,29 +1,35 @@
 ---
+draft: false
 roastDate: 2026-01-14
-name: Nester Lasso
+year: ''
+name: Nestor Lasso
+status: Finished
 roaster: Pharmacie
 roasterUrl: https://pharmacie.coffee
 brewMethod: V60
 grindSize: 25 clicks
 waterTemp: 94°C
-ratio: 1:14
-status: Finished
+ratio: '1:14'
 origin: Colombia
 region: Pitalito, Huila
-producer: Nester Lasso
+producer: Nestor Lasso
 farm: El Diviso
 variety: Anacafe 14, Bourbon, Catuai, Pache, San Ramon
 elevation: 1750 - 1800 MASL
 process: Anaerobic washed
 processDetails: ''
 dateBrewed: 2026-01-20
+brewNotes: ''
+image: ''
 ratingFlavor: 4
 ratingBody: 3
 ratingAcidity: 4
+ratingSweetness: 0
+ratingFinish: 0
 ratingOverall: Great
 arrivedUK: ''
-importPartner: ''
 harvest: ''
+importPartner: ''
 roastLevel: Light
 tags:
   - colombia
