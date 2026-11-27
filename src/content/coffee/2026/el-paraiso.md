@@ -3,13 +3,13 @@ draft: false
 roastDate: 2026-11-12
 year: ''
 name: El Paraiso
+status: Open
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee
 brewMethod: V60
 grindSize: '28'
 waterTemp: '94'
 ratio: '1:15'
-status: Open
 origin: Colombia
 region: Buescao
 producer: Jose Ignacio Gomez and Carlos Alberto
@@ -27,6 +27,8 @@ image: ''
 ratingFlavor: 3
 ratingBody: 4
 ratingAcidity: 2
+ratingSweetness: 3
+ratingFinish: 2
 ratingOverall: Good
 ---
 
