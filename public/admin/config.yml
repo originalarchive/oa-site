@@ -22,6 +22,9 @@ collections:
     summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - [Draft: {{draft}}]"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
+      - label: "Cupboard"
+        field: status
+        pattern: "^(Resting|Open)$"
       - label: "Resting"
         field: status
         pattern: "Resting"
