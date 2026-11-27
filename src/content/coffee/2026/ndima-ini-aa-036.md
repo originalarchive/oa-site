@@ -3,13 +3,13 @@ draft: false
 roastDate: 2026-10-14
 year: ''
 name: 'NDIMA-INI AA #036'
+status: Open
 roaster: Scenery
 roasterUrl: ''
 brewMethod: V60
 grindSize: '28'
 waterTemp: '98'
 ratio: '1:15'
-status: Open
 origin: Kenya
 region: Nyeri, Mount Kenya
 producer: 1000 smallholders Gakuyu Farmers Cooperative Society
@@ -24,6 +24,8 @@ image: ''
 ratingFlavor: 4
 ratingBody: 3
 ratingAcidity: 3
+ratingSweetness: 2
+ratingFinish: 4
 ratingOverall: Great
 ---
 
