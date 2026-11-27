@@ -37,6 +37,7 @@ collections:
       - { label: "Year", name: "year", widget: "hidden", default: "{{roastDate | date('YYYY')}}" }
       - { label: "Name", name: "name", widget: "string", required: true }
       - { label: "Status", name: "status", widget: "select", options: ["Resting", "Open", "Finished"], required: true }
+      - { label: "Roaster", name: "roaster", widget: "string", required: true }
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Brew Method", name: "brewMethod", widget: "string", required: true }
       - { label: "Grind Size", name: "grindSize", widget: "string", required: true }
