@@ -3,13 +3,13 @@ draft: false
 roastDate: 2026-11-12
 year: ''
 name: Kerehaklu
+status: Open
 roaster: Skylark
 roasterUrl: https://www.skylark.coffee
 brewMethod: V60
 grindSize: '24'
 waterTemp: '93'
 ratio: '1:14.5'
-status: Open
 origin: India
 region: ''
 producer: Pranoy Thipaiah
@@ -24,6 +24,8 @@ image: ''
 ratingFlavor: 2
 ratingBody: 3
 ratingAcidity: 2
+ratingSweetness: 1
+ratingFinish: 1
 ratingOverall: Meh
 ---
 
