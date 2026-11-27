@@ -63,7 +63,7 @@ const renderedEntries = await Promise.all(
         data-pantry-status={String(d.status || "Finished")}
       >
         <span class="sr-only invisible h-0 w-0 overflow-hidden">
-          {d.process} {d.processDetails} {d.region} {d.variety}
+            {d.producer} {d.farm} {d.process} {d.processDetails} {d.region} {d.variety}
         </span>
 
         <details class="group/details">
@@ -132,7 +132,8 @@ const renderedEntries = await Promise.all(
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
               <div class="space-y-1.5 font-mono text-[11px]">
                 <p><span class="opacity-50 uppercase text-[9px]">Region:</span> {d.region || "—"}</p>
-                <p><span class="opacity-50 uppercase text-[9px]">Farm:</span> {d.farm || d.producer || "—"}</p>
+                <p><span class="opacity-50 uppercase text-[9px]">Producer:</span> {d.producer || "—"}</p>
+                <p><span class="opacity-50 uppercase text-[9px]">Farm:</span> {d.farm || "—"}</p>
                 <p><span class="opacity-50 uppercase text-[9px]">Variety:</span> {d.variety || "—"}</p>
                 <p><span class="opacity-50 uppercase text-[9px]">Elevation:</span> {d.elevation || "—"}</p>
                 <p><span class="opacity-50 uppercase text-[9px]">Process:</span> {d.process} {d.processDetails && `(${d.processDetails})`}</p>
