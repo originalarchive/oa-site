@@ -84,8 +84,7 @@ const sortedEntries = coffeeEntries.sort((a, b) => {
         const ratingBadge = item.querySelector('[data-rating-value]');
         const actualRating = ratingBadge ? ratingBadge.getAttribute('data-rating-value') : "";
         const rawStatus = item.getAttribute('data-pantry-status') || 'finished';
-        const isOpen = rawStatus.toLowerCase() === 'open';
-
+        const isOpen = rawStatus.toLowerCase() === 'open' || rawStatus.toLowerCase() === 'resting';
         let timeMatch = (timeValue === 'all') || 
                         (timeValue === 'open' && isOpen) || 
                         (timeValue === 'last-6' && (brewDate >= sixMonthsAgo || isOpen)) || 

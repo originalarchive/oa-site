@@ -28,6 +28,8 @@ const renderedEntries = await Promise.all(
       flavor: d.ratingFlavor ?? d.rating?.flavor ?? 0,
       body: d.ratingBody ?? d.rating?.body ?? 0,
       acidity: d.ratingAcidity ?? d.rating?.acidity ?? 0,
+      sweetness: d.ratingSweetness ?? 0,
+      finish: d.ratingFinish ?? 0,
       overall: (d.ratingOverall || d.rating?.overall || "TBC") as keyof typeof statusColors
     };
 
@@ -92,11 +94,13 @@ const renderedEntries = await Promise.all(
                   </div>
                 </div>
 
-                <div class="mt-3 flex gap-3 sm:gap-4 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest opacity-50">
-                  <span>Flv: <span class="text-black dark:text-white">{renderStars(ratings.flavor)}</span></span>
-                  <span>Bdy: <span class="text-black dark:text-white">{renderStars(ratings.body)}</span></span>
-                  <span>Acd: <span class="text-black dark:text-white">{renderStars(ratings.acidity)}</span></span>
-                </div>
+                <div class="mt-3 flex flex-wrap gap-x-3 gap-y-1 sm:gap-4 text-[9px] sm:text-[10px] font-mono uppercase tracking-widest opacity-50">
+  				  <span>Flv: <span class="text-black dark:text-white">{renderStars(ratings.flavor)}</span></span>
+  				  <span>Bdy: <span class="text-black dark:text-white">{renderStars(ratings.body)}</span></span>
+ 				  <span>Acd: <span class="text-black dark:text-white">{renderStars(ratings.acidity)}</span></span>
+  				  <span>Swt: <span class="text-black dark:text-white">{renderStars(ratings.sweetness)}</span></span>
+  				  <span>Fin: <span class="text-black dark:text-white">{renderStars(ratings.finish)}</span></span>
+				</div>
               </div>
 
               {/* FIXED RIGHT SIDE */}

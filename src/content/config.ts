@@ -67,6 +67,8 @@ const coffee = defineCollection({
     ratingFlavor: z.number().min(0).max(5),
     ratingBody: z.number().min(0).max(5),
     ratingAcidity: z.number().min(0).max(5),
+    ratingSweetness: z.number().min(0).max(5).default(0),
+    ratingFinish: z.number().min(0).max(5).default(0),    
     ratingOverall: z.enum(["Meh", "Good", "Great", "TBC"]),
     
     // OLD nested rating (make optional for backward compatibility)

@@ -22,6 +22,9 @@ collections:
     summary: "{{name}} - {{roaster}} ({{roastDate}}) - {{status}} - [Draft: {{draft}}]"
     sortable_fields: ["commit_date", "roastDate", "name"]
     view_filters:
+      - label: "Resting"
+        field: status
+        pattern: "Resting"
       - label: "Open"
         field: status
         pattern: "Open"
@@ -33,13 +36,12 @@ collections:
       - { label: "Roast Date", name: "roastDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
       - { label: "Year", name: "year", widget: "hidden", default: "{{roastDate | date('YYYY')}}" }
       - { label: "Name", name: "name", widget: "string", required: true }
-      - { label: "Roaster", name: "roaster", widget: "string", required: true }
+      - { label: "Status", name: "status", widget: "select", options: ["Resting", "Open", "Finished"], required: true }
       - { label: "Roaster URL", name: "roasterUrl", widget: "string", required: false }
       - { label: "Brew Method", name: "brewMethod", widget: "string", required: true }
       - { label: "Grind Size", name: "grindSize", widget: "string", required: true }
       - { label: "Water Temp", name: "waterTemp", widget: "string", required: false }
       - { label: "Ratio", name: "ratio", widget: "string", required: false }
-      - { label: "Status", name: "status", widget: "select", options: ["Open", "Finished"], required: true }
       - { label: "Origin", name: "origin", widget: "string", required: true }
       - { label: "Region", name: "region", widget: "string", required: false }
       - { label: "Producer", name: "producer", widget: "string", required: false }
@@ -51,9 +53,11 @@ collections:
       - { label: "Date Brewed", name: "dateBrewed", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
       - { label: "Brew Notes", name: "brewNotes", widget: "markdown", required: false }
       - { label: "Coffee Image", name: "image", widget: "image", required: false }
-      - { label: "Rating - Flavor (0-5)", name: "ratingFlavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
+      - { label: "Rating - Flavour (0-5)", name: "ratingFlavor", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
       - { label: "Rating - Body (0-5)", name: "ratingBody", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
       - { label: "Rating - Acidity (0-5)", name: "ratingAcidity", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
+      - { label: "Rating - Sweetness (0-5)", name: "ratingSweetness", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
+      - { label: "Rating - Finish (0-5)", name: "ratingFinish", widget: "number", value_type: "int", min: 0, max: 5, default: 0, required: true }
       - { label: "Rating - Overall", name: "ratingOverall", widget: "select", options: ["Meh", "Good", "Great", "TBC"], default: "TBC", required: true }
       - { label: "Body Content", name: "body", widget: "markdown", required: false }
 
