@@ -22,7 +22,7 @@ dateBrewed: 2026-11-27
 brewNotes: |-
   Both C25 1:15 96 degree 3 pour and C28 1:15 93 degree 5 pour tasted great, lots of body, mid sweetness, low bitterness. A great everyday cup.
 
-  Missing the fruit. Must try C25  1:16
+  96° C25  1:15.5 stretched it and it was very pleasant. No fruit coming through!
 image: ''
 ratingFlavor: 3
 ratingBody: 4
